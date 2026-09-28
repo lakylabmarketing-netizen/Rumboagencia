@@ -1,0 +1,30 @@
+# n8n en local + túnel público de Cloudflare (igual que en el vídeo, pero en un solo comando)
+# Uso:
+#   1) docker compose up -d
+#   2) docker compose logs cloudflared | grep trycloudflare.com   -> copia la URL https://xxxx.trycloudflare.com
+#   3) Pon esa URL en WEBHOOK_URL (archivo .env) y ejecuta: docker compose up -d n8n
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - GENERIC_TIMEZONE=Europe/Madrid
+      - TZ=Europe/Madrid
+      # URL pública del túnel: la necesitan Meta/WhatsApp para enviar los webhooks
+      - WEBHOOK_URL=${WEBHOOK_URL:-http://localhost:5678/}
+      - N8N_EDITOR_BASE_URL=${WEBHOOK_URL:-http://localhost:5678/}
+      - N8N_RUNNERS_ENABLED=true
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate --url http://n8n:5678
+    depends_on:
+      - n8n
+
+volumes:
+  n8n_data:
