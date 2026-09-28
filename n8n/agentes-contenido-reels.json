@@ -1,0 +1,383 @@
+{
+  "name": "Agentes de contenido (Reels) - 5 skills",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Generador de contenido con agentes IA",
+        "formDescription": "Rellena el formulario y 5 agentes generaran ideas, guiones, trial reels, la planificacion semanal y un lead magnet. Tarda unos minutos, no cierres la pagina.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Marca y nicho",
+              "placeholder": "Ej: Rumbo Agencia, marketing para restaurantes",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Publico objetivo",
+              "fieldType": "textarea",
+              "placeholder": "Quien es tu cliente ideal, que le duele, que quiere conseguir",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Transcripciones de competidores",
+              "fieldType": "textarea",
+              "placeholder": "Pega las transcripciones de los reels de tus competidores (con sus visualizaciones si las tienes). Puedes sacarlas con una extension de transcripciones de Instagram.",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Canales",
+              "placeholder": "Instagram, TikTok, YouTube Shorts, LinkedIn",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Publicaciones por dia",
+              "fieldType": "number",
+              "placeholder": "3",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Planificacion anterior",
+              "fieldType": "textarea",
+              "placeholder": "Opcional: lo que publicaste la semana pasada, para no repetir"
+            },
+            {
+              "fieldLabel": "Tu branding",
+              "fieldType": "textarea",
+              "placeholder": "Opcional: nombre, colores, tono de voz, estilo visual"
+            },
+            {
+              "fieldLabel": "Recurso para el lead magnet",
+              "fieldType": "textarea",
+              "placeholder": "Opcional: pega la guia, checklist o recurso que quieres convertir en lead magnet (o describe la idea)"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4ea57a17-0b7c-41c4-ae7c-e72c24c24bd9",
+      "name": "Formulario de contenido",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "7408ce08-1f6d-4ccd-9287-cb5765848af5"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "id",
+          "value": "claude-sonnet-5"
+        },
+        "options": {
+          "maxTokensToSample": 8000,
+          "temperature": 0.7
+        }
+      },
+      "id": "0ff31d29-b2f0-4d4d-97f8-2cbc105a45df",
+      "name": "Claude",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        1000,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Marca y nicho: {{ $('Formulario de contenido').item.json['Marca y nicho'] }}\nPublico objetivo: {{ $('Formulario de contenido').item.json['Publico objetivo'] }}\n\nTranscripciones de videos de competidores:\n{{ $('Formulario de contenido').item.json['Transcripciones de competidores'] }}\n\nAnaliza las transcripciones y entrega:\n## 1. Tematicas\nLas tematicas recurrentes y cuales parecen generar mas interes.\n## 2. Mejores videos\nLos videos mas fuertes y por que funcionan (estructura, angulo, emocion).\n## 3. Mejores hooks\nLos hooks mas potentes y el patron que hay detras de cada uno, para poder reutilizarlo.\n## 4. Ideas para mi marca\n10 ideas de Reels originales adaptadas a mi marca y publico, numeradas, cada una con: titulo, angulo y tematica. No copies a la competencia, adapta los patrones.",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "Eres un estratega de contenido experto en Reels virales. Analizas transcripciones de videos de la competencia y detectas que funciona y por que. Respondes siempre en espanol, en Markdown, sin preambulos."
+            }
+          ]
+        }
+      },
+      "id": "45e7d54d-0c29-4b7e-88ca-ab819cb688af",
+      "name": "Agente 1 - Generador de ideas",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        240,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Marca y nicho: {{ $('Formulario de contenido').item.json['Marca y nicho'] }}\nPublico objetivo: {{ $('Formulario de contenido').item.json['Publico objetivo'] }}\n\nAnalisis e ideas del generador de ideas:\n{{ $('Agente 1 - Generador de ideas').item.json.text }}\n\nElige las 5 mejores ideas y para cada una escribe:\n- **Hooks**: 3 variantes de hook (primeros 3 segundos).\n- **Guion**: guion completo de 30 a 60 segundos, dividido por bloques con tiempos aproximados.\n- **Descripcion**: la descripcion del post con saltos de linea y 3 a 5 hashtags.\n- **CTA**: una llamada a la accion clara (ej. comentar una palabra clave para recibir un recurso).\nUsa un encabezado ## por cada guion, numerado del 1 al 5.",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "Eres un copywriter experto en Reels de Instagram, TikTok y Shorts. Escribes guiones cortos, directos y con ritmo, que retienen hasta el final. Respondes siempre en espanol, en Markdown, sin preambulos."
+            }
+          ]
+        }
+      },
+      "id": "9fd74768-835f-44cc-a7c5-f656c3f7bc72",
+      "name": "Agente 2 - Copywriter",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        480,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Guiones del copywriter:\n{{ $('Agente 2 - Copywriter').item.json.text }}\n\nToma el guion con mas potencial (el Guion 1 salvo que otro sea claramente mejor) y crea Trial Reels:\n## Hooks\n4 hooks distintos (H1-H4), cada uno con un angulo diferente (curiosidad, polemica, resultado, dolor).\n## Cuerpos\n4 cuerpos distintos (C1-C4) que transmitan el mismo mensaje con enfoques diferentes.\n## Combinaciones\nUna tabla con las 16 combinaciones Hook x Cuerpo.\n## Trial Reels recomendados\nLos 4 trials que publicarias primero (Trial 1 a Trial 4), con el guion completo de cada uno y que metrica mirar para decidir el ganador.",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "Eres un especialista en Trial Reels de Instagram: publicar variantes de un mismo video para testear que hook y que cuerpo funcionan mejor. Respondes siempre en espanol, en Markdown, sin preambulos."
+            }
+          ]
+        }
+      },
+      "id": "42f80724-f9ff-4f48-945d-dfeba849eebc",
+      "name": "Agente 3 - Generador de Trial Reels",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        720,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Marca y nicho: {{ $('Formulario de contenido').item.json['Marca y nicho'] }}\nCanales: {{ $('Formulario de contenido').item.json['Canales'] }}\nObjetivo de volumen: {{ $('Formulario de contenido').item.json['Publicaciones por dia'] }} publicaciones por dia\nPlanificacion anterior (no repetir): {{ $('Formulario de contenido').item.json['Planificacion anterior'] }}\n\nIdeas disponibles:\n{{ $('Agente 1 - Generador de ideas').item.json.text }}\n\nGuiones disponibles:\n{{ $('Agente 2 - Copywriter').item.json.text }}\n\nTrial Reels:\n{{ $('Agente 3 - Generador de Trial Reels').item.json.text }}\n\nCrea la planificacion de 1 semana de contenido (lunes a domingo):\n## Calendario\nUna tabla Markdown con columnas: Dia | Hora | Canal | Formato (reel, carrusel, historia, trial reel...) | Pieza (idea o guion a usar) | Objetivo.\nRespeta el volumen diario indicado y reparte entre los canales.\n## Notas\nRecomendaciones breves de formatos y horarios por canal.",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "Eres un planificador de contenido para redes sociales. Creas calendarios semanales realistas que equilibran formatos y canales. Respondes siempre en espanol, en Markdown, sin preambulos."
+            }
+          ]
+        }
+      },
+      "id": "8267833b-2a56-4371-b333-13748ad98aea",
+      "name": "Agente 4 - Planificador de contenido",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        960,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Marca y nicho: {{ $('Formulario de contenido').item.json['Marca y nicho'] }}\nPublico objetivo: {{ $('Formulario de contenido').item.json['Publico objetivo'] }}\nTu branding: {{ $('Formulario de contenido').item.json['Tu branding'] }}\nRecurso: {{ $('Formulario de contenido').item.json['Recurso para el lead magnet'] }}\n\nCTAs de los guiones (el lead magnet debe encajar con ellas):\n{{ $('Agente 2 - Copywriter').item.json.text }}\n\nSi el recurso esta vacio, propon tu uno a partir de las ideas y guiones. Entrega:\n## Naming\n5 nombres posibles y el recomendado.\n## Rediseno\nEstructura del lead magnet (secciones) y como aplicar el branding (colores, tono, estilo).\n## Contenido\nEl lead magnet completo, listo para maquetar.\n## Entrega por comentarios\nLa palabra clave para comentar y el mensaje directo que se enviara con el recurso.",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "Eres un disenador de lead magnets para creadores y agencias. Conviertes recursos en entregables atractivos, con un nombre irresistible, alineados con la marca. Respondes siempre en espanol, en Markdown, sin preambulos."
+            }
+          ]
+        }
+      },
+      "id": "aa923585-c307-4e97-b1c2-40a03090a10d",
+      "name": "Agente 5 - Disenador de lead magnets",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        1200,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "jsCode": "const t = (n) => $(n).first().json.text;\nconst marca = $('Formulario de contenido').first().json['Marca y nicho'];\nconst md = [\n  `# Plan de contenido - ${marca}`,\n  `# 1. Ideas (analisis de competencia)`, t('Agente 1 - Generador de ideas'),\n  `# 2. Copywriting: hooks, guiones, descripciones y CTAs`, t('Agente 2 - Copywriter'),\n  `# 3. Trial Reels`, t('Agente 3 - Generador de Trial Reels'),\n  `# 4. Planificacion semanal`, t('Agente 4 - Planificador de contenido'),\n  `# 5. Lead magnet`, t('Agente 5 - Disenador de lead magnets'),\n].join('\\n\\n---\\n\\n');\nreturn [{ json: { markdown: md } }];"
+      },
+      "id": "08e64c75-6cc7-4a95-a919-64cc33df1089",
+      "name": "Unir resultados",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.markdown }}",
+        "destinationKey": "html",
+        "options": {
+          "tables": true,
+          "simplifiedAutoLink": true,
+          "openLinksInNewWindow": true
+        }
+      },
+      "id": "6fc77caa-8956-4635-bde0-ebe07e902285",
+      "name": "Markdown a HTML",
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "showText",
+        "responseText": "=<style>body{font-family:system-ui,sans-serif;max-width:900px;margin:0 auto;padding:24px;line-height:1.6;color:#1a1a1a}h1{border-bottom:2px solid #eee;padding-bottom:6px}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #ddd;padding:6px 8px;text-align:left;vertical-align:top}th{background:#f5f5f5}hr{margin:40px 0}</style>{{ $json.html }}"
+      },
+      "id": "334edcb7-77a6-4f5d-8312-479c09a47498",
+      "name": "Mostrar resultado",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        0
+      ],
+      "webhookId": "93efb481-a28e-489b-8c25-690fccf725cb"
+    }
+  ],
+  "connections": {
+    "Formulario de contenido": {
+      "main": [
+        [
+          {
+            "node": "Agente 1 - Generador de ideas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente 1 - Generador de ideas": {
+      "main": [
+        [
+          {
+            "node": "Agente 2 - Copywriter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente 2 - Copywriter": {
+      "main": [
+        [
+          {
+            "node": "Agente 3 - Generador de Trial Reels",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente 3 - Generador de Trial Reels": {
+      "main": [
+        [
+          {
+            "node": "Agente 4 - Planificador de contenido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente 4 - Planificador de contenido": {
+      "main": [
+        [
+          {
+            "node": "Agente 5 - Disenador de lead magnets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente 1 - Generador de ideas",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Agente 2 - Copywriter",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Agente 3 - Generador de Trial Reels",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Agente 4 - Planificador de contenido",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Agente 5 - Disenador de lead magnets",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente 5 - Disenador de lead magnets": {
+      "main": [
+        [
+          {
+            "node": "Unir resultados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unir resultados": {
+      "main": [
+        [
+          {
+            "node": "Markdown a HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown a HTML": {
+      "main": [
+        [
+          {
+            "node": "Mostrar resultado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
