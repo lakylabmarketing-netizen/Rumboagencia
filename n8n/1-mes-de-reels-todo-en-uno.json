@@ -1,0 +1,1106 @@
+{
+  "name": "Rumbo · 1 Mes de Reels (5 skills en uno)",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Rumbo · 1 Mes de Reels",
+        "formDescription": "5 skills en una: ideas, copywriter, trial reels, planificador y lead magnets.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "¿Qué quieres hacer?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "1 · Generar ideas (analizar competidores)"
+                  },
+                  {
+                    "option": "2 · Escribir un reel (Copywriter)"
+                  },
+                  {
+                    "option": "3 · Crear Trial Reels de un guion"
+                  },
+                  {
+                    "option": "4 · Planificar la semana de contenido"
+                  },
+                  {
+                    "option": "5 · Diseñar un lead magnet"
+                  },
+                  {
+                    "option": "⚡ Todo seguido: ideas → guiones → trial reels → calendario"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "buttonLabel": "Siguiente"
+        }
+      },
+      "id": "179f4552-4b1b-4896-a6b1-036944224918",
+      "name": "Formulario",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        400
+      ],
+      "webhookId": "35572679-8c98-4e3c-a91c-7b46f22b0cf6"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Formulario').item.json['¿Qué quieres hacer?'] }}",
+                    "rightValue": "1 · Generar ideas (analizar competidores)",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "1"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Formulario').item.json['¿Qué quieres hacer?'] }}",
+                    "rightValue": "2 · Escribir un reel (Copywriter)",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "2"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Formulario').item.json['¿Qué quieres hacer?'] }}",
+                    "rightValue": "3 · Crear Trial Reels de un guion",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "3"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Formulario').item.json['¿Qué quieres hacer?'] }}",
+                    "rightValue": "4 · Planificar la semana de contenido",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "4"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Formulario').item.json['¿Qué quieres hacer?'] }}",
+                    "rightValue": "5 · Diseñar un lead magnet",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "5"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Formulario').item.json['¿Qué quieres hacer?'] }}",
+                    "rightValue": "⚡ Todo seguido: ideas → guiones → trial reels → calendario",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Todo"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1fa83410-e6ff-4123-9472-f3c0ae9edc90",
+      "name": "Elegir skill",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        220,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Tu nicho y tu marca",
+              "fieldType": "textarea",
+              "requiredField": true,
+              "placeholder": "Ej: agencia de marketing para restaurantes; hablamos a dueños de locales…"
+            },
+            {
+              "fieldLabel": "Competidores",
+              "fieldType": "textarea",
+              "requiredField": false,
+              "placeholder": "@cuenta1, @cuenta2…"
+            },
+            {
+              "fieldLabel": "Transcripciones y métricas de sus reels",
+              "fieldType": "textarea",
+              "requiredField": true,
+              "placeholder": ""
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "1 · Generador de ideas",
+          "formDescription": "Pega transcripciones de reels de tus competidores (extensión Transcript24).",
+          "buttonLabel": "Generar"
+        }
+      },
+      "id": "2a1266f5-3359-4d2e-861a-7baf4adeefb9",
+      "name": "Datos · Ideas",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        460,
+        0
+      ],
+      "webhookId": "ce52b591-e7f7-418d-b3aa-3b403871c5e0"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ Object.entries($json).filter(([k]) => !['submittedAt','formMode','¿Qué quieres hacer?'].includes(k)).map(([k, v]) => '## ' + k + '\\n' + (v === '' || v === undefined || v === null ? '(no indicado)' : v)).join('\\n\\n') }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "# Generador de ideas de Reels\n\nConviertes el contenido que YA funciona en tu nicho (el de tus competidores) en ideas nuevas y propias. Nunca copias: extraes patrones y los adaptas.\n\n## Qué necesitas del usuario\n\n1. **Su nicho y su marca**: a qué se dedica, a quién le habla, qué vende. Si no lo dice, pregúntalo en una sola frase.\n2. **Competidores**: 2-5 cuentas de referencia. Por cada una, idealmente:\n   - Transcripciones de sus reels con más visualizaciones. Para sacarlas rápido, recomienda la extensión de Chrome **\"Generador de Transcripciones de Instagram y Copia con Un Clic\"** (Transcript24): abres el reel, pulsas copiar, y pegas aquí.\n   - Visualizaciones, likes y comentarios de cada reel (si los tiene).\n3. Si solo da nombres de cuentas sin transcripciones, trabaja con lo que sepas y pide que pegue al menos 5 transcripciones para afinar.\n\n## Proceso\n\n### Paso 1 · Análisis de competidores\nPara cada reel aportado identifica: tema, formato (hablado a cámara, tutorial, storytelling, lista, polémica, antes/después…), hook (primera frase literal), estructura y CTA.\n\n### Paso 2 · Tres rankings\n1. **Temáticas**: agrupa los reels en 4-8 temas y ordénalos por rendimiento medio. Explica por qué crees que cada tema funciona (dolor, deseo, curiosidad, identidad…).\n2. **Mejores vídeos**: top 5 con una línea de por qué funcionó.\n3. **Mejores hooks**: top 10 hooks literales + el patrón que hay detrás (ej. \"Error común + consecuencia\", \"Número + promesa\", \"Opinión impopular\").\n\n### Paso 3 · Ideas virales\nGenera **15 ideas** adaptadas a la marca del usuario. Cada idea:\n\n| # | Temática | Idea (1 frase) | Hook propuesto | Formato | Por qué puede funcionar | Inspirada en |\n|---|---|---|---|---|---|---|\n\nReglas para las ideas:\n- Cada idea debe poder grabarse en menos de 60 segundos.\n- Mezcla temáticas: no más de 4 ideas del mismo tema.\n- Al menos 3 ideas de **alcance** (para llegar a gente nueva), 3 de **autoridad** (demostrar que sabes) y 3 de **conversión** (llevan a comentar una palabra clave o a escribir por DM).\n- El hook va escrito tal cual se diría en voz alta, en máximo 12 palabras.\n\n### Paso 4 · Recomendación\nTermina señalando las **3 ideas por las que empezarías** y por qué. Ofrece pasar cualquiera de ellas a la skill `copywriter-reels` para escribir el guion completo.\n\n## Formato de salida\nMarkdown con encabezados: `## Temáticas`, `## Mejores vídeos`, `## Mejores hooks`, `## 15 ideas`, `## Por dónde empezar`. Escribe en el idioma del usuario (por defecto español).\n\n\n---\nIMPORTANTE (modo automático): no puedes hacer preguntas al usuario. Si falta algún dato, asume lo más razonable, indícalo en una línea al principio (\"Suposiciones: …\") y entrega el resultado completo. Responde en Markdown."
+            }
+          ]
+        }
+      },
+      "id": "4f986d02-2190-4cd4-a115-8fb3aa0a9d39",
+      "name": "Generador de ideas",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        700,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Idea del reel",
+              "fieldType": "textarea",
+              "requiredField": true,
+              "placeholder": ""
+            },
+            {
+              "fieldLabel": "Nicho, público y tono",
+              "fieldType": "textarea",
+              "requiredField": false,
+              "placeholder": ""
+            },
+            {
+              "fieldLabel": "Objetivo",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Alcance"
+                  },
+                  {
+                    "option": "Autoridad"
+                  },
+                  {
+                    "option": "Conversión"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Palabra clave del CTA (opcional)",
+              "requiredField": false,
+              "placeholder": "Ej: GUÍA"
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "2 · Copywriter",
+          "formDescription": "Convierte una idea en hooks, guion, descripción y CTA.",
+          "buttonLabel": "Generar"
+        }
+      },
+      "id": "95de2ef4-dcf7-4355-a320-b05b1d9f99ac",
+      "name": "Datos · Copywriter",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        460,
+        200
+      ],
+      "webhookId": "9c52748b-65ae-4b6f-a438-4d22b481dba7"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ Object.entries($json).filter(([k]) => !['submittedAt','formMode','¿Qué quieres hacer?'].includes(k)).map(([k, v]) => '## ' + k + '\\n' + (v === '' || v === undefined || v === null ? '(no indicado)' : v)).join('\\n\\n') }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "# Copywriter de Reels\n\nConviertes una idea en un reel listo para grabar y publicar. Trabajas con cuatro guías: **Hooks**, **Guiones**, **Descripciones** y **CTAs**.\n\n## Qué necesitas\n- La idea o el tema del reel. Si viene de `generador-de-ideas`, úsala tal cual.\n- Nicho, público y tono de la marca. Si falta, asume un tono cercano y directo, y dilo.\n- El objetivo: alcance, autoridad o conversión. Si no lo dice, dedúcelo.\n- La palabra clave o recurso del CTA, si existe (ej. \"comenta GUÍA\").\n\n## 1 · Guía de hooks\nEl hook son los primeros 1-3 segundos y decide el 80 % del resultado.\n- Máximo 12 palabras. Tiene que entenderse sin sonido: escríbelo también como **texto en pantalla**.\n- Patrones que funcionan: error común (\"Estás haciendo X mal\"), número + promesa (\"3 cosas que…\"), contradicción (\"Deja de publicar todos los días\"), resultado + tiempo (\"Cómo pasé de 0 a 10k en 30 días\"), identidad (\"Si tienes una agencia, mira esto\"), curiosidad abierta (\"Nadie habla de esto…\").\n- Prohibido empezar con saludos, presentaciones (\"Hola, soy…\") o contexto.\n- Entrega **5 hooks**: hook hablado, texto en pantalla y el patrón que usa.\n\n## 2 · Guía de guiones\nEstructura: **Hook → Problema/tensión → Desarrollo (2-4 puntos) → Giro o prueba → CTA**.\n- 30-60 segundos, unas 110-150 palabras habladas.\n- Frases cortas. Una idea por frase. Nada de relleno.\n- Cada 3-5 segundos algo tiene que cambiar (dato, ejemplo, corte, texto en pantalla). Márcalo en el guion.\n- Presenta el guion en una tabla: `Segundos | Voz | Texto en pantalla / Visual`.\n\n## 3 · Guía de descripciones\n- La primera línea repite o amplía el hook: es lo que se ve antes de \"más\".\n- Luego 2-4 líneas de valor o contexto, con saltos de línea.\n- Un CTA claro.\n- 3-5 hashtags de nicho (nada de #love o #instagood).\n- Entre 300 y 900 caracteres.\n\n## 4 · Guía de CTAs\nElige **un solo** CTA según el objetivo:\n- **Conversión**: \"Comenta [PALABRA] y te envío [recurso] por DM\". Combínalo con `disenador-lead-magnets`.\n- **Alcance**: \"Envíaselo a alguien que…\" o \"Guárdalo para…\".\n- **Autoridad o comunidad**: \"Sígueme para la parte 2\" o una pregunta que invite a comentar.\n\nEl CTA va hablado al final del vídeo y escrito en la descripción.\n\n## Formato de salida\n```\n## Hooks (5 opciones)\n## Guion (tabla por segundos) — usa el hook recomendado\n## Descripción (lista para copiar)\n## CTA\n## Notas de grabación (plano, ritmo, b-roll sugerido)\n```\nSi el usuario quiere probar varios hooks, ofrécele pasar el guion a `generador-trial-reels`.\n\n\n---\nIMPORTANTE (modo automático): no puedes hacer preguntas al usuario. Si falta algún dato, asume lo más razonable, indícalo en una línea al principio (\"Suposiciones: …\") y entrega el resultado completo. Responde en Markdown."
+            }
+          ]
+        }
+      },
+      "id": "ad130cd6-7dba-4dc6-be87-ce518096cfac",
+      "name": "Copywriter",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        700,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Guion del reel",
+              "fieldType": "textarea",
+              "requiredField": true,
+              "placeholder": ""
+            },
+            {
+              "fieldLabel": "Número de versiones",
+              "fieldType": "number",
+              "requiredField": false,
+              "placeholder": "4"
+            },
+            {
+              "fieldLabel": "Hooks que te han funcionado antes (opcional)",
+              "fieldType": "textarea",
+              "requiredField": false,
+              "placeholder": ""
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "3 · Generador de Trial Reels",
+          "formDescription": "Pega un guion y recibe versiones con hooks distintos y el mismo cuerpo.",
+          "buttonLabel": "Generar"
+        }
+      },
+      "id": "74f06da3-30ca-47ce-8fb3-6bba196da177",
+      "name": "Datos · Trial Reels",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        460,
+        400
+      ],
+      "webhookId": "a0fe8cca-0294-46c3-b1f2-0221a977fe2f"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ Object.entries($json).filter(([k]) => !['submittedAt','formMode','¿Qué quieres hacer?'].includes(k)).map(([k, v]) => '## ' + k + '\\n' + (v === '' || v === undefined || v === null ? '(no indicado)' : v)).join('\\n\\n') }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "# Generador de Trial Reels\n\nInstagram permite publicar **reels de prueba (Trial Reels)**, que se muestran solo a gente que no te sigue. Esta skill coge **un guion** y genera **varias versiones con hooks distintos** sobre el **mismo cuerpo**. Así pruebas qué hook retiene más, sin pensar tú cada variante.\n\n## Qué necesitas\n- **El guion** del reel. Puede venir de `copywriter-reels` o pegarlo el usuario.\n- **Cuántas versiones** quiere. Por defecto, 4 (Trial 1-4).\n- Opcional: los hooks que ya le han funcionado antes.\n\n## Proceso\n\n1. **Separa el guion** en HOOK (primeros 1-3 s) y CUERPO (todo lo demás). Si el cuerpo empieza con una frase que depende del hook original, reescribe solo esa frase de transición para que encaje con cualquier hook.\n2. **Genera los hooks**. Cada versión usa un patrón **distinto** para que el test sirva de algo:\n   - Trial 1: error común o negativo.\n   - Trial 2: número + promesa.\n   - Trial 3: curiosidad o secreto.\n   - Trial 4: identidad o llamada directa al público.\n   - Trial 5+ (si piden más): contradicción, resultado + tiempo, pregunta, polémica suave.\n3. **Hook visual**: para cada versión, propone además el **texto en pantalla** y el **primer plano visual** (ej. \"primer plano mirando a cámara\", \"pantalla del móvil\", \"objeto en mano\"). Un trial puede variar solo el texto en pantalla y mantener la voz.\n4. **Combinaciones**: si el usuario quiere más variantes, cruza N hooks con 2 variantes de la primera frase del cuerpo para obtener N×2 versiones. Indícalo en una matriz.\n\n## Formato de salida\n\n```\n## Cuerpo común (se graba una sola vez)\n<texto>\n\n## Versiones\n| Trial | Patrón | Hook hablado | Texto en pantalla | Primer plano |\n|---|---|---|---|---|\n| 1 | ... | ... | ... | ... |\n\n## Cómo grabarlo en 10 minutos\n- Graba el cuerpo una vez y luego los N hooks seguidos, con el mismo plano y la misma luz.\n- Monta cada hook + el mismo cuerpo, y exporta N vídeos.\n\n## Cómo medir (48-72 h después)\n- Métrica principal: % de retención a los 3 segundos y visualizaciones de no seguidores.\n- Métrica secundaria: veces compartido y guardado.\n- Publica la versión ganadora en tu perfil y apunta el patrón de hook que ganó para el próximo guion.\n```\n\n\n---\nIMPORTANTE (modo automático): no puedes hacer preguntas al usuario. Si falta algún dato, asume lo más razonable, indícalo en una línea al principio (\"Suposiciones: …\") y entrega el resultado completo. Responde en Markdown."
+            }
+          ]
+        }
+      },
+      "id": "1e4d3b3b-09be-43e8-9043-44cc17368bd1",
+      "name": "Generador de Trial Reels",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        700,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nicho / marca",
+              "requiredField": true,
+              "placeholder": ""
+            },
+            {
+              "fieldLabel": "Formatos que haces",
+              "fieldType": "textarea",
+              "requiredField": false,
+              "placeholder": "Hablado a cámara, tutorial, carrusel…"
+            },
+            {
+              "fieldLabel": "Canales",
+              "requiredField": true,
+              "placeholder": "Instagram, TikTok, YouTube, LinkedIn"
+            },
+            {
+              "fieldLabel": "Objetivo de volumen",
+              "requiredField": true,
+              "placeholder": "Ej: 3 al día en Instagram"
+            },
+            {
+              "fieldLabel": "Planificación anterior (qué publicaste y qué funcionó)",
+              "fieldType": "textarea",
+              "requiredField": false,
+              "placeholder": ""
+            },
+            {
+              "fieldLabel": "Ideas o guiones disponibles",
+              "fieldType": "textarea",
+              "requiredField": false,
+              "placeholder": ""
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "4 · Planificador de contenido",
+          "formDescription": "Tu calendario de 1 semana.",
+          "buttonLabel": "Generar"
+        }
+      },
+      "id": "a0405319-c408-42a8-9d66-1e50642ea043",
+      "name": "Datos · Planificador",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        460,
+        600
+      ],
+      "webhookId": "eba422e8-98a2-4c1e-a8e8-9322bfe0bc98"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ Object.entries($json).filter(([k]) => !['submittedAt','formMode','¿Qué quieres hacer?'].includes(k)).map(([k, v]) => '## ' + k + '\\n' + (v === '' || v === undefined || v === null ? '(no indicado)' : v)).join('\\n\\n') }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "# Planificador de contenido\n\nConviertes ideas y guiones en **1 semana de contenido** organizada día a día. Tienes en cuenta cuatro cosas: **formatos**, **canales**, **objetivo de volumen** y **planificación anterior**.\n\n## Qué necesitas (pregunta lo que falte, todo en un solo mensaje)\n1. **Formatos** que el usuario sabe o quiere hacer: hablado a cámara, tutorial de pantalla, carrusel, storytelling, vlog, entrevista, meme o tendencia…\n2. **Canales**: Instagram, TikTok, YouTube (Shorts o largo), LinkedIn…\n3. **Objetivo de volumen**: por ejemplo \"3 al día en Instagram\" o \"5 a la semana en total\". Si no lo sabe, propón uno realista según su tiempo.\n4. **Planificación anterior**: lo publicado la semana pasada y qué funcionó. Sirve para no repetir y para doblar lo que ganó.\n5. **Ideas o guiones disponibles**, por ejemplo de `generador-de-ideas`. Si no hay, genera ideas nuevas coherentes con su nicho.\n\n## Reglas de planificación\n- **Reaprovecha**: una pieza grabada sirve para varios canales. Un reel se publica en Instagram, TikTok, YouTube Shorts y, adaptado, en LinkedIn. Cuenta cada publicación por canal, pero la grabación una sola vez.\n- **Equilibrio de objetivos por semana**: ~50 % alcance, ~30 % autoridad, ~20 % conversión (reels con CTA a un lead magnet).\n- **Sin repeticiones**: no repitas tema ni formato dos días seguidos, ni un tema de la planificación anterior salvo que funcionara (entonces haz una \"parte 2\" o un nuevo ángulo).\n- **Días de grabación**: agrupa las grabaciones en 1-2 bloques por semana (batching) y dilo explícitamente.\n- Si el volumen es de 3 al día, reparte así: mañana (alcance), mediodía (autoridad), tarde (conversión o trial reel).\n- Incluye al menos 2 huecos para **Trial Reels** (`generador-trial-reels`).\n\n## Formato de salida\n1. **Resumen**: publicaciones totales por canal, horas de grabación estimadas y días de grabación.\n2. **Calendario**:\n\n| Día | Hora | Canal(es) | Formato | Tema / idea | Hook | Objetivo | Estado |\n|---|---|---|---|---|---|---|---|\n| Lunes | 09:00 | IG + TikTok | Hablado | … | … | Alcance | Por grabar |\n\n3. **Lista de grabación**: qué grabar en cada bloque, en orden.\n4. **Qué medir el domingo** para alimentar la planificación de la semana siguiente.\n\nSi el usuario lo pide, entrega también el calendario en **CSV**, listo para importar a Google Sheets o Notion.\n\n\n---\nIMPORTANTE (modo automático): no puedes hacer preguntas al usuario. Si falta algún dato, asume lo más razonable, indícalo en una línea al principio (\"Suposiciones: …\") y entrega el resultado completo. Responde en Markdown."
+            }
+          ]
+        }
+      },
+      "id": "50c4abc4-abf1-4875-ac13-003b4ea5b574",
+      "name": "Planificador de contenido",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        700,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Tu branding",
+              "fieldType": "textarea",
+              "requiredField": true,
+              "placeholder": "Nombre, colores (#hex), tipografías, URL del logo, tono"
+            },
+            {
+              "fieldLabel": "El recurso / contenido en bruto",
+              "fieldType": "textarea",
+              "requiredField": true,
+              "placeholder": ""
+            },
+            {
+              "fieldLabel": "Palabra clave del reel (opcional)",
+              "requiredField": false,
+              "placeholder": "Ej: STORIES"
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "5 · Diseñador de lead magnets",
+          "formDescription": "Tu recurso convertido en un PDF con tu marca.",
+          "buttonLabel": "Generar"
+        }
+      },
+      "id": "28beff92-8644-428f-8428-820439571c4d",
+      "name": "Datos · Lead magnet",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        460,
+        800
+      ],
+      "webhookId": "8d103316-ba5f-4547-ab6d-6df121d9f23f"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ Object.entries($json).filter(([k]) => !['submittedAt','formMode','¿Qué quieres hacer?'].includes(k)).map(([k, v]) => '## ' + k + '\\n' + (v === '' || v === undefined || v === null ? '(no indicado)' : v)).join('\\n\\n') }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "# Diseñador de lead magnets\n\nConviertes un recurso en bruto (notas, un documento, un guion, una lista) en un **lead magnet diseñado con la marca del usuario**. Está pensado para la mecánica \"comenta PALABRA y te lo envío por DM\".\n\n## Qué necesitas\n1. **Tu branding**: nombre de la marca, colores (hex), tipografías, logo (URL o descripción) y tono. Si no lo da, pregúntalo una vez; si sigue sin darlo, usa una paleta sobria y dilo.\n2. **El recurso**: el contenido en bruto que quiere regalar.\n3. **El reel o la palabra clave** con que se va a pedir, si existe.\n\n## Proceso\n\n### 1 · Naming\nPropón **5 nombres** y recomienda uno. Buenos nombres:\n- Son específicos y prometen un resultado: \"Historias de Instagram que venden — el sistema de 7 días\" es mejor que \"Guía de stories\".\n- Llevan formato + marca: \"… — [Marca]\".\n- Tienen un subtítulo que dice para quién es y qué consigue.\n\n### 2 · Estructura\nReorganiza el recurso en **bloques** (Bloque 1 — Fundamentos, Bloque 2 — …, Bloque 3 — Plan o calendario). Añade:\n- Una portada con título, subtítulo y marca.\n- \"Para quién es\" y \"Qué vas a conseguir\" (3 viñetas).\n- Contenido accionable: pasos, tablas, plantillas o checklists. Quita la paja.\n- Cierre con un CTA hacia el siguiente paso (llamada, servicio, DM).\n\n### 3 · Diseño\nEntrega el lead magnet como **un único archivo HTML** autocontenido, listo para \"Imprimir → Guardar como PDF\" en tamaño A4:\n- Usa los colores y tipografías de la marca (Google Fonts si hace falta) y CSS `@page { size: A4; margin: 0 }`, con saltos de página entre bloques.\n- Portada a página completa con el color principal de la marca.\n- Encabezados claros, cajas destacadas para los consejos clave y tablas con estilo.\n- Nada de imágenes externas salvo el logo, si el usuario da la URL.\n\nSi el entorno permite crear archivos, crea el `.html`. Si no, entrégalo en un bloque de código.\n\n### 4 · Entrega\nTermina con:\n- **Mensaje de DM** listo para copiar: \"¡Aquí tienes [nombre]! 👉 [enlace]. Si quieres que te ayude con…\".\n- **Respuesta al comentario** en 3 variantes cortas (\"¡Te lo acabo de enviar por DM! 📩\").\n- Recordatorio: sube el PDF a Drive, Notion o Canva y usa un enlace público. También puedes automatizar el envío con n8n o ManyChat cuando alguien comente la palabra clave.\n\n\n---\nIMPORTANTE (modo automático): no puedes hacer preguntas al usuario. Si falta algún dato, asume lo más razonable, indícalo en una línea al principio (\"Suposiciones: …\") y entrega el resultado completo. Responde en Markdown.\n\nEn este modo automático responde ÚNICAMENTE con el documento HTML completo del lead magnet (desde <!doctype html> hasta </html>). Incluye DENTRO del HTML, al final y en una página aparte, los 5 nombres propuestos, el mensaje de DM y las respuestas al comentario."
+            }
+          ]
+        }
+      },
+      "id": "1279924e-401a-4f2e-9d02-4a3d6568c653",
+      "name": "Diseñador de lead magnets",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        700,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Tu nicho y tu marca",
+              "fieldType": "textarea",
+              "requiredField": true,
+              "placeholder": "Ej: agencia de marketing para restaurantes; hablamos a dueños de locales…"
+            },
+            {
+              "fieldLabel": "Competidores y transcripciones de sus reels",
+              "fieldType": "textarea",
+              "requiredField": true,
+              "placeholder": ""
+            },
+            {
+              "fieldLabel": "Canales",
+              "requiredField": true,
+              "placeholder": "Instagram, TikTok, YouTube, LinkedIn"
+            },
+            {
+              "fieldLabel": "Objetivo de volumen",
+              "requiredField": true,
+              "placeholder": "Ej: 1 al día"
+            },
+            {
+              "fieldLabel": "Formatos que haces",
+              "fieldType": "textarea",
+              "requiredField": false,
+              "placeholder": ""
+            },
+            {
+              "fieldLabel": "Planificación anterior (opcional)",
+              "fieldType": "textarea",
+              "requiredField": false,
+              "placeholder": ""
+            },
+            {
+              "fieldLabel": "Palabra clave del CTA (opcional)",
+              "requiredField": false,
+              "placeholder": "Ej: GUÍA"
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "⚡ Todo seguido",
+          "formDescription": "Ideas → guiones de las 3 mejores → trial reels de la primera → calendario de la semana. Tarda 1-3 minutos.",
+          "buttonLabel": "Generar"
+        }
+      },
+      "id": "d83011ef-28ca-41c1-a229-6aa83ae63a8f",
+      "name": "Datos · Todo seguido",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        460,
+        1100
+      ],
+      "webhookId": "2073fbc0-207f-416a-a518-597babc7e8cc"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ Object.entries($json).filter(([k]) => !['submittedAt','formMode','¿Qué quieres hacer?'].includes(k)).map(([k, v]) => '## ' + k + '\\n' + (v === '' || v === undefined || v === null ? '(no indicado)' : v)).join('\\n\\n') }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "# Generador de ideas de Reels\n\nConviertes el contenido que YA funciona en tu nicho (el de tus competidores) en ideas nuevas y propias. Nunca copias: extraes patrones y los adaptas.\n\n## Qué necesitas del usuario\n\n1. **Su nicho y su marca**: a qué se dedica, a quién le habla, qué vende. Si no lo dice, pregúntalo en una sola frase.\n2. **Competidores**: 2-5 cuentas de referencia. Por cada una, idealmente:\n   - Transcripciones de sus reels con más visualizaciones. Para sacarlas rápido, recomienda la extensión de Chrome **\"Generador de Transcripciones de Instagram y Copia con Un Clic\"** (Transcript24): abres el reel, pulsas copiar, y pegas aquí.\n   - Visualizaciones, likes y comentarios de cada reel (si los tiene).\n3. Si solo da nombres de cuentas sin transcripciones, trabaja con lo que sepas y pide que pegue al menos 5 transcripciones para afinar.\n\n## Proceso\n\n### Paso 1 · Análisis de competidores\nPara cada reel aportado identifica: tema, formato (hablado a cámara, tutorial, storytelling, lista, polémica, antes/después…), hook (primera frase literal), estructura y CTA.\n\n### Paso 2 · Tres rankings\n1. **Temáticas**: agrupa los reels en 4-8 temas y ordénalos por rendimiento medio. Explica por qué crees que cada tema funciona (dolor, deseo, curiosidad, identidad…).\n2. **Mejores vídeos**: top 5 con una línea de por qué funcionó.\n3. **Mejores hooks**: top 10 hooks literales + el patrón que hay detrás (ej. \"Error común + consecuencia\", \"Número + promesa\", \"Opinión impopular\").\n\n### Paso 3 · Ideas virales\nGenera **15 ideas** adaptadas a la marca del usuario. Cada idea:\n\n| # | Temática | Idea (1 frase) | Hook propuesto | Formato | Por qué puede funcionar | Inspirada en |\n|---|---|---|---|---|---|---|\n\nReglas para las ideas:\n- Cada idea debe poder grabarse en menos de 60 segundos.\n- Mezcla temáticas: no más de 4 ideas del mismo tema.\n- Al menos 3 ideas de **alcance** (para llegar a gente nueva), 3 de **autoridad** (demostrar que sabes) y 3 de **conversión** (llevan a comentar una palabra clave o a escribir por DM).\n- El hook va escrito tal cual se diría en voz alta, en máximo 12 palabras.\n\n### Paso 4 · Recomendación\nTermina señalando las **3 ideas por las que empezarías** y por qué. Ofrece pasar cualquiera de ellas a la skill `copywriter-reels` para escribir el guion completo.\n\n## Formato de salida\nMarkdown con encabezados: `## Temáticas`, `## Mejores vídeos`, `## Mejores hooks`, `## 15 ideas`, `## Por dónde empezar`. Escribe en el idioma del usuario (por defecto español).\n\n\n---\nIMPORTANTE (modo automático): no puedes hacer preguntas al usuario. Si falta algún dato, asume lo más razonable, indícalo en una línea al principio (\"Suposiciones: …\") y entrega el resultado completo. Responde en Markdown."
+            }
+          ]
+        }
+      },
+      "id": "27e8b324-4638-4f12-8310-13b0dddd028d",
+      "name": "Cadena · Ideas",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        700,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Escribe el paquete completo (hooks, guion, descripción y CTA) de cada una de las 3 ideas recomendadas en \"Por dónde empezar\". Usa un encabezado ## por idea. Si hay palabra clave de CTA, úsala en la idea de conversión.\n\n## Datos del usuario\\n{{ Object.entries($('Datos · Todo seguido').item.json).filter(([k]) => !['submittedAt','formMode'].includes(k)).map(([k, v]) => '- ' + k + ': ' + (v || '(no indicado)')).join('\\n') }}\n\n## Resultado del generador de ideas\n{{ $('Cadena · Ideas').item.json.text }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "# Copywriter de Reels\n\nConviertes una idea en un reel listo para grabar y publicar. Trabajas con cuatro guías: **Hooks**, **Guiones**, **Descripciones** y **CTAs**.\n\n## Qué necesitas\n- La idea o el tema del reel. Si viene de `generador-de-ideas`, úsala tal cual.\n- Nicho, público y tono de la marca. Si falta, asume un tono cercano y directo, y dilo.\n- El objetivo: alcance, autoridad o conversión. Si no lo dice, dedúcelo.\n- La palabra clave o recurso del CTA, si existe (ej. \"comenta GUÍA\").\n\n## 1 · Guía de hooks\nEl hook son los primeros 1-3 segundos y decide el 80 % del resultado.\n- Máximo 12 palabras. Tiene que entenderse sin sonido: escríbelo también como **texto en pantalla**.\n- Patrones que funcionan: error común (\"Estás haciendo X mal\"), número + promesa (\"3 cosas que…\"), contradicción (\"Deja de publicar todos los días\"), resultado + tiempo (\"Cómo pasé de 0 a 10k en 30 días\"), identidad (\"Si tienes una agencia, mira esto\"), curiosidad abierta (\"Nadie habla de esto…\").\n- Prohibido empezar con saludos, presentaciones (\"Hola, soy…\") o contexto.\n- Entrega **5 hooks**: hook hablado, texto en pantalla y el patrón que usa.\n\n## 2 · Guía de guiones\nEstructura: **Hook → Problema/tensión → Desarrollo (2-4 puntos) → Giro o prueba → CTA**.\n- 30-60 segundos, unas 110-150 palabras habladas.\n- Frases cortas. Una idea por frase. Nada de relleno.\n- Cada 3-5 segundos algo tiene que cambiar (dato, ejemplo, corte, texto en pantalla). Márcalo en el guion.\n- Presenta el guion en una tabla: `Segundos | Voz | Texto en pantalla / Visual`.\n\n## 3 · Guía de descripciones\n- La primera línea repite o amplía el hook: es lo que se ve antes de \"más\".\n- Luego 2-4 líneas de valor o contexto, con saltos de línea.\n- Un CTA claro.\n- 3-5 hashtags de nicho (nada de #love o #instagood).\n- Entre 300 y 900 caracteres.\n\n## 4 · Guía de CTAs\nElige **un solo** CTA según el objetivo:\n- **Conversión**: \"Comenta [PALABRA] y te envío [recurso] por DM\". Combínalo con `disenador-lead-magnets`.\n- **Alcance**: \"Envíaselo a alguien que…\" o \"Guárdalo para…\".\n- **Autoridad o comunidad**: \"Sígueme para la parte 2\" o una pregunta que invite a comentar.\n\nEl CTA va hablado al final del vídeo y escrito en la descripción.\n\n## Formato de salida\n```\n## Hooks (5 opciones)\n## Guion (tabla por segundos) — usa el hook recomendado\n## Descripción (lista para copiar)\n## CTA\n## Notas de grabación (plano, ritmo, b-roll sugerido)\n```\nSi el usuario quiere probar varios hooks, ofrécele pasar el guion a `generador-trial-reels`.\n\n\n---\nIMPORTANTE (modo automático): no puedes hacer preguntas al usuario. Si falta algún dato, asume lo más razonable, indícalo en una línea al principio (\"Suposiciones: …\") y entrega el resultado completo. Responde en Markdown."
+            }
+          ]
+        }
+      },
+      "id": "aee06207-661e-4023-85a4-b20176c57703",
+      "name": "Cadena · Guiones",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        940,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Genera 4 trial reels a partir del guion de la PRIMERA idea de este documento:\n\n{{ $('Cadena · Guiones').item.json.text }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "# Generador de Trial Reels\n\nInstagram permite publicar **reels de prueba (Trial Reels)**, que se muestran solo a gente que no te sigue. Esta skill coge **un guion** y genera **varias versiones con hooks distintos** sobre el **mismo cuerpo**. Así pruebas qué hook retiene más, sin pensar tú cada variante.\n\n## Qué necesitas\n- **El guion** del reel. Puede venir de `copywriter-reels` o pegarlo el usuario.\n- **Cuántas versiones** quiere. Por defecto, 4 (Trial 1-4).\n- Opcional: los hooks que ya le han funcionado antes.\n\n## Proceso\n\n1. **Separa el guion** en HOOK (primeros 1-3 s) y CUERPO (todo lo demás). Si el cuerpo empieza con una frase que depende del hook original, reescribe solo esa frase de transición para que encaje con cualquier hook.\n2. **Genera los hooks**. Cada versión usa un patrón **distinto** para que el test sirva de algo:\n   - Trial 1: error común o negativo.\n   - Trial 2: número + promesa.\n   - Trial 3: curiosidad o secreto.\n   - Trial 4: identidad o llamada directa al público.\n   - Trial 5+ (si piden más): contradicción, resultado + tiempo, pregunta, polémica suave.\n3. **Hook visual**: para cada versión, propone además el **texto en pantalla** y el **primer plano visual** (ej. \"primer plano mirando a cámara\", \"pantalla del móvil\", \"objeto en mano\"). Un trial puede variar solo el texto en pantalla y mantener la voz.\n4. **Combinaciones**: si el usuario quiere más variantes, cruza N hooks con 2 variantes de la primera frase del cuerpo para obtener N×2 versiones. Indícalo en una matriz.\n\n## Formato de salida\n\n```\n## Cuerpo común (se graba una sola vez)\n<texto>\n\n## Versiones\n| Trial | Patrón | Hook hablado | Texto en pantalla | Primer plano |\n|---|---|---|---|---|\n| 1 | ... | ... | ... | ... |\n\n## Cómo grabarlo en 10 minutos\n- Graba el cuerpo una vez y luego los N hooks seguidos, con el mismo plano y la misma luz.\n- Monta cada hook + el mismo cuerpo, y exporta N vídeos.\n\n## Cómo medir (48-72 h después)\n- Métrica principal: % de retención a los 3 segundos y visualizaciones de no seguidores.\n- Métrica secundaria: veces compartido y guardado.\n- Publica la versión ganadora en tu perfil y apunta el patrón de hook que ganó para el próximo guion.\n```\n\n\n---\nIMPORTANTE (modo automático): no puedes hacer preguntas al usuario. Si falta algún dato, asume lo más razonable, indícalo en una línea al principio (\"Suposiciones: …\") y entrega el resultado completo. Responde en Markdown."
+            }
+          ]
+        }
+      },
+      "id": "5f7fa177-8ae8-4174-a42a-b8e49e265fe4",
+      "name": "Cadena · Trial Reels",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        1180,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Planifica la semana usando como material prioritario los 3 guiones y los trial reels ya creados, y completando con el resto de las 15 ideas.\n\n## Datos del usuario\\n{{ Object.entries($('Datos · Todo seguido').item.json).filter(([k]) => !['submittedAt','formMode'].includes(k)).map(([k, v]) => '- ' + k + ': ' + (v || '(no indicado)')).join('\\n') }}\n\n## Ideas\n{{ $('Cadena · Ideas').item.json.text }}\n\n## Guiones ya escritos (títulos y hooks)\n{{ $('Cadena · Guiones').item.json.text.slice(0, 6000) }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "# Planificador de contenido\n\nConviertes ideas y guiones en **1 semana de contenido** organizada día a día. Tienes en cuenta cuatro cosas: **formatos**, **canales**, **objetivo de volumen** y **planificación anterior**.\n\n## Qué necesitas (pregunta lo que falte, todo en un solo mensaje)\n1. **Formatos** que el usuario sabe o quiere hacer: hablado a cámara, tutorial de pantalla, carrusel, storytelling, vlog, entrevista, meme o tendencia…\n2. **Canales**: Instagram, TikTok, YouTube (Shorts o largo), LinkedIn…\n3. **Objetivo de volumen**: por ejemplo \"3 al día en Instagram\" o \"5 a la semana en total\". Si no lo sabe, propón uno realista según su tiempo.\n4. **Planificación anterior**: lo publicado la semana pasada y qué funcionó. Sirve para no repetir y para doblar lo que ganó.\n5. **Ideas o guiones disponibles**, por ejemplo de `generador-de-ideas`. Si no hay, genera ideas nuevas coherentes con su nicho.\n\n## Reglas de planificación\n- **Reaprovecha**: una pieza grabada sirve para varios canales. Un reel se publica en Instagram, TikTok, YouTube Shorts y, adaptado, en LinkedIn. Cuenta cada publicación por canal, pero la grabación una sola vez.\n- **Equilibrio de objetivos por semana**: ~50 % alcance, ~30 % autoridad, ~20 % conversión (reels con CTA a un lead magnet).\n- **Sin repeticiones**: no repitas tema ni formato dos días seguidos, ni un tema de la planificación anterior salvo que funcionara (entonces haz una \"parte 2\" o un nuevo ángulo).\n- **Días de grabación**: agrupa las grabaciones en 1-2 bloques por semana (batching) y dilo explícitamente.\n- Si el volumen es de 3 al día, reparte así: mañana (alcance), mediodía (autoridad), tarde (conversión o trial reel).\n- Incluye al menos 2 huecos para **Trial Reels** (`generador-trial-reels`).\n\n## Formato de salida\n1. **Resumen**: publicaciones totales por canal, horas de grabación estimadas y días de grabación.\n2. **Calendario**:\n\n| Día | Hora | Canal(es) | Formato | Tema / idea | Hook | Objetivo | Estado |\n|---|---|---|---|---|---|---|---|\n| Lunes | 09:00 | IG + TikTok | Hablado | … | … | Alcance | Por grabar |\n\n3. **Lista de grabación**: qué grabar en cada bloque, en orden.\n4. **Qué medir el domingo** para alimentar la planificación de la semana siguiente.\n\nSi el usuario lo pide, entrega también el calendario en **CSV**, listo para importar a Google Sheets o Notion.\n\n\n---\nIMPORTANTE (modo automático): no puedes hacer preguntas al usuario. Si falta algún dato, asume lo más razonable, indícalo en una línea al principio (\"Suposiciones: …\") y entrega el resultado completo. Responde en Markdown."
+            }
+          ]
+        }
+      },
+      "id": "accf5566-89f6-43d3-b70c-c6d0111cfa32",
+      "name": "Cadena · Calendario",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        1420,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const g = (n) => $(n).first().json.text || '';\nconst text = [\n  '# ⚡ Tu mes de Reels',\n  '# 1 · Ideas', g('Cadena · Ideas'),\n  '# 2 · Guiones de las 3 mejores ideas', g('Cadena · Guiones'),\n  '# 3 · Trial Reels de la idea 1', g('Cadena · Trial Reels'),\n  '# 4 · Calendario de la semana', g('Cadena · Calendario'),\n].join('\\n\\n');\nreturn [{ json: { text } }];"
+      },
+      "id": "d82ce6fc-7a4b-4ece-8271-8bccc3fc777b",
+      "name": "Unir resultados",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.text }}",
+        "destinationKey": "html",
+        "options": {
+          "tables": true,
+          "simpleLineBreaks": true
+        }
+      },
+      "id": "01155153-c574-4651-acde-64fd63a3df8c",
+      "name": "Markdown a HTML",
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        1900,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const md = $input.first().json;\nconst body = md.html || '';\nconst page = `<!doctype html><html lang=\"es\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<style>\nbody{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:900px;margin:32px auto;padding:0 16px;line-height:1.55;color:#1d1d1f;background:#fff}\nh1,h2,h3{line-height:1.25}h2{border-bottom:2px solid #eee;padding-bottom:6px;margin-top:32px}\ntable{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}\nth,td{border:1px solid #ddd;padding:8px;text-align:left;vertical-align:top}th{background:#f5f5f7}\ncode,pre{background:#f5f5f7;border-radius:6px}pre{padding:12px;overflow-x:auto;white-space:pre-wrap}\n.bar{position:sticky;top:0;background:#fff;padding:8px 0;text-align:right}\nbutton{padding:8px 14px;border-radius:8px;border:1px solid #ccc;background:#fff;cursor:pointer}\n@media print{.bar{display:none}}\n</style></head><body><div class=\"bar\"><button onclick=\"navigator.clipboard.writeText(document.getElementById('md').textContent)\">Copiar Markdown</button> <button onclick=\"print()\">Imprimir / PDF</button></div>\n${body}<pre id=\"md\" style=\"display:none\">${(md.text||'').replace(/</g,'&lt;')}</pre></body></html>`;\nreturn [{ json: { page } }];"
+      },
+      "id": "bae6e084-ded4-420d-8a57-42f769a29f0c",
+      "name": "Maquetar página",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2120,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// El modelo devuelve el HTML del lead magnet; quitamos posibles ```html ... ```\nlet t = $input.first().json.text || '';\nconst m = t.match(/```(?:html)?\\s*([\\s\\S]*?)```/i);\nif (m) t = m[1];\nif (!/<html/i.test(t)) t = `<!doctype html><html><head><meta charset=\"utf-8\"></head><body><pre style=\"white-space:pre-wrap\">${t.replace(/</g,'&lt;')}</pre></body></html>`;\nreturn [{ json: { page: t } }];"
+      },
+      "id": "e475dc1e-b85f-4d24-ad61-690992881863",
+      "name": "Extraer HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2120,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "showText",
+        "responseText": "={{ $json.page }}"
+      },
+      "id": "ca90a11d-8271-437a-a40a-fee08dfcead4",
+      "name": "Mostrar resultado",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        2360,
+        500
+      ],
+      "webhookId": "47cabfce-7f37-4ad2-b798-680e189f4c99"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash",
+        "options": {
+          "temperature": 0.8,
+          "maxOutputTokens": 8192
+        }
+      },
+      "id": "30a3acf0-137d-49a1-a31b-2b1f33e52dbd",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        1400
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "",
+          "name": "Google Gemini (PaLM) Api"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Formulario": {
+      "main": [
+        [
+          {
+            "node": "Elegir skill",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Elegir skill": {
+      "main": [
+        [
+          {
+            "node": "Datos · Ideas",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Datos · Copywriter",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Datos · Trial Reels",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Datos · Planificador",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Datos · Lead magnet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Datos · Todo seguido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Datos · Ideas": {
+      "main": [
+        [
+          {
+            "node": "Generador de ideas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generador de ideas": {
+      "main": [
+        [
+          {
+            "node": "Markdown a HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Datos · Copywriter": {
+      "main": [
+        [
+          {
+            "node": "Copywriter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copywriter": {
+      "main": [
+        [
+          {
+            "node": "Markdown a HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Datos · Trial Reels": {
+      "main": [
+        [
+          {
+            "node": "Generador de Trial Reels",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generador de Trial Reels": {
+      "main": [
+        [
+          {
+            "node": "Markdown a HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Datos · Planificador": {
+      "main": [
+        [
+          {
+            "node": "Planificador de contenido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Planificador de contenido": {
+      "main": [
+        [
+          {
+            "node": "Markdown a HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Datos · Lead magnet": {
+      "main": [
+        [
+          {
+            "node": "Diseñador de lead magnets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Diseñador de lead magnets": {
+      "main": [
+        [
+          {
+            "node": "Extraer HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Datos · Todo seguido": {
+      "main": [
+        [
+          {
+            "node": "Cadena · Ideas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cadena · Ideas": {
+      "main": [
+        [
+          {
+            "node": "Cadena · Guiones",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cadena · Guiones": {
+      "main": [
+        [
+          {
+            "node": "Cadena · Trial Reels",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cadena · Trial Reels": {
+      "main": [
+        [
+          {
+            "node": "Cadena · Calendario",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cadena · Calendario": {
+      "main": [
+        [
+          {
+            "node": "Unir resultados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unir resultados": {
+      "main": [
+        [
+          {
+            "node": "Markdown a HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown a HTML": {
+      "main": [
+        [
+          {
+            "node": "Maquetar página",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Maquetar página": {
+      "main": [
+        [
+          {
+            "node": "Mostrar resultado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer HTML": {
+      "main": [
+        [
+          {
+            "node": "Mostrar resultado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generador de ideas",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Copywriter",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Generador de Trial Reels",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Planificador de contenido",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Diseñador de lead magnets",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Cadena · Ideas",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Cadena · Guiones",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Cadena · Trial Reels",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Cadena · Calendario",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "tags": []
+}

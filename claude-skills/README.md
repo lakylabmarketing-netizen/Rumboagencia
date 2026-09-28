@@ -10,6 +10,9 @@
 
 Se encadenan así: **ideas → copywriter → trial reels → planificador**, y el **lead magnet** alimenta los CTAs de conversión.
 
+## ⚡ Todo en una sola skill
+`1-mes-de-reels.zip` contiene las 5 en una. Sube solo ese zip si prefieres no instalar 5 por separado. Además tiene un modo **"Todo seguido"**: *"Hazme el mes de reels completo"*.
+
 ## Cómo instalarlas en Claude
 1. Descarga los `.zip` de esta carpeta.
 2. En claude.ai ve a **Configuración → Capacidades** y activa **Skills**. Pulsa **Subir skill** y sube cada `.zip`.

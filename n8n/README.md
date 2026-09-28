@@ -21,6 +21,7 @@ Verificar Facebook (GET) ──┴─> Responder challenge de Meta   (verificaci
 | `docker-compose.yml` | Levanta n8n y un túnel de Cloudflare con un solo comando. |
 | `.env.example` | Plantilla para la URL pública del túnel. |
 | `asistente-herramientas/*.json` | 4 sub-workflows que el asistente usa como herramientas: captar lead, agendar cita, preguntas frecuentes y pasar a humano. |
+| `1-mes-de-reels-todo-en-uno.json` | **Las 5 skills de Reels en un solo workflow** (ver abajo). |
 | `skills-reels/*.json` | Las 5 skills del vídeo "1 Mes de Reels" como formularios de n8n (ver abajo). |
 
 ## 1. Instalar y arrancar n8n
@@ -94,7 +95,18 @@ Para configurarlas:
 2. En cada uno pon tus credenciales y, en los nodos de Google Sheets, la URL de tu hoja. La hoja debe tener las pestañas `Leads` y `Escalados`. En los nodos de Gmail cambia `tu-email@tuagencia.com` por tu email.
 3. En el workflow principal, abre cada nodo de herramienta (`captar_lead`, `agendar_cita`…) y elige su sub-workflow en **Workflow**. Si al elegirlo se vacían los campos, vuelve a pulsar **Refresh** en los inputs.
 
-## Skills de Reels (`skills-reels/`)
+## ⚡ Las 5 skills en uno (`1-mes-de-reels-todo-en-uno.json`)
+
+Un solo workflow con formulario:
+1. **Pantalla 1**: eliges qué quieres hacer (ideas, copywriter, trial reels, planificador, lead magnet o *Todo seguido*).
+2. **Pantalla 2**: te pide solo los datos de esa opción.
+3. **Resultado**: una página que puedes copiar o guardar en PDF.
+
+El modo **Todo seguido** encadena ideas → guiones de las 3 mejores → 4 trial reels de la primera → calendario de la semana. Tarda 1-3 minutos.
+
+Solo necesitas poner tu clave de Gemini en el nodo **Google Gemini Chat Model**, que usan todas las skills.
+
+## Skills de Reels por separado (`skills-reels/`)
 
 Son las 5 skills del vídeo *"1 Mes de Reels – 5 Skills de Claude"*. Cada una es un workflow con **formulario web**: rellenas los datos y la IA te devuelve el resultado en una página que puedes copiar o guardar en PDF.
 
