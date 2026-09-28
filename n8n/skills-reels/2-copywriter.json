@@ -1,0 +1,217 @@
+{
+  "name": "Skill 2 – Copywriter",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Skill 2 – Copywriter",
+        "formDescription": "Convierte una idea en hooks, guion, descripción y CTA listos para grabar.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Idea del reel",
+              "fieldType": "textarea",
+              "requiredField": true,
+              "placeholder": ""
+            },
+            {
+              "fieldLabel": "Nicho, público y tono",
+              "fieldType": "textarea",
+              "requiredField": false,
+              "placeholder": ""
+            },
+            {
+              "fieldLabel": "Objetivo",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Alcance"
+                  },
+                  {
+                    "option": "Autoridad"
+                  },
+                  {
+                    "option": "Conversión"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Palabra clave del CTA (opcional)",
+              "requiredField": false,
+              "placeholder": "Ej: GUÍA"
+            }
+          ]
+        },
+        "options": {
+          "buttonLabel": "Generar"
+        }
+      },
+      "id": "aea2e032-bf60-4514-8c1b-df3d8a5877f9",
+      "name": "Formulario",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "f996787a-aaac-4f04-905f-9ed35c44c890"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ Object.entries($json).filter(([k]) => !['submittedAt','formMode'].includes(k)).map(([k, v]) => '## ' + k + '\\n' + (v === '' || v === undefined ? '(no indicado)' : v)).join('\\n\\n') }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "# Copywriter de Reels\n\nConviertes una idea en un reel listo para grabar y publicar. Trabajas con cuatro guías: **Hooks**, **Guiones**, **Descripciones** y **CTAs**.\n\n## Qué necesitas\n- La idea o el tema del reel. Si viene de `generador-de-ideas`, úsala tal cual.\n- Nicho, público y tono de la marca. Si falta, asume un tono cercano y directo, y dilo.\n- El objetivo: alcance, autoridad o conversión. Si no lo dice, dedúcelo.\n- La palabra clave o recurso del CTA, si existe (ej. \"comenta GUÍA\").\n\n## 1 · Guía de hooks\nEl hook son los primeros 1-3 segundos y decide el 80 % del resultado.\n- Máximo 12 palabras. Tiene que entenderse sin sonido: escríbelo también como **texto en pantalla**.\n- Patrones que funcionan: error común (\"Estás haciendo X mal\"), número + promesa (\"3 cosas que…\"), contradicción (\"Deja de publicar todos los días\"), resultado + tiempo (\"Cómo pasé de 0 a 10k en 30 días\"), identidad (\"Si tienes una agencia, mira esto\"), curiosidad abierta (\"Nadie habla de esto…\").\n- Prohibido empezar con saludos, presentaciones (\"Hola, soy…\") o contexto.\n- Entrega **5 hooks**: hook hablado, texto en pantalla y el patrón que usa.\n\n## 2 · Guía de guiones\nEstructura: **Hook → Problema/tensión → Desarrollo (2-4 puntos) → Giro o prueba → CTA**.\n- 30-60 segundos, unas 110-150 palabras habladas.\n- Frases cortas. Una idea por frase. Nada de relleno.\n- Cada 3-5 segundos algo tiene que cambiar (dato, ejemplo, corte, texto en pantalla). Márcalo en el guion.\n- Presenta el guion en una tabla: `Segundos | Voz | Texto en pantalla / Visual`.\n\n## 3 · Guía de descripciones\n- La primera línea repite o amplía el hook: es lo que se ve antes de \"más\".\n- Luego 2-4 líneas de valor o contexto, con saltos de línea.\n- Un CTA claro.\n- 3-5 hashtags de nicho (nada de #love o #instagood).\n- Entre 300 y 900 caracteres.\n\n## 4 · Guía de CTAs\nElige **un solo** CTA según el objetivo:\n- **Conversión**: \"Comenta [PALABRA] y te envío [recurso] por DM\". Combínalo con `disenador-lead-magnets`.\n- **Alcance**: \"Envíaselo a alguien que…\" o \"Guárdalo para…\".\n- **Autoridad o comunidad**: \"Sígueme para la parte 2\" o una pregunta que invite a comentar.\n\nEl CTA va hablado al final del vídeo y escrito en la descripción.\n\n## Formato de salida\n```\n## Hooks (5 opciones)\n## Guion (tabla por segundos) — usa el hook recomendado\n## Descripción (lista para copiar)\n## CTA\n## Notas de grabación (plano, ritmo, b-roll sugerido)\n```\nSi el usuario quiere probar varios hooks, ofrécele pasar el guion a `generador-trial-reels`.\n\n\n---\nIMPORTANTE (modo automático): no puedes hacer preguntas al usuario. Si falta algún dato, asume lo más razonable, indícalo en una línea al principio (\"Suposiciones: …\") y entrega el resultado completo. Responde en Markdown."
+            }
+          ]
+        }
+      },
+      "id": "3526e3f0-75b6-4757-9e98-1d143f6288b9",
+      "name": "Copywriter",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash",
+        "options": {
+          "temperature": 0.8,
+          "maxOutputTokens": 8192
+        }
+      },
+      "id": "c0aab923-d451-4f13-b55a-4f97d2d20340",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        260,
+        220
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "",
+          "name": "Google Gemini (PaLM) Api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.text }}",
+        "destinationKey": "html",
+        "options": {
+          "tables": true,
+          "simpleLineBreaks": true
+        }
+      },
+      "id": "1fb2e906-826c-485d-b538-ee5f4a885645",
+      "name": "Markdown a HTML",
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        560,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const md = $input.first().json;\nconst body = md.html || '';\nconst page = `<!doctype html><html lang=\"es\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<style>\nbody{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:900px;margin:32px auto;padding:0 16px;line-height:1.55;color:#1d1d1f;background:#fff}\nh1,h2,h3{line-height:1.25}h2{border-bottom:2px solid #eee;padding-bottom:6px;margin-top:32px}\ntable{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}\nth,td{border:1px solid #ddd;padding:8px;text-align:left;vertical-align:top}th{background:#f5f5f7}\ncode,pre{background:#f5f5f7;border-radius:6px}pre{padding:12px;overflow-x:auto;white-space:pre-wrap}\n.bar{position:sticky;top:0;background:#fff;padding:8px 0;text-align:right}\nbutton{padding:8px 14px;border-radius:8px;border:1px solid #ccc;background:#fff;cursor:pointer}\n@media print{.bar{display:none}}\n</style></head><body><div class=\"bar\"><button onclick=\"navigator.clipboard.writeText(document.getElementById('md').textContent)\">Copiar Markdown</button> <button onclick=\"print()\">Imprimir / PDF</button></div>\n${body}<pre id=\"md\" style=\"display:none\">${(md.text||'').replace(/</g,'&lt;')}</pre></body></html>`;\nreturn [{ json: { page } }];"
+      },
+      "id": "90fc5de5-10e7-4896-a846-008a640a44d6",
+      "name": "Maquetar página",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        780,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "showText",
+        "responseText": "={{ $json.page }}"
+      },
+      "id": "c749311f-c0c8-4f5f-9269-be48d0025203",
+      "name": "Mostrar resultado",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        0
+      ],
+      "webhookId": "62301ad2-8e37-4c73-aca3-284818253d8a"
+    }
+  ],
+  "connections": {
+    "Formulario": {
+      "main": [
+        [
+          {
+            "node": "Copywriter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copywriter": {
+      "main": [
+        [
+          {
+            "node": "Markdown a HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown a HTML": {
+      "main": [
+        [
+          {
+            "node": "Maquetar página",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Maquetar página": {
+      "main": [
+        [
+          {
+            "node": "Mostrar resultado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Copywriter",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "tags": []
+}

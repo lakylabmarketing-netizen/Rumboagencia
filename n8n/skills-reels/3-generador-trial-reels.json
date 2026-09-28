@@ -1,0 +1,200 @@
+{
+  "name": "Skill 3 – Generador de Trial Reels",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Skill 3 – Generador de Trial Reels",
+        "formDescription": "Pega un guion y recibe varias versiones con hooks distintos y el mismo cuerpo para probar con Trial Reels.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Guion del reel",
+              "fieldType": "textarea",
+              "requiredField": true,
+              "placeholder": ""
+            },
+            {
+              "fieldLabel": "Número de versiones",
+              "fieldType": "number",
+              "requiredField": false,
+              "placeholder": "4"
+            },
+            {
+              "fieldLabel": "Hooks que te han funcionado antes (opcional)",
+              "fieldType": "textarea",
+              "requiredField": false,
+              "placeholder": ""
+            }
+          ]
+        },
+        "options": {
+          "buttonLabel": "Generar"
+        }
+      },
+      "id": "9c091e03-d019-45b4-9c76-790fcc110db2",
+      "name": "Formulario",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "566c7c2f-b8ca-4ba0-a878-9e628a898444"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ Object.entries($json).filter(([k]) => !['submittedAt','formMode'].includes(k)).map(([k, v]) => '## ' + k + '\\n' + (v === '' || v === undefined ? '(no indicado)' : v)).join('\\n\\n') }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "# Generador de Trial Reels\n\nInstagram permite publicar **reels de prueba (Trial Reels)**, que se muestran solo a gente que no te sigue. Esta skill coge **un guion** y genera **varias versiones con hooks distintos** sobre el **mismo cuerpo**. Así pruebas qué hook retiene más, sin pensar tú cada variante.\n\n## Qué necesitas\n- **El guion** del reel. Puede venir de `copywriter-reels` o pegarlo el usuario.\n- **Cuántas versiones** quiere. Por defecto, 4 (Trial 1-4).\n- Opcional: los hooks que ya le han funcionado antes.\n\n## Proceso\n\n1. **Separa el guion** en HOOK (primeros 1-3 s) y CUERPO (todo lo demás). Si el cuerpo empieza con una frase que depende del hook original, reescribe solo esa frase de transición para que encaje con cualquier hook.\n2. **Genera los hooks**. Cada versión usa un patrón **distinto** para que el test sirva de algo:\n   - Trial 1: error común o negativo.\n   - Trial 2: número + promesa.\n   - Trial 3: curiosidad o secreto.\n   - Trial 4: identidad o llamada directa al público.\n   - Trial 5+ (si piden más): contradicción, resultado + tiempo, pregunta, polémica suave.\n3. **Hook visual**: para cada versión, propone además el **texto en pantalla** y el **primer plano visual** (ej. \"primer plano mirando a cámara\", \"pantalla del móvil\", \"objeto en mano\"). Un trial puede variar solo el texto en pantalla y mantener la voz.\n4. **Combinaciones**: si el usuario quiere más variantes, cruza N hooks con 2 variantes de la primera frase del cuerpo para obtener N×2 versiones. Indícalo en una matriz.\n\n## Formato de salida\n\n```\n## Cuerpo común (se graba una sola vez)\n<texto>\n\n## Versiones\n| Trial | Patrón | Hook hablado | Texto en pantalla | Primer plano |\n|---|---|---|---|---|\n| 1 | ... | ... | ... | ... |\n\n## Cómo grabarlo en 10 minutos\n- Graba el cuerpo una vez y luego los N hooks seguidos, con el mismo plano y la misma luz.\n- Monta cada hook + el mismo cuerpo, y exporta N vídeos.\n\n## Cómo medir (48-72 h después)\n- Métrica principal: % de retención a los 3 segundos y visualizaciones de no seguidores.\n- Métrica secundaria: veces compartido y guardado.\n- Publica la versión ganadora en tu perfil y apunta el patrón de hook que ganó para el próximo guion.\n```\n\n\n---\nIMPORTANTE (modo automático): no puedes hacer preguntas al usuario. Si falta algún dato, asume lo más razonable, indícalo en una línea al principio (\"Suposiciones: …\") y entrega el resultado completo. Responde en Markdown."
+            }
+          ]
+        }
+      },
+      "id": "ff8ed194-bdaa-49df-a395-f835d354bfa2",
+      "name": "Generador de Trial Reels",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash",
+        "options": {
+          "temperature": 0.8,
+          "maxOutputTokens": 8192
+        }
+      },
+      "id": "3a893582-4f86-4454-900f-2e99c811f087",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        260,
+        220
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "",
+          "name": "Google Gemini (PaLM) Api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.text }}",
+        "destinationKey": "html",
+        "options": {
+          "tables": true,
+          "simpleLineBreaks": true
+        }
+      },
+      "id": "44859d6d-8f79-4ca6-9c6b-6a2729dbc455",
+      "name": "Markdown a HTML",
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        560,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const md = $input.first().json;\nconst body = md.html || '';\nconst page = `<!doctype html><html lang=\"es\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<style>\nbody{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:900px;margin:32px auto;padding:0 16px;line-height:1.55;color:#1d1d1f;background:#fff}\nh1,h2,h3{line-height:1.25}h2{border-bottom:2px solid #eee;padding-bottom:6px;margin-top:32px}\ntable{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}\nth,td{border:1px solid #ddd;padding:8px;text-align:left;vertical-align:top}th{background:#f5f5f7}\ncode,pre{background:#f5f5f7;border-radius:6px}pre{padding:12px;overflow-x:auto;white-space:pre-wrap}\n.bar{position:sticky;top:0;background:#fff;padding:8px 0;text-align:right}\nbutton{padding:8px 14px;border-radius:8px;border:1px solid #ccc;background:#fff;cursor:pointer}\n@media print{.bar{display:none}}\n</style></head><body><div class=\"bar\"><button onclick=\"navigator.clipboard.writeText(document.getElementById('md').textContent)\">Copiar Markdown</button> <button onclick=\"print()\">Imprimir / PDF</button></div>\n${body}<pre id=\"md\" style=\"display:none\">${(md.text||'').replace(/</g,'&lt;')}</pre></body></html>`;\nreturn [{ json: { page } }];"
+      },
+      "id": "57c6701a-9219-47e3-99bd-3ad0e4c18784",
+      "name": "Maquetar página",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        780,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "showText",
+        "responseText": "={{ $json.page }}"
+      },
+      "id": "1dc35d12-7c0e-430f-b3ee-fc5163feb028",
+      "name": "Mostrar resultado",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        0
+      ],
+      "webhookId": "03120189-c85d-453a-9d34-b9d9c40923fe"
+    }
+  ],
+  "connections": {
+    "Formulario": {
+      "main": [
+        [
+          {
+            "node": "Generador de Trial Reels",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generador de Trial Reels": {
+      "main": [
+        [
+          {
+            "node": "Markdown a HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown a HTML": {
+      "main": [
+        [
+          {
+            "node": "Maquetar página",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Maquetar página": {
+      "main": [
+        [
+          {
+            "node": "Mostrar resultado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generador de Trial Reels",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "tags": []
+}

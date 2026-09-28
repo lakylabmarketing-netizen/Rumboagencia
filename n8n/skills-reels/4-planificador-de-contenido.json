@@ -1,0 +1,215 @@
+{
+  "name": "Skill 4 – Planificador de contenido",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Skill 4 – Planificador de contenido",
+        "formDescription": "Genera tu calendario de 1 semana según formatos, canales, volumen y lo que publicaste antes.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nicho / marca",
+              "requiredField": true,
+              "placeholder": ""
+            },
+            {
+              "fieldLabel": "Formatos que haces",
+              "fieldType": "textarea",
+              "requiredField": false,
+              "placeholder": "Hablado a cámara, tutorial, carrusel…"
+            },
+            {
+              "fieldLabel": "Canales",
+              "requiredField": true,
+              "placeholder": "Instagram, TikTok, YouTube, LinkedIn"
+            },
+            {
+              "fieldLabel": "Objetivo de volumen",
+              "requiredField": true,
+              "placeholder": "Ej: 3 al día en Instagram"
+            },
+            {
+              "fieldLabel": "Planificación anterior (qué publicaste y qué funcionó)",
+              "fieldType": "textarea",
+              "requiredField": false,
+              "placeholder": ""
+            },
+            {
+              "fieldLabel": "Ideas o guiones disponibles",
+              "fieldType": "textarea",
+              "requiredField": false,
+              "placeholder": ""
+            }
+          ]
+        },
+        "options": {
+          "buttonLabel": "Generar"
+        }
+      },
+      "id": "cb50c594-95d2-4aaf-b9f1-0b8c8a5f75fd",
+      "name": "Formulario",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "6ae383b4-43b2-4f78-aefe-5bea817200af"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ Object.entries($json).filter(([k]) => !['submittedAt','formMode'].includes(k)).map(([k, v]) => '## ' + k + '\\n' + (v === '' || v === undefined ? '(no indicado)' : v)).join('\\n\\n') }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "# Planificador de contenido\n\nConviertes ideas y guiones en **1 semana de contenido** organizada día a día. Tienes en cuenta cuatro cosas: **formatos**, **canales**, **objetivo de volumen** y **planificación anterior**.\n\n## Qué necesitas (pregunta lo que falte, todo en un solo mensaje)\n1. **Formatos** que el usuario sabe o quiere hacer: hablado a cámara, tutorial de pantalla, carrusel, storytelling, vlog, entrevista, meme o tendencia…\n2. **Canales**: Instagram, TikTok, YouTube (Shorts o largo), LinkedIn…\n3. **Objetivo de volumen**: por ejemplo \"3 al día en Instagram\" o \"5 a la semana en total\". Si no lo sabe, propón uno realista según su tiempo.\n4. **Planificación anterior**: lo publicado la semana pasada y qué funcionó. Sirve para no repetir y para doblar lo que ganó.\n5. **Ideas o guiones disponibles**, por ejemplo de `generador-de-ideas`. Si no hay, genera ideas nuevas coherentes con su nicho.\n\n## Reglas de planificación\n- **Reaprovecha**: una pieza grabada sirve para varios canales. Un reel se publica en Instagram, TikTok, YouTube Shorts y, adaptado, en LinkedIn. Cuenta cada publicación por canal, pero la grabación una sola vez.\n- **Equilibrio de objetivos por semana**: ~50 % alcance, ~30 % autoridad, ~20 % conversión (reels con CTA a un lead magnet).\n- **Sin repeticiones**: no repitas tema ni formato dos días seguidos, ni un tema de la planificación anterior salvo que funcionara (entonces haz una \"parte 2\" o un nuevo ángulo).\n- **Días de grabación**: agrupa las grabaciones en 1-2 bloques por semana (batching) y dilo explícitamente.\n- Si el volumen es de 3 al día, reparte así: mañana (alcance), mediodía (autoridad), tarde (conversión o trial reel).\n- Incluye al menos 2 huecos para **Trial Reels** (`generador-trial-reels`).\n\n## Formato de salida\n1. **Resumen**: publicaciones totales por canal, horas de grabación estimadas y días de grabación.\n2. **Calendario**:\n\n| Día | Hora | Canal(es) | Formato | Tema / idea | Hook | Objetivo | Estado |\n|---|---|---|---|---|---|---|---|\n| Lunes | 09:00 | IG + TikTok | Hablado | … | … | Alcance | Por grabar |\n\n3. **Lista de grabación**: qué grabar en cada bloque, en orden.\n4. **Qué medir el domingo** para alimentar la planificación de la semana siguiente.\n\nSi el usuario lo pide, entrega también el calendario en **CSV**, listo para importar a Google Sheets o Notion.\n\n\n---\nIMPORTANTE (modo automático): no puedes hacer preguntas al usuario. Si falta algún dato, asume lo más razonable, indícalo en una línea al principio (\"Suposiciones: …\") y entrega el resultado completo. Responde en Markdown."
+            }
+          ]
+        }
+      },
+      "id": "472ed0a7-beb2-4a55-8e09-232a41720448",
+      "name": "Planificador de contenido",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash",
+        "options": {
+          "temperature": 0.8,
+          "maxOutputTokens": 8192
+        }
+      },
+      "id": "a198f674-c620-4b57-bea2-2df0dcc392db",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        260,
+        220
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "",
+          "name": "Google Gemini (PaLM) Api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.text }}",
+        "destinationKey": "html",
+        "options": {
+          "tables": true,
+          "simpleLineBreaks": true
+        }
+      },
+      "id": "2f3d4494-19fd-4f55-9433-35cbefdd3ef0",
+      "name": "Markdown a HTML",
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        560,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const md = $input.first().json;\nconst body = md.html || '';\nconst page = `<!doctype html><html lang=\"es\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<style>\nbody{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:900px;margin:32px auto;padding:0 16px;line-height:1.55;color:#1d1d1f;background:#fff}\nh1,h2,h3{line-height:1.25}h2{border-bottom:2px solid #eee;padding-bottom:6px;margin-top:32px}\ntable{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}\nth,td{border:1px solid #ddd;padding:8px;text-align:left;vertical-align:top}th{background:#f5f5f7}\ncode,pre{background:#f5f5f7;border-radius:6px}pre{padding:12px;overflow-x:auto;white-space:pre-wrap}\n.bar{position:sticky;top:0;background:#fff;padding:8px 0;text-align:right}\nbutton{padding:8px 14px;border-radius:8px;border:1px solid #ccc;background:#fff;cursor:pointer}\n@media print{.bar{display:none}}\n</style></head><body><div class=\"bar\"><button onclick=\"navigator.clipboard.writeText(document.getElementById('md').textContent)\">Copiar Markdown</button> <button onclick=\"print()\">Imprimir / PDF</button></div>\n${body}<pre id=\"md\" style=\"display:none\">${(md.text||'').replace(/</g,'&lt;')}</pre></body></html>`;\nreturn [{ json: { page } }];"
+      },
+      "id": "2a0ae8db-5f2a-41e5-8e74-da47223b8507",
+      "name": "Maquetar página",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        780,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "showText",
+        "responseText": "={{ $json.page }}"
+      },
+      "id": "47aa54b6-dc93-401e-a4b4-f33dffc4a1f1",
+      "name": "Mostrar resultado",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        0
+      ],
+      "webhookId": "e9894d85-6eaa-4c50-8d4e-a7042dc4f731"
+    }
+  ],
+  "connections": {
+    "Formulario": {
+      "main": [
+        [
+          {
+            "node": "Planificador de contenido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Planificador de contenido": {
+      "main": [
+        [
+          {
+            "node": "Markdown a HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown a HTML": {
+      "main": [
+        [
+          {
+            "node": "Maquetar página",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Maquetar página": {
+      "main": [
+        [
+          {
+            "node": "Mostrar resultado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Planificador de contenido",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "tags": []
+}

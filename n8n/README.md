@@ -20,6 +20,8 @@ Verificar Facebook (GET) ──┴─> Responder challenge de Meta   (verificaci
 | `auto-respuesta-ig-fb-whatsapp.json` | El workflow. Se importa en n8n. |
 | `docker-compose.yml` | Levanta n8n y un túnel de Cloudflare con un solo comando. |
 | `.env.example` | Plantilla para la URL pública del túnel. |
+| `asistente-herramientas/*.json` | 4 sub-workflows que el asistente usa como herramientas: captar lead, agendar cita, preguntas frecuentes y pasar a humano. |
+| `skills-reels/*.json` | Las 5 skills del vídeo "1 Mes de Reels" como formularios de n8n (ver abajo). |
 
 ## 1. Instalar y arrancar n8n
 
@@ -75,3 +77,37 @@ En n8n, abre **Workflows → Import from file** y elige `auto-respuesta-ig-fb-wh
 - **"Your n8n server is configured to use a secure cookie"**: entra por la URL `https://…trycloudflare.com` o por `http://localhost:5678`, no por la IP. Si no hay otra opción, añade `N8N_SECURE_COOKIE=false` (no recomendado).
 - **Instagram o Messenger no responden:** en modo desarrollo, la app de Meta solo recibe mensajes de cuentas con rol en la app (administradores o testers).
 - **La IA se responde a sí misma:** el *Message Processor* ya descarta los mensajes `is_echo`.
+
+## Herramientas del asistente (`asistente-herramientas/`)
+
+El nodo **Asistente IA** tiene conectadas 4 herramientas. Cada una llama a un sub-workflow:
+
+| Herramienta | Sub-workflow | Qué hace | Necesita |
+|---|---|---|---|
+| `captar_lead` | `1-captar-lead.json` | Guarda nombre, email, teléfono e interés del cliente en la pestaña **Leads** de Google Sheets y te avisa por email. | Google Sheets + Gmail |
+| `agendar_cita` | `2-agendar-cita.json` | Comprueba si el hueco está libre en Google Calendar y crea la cita de 30 minutos. | Google Calendar |
+| `preguntas_frecuentes` | `3-preguntas-frecuentes.json` | Devuelve la información de tu negocio (servicios, precios, horario…). **Edita el texto del nodo "Información del negocio".** | Nada |
+| `pasar_a_humano` | `4-pasar-a-humano.json` | Registra el caso en la pestaña **Escalados** y avisa al equipo con un resumen de la conversación. | Google Sheets + Gmail |
+
+Para configurarlas:
+1. Importa los 4 archivos, cada uno como workflow nuevo, y guárdalos.
+2. En cada uno pon tus credenciales y, en los nodos de Google Sheets, la URL de tu hoja. La hoja debe tener las pestañas `Leads` y `Escalados`. En los nodos de Gmail cambia `tu-email@tuagencia.com` por tu email.
+3. En el workflow principal, abre cada nodo de herramienta (`captar_lead`, `agendar_cita`…) y elige su sub-workflow en **Workflow**. Si al elegirlo se vacían los campos, vuelve a pulsar **Refresh** en los inputs.
+
+## Skills de Reels (`skills-reels/`)
+
+Son las 5 skills del vídeo *"1 Mes de Reels – 5 Skills de Claude"*. Cada una es un workflow con **formulario web**: rellenas los datos y la IA te devuelve el resultado en una página que puedes copiar o guardar en PDF.
+
+| Workflow | Qué rellenas | Qué obtienes |
+|---|---|---|
+| 1 · Generador de ideas | Tu nicho, tus competidores y las transcripciones de sus reels | Temáticas, mejores vídeos, mejores hooks y 15 ideas |
+| 2 · Copywriter | La idea, el tono y el objetivo | 5 hooks, guion por segundos, descripción y CTA |
+| 3 · Generador de Trial Reels | Un guion | Cuerpo común + N hooks distintos, y cómo medirlos |
+| 4 · Planificador de contenido | Formatos, canales, volumen y lo publicado antes | Calendario de lunes a domingo + lista de grabación |
+| 5 · Diseñador de lead magnets | Tu branding y el recurso | Lead magnet en HTML con tu marca, listo para "Imprimir → PDF" |
+
+Cómo usarlos:
+1. Importa cada `.json` y pon tu credencial de **Google Gemini** en el nodo del modelo. Si prefieres usar Claude, cambia ese nodo por **Anthropic Chat Model**.
+2. Pulsa **Test workflow** para abrir el formulario, o activa el workflow y usa la **Production URL** del nodo *Formulario*.
+
+Las instrucciones de cada skill están en el nodo de IA y son las mismas que las de `../claude-skills/`. Si mejoras una, cópiala al otro sitio.

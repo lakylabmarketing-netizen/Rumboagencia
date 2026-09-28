@@ -1,0 +1,235 @@
+{
+  "name": "Skill 1 – Captar lead",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "nombre"
+            },
+            {
+              "name": "email"
+            },
+            {
+              "name": "telefono"
+            },
+            {
+              "name": "interes"
+            },
+            {
+              "name": "canal"
+            },
+            {
+              "name": "usuario_id"
+            }
+          ]
+        }
+      },
+      "id": "8ef76895-aeae-4daa-a4d7-6b5d5eef5e6e",
+      "name": "Cuando lo llama el asistente",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d04f7089-8cb6-4a34-bb6d-96a819e20af8",
+              "name": "fecha",
+              "value": "={{ $now.toFormat('yyyy-MM-dd HH:mm') }}",
+              "type": "string"
+            },
+            {
+              "id": "8e5113f6-1a17-4163-8ea9-8c5c2cea1e55",
+              "name": "nombre",
+              "value": "={{ $('Cuando lo llama el asistente').item.json.nombre }}",
+              "type": "string"
+            },
+            {
+              "id": "74609ef6-90ea-4562-8ebd-d8529703b8ba",
+              "name": "email",
+              "value": "={{ $('Cuando lo llama el asistente').item.json.email }}",
+              "type": "string"
+            },
+            {
+              "id": "90802345-6201-4d5a-ad50-5289ae003910",
+              "name": "telefono",
+              "value": "={{ $('Cuando lo llama el asistente').item.json.telefono }}",
+              "type": "string"
+            },
+            {
+              "id": "6c71acaa-7165-498b-b9ba-c7d6997eb980",
+              "name": "interes",
+              "value": "={{ $('Cuando lo llama el asistente').item.json.interes }}",
+              "type": "string"
+            },
+            {
+              "id": "30683caf-f459-4e78-a448-5c527fa0de27",
+              "name": "canal",
+              "value": "={{ $('Cuando lo llama el asistente').item.json.canal }}",
+              "type": "string"
+            },
+            {
+              "id": "19136699-bccd-4cc4-b059-ac56b2587fc3",
+              "name": "usuario_id",
+              "value": "={{ $('Cuando lo llama el asistente').item.json.usuario_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c3ea9fdf-edd9-490e-9a57-6c27ef5c6691",
+      "name": "Preparar fila",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Leads"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "3358a626-5b96-48e3-8e5e-38c2d5b851ae",
+      "name": "Guardar en hoja Leads",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        440,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "tu-email@tuagencia.com",
+        "subject": "=🔥 Nuevo lead: {{ $('Cuando lo llama el asistente').item.json.nombre }} ({{ $('Cuando lo llama el asistente').item.json.canal }})",
+        "emailType": "text",
+        "message": "=Nuevo lead captado por el asistente:\n\nNombre: {{ $('Cuando lo llama el asistente').item.json.nombre }}\nEmail: {{ $('Cuando lo llama el asistente').item.json.email }}\nTeléfono: {{ $('Cuando lo llama el asistente').item.json.telefono }}\nInterés: {{ $('Cuando lo llama el asistente').item.json.interes }}\nCanal: {{ $('Cuando lo llama el asistente').item.json.canal }} (id {{ $('Cuando lo llama el asistente').item.json.usuario_id }})",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "3960c458-d87e-4c5d-9415-1e2bf0e2f548",
+      "name": "Avisarme por email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        660,
+        0
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "",
+          "name": "Gmail account"
+        }
+      },
+      "webhookId": "d7731bde-702d-40ae-983c-6732ad28e3e8"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2323539a-b028-460e-957f-78e455121472",
+              "name": "respuesta",
+              "value": "Lead guardado correctamente. Confirma al cliente que el equipo le contactará en menos de 24 horas.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9dc51d04-2a7d-410d-8f2f-bef81cba8f1e",
+      "name": "Respuesta al asistente",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Cuando lo llama el asistente": {
+      "main": [
+        [
+          {
+            "node": "Preparar fila",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar fila": {
+      "main": [
+        [
+          {
+            "node": "Guardar en hoja Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Guardar en hoja Leads": {
+      "main": [
+        [
+          {
+            "node": "Avisarme por email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Avisarme por email": {
+      "main": [
+        [
+          {
+            "node": "Respuesta al asistente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "tags": []
+}

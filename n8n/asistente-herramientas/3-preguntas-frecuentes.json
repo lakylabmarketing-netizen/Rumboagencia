@@ -1,0 +1,56 @@
+{
+  "name": "Skill 3 – Preguntas frecuentes",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "pregunta"
+            }
+          ]
+        }
+      },
+      "id": "5a78a620-59b0-4108-bc85-b4107839e8b2",
+      "name": "Cuando lo llama el asistente",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ✏️ EDITA AQUÍ la información de tu negocio. El asistente solo responderá con esto.\nconst INFO = `\nRUMBO AGENCIA – Agencia de marketing digital\n\nSERVICIOS\n- Gestión de redes sociales (Instagram, Facebook, TikTok): desde XXX €/mes\n- Diseño web y landing pages: desde XXX €\n- Publicidad en Meta Ads y Google Ads: desde XXX €/mes + inversión\n- Branding e identidad visual: desde XXX €\n- Automatizaciones y chatbots con IA: desde XXX €\n\nHORARIO: lunes a viernes de 9:00 a 18:00\nUBICACIÓN: XXX (trabajamos también en remoto)\nCONTACTO: email XXX · teléfono XXX · web XXX\n\nPROCESO: 1) llamada gratuita de 30 min 2) propuesta en 48 h 3) arranque en 1 semana\nFORMAS DE PAGO: transferencia, tarjeta. Pago mensual sin permanencia en redes sociales.\n`;\n\nreturn [{ json: { pregunta: $input.first().json.pregunta, respuesta: INFO } }];"
+      },
+      "id": "b9557690-54b2-454e-8f5f-82a93294d172",
+      "name": "Información del negocio",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Cuando lo llama el asistente": {
+      "main": [
+        [
+          {
+            "node": "Información del negocio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "tags": []
+}

@@ -120,7 +120,7 @@
         "promptType": "define",
         "text": "={{ $json.text }}",
         "options": {
-          "systemMessage": "Eres el asistente virtual de Rumbo Agencia, una agencia de marketing digital.\n\nReglas:\n- Responde SIEMPRE en el idioma del cliente (por defecto español), de forma breve, cercana y profesional.\n- Máximo 3-4 frases por respuesta; estás en un chat de {{ $json.platform }}.\n- Ayuda con: servicios de la agencia (redes sociales, web, publicidad, branding), precios orientativos y agendar una llamada.\n- Si no sabes algo o piden algo que no puedes resolver, di que una persona del equipo le contactará pronto.\n- Nunca inventes precios exactos ni datos que no tengas.\n- Si el cliente quiere contratar o hablar con alguien, pídele nombre, email y el mejor horario para llamarle."
+          "systemMessage": "=Eres el asistente virtual de Rumbo Agencia, una agencia de marketing digital. Hoy es {{ $now.setLocale('es').toFormat(\"cccc d 'de' LLLL 'de' yyyy, HH:mm\") }}.\n\nReglas:\n- Responde SIEMPRE en el idioma del cliente (por defecto español), breve, cercano y profesional. Máximo 3-4 frases: estás en un chat de {{ $json.platform }}.\n- Nunca inventes precios ni datos.\n\nHerramientas:\n- preguntas_frecuentes: consúltala antes de responder cualquier cosa sobre servicios, precios, horario o contacto.\n- captar_lead: cuando el cliente muestre interés, pide nombre y email o teléfono y guárdalo.\n- agendar_cita: si quiere una llamada, pide nombre, email, día y hora (horario laboral) y agéndala. Si está ocupado, propone otra hora.\n- pasar_a_humano: si pide hablar con una persona, está molesto o no puedes ayudarle.\nNunca digas al cliente que usas herramientas; solo confirma el resultado."
         }
       },
       "id": "aeb8301b-7027-4b9a-874b-70f7e2a9b708",
@@ -248,7 +248,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        920,
+        1440,
         220
       ]
     },
@@ -265,7 +265,7 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        1180,
+        1700,
         20
       ],
       "webhookId": "21e046ce-c1c6-479f-a326-f57ef058bb34",
@@ -292,7 +292,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1180,
+        1700,
         220
       ],
       "credentials": {
@@ -318,7 +318,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1180,
+        1700,
         420
       ],
       "credentials": {
@@ -327,6 +327,320 @@
           "name": "Meta Page Access Token"
         }
       }
+    },
+    {
+      "parameters": {
+        "description": "Guarda los datos de un cliente interesado (lead). Úsala cuando el cliente muestre interés en contratar y ya tengas al menos su nombre y un email o teléfono.",
+        "workflowId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": ""
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "nombre": "={{ $fromAI('nombre', `Nombre del cliente`, 'string') }}",
+            "email": "={{ $fromAI('email', `Email del cliente, vacío si no lo dio`, 'string') }}",
+            "telefono": "={{ $fromAI('telefono', `Teléfono del cliente, vacío si no lo dio`, 'string') }}",
+            "interes": "={{ $fromAI('interes', `Servicio que le interesa y detalles`, 'string') }}",
+            "canal": "={{ $('Message Processor').item.json.platform }}",
+            "usuario_id": "={{ $('Message Processor').item.json.senderId }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "telefono",
+              "displayName": "telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "interes",
+              "displayName": "interes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "canal",
+              "displayName": "canal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "usuario_id",
+              "displayName": "usuario_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "id": "da530048-3d08-4d40-b323-33713ab66df9",
+      "name": "captar_lead",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        820,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "description": "Agenda una llamada en el calendario. Úsala cuando el cliente confirme día y hora. Devuelve si se agendó o si el hueco está ocupado.",
+        "workflowId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": ""
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "nombre": "={{ $fromAI('nombre', `Nombre del cliente`, 'string') }}",
+            "email": "={{ $fromAI('email', `Email del cliente`, 'string') }}",
+            "fecha_hora": "={{ $fromAI('fecha_hora', `Fecha y hora de inicio en formato ISO 8601, ej: 2026-10-05T10:00:00`, 'string') }}",
+            "motivo": "={{ $fromAI('motivo', `Motivo de la llamada`, 'string') }}",
+            "canal": "={{ $('Message Processor').item.json.platform }}",
+            "usuario_id": "={{ $('Message Processor').item.json.senderId }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "fecha_hora",
+              "displayName": "fecha_hora",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "motivo",
+              "displayName": "motivo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "canal",
+              "displayName": "canal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "usuario_id",
+              "displayName": "usuario_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "id": "281d9430-e836-4e04-aa7f-eec3d4c84089",
+      "name": "agendar_cita",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        960,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "description": "Devuelve la información oficial del negocio: servicios, precios, horario, contacto, proceso y formas de pago. Úsala SIEMPRE antes de responder preguntas sobre el negocio.",
+        "workflowId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": ""
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "pregunta": "={{ $fromAI('pregunta', `La pregunta del cliente`, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "pregunta",
+              "displayName": "pregunta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "id": "923df2a2-e70d-4f60-b6a8-f6a0dbe1491f",
+      "name": "preguntas_frecuentes",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        1100,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "description": "Avisa al equipo humano para que atienda al cliente. Úsala si el cliente pide hablar con una persona, está molesto, o pide algo que no puedes resolver.",
+        "workflowId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": ""
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "nombre": "={{ $fromAI('nombre', `Nombre del cliente si lo sabes`, 'string') }}",
+            "motivo": "={{ $fromAI('motivo', `Por qué hay que pasarlo a una persona`, 'string') }}",
+            "resumen": "={{ $fromAI('resumen', `Resumen breve de la conversación`, 'string') }}",
+            "canal": "={{ $('Message Processor').item.json.platform }}",
+            "usuario_id": "={{ $('Message Processor').item.json.senderId }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "motivo",
+              "displayName": "motivo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "resumen",
+              "displayName": "resumen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "canal",
+              "displayName": "canal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "usuario_id",
+              "displayName": "usuario_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "id": "cbb14365-764d-4147-a460-83d873d8515b",
+      "name": "pasar_a_humano",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        1240,
+        460
+      ]
     }
   ],
   "connections": {
@@ -449,6 +763,50 @@
           {
             "node": "Enviar Messenger",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "captar_lead": {
+      "ai_tool": [
+        [
+          {
+            "node": "Asistente IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "agendar_cita": {
+      "ai_tool": [
+        [
+          {
+            "node": "Asistente IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "preguntas_frecuentes": {
+      "ai_tool": [
+        [
+          {
+            "node": "Asistente IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pasar_a_humano": {
+      "ai_tool": [
+        [
+          {
+            "node": "Asistente IA",
+            "type": "ai_tool",
             "index": 0
           }
         ]

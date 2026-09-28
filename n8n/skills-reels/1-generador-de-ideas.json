@@ -1,0 +1,200 @@
+{
+  "name": "Skill 1 – Generador de ideas",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Skill 1 – Generador de ideas",
+        "formDescription": "Pega transcripciones de reels de tus competidores y recibe temáticas, mejores hooks y 15 ideas virales para tu marca.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Tu nicho y tu marca",
+              "fieldType": "textarea",
+              "requiredField": true,
+              "placeholder": "Ej: agencia de marketing para restaurantes, hablamos a dueños de locales…"
+            },
+            {
+              "fieldLabel": "Competidores",
+              "fieldType": "textarea",
+              "requiredField": false,
+              "placeholder": "@cuenta1, @cuenta2…"
+            },
+            {
+              "fieldLabel": "Transcripciones y métricas de sus reels",
+              "fieldType": "textarea",
+              "requiredField": true,
+              "placeholder": "Pega aquí las transcripciones (extensión Transcript24) con las visualizaciones de cada reel"
+            }
+          ]
+        },
+        "options": {
+          "buttonLabel": "Generar"
+        }
+      },
+      "id": "f9d2aeda-867a-4a34-b259-f522c1f3ac82",
+      "name": "Formulario",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "13ce8cd9-6d08-43f5-a571-a127ed311e05"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ Object.entries($json).filter(([k]) => !['submittedAt','formMode'].includes(k)).map(([k, v]) => '## ' + k + '\\n' + (v === '' || v === undefined ? '(no indicado)' : v)).join('\\n\\n') }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "# Generador de ideas de Reels\n\nConviertes el contenido que YA funciona en tu nicho (el de tus competidores) en ideas nuevas y propias. Nunca copias: extraes patrones y los adaptas.\n\n## Qué necesitas del usuario\n\n1. **Su nicho y su marca**: a qué se dedica, a quién le habla, qué vende. Si no lo dice, pregúntalo en una sola frase.\n2. **Competidores**: 2-5 cuentas de referencia. Por cada una, idealmente:\n   - Transcripciones de sus reels con más visualizaciones. Para sacarlas rápido, recomienda la extensión de Chrome **\"Generador de Transcripciones de Instagram y Copia con Un Clic\"** (Transcript24): abres el reel, pulsas copiar, y pegas aquí.\n   - Visualizaciones, likes y comentarios de cada reel (si los tiene).\n3. Si solo da nombres de cuentas sin transcripciones, trabaja con lo que sepas y pide que pegue al menos 5 transcripciones para afinar.\n\n## Proceso\n\n### Paso 1 · Análisis de competidores\nPara cada reel aportado identifica: tema, formato (hablado a cámara, tutorial, storytelling, lista, polémica, antes/después…), hook (primera frase literal), estructura y CTA.\n\n### Paso 2 · Tres rankings\n1. **Temáticas**: agrupa los reels en 4-8 temas y ordénalos por rendimiento medio. Explica por qué crees que cada tema funciona (dolor, deseo, curiosidad, identidad…).\n2. **Mejores vídeos**: top 5 con una línea de por qué funcionó.\n3. **Mejores hooks**: top 10 hooks literales + el patrón que hay detrás (ej. \"Error común + consecuencia\", \"Número + promesa\", \"Opinión impopular\").\n\n### Paso 3 · Ideas virales\nGenera **15 ideas** adaptadas a la marca del usuario. Cada idea:\n\n| # | Temática | Idea (1 frase) | Hook propuesto | Formato | Por qué puede funcionar | Inspirada en |\n|---|---|---|---|---|---|---|\n\nReglas para las ideas:\n- Cada idea debe poder grabarse en menos de 60 segundos.\n- Mezcla temáticas: no más de 4 ideas del mismo tema.\n- Al menos 3 ideas de **alcance** (para llegar a gente nueva), 3 de **autoridad** (demostrar que sabes) y 3 de **conversión** (llevan a comentar una palabra clave o a escribir por DM).\n- El hook va escrito tal cual se diría en voz alta, en máximo 12 palabras.\n\n### Paso 4 · Recomendación\nTermina señalando las **3 ideas por las que empezarías** y por qué. Ofrece pasar cualquiera de ellas a la skill `copywriter-reels` para escribir el guion completo.\n\n## Formato de salida\nMarkdown con encabezados: `## Temáticas`, `## Mejores vídeos`, `## Mejores hooks`, `## 15 ideas`, `## Por dónde empezar`. Escribe en el idioma del usuario (por defecto español).\n\n\n---\nIMPORTANTE (modo automático): no puedes hacer preguntas al usuario. Si falta algún dato, asume lo más razonable, indícalo en una línea al principio (\"Suposiciones: …\") y entrega el resultado completo. Responde en Markdown."
+            }
+          ]
+        }
+      },
+      "id": "30d3d59d-654e-43ba-85ed-362decc33c31",
+      "name": "Generador de ideas",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash",
+        "options": {
+          "temperature": 0.8,
+          "maxOutputTokens": 8192
+        }
+      },
+      "id": "8e2ecad8-60ac-44c8-a20e-409f9fb24ab3",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        260,
+        220
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "",
+          "name": "Google Gemini (PaLM) Api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.text }}",
+        "destinationKey": "html",
+        "options": {
+          "tables": true,
+          "simpleLineBreaks": true
+        }
+      },
+      "id": "cc0d885e-2a5b-4213-9ef4-01902b7dc81c",
+      "name": "Markdown a HTML",
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        560,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const md = $input.first().json;\nconst body = md.html || '';\nconst page = `<!doctype html><html lang=\"es\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<style>\nbody{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:900px;margin:32px auto;padding:0 16px;line-height:1.55;color:#1d1d1f;background:#fff}\nh1,h2,h3{line-height:1.25}h2{border-bottom:2px solid #eee;padding-bottom:6px;margin-top:32px}\ntable{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}\nth,td{border:1px solid #ddd;padding:8px;text-align:left;vertical-align:top}th{background:#f5f5f7}\ncode,pre{background:#f5f5f7;border-radius:6px}pre{padding:12px;overflow-x:auto;white-space:pre-wrap}\n.bar{position:sticky;top:0;background:#fff;padding:8px 0;text-align:right}\nbutton{padding:8px 14px;border-radius:8px;border:1px solid #ccc;background:#fff;cursor:pointer}\n@media print{.bar{display:none}}\n</style></head><body><div class=\"bar\"><button onclick=\"navigator.clipboard.writeText(document.getElementById('md').textContent)\">Copiar Markdown</button> <button onclick=\"print()\">Imprimir / PDF</button></div>\n${body}<pre id=\"md\" style=\"display:none\">${(md.text||'').replace(/</g,'&lt;')}</pre></body></html>`;\nreturn [{ json: { page } }];"
+      },
+      "id": "500b21ff-7972-46e5-b2d3-42977fb0ab7e",
+      "name": "Maquetar página",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        780,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "showText",
+        "responseText": "={{ $json.page }}"
+      },
+      "id": "c435de52-7ac9-4827-be37-494886770316",
+      "name": "Mostrar resultado",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        0
+      ],
+      "webhookId": "19f8bd26-0da5-4b37-936a-36c8dc504a90"
+    }
+  ],
+  "connections": {
+    "Formulario": {
+      "main": [
+        [
+          {
+            "node": "Generador de ideas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generador de ideas": {
+      "main": [
+        [
+          {
+            "node": "Markdown a HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown a HTML": {
+      "main": [
+        [
+          {
+            "node": "Maquetar página",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Maquetar página": {
+      "main": [
+        [
+          {
+            "node": "Mostrar resultado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generador de ideas",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "tags": []
+}

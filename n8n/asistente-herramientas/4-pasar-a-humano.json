@@ -1,0 +1,232 @@
+{
+  "name": "Skill 4 – Pasar a humano",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "nombre"
+            },
+            {
+              "name": "motivo"
+            },
+            {
+              "name": "resumen"
+            },
+            {
+              "name": "canal"
+            },
+            {
+              "name": "usuario_id"
+            }
+          ]
+        }
+      },
+      "id": "e2857251-4aa8-4ad3-ba2a-a8a1daaa073a",
+      "name": "Cuando lo llama el asistente",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d33e869-e5f5-49b2-a3c0-a36390572d16",
+              "name": "fecha",
+              "value": "={{ $now.toFormat('yyyy-MM-dd HH:mm') }}",
+              "type": "string"
+            },
+            {
+              "id": "b2e81e25-52a4-450b-b98e-bbfab1739fce",
+              "name": "nombre",
+              "value": "={{ $('Cuando lo llama el asistente').item.json.nombre }}",
+              "type": "string"
+            },
+            {
+              "id": "ce689ef8-9a56-43fa-98db-f7e7c9a5eef7",
+              "name": "motivo",
+              "value": "={{ $('Cuando lo llama el asistente').item.json.motivo }}",
+              "type": "string"
+            },
+            {
+              "id": "ae31ac5f-db7b-45b3-9a3a-d98a2f6130bb",
+              "name": "resumen",
+              "value": "={{ $('Cuando lo llama el asistente').item.json.resumen }}",
+              "type": "string"
+            },
+            {
+              "id": "fef3cd6d-86f9-4e14-be76-f82c00e25f4f",
+              "name": "canal",
+              "value": "={{ $('Cuando lo llama el asistente').item.json.canal }}",
+              "type": "string"
+            },
+            {
+              "id": "c545ed64-123a-4bbd-a806-c32c9dc97fc9",
+              "name": "usuario_id",
+              "value": "={{ $('Cuando lo llama el asistente').item.json.usuario_id }}",
+              "type": "string"
+            },
+            {
+              "id": "58232171-0729-49ce-a0e0-0e8e451af11d",
+              "name": "estado",
+              "value": "pendiente",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7c1b823b-28be-4e47-82f9-b29baf232608",
+      "name": "Preparar fila",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Escalados"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "ea50632f-d0a6-4ee2-834d-9e6b07f1d230",
+      "name": "Guardar en hoja Escalados",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        440,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "tu-email@tuagencia.com",
+        "subject": "=🙋 Un cliente quiere hablar con una persona ({{ $('Cuando lo llama el asistente').item.json.canal }})",
+        "emailType": "text",
+        "message": "=Cliente: {{ $('Cuando lo llama el asistente').item.json.nombre }}\nCanal: {{ $('Cuando lo llama el asistente').item.json.canal }} (id {{ $('Cuando lo llama el asistente').item.json.usuario_id }})\nMotivo: {{ $('Cuando lo llama el asistente').item.json.motivo }}\n\nResumen de la conversación:\n{{ $('Cuando lo llama el asistente').item.json.resumen }}\n\nRespóndele directamente desde {{ $('Cuando lo llama el asistente').item.json.canal }}.",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "1914778e-1bab-45a7-ac5b-2b39cd5b0f29",
+      "name": "Avisar al equipo",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        660,
+        0
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "",
+          "name": "Gmail account"
+        }
+      },
+      "webhookId": "358fcf08-70d7-4895-8184-ed8964796090"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b65c5384-eec5-4a49-977d-8bb609225d56",
+              "name": "respuesta",
+              "value": "Aviso enviado al equipo. Dile al cliente que una persona le escribirá en breve por este mismo chat.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1f1ae7b2-8d7b-4386-bc35-8397518d78ed",
+      "name": "Respuesta al asistente",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Cuando lo llama el asistente": {
+      "main": [
+        [
+          {
+            "node": "Preparar fila",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar fila": {
+      "main": [
+        [
+          {
+            "node": "Guardar en hoja Escalados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Guardar en hoja Escalados": {
+      "main": [
+        [
+          {
+            "node": "Avisar al equipo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Avisar al equipo": {
+      "main": [
+        [
+          {
+            "node": "Respuesta al asistente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "tags": []
+}

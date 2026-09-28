@@ -1,0 +1,259 @@
+{
+  "name": "Skill 2 – Agendar cita",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "nombre"
+            },
+            {
+              "name": "email"
+            },
+            {
+              "name": "fecha_hora"
+            },
+            {
+              "name": "motivo"
+            },
+            {
+              "name": "canal"
+            },
+            {
+              "name": "usuario_id"
+            }
+          ]
+        }
+      },
+      "id": "860d53aa-4d72-4490-903e-31b34ae629ba",
+      "name": "Cuando lo llama el asistente",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Calcula inicio y fin de la cita (30 minutos por defecto)\nconst DURACION_MIN = 30;\nconst d = $input.first().json;\nconst inicio = DateTime.fromISO(d.fecha_hora, { zone: $env.GENERIC_TIMEZONE || 'Europe/Madrid' });\nif (!inicio.isValid) {\n  return [{ json: { ...d, valida: false, error: 'Fecha no válida. Pide al cliente día y hora (ej: 2026-10-05 10:00).' } }];\n}\nreturn [{ json: { ...d, valida: true, inicio: inicio.toISO(), fin: inicio.plus({ minutes: DURACION_MIN }).toISO() } }];"
+      },
+      "id": "76fd50d2-672e-4282-910f-db00cffcec8a",
+      "name": "Calcular horario",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "calendar",
+        "calendar": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "timeMin": "={{ $json.inicio }}",
+        "timeMax": "={{ $json.fin }}",
+        "options": {
+          "outputFormat": "availability"
+        }
+      },
+      "id": "cf26b9d6-4b48-4a11-af62-805673dbc78d",
+      "name": "¿Hueco libre?",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        440,
+        0
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "b99a01a3-f22e-45a0-bc79-a0724d083e6d",
+              "leftValue": "={{ $json.available }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "f89c5fac-cccc-4ff6-9034-030b70964d02",
+      "name": "Disponible",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        660,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "start": "={{ $('Calcular horario').item.json.inicio }}",
+        "end": "={{ $('Calcular horario').item.json.fin }}",
+        "additionalFields": {
+          "summary": "=Llamada con {{ $('Calcular horario').item.json.nombre }}",
+          "description": "=Motivo: {{ $('Calcular horario').item.json.motivo }}\nEmail: {{ $('Calcular horario').item.json.email }}\nCanal: {{ $('Calcular horario').item.json.canal }} ({{ $('Calcular horario').item.json.usuario_id }})\n\nAgendada automáticamente por el asistente IA."
+        }
+      },
+      "id": "e321d0dd-4f96-48d0-8f77-22c60f8d5dc3",
+      "name": "Crear cita",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        880,
+        -100
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "82e42aee-83b3-4c86-b283-f55a8de7bbe1",
+              "name": "respuesta",
+              "value": "=Cita agendada el {{ DateTime.fromISO($('Calcular horario').item.json.inicio).setLocale('es').toFormat(\"cccc d 'de' LLLL 'a las' HH:mm\") }}. Confírmaselo al cliente.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1b8056be-b797-4746-b2da-e00e788e843c",
+      "name": "Cita confirmada",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1100,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "be0cd995-ada8-4368-8a48-b40cf9a30ad9",
+              "name": "respuesta",
+              "value": "Ese horario está ocupado. Propón al cliente otro día u hora y vuelve a intentarlo.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cfbc7681-7fc5-4557-a8aa-ffcc0c718399",
+      "name": "Horario ocupado",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        100
+      ]
+    }
+  ],
+  "connections": {
+    "Cuando lo llama el asistente": {
+      "main": [
+        [
+          {
+            "node": "Calcular horario",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calcular horario": {
+      "main": [
+        [
+          {
+            "node": "¿Hueco libre?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Hueco libre?": {
+      "main": [
+        [
+          {
+            "node": "Disponible",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Disponible": {
+      "main": [
+        [
+          {
+            "node": "Crear cita",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Horario ocupado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear cita": {
+      "main": [
+        [
+          {
+            "node": "Cita confirmada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "tags": []
+}

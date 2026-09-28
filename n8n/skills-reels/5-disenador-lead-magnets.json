@@ -1,0 +1,169 @@
+{
+  "name": "Skill 5 – Diseñador de lead magnets",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Skill 5 – Diseñador de lead magnets",
+        "formDescription": "Convierte un recurso en un lead magnet con tu branding, listo para guardar como PDF y enviar por DM.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Tu branding",
+              "fieldType": "textarea",
+              "requiredField": true,
+              "placeholder": "Nombre, colores (#hex), tipografías, URL del logo, tono"
+            },
+            {
+              "fieldLabel": "El recurso / contenido en bruto",
+              "fieldType": "textarea",
+              "requiredField": true,
+              "placeholder": ""
+            },
+            {
+              "fieldLabel": "Palabra clave del reel (opcional)",
+              "requiredField": false,
+              "placeholder": "Ej: STORIES"
+            }
+          ]
+        },
+        "options": {
+          "buttonLabel": "Generar"
+        }
+      },
+      "id": "57d78601-937e-48b4-98b6-d339dbecd4c5",
+      "name": "Formulario",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "48d00596-105a-4e07-a989-7684eabca09c"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ Object.entries($json).filter(([k]) => !['submittedAt','formMode'].includes(k)).map(([k, v]) => '## ' + k + '\\n' + (v === '' || v === undefined ? '(no indicado)' : v)).join('\\n\\n') }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "# Diseñador de lead magnets\n\nConviertes un recurso en bruto (notas, un documento, un guion, una lista) en un **lead magnet diseñado con la marca del usuario**. Está pensado para la mecánica \"comenta PALABRA y te lo envío por DM\".\n\n## Qué necesitas\n1. **Tu branding**: nombre de la marca, colores (hex), tipografías, logo (URL o descripción) y tono. Si no lo da, pregúntalo una vez; si sigue sin darlo, usa una paleta sobria y dilo.\n2. **El recurso**: el contenido en bruto que quiere regalar.\n3. **El reel o la palabra clave** con que se va a pedir, si existe.\n\n## Proceso\n\n### 1 · Naming\nPropón **5 nombres** y recomienda uno. Buenos nombres:\n- Son específicos y prometen un resultado: \"Historias de Instagram que venden — el sistema de 7 días\" es mejor que \"Guía de stories\".\n- Llevan formato + marca: \"… — [Marca]\".\n- Tienen un subtítulo que dice para quién es y qué consigue.\n\n### 2 · Estructura\nReorganiza el recurso en **bloques** (Bloque 1 — Fundamentos, Bloque 2 — …, Bloque 3 — Plan o calendario). Añade:\n- Una portada con título, subtítulo y marca.\n- \"Para quién es\" y \"Qué vas a conseguir\" (3 viñetas).\n- Contenido accionable: pasos, tablas, plantillas o checklists. Quita la paja.\n- Cierre con un CTA hacia el siguiente paso (llamada, servicio, DM).\n\n### 3 · Diseño\nEntrega el lead magnet como **un único archivo HTML** autocontenido, listo para \"Imprimir → Guardar como PDF\" en tamaño A4:\n- Usa los colores y tipografías de la marca (Google Fonts si hace falta) y CSS `@page { size: A4; margin: 0 }`, con saltos de página entre bloques.\n- Portada a página completa con el color principal de la marca.\n- Encabezados claros, cajas destacadas para los consejos clave y tablas con estilo.\n- Nada de imágenes externas salvo el logo, si el usuario da la URL.\n\nSi el entorno permite crear archivos, crea el `.html`. Si no, entrégalo en un bloque de código.\n\n### 4 · Entrega\nTermina con:\n- **Mensaje de DM** listo para copiar: \"¡Aquí tienes [nombre]! 👉 [enlace]. Si quieres que te ayude con…\".\n- **Respuesta al comentario** en 3 variantes cortas (\"¡Te lo acabo de enviar por DM! 📩\").\n- Recordatorio: sube el PDF a Drive, Notion o Canva y usa un enlace público. También puedes automatizar el envío con n8n o ManyChat cuando alguien comente la palabra clave.\n\n\n---\nIMPORTANTE (modo automático): no puedes hacer preguntas al usuario. Si falta algún dato, asume lo más razonable, indícalo en una línea al principio (\"Suposiciones: …\") y entrega el resultado completo. Responde en Markdown.\n\nEn este modo automático responde ÚNICAMENTE con el documento HTML completo del lead magnet (desde <!doctype html> hasta </html>). Incluye DENTRO del HTML, al final y en una página aparte, los 5 nombres propuestos, el mensaje de DM y las respuestas al comentario."
+            }
+          ]
+        }
+      },
+      "id": "89a0d2d5-5231-4d1e-a8fb-b1ef4c4de558",
+      "name": "Diseñador de lead magnets",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash",
+        "options": {
+          "temperature": 0.8,
+          "maxOutputTokens": 8192
+        }
+      },
+      "id": "460898a5-cd59-4f8c-a173-277f5671daca",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        260,
+        220
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "",
+          "name": "Google Gemini (PaLM) Api"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// El modelo devuelve el HTML del lead magnet; quitamos posibles ```html ... ```\nlet t = $input.first().json.text || '';\nconst m = t.match(/```(?:html)?\\s*([\\s\\S]*?)```/i);\nif (m) t = m[1];\nif (!/<html/i.test(t)) t = `<!doctype html><html><head><meta charset=\"utf-8\"></head><body><pre style=\"white-space:pre-wrap\">${t.replace(/</g,'&lt;')}</pre></body></html>`;\nreturn [{ json: { page: t } }];"
+      },
+      "id": "0cce3ae8-78fa-4cb3-96b6-81875c62d5b8",
+      "name": "Extraer HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        560,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "showText",
+        "responseText": "={{ $json.page }}"
+      },
+      "id": "d21070a3-a0d2-49ab-a220-0c7a46ce9f49",
+      "name": "Mostrar resultado",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        0
+      ],
+      "webhookId": "3fafc574-842e-4997-b64f-4e384193ca2e"
+    }
+  ],
+  "connections": {
+    "Formulario": {
+      "main": [
+        [
+          {
+            "node": "Diseñador de lead magnets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Diseñador de lead magnets": {
+      "main": [
+        [
+          {
+            "node": "Extraer HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer HTML": {
+      "main": [
+        [
+          {
+            "node": "Mostrar resultado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Diseñador de lead magnets",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "tags": []
+}
