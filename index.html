@@ -264,6 +264,50 @@ h3.sm{font-size:clamp(22px,2.4vw,28px);letter-spacing:-.03em}
 .cta-box h3{font-size:clamp(25px,3.2vw,38px);letter-spacing:-.04em;line-height:1.05;max-width:26ch;text-wrap:balance}
 .cta-box p{font-size:17px;color:var(--arena);margin-top:12px;max-width:46ch;text-wrap:pretty}
 
+
+/* — testimonios — */
+.testi-head{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:18px clamp(24px,5vw,72px);align-items:end;margin-bottom:28px}
+.testis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:18px}
+.testi{margin:0;display:flex;flex-direction:column;gap:16px}
+.testi .vid{position:relative;aspect-ratio:9/16;max-width:100%;border-radius:14px;overflow:hidden;background:var(--surface)}
+.testi video{display:block;width:100%;height:100%;object-fit:cover;background:var(--ink)}
+.testi .q{display:block;font-size:15px;line-height:1.4;color:var(--arena);margin-bottom:10px}
+.testi blockquote{margin:0;font:800 20px/1.2 var(--f-head);letter-spacing:-.025em;color:var(--cal);text-wrap:pretty}
+.before{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:2px;border-radius:14px;overflow:hidden;margin-bottom:16px}
+.before>div{background:var(--surface);padding:20px 22px}
+.before .lab{display:block;margin-bottom:6px;color:var(--muted)}
+.before p{font-size:17px;color:var(--arena)}
+.seo-kpis.big .v{font-size:clamp(38px,4.6vw,54px)}
+.seo-kpis .k{font-weight:600;font-size:17px;line-height:1.3;margin-top:14px}
+.seo-kpis.big .l{min-height:0;margin-top:8px}
+.made{margin-top:26px;font-size:19px;color:var(--arena)}
+/* — redes — */
+.soc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px;align-items:start}
+.soc article{background:var(--surface);border-radius:14px;padding:clamp(22px,3vw,30px)}
+.grow{display:flex;align-items:baseline;gap:14px;font:800 clamp(44px,5vw,60px)/1 var(--f-head);letter-spacing:-.05em;margin-bottom:14px}
+.grow .from{color:var(--arena)}
+.soc h4{font-size:19px;letter-spacing:-.02em;margin:0 0 4px}
+.soc article>p{font-size:17px;color:var(--arena)}
+.soc dl{margin:18px 0 0;display:grid;gap:0}
+.soc dl div{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:10px 0;border-top:1px solid var(--line)}
+.soc dt{font-size:15px;color:var(--arena)}
+.soc dd{margin:0;white-space:nowrap;font:800 19px/1 var(--f-head);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.toplist{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:0}
+.toplist li{display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px;padding:12px 0;border-top:1px solid var(--line);align-items:baseline}
+.toplist b{font:800 22px/1 var(--f-head);letter-spacing:-.03em}
+.toplist span{font-size:16px;line-height:1.35}
+.toplist small{display:block;font-size:14px;color:var(--muted);margin-top:4px}
+/* — gráfico de barras — */
+.chart{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;height:200px;align-items:end;border-bottom:1px solid var(--line)}
+.chart .col{height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px}
+.chart b{font:800 18px/1 var(--f-head)}
+.chart i{display:block;width:min(56px,70%);background:var(--naranja);border-radius:4px 4px 0 0;min-height:4px}
+.chart span{font-size:14px;color:var(--arena);margin-bottom:-26px;height:20px}
+.chart+p{margin-top:46px!important}
+.src.w{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) auto}
+.honest{margin-top:20px;background:var(--surface);border-radius:20px;padding:clamp(24px,3.5vw,36px)}
+.honest p{font-size:17px;color:var(--arena);max-width:80ch}
+
 /* — marca — */
 .brand .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,4vw,56px);align-items:center}
 .brand h2{font-size:clamp(32px,4.6vw,58px);line-height:.98;text-wrap:balance}
@@ -348,6 +392,9 @@ footer{border-top:1px solid var(--line);padding:56px 0 calc(40px + env(safe-area
 .fcols ul{display:grid;gap:4px;font-size:16px;color:var(--arena)}
 .fcols li a{display:inline-block;padding:5px 0}
 .legal{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;font-size:15px;color:var(--muted)}
+.legal p+p{margin-top:10px}
+.legal b{color:var(--arena)}
+.legal a{text-decoration:underline;text-underline-offset:3px}
 .legal h2{font:600 13px/1.2 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--arena);margin-bottom:10px}
 .base{border-top:1px solid var(--line);margin-top:40px;padding-top:22px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:14px;color:var(--muted)}
 
@@ -371,7 +418,6 @@ footer{border-top:1px solid var(--line);padding:56px 0 calc(40px + env(safe-area
     <nav class="nav" aria-label="Secciones">
       <a href="#quienes">Quiénes somos</a>
       <a href="#equipo">Equipo</a>
-      <a href="#numeros">Resultados</a>
       <a href="#caso">Clientes</a>
       <a href="#seo-local">Caso real</a>
       <a href="#precios">Precios</a>
@@ -400,7 +446,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 calc(40px + env(safe-area
           <div class="halo" aria-hidden="true"></div>
           <div class="photo"><img src="img/hero-esteban.webp" width="760" height="776" alt="Esteban, socio de Rumbo" fetchpriority="high"></div>
           <div class="circle"><img src="img/eneko-circulo.webp" width="330" height="330" alt="Eneko, socio de Rumbo"></div>
-          <div class="float r"><div class="big">5,0<span class="star">★</span></div><small>97 reseñas · A Lo Cubano</small></div>
+          <div class="float r"><div class="big">5,0<span class="star">★</span></div><small>151 reseñas · A Lo Cubano</small></div>
           <div class="float l"><div class="lab">Exclusividad</div><div class="txt">1 local por zona</div></div>
         </div>
       </div>
@@ -505,71 +551,14 @@ footer{border-top:1px solid var(--line);padding:56px 0 calc(40px + env(safe-area
     </div>
   </section>
 
-  <section id="numeros" class="sec" style="padding-top:0" aria-labelledby="t-numeros">
-    <div class="wrap z">
-      <div class="split end" data-rev style="border-top:1px solid var(--line);padding-top:clamp(40px,6vw,68px);margin-bottom:clamp(28px,4vw,44px)">
-        <div>
-          <span class="eyebrow">Nuestro método, antes de la hostelería</span>
-          <h2 id="t-numeros" class="xl" style="line-height:.95">Dos cuentas.<br>Dos resultados <span class="accent">distintos.</span></h2>
-        </div>
-        <div class="side"><p>Antes de dedicarnos a la restauración levantamos dos cuentas de contenido desde cero: una hasta los millones de reproducciones, la otra hasta una comunidad fiel de nicho. El criterio de gancho, ritmo y formato es el mismo que aplicamos ahora en los restaurantes: cambia el plato, no el método.</p></div>
-      </div>
-      <p class="note" data-rev>Datos de @wrldbann y @goleadornatural a 10 de septiembre de 2026. La comunidad combinada puede incluir a quien sigue ambas cuentas; las 23.437 visualizaciones corresponden solo a YouTube.</p>
-      <div class="acc" data-rev>
-        <article>
-          <div>
-            <div class="who"><div class="mono" aria-hidden="true">WB</div><div style="min-width:0"><h3>@wrldbann</h3><small>Resultado 01 · contenido viral en vertical</small></div></div>
-            <p>Cuenta propia levantada desde cero. Aquí probamos el gancho y el formato en serie hasta que cada pieza pasaba del millón.</p>
-          </div>
-          <div class="kpis">
-            <div><div class="kpi">13,9<span> mill.</span></div><div class="kpi-l">Reproducciones acumuladas</div></div>
-            <div><div class="kpi">4,9<span> mill.</span></div><div class="kpi-l">Su vídeo más visto</div></div>
-            <div><div class="kpi">6<span> de 6</span></div><div class="kpi-l">Piezas sobre el millón</div></div>
-          </div>
-          <div class="reels two">
-            <figure class="reel"><img src="img/portada-gn-1.webp" width="360" height="640" loading="lazy" decoding="async" alt=""><figcaption><div class="tag">#01 · Gancho y ritmo</div><div class="t">Subtítulo que retiene: 1,7 mill.</div></figcaption><span class="pend">[PENDIENTE: GIF]</span></figure>
-            <figure class="reel"><img src="img/portada-gn-2.webp" width="360" height="640" loading="lazy" decoding="async" alt=""><figcaption><div class="tag">#02 · Formato en serie</div><div class="t">La misma plantilla, repetida</div></figcaption><span class="pend">[PENDIENTE: GIF]</span></figure>
-          </div>
-          <ul class="chips"><li class="pill soft">Guion</li><li class="pill soft">Montaje</li><li class="pill soft">Subtitulado</li><li class="pill soft">Publicación</li></ul>
-        </article>
-        <article>
-          <div>
-            <div class="who"><div class="mono" aria-hidden="true">GN</div><div style="min-width:0"><h3>Goleador Natural</h3><small>Resultado 02 · divulgación deportiva de nicho</small></div></div>
-            <p>Un resultado distinto y a propósito: aquí no buscábamos reproducciones sueltas, sino una comunidad fiel en un nicho concreto —entrenamiento de fútbol y neurociencia aplicada al rendimiento—. Canal abierto en enero de 2023; en YouTube, 23.437 visualizaciones con solo cuatro vídeos publicados.</p>
-          </div>
-          <div class="kpis">
-            <div><div class="kpi">48.460</div><div class="kpi-l">Comunidad entre Instagram y YouTube</div></div>
-            <div><div class="kpi">47.400</div><div class="kpi-l">Seguidores en Instagram</div></div>
-            <div><div class="kpi">23.437</div><div class="kpi-l">Visualizaciones en YouTube</div></div>
-          </div>
-          <div class="why"><div class="lab">Por qué importan los dos</div><p>Uno demuestra que sabemos hacer que algo explote; el otro, que sabemos construir una audiencia que vuelve. Un restaurante necesita las dos cosas: que le descubran y que le repitan.</p></div>
-          <ul class="chips"><li class="pill soft">Guion</li><li class="pill soft">Montaje y subtitulado</li><li class="pill soft">Comunidad</li><li class="pill soft">Multiplataforma</li></ul>
-        </article>
-      </div>
-      <div data-rev style="margin-top:clamp(32px,4vw,48px)">
-        <div class="head-row"><h3 class="sm">Piezas de Goleador Natural</h3><p>En orden · pasa el ratón para reproducir</p></div>
-        <div class="reels">
-          <figure class="reel"><img src="img/portada-gol-a.webp" width="360" height="640" loading="lazy" decoding="async" alt=""><figcaption><div class="tag">#01 · Divulgación</div><div class="t">Por qué el futsal</div></figcaption><span class="pend">[PENDIENTE: GIF]</span></figure>
-          <figure class="reel"><img src="img/portada-gol-b.webp" width="360" height="640" loading="lazy" decoding="async" alt=""><figcaption><div class="tag">#02 · Análisis</div><div class="t">Mira, crea, decide</div></figcaption><span class="pend">[PENDIENTE: GIF]</span></figure>
-          <figure class="reel"><img src="img/portada-gol-c.webp" width="360" height="640" loading="lazy" decoding="async" alt=""><figcaption><div class="tag">#03 · Neurociencia</div><div class="t">Hacer y pensar</div></figcaption><span class="pend">[PENDIENTE: GIF]</span></figure>
-        </div>
-      </div>
-      <div class="three" data-rev>
-        <div><div class="lab">Lo que se traslada</div><p>Los tres primeros segundos, el ritmo del montaje y un formato que se puede repetir cada semana sin agotarse.</p></div>
-        <div><div class="lab">Aplicado a tu local</div><p>El mismo gancho que retiene viendo una lista de canciones es el que hace mirar un plato saliendo de tu cocina.</p></div>
-        <div><div class="lab">La diferencia</div><p>Aquí las reproducciones no son el objetivo: son el medio para llenar mesas entre semana.</p></div>
-      </div>
-    </div>
-  </section>
-
   <section id="caso" class="sec sec-top" aria-labelledby="t-caso">
     <span id="clientes" class="sr"></span>
     <div class="lines" aria-hidden="true"></div>
-    <img class="fruit" src="img/limon.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" style="left:-3%;top:4%;rotate:-14deg;width:clamp(90px,11vw,168px)">
-    <img class="fruit" src="img/ilustracion-2.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" style="right:-2%;top:2%;rotate:24deg;width:clamp(120px,15vw,230px)">
-    <img class="fruit" src="img/ilustracion-3.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" style="right:6%;top:34%;rotate:12deg;width:clamp(84px,10vw,150px)">
-    <img class="fruit" src="img/ilustracion-4.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" style="left:6%;top:40%;rotate:-8deg;width:clamp(64px,7vw,110px)">
-    <div class="halo" aria-hidden="true" style="width:min(720px,110vw);height:min(720px,110vw);right:-24%;top:52%;opacity:.6"></div>
+    <img class="fruit" src="img/limon.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" style="left:-3%;top:2%;rotate:-14deg;width:clamp(90px,11vw,168px)">
+    <img class="fruit" src="img/ilustracion-2.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" style="right:-2%;top:1%;rotate:24deg;width:clamp(120px,15vw,230px)">
+    <img class="fruit" src="img/ilustracion-3.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" style="right:3%;top:40%;rotate:12deg;width:clamp(84px,10vw,150px)">
+    <img class="fruit" src="img/ilustracion-4.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" style="left:2%;top:58%;rotate:-8deg;width:clamp(64px,7vw,110px)">
+    <div class="halo" aria-hidden="true" style="width:min(720px,110vw);height:min(720px,110vw);right:-24%;top:22%;opacity:.5"></div>
     <div class="wrap z">
       <span class="eyebrow" data-rev>03 · Cliente satisfecho y resultados</span>
       <div class="client" data-rev>
@@ -580,27 +569,79 @@ footer{border-top:1px solid var(--line);padding:56px 0 calc(40px + env(safe-area
           </div>
           <p>Cocina cubana de fusión en primera línea de Playa Serena. Llegaron con un producto que ya funcionaba en sala y una presencia digital que no lo contaba. Trabajamos vídeo, ficha de Google y captación de reseñas.</p>
         </div>
-        <div class="score" role="img" aria-label="5,0 de 5 estrellas, 97 reseñas en Google">
+        <div class="score" role="img" aria-label="5,0 de 5 estrellas, 151 reseñas en Google">
           <div class="v" aria-hidden="true">5,0</div>
           <div class="stars" aria-hidden="true">★★★★★</div>
-          <small aria-hidden="true">97 reseñas en Google</small>
+          <small aria-hidden="true">151 reseñas en Google</small>
         </div>
       </div>
-      <div class="cells" data-rev style="grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))">
+
+      <!-- Testimonios de Manuel -->
+      <div class="testi-head" data-rev>
+        <div>
+          <div class="lab">Testimonio</div>
+          <h3 class="lg" style="margin:0">Se lo preguntamos<br>a <span class="accent">Manuel.</span></h3>
+        </div>
+        <p class="intro" style="margin:0">Manuel Llera abrió A Lo Cubano a finales de junio de 2026. Empezamos a trabajar juntos el 8 de julio. Cuatro preguntas, contestadas por él.</p>
+      </div>
+      <div class="testis" data-rev>
+        <figure class="testi">
+          <div class="vid"><video controls preload="none" playsinline width="540" height="960" poster="img/testimonio-1.webp" aria-label="Vídeo: Manuel responde cómo fueron las primeras semanas"><source src="video/testimonio-1.mp4" type="video/mp4"></video></div>
+          <figcaption><span class="q">¿Cómo fueron las primeras semanas, cuando abristeis y no os conocía nadie?</span><blockquote>«Era todo una incógnita. No sabíamos qué era lo que nos iba a exigir esto de verdad.»</blockquote></figcaption>
+        </figure>
+        <figure class="testi">
+          <div class="vid"><video controls preload="none" playsinline width="540" height="960" poster="img/testimonio-2.webp" aria-label="Vídeo: Manuel responde por qué confió en Rumbo"><source src="video/testimonio-2.mp4" type="video/mp4"></video></div>
+          <figcaption><span class="q">Estabas abriendo un negocio con mil cosas encima. ¿Por qué te fiaste de nosotros, que empezábamos?</span><blockquote>«Para nosotros, ustedes han sido uno más de la familia. Empezamos desde el primer día juntos.»</blockquote></figcaption>
+        </figure>
+        <figure class="testi">
+          <div class="vid"><video controls preload="none" playsinline width="540" height="960" poster="img/testimonio-3.webp" aria-label="Vídeo: Manuel responde qué ha cambiado en tres meses"><source src="video/testimonio-3.mp4" type="video/mp4"></video></div>
+          <figcaption><span class="q">¿Qué ha cambiado en estos tres meses?</span><blockquote>«Estamos repletos de clientes que vienen a vernos por las redes.»</blockquote></figcaption>
+        </figure>
+        <figure class="testi">
+          <div class="vid"><video controls preload="none" playsinline width="540" height="960" poster="img/testimonio-4.webp" aria-label="Vídeo: Manuel responde cuánto tiempo le quita"><source src="video/testimonio-4.mp4" type="video/mp4"></video></div>
+          <figcaption><span class="q">¿Cuánto tiempo te quita a ti todo esto?</span><blockquote>«Siempre ha estado presente a la hora que lo he llamado, siempre.»</blockquote></figcaption>
+        </figure>
+      </div>
+
+      <!-- Antes y después (informe 8 jul – 24 sep 2026) -->
+      <div class="sub" data-rev>
+        <div class="split end" style="margin-bottom:28px">
+          <div>
+            <div class="lab">Informe de resultados · 8 jul – 24 sep 2026</div>
+            <h3 class="lg" style="margin:0">Once semanas,<br>en una pantalla.</h3>
+          </div>
+          <p class="intro" style="margin:0">A Lo Cubano abrió a finales de junio. Cuando empezamos, el 8 de julio, el local ya se llenaba: el reto no era ocupar mesas, sino que se conociera más allá de quien pasaba por la puerta.</p>
+        </div>
+        <div class="before">
+          <div><span class="lab">Antes · Google</span><p>Ficha con una semana de vida: 12 reseñas.</p></div>
+          <div><span class="lab">Antes · Instagram</span><p>45 seguidores ganados en la apertura, casi todos amigos del equipo.</p></div>
+          <div><span class="lab">Antes · TikTok</span><p>No había cuenta.</p></div>
+        </div>
+        <div class="seo-kpis big">
+          <div><div class="v">18.107</div><div class="k">personas vieron la ficha en Google</div><div class="l">Casi ninguna conocía el nombre: llegaron buscando «restaurantes».</div></div>
+          <div><div class="v">607</div><div class="k">veces pidieron la ruta al local</div><div class="l">Lo más parecido a «voy para allá» que se puede medir.</div></div>
+          <div><div class="v">12 <span class="accent">→</span> 151</div><div class="k">reseñas, todas de 5 estrellas</div><div class="l">Quien busca dónde comer ve un sitio recomendado, no uno recién abierto.</div></div>
+          <div><div class="v">172.900</div><div class="k">visualizaciones en TikTok</div><div class="l">En una cuenta que en julio no existía. El 89 % llegó a gente que no los conocía.</div></div>
+        </div>
+        <p class="filete made"><b>30 vídeos, 13 posts y 108 stories</b> publicados en 11 semanas, sin interrumpir nunca el servicio.</p>
+      </div>
+
+      <div class="cells sub" data-rev style="grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))">
         <div class="cell" style="padding:28px 26px"><div class="lab" style="margin-bottom:12px">Contenido</div><h3>Todo lo que ves en sus redes</h3><p>Cada reel, cada story y cada foto de plato publicada desde que empezamos está grabada, editada y programada por nosotros.</p></div>
-        <div class="cell" style="padding:28px 26px"><div class="lab" style="margin-bottom:12px">Reputación</div><h3>5,0 de media con 97 reseñas</h3><p>Ficha de Google optimizada y sistema de captación de reseñas funcionando en sala, con respuesta a todas.</p></div>
+        <div class="cell" style="padding:28px 26px"><div class="lab" style="margin-bottom:12px">Reputación</div><h3>5,0 de media con 151 reseñas</h3><p>Ficha de Google optimizada y sistema de captación de reseñas funcionando en sala, con respuesta a todas.</p></div>
         <div class="cell" style="padding:28px 26px"><div class="lab" style="margin-bottom:12px">Canal propio</div><h3>Web y perfil como puerta de entrada</h3><p>alocubanofusion.com y su Instagram trabajan juntos: quien descubre un vídeo encuentra carta, ubicación y forma de reservar sin salir a buscarla.</p></div>
       </div>
       <div class="reviews" data-rev>
         <div>
           <h3 class="md" style="margin-bottom:12px">Lo que dicen sus clientes</h3>
-          <p>Noventa y siete personas han valorado A Lo Cubano en Google y ninguna ha bajado de cinco estrellas. Las reseñas se leen enteras en su ficha, actualizadas al día.</p>
-          <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=36.7228772,-2.6287304" target="_blank" rel="noopener">Leer las 97 reseñas ↗</a>
+          <p>Ciento cincuenta y una personas han valorado A Lo Cubano en Google y ninguna ha bajado de cinco estrellas. Las reseñas se leen enteras en su ficha, actualizadas al día.</p>
+          <p class="fine" style="border:0;padding:0;margin-top:14px">Llegaron gracias a la carta con QR que diseñamos para las mesas. Solo pide la opinión: no se ofrece nada a cambio.</p>
+          <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=36.7228772,-2.6287304" target="_blank" rel="noopener">Leer las 151 reseñas ↗</a>
         </div>
         <div>
           <div class="rating"><span class="v">5,0</span><span class="stars" aria-hidden="true">★★★★★</span></div>
-          <div class="dist" role="img" aria-label="Distribución: 97 reseñas de 5 estrellas y ninguna de 4, 3, 2 o 1">
-            <span>5★</span><span class="bar on"></span><span>97</span>
+          <div class="dist" role="img" aria-label="Distribución: 151 reseñas de 5 estrellas y ninguna de 4, 3, 2 o 1">
+            <span>5★</span><span class="bar on"></span><span>151</span>
             <span>4★</span><span class="bar"></span><span>0</span>
             <span>3★</span><span class="bar"></span><span>0</span>
             <span>2★</span><span class="bar"></span><span>0</span>
@@ -608,6 +649,47 @@ footer{border-top:1px solid var(--line);padding:56px 0 calc(40px + env(safe-area
           </div>
         </div>
       </div>
+
+      <!-- Redes -->
+      <div class="sub" data-rev>
+        <div class="lab">Resultados en redes</div>
+        <h3 class="lg">Parecer natural <span class="accent">funciona.</span></h3>
+        <div class="soc">
+          <article>
+            <div class="grow"><span class="from">0</span><span class="accent" aria-hidden="true">→</span><span>1.091</span></div>
+            <h4>Seguidores en TikTok</h4>
+            <p>Una cuenta que en julio no existía.</p>
+            <dl>
+              <div><dt>Personas distintas</dt><dd>133.000</dd></div>
+              <div><dt>Vistas desde «Para ti», sin publicidad pagada</dt><dd>89 %</dd></div>
+              <div><dt>Visitas al perfil</dt><dd>4.400</dd></div>
+              <div><dt>Veces compartido</dt><dd>1.100</dd></div>
+            </dl>
+          </article>
+          <article>
+            <div class="grow"><span class="from">89</span><span class="accent" aria-hidden="true">→</span><span>331</span></div>
+            <h4>Seguidores en Instagram</h4>
+            <p>242 seguidores más en el periodo.</p>
+            <dl>
+              <div><dt>Visualizaciones</dt><dd>76.885</dd></div>
+              <div><dt>De gente que aún no seguía la cuenta</dt><dd>61 %</dd></div>
+              <div><dt>Personas alcanzadas</dt><dd>24.414</dd></div>
+              <div><dt>Visualizaciones al día, frente a la apertura</dt><dd>×2,3</dd></div>
+            </dl>
+          </article>
+          <article>
+            <h4 style="margin-top:0">Los tres vídeos que más funcionaron</h4>
+            <ol class="toplist">
+              <li><b>29.000</b><span>«POV: Buscas un restaurante con la mejor comida de Almería…»<small>6 de agosto · TikTok</small></span></li>
+              <li><b>26.000</b><span>«Si quieres venir… vení»<small>12 de julio · TikTok</small></span></li>
+              <li><b>21.000</b><span>Vídeo de presentación<small>8 de julio · TikTok. El primer vídeo de la cuenta</small></span></li>
+            </ol>
+            <p class="fine">Vídeos naturales y entretenidos, en formato POV, que parecen grabados por un amigo y no por una marca.</p>
+          </article>
+        </div>
+        <p class="note" style="margin-top:14px">TikTok: 7 de julio – 22 de septiembre. Instagram: 8 de julio – 23 de septiembre de 2026.</p>
+      </div>
+
       <div class="sub" data-rev>
         <div class="head-row" style="margin-bottom:24px"><h3 class="md" style="margin:0">Piezas que hemos hecho para ellos</h3><p>Vertical, rodado en su local · pasa el ratón para reproducir</p></div>
         <div class="reels">
@@ -631,39 +713,48 @@ footer{border-top:1px solid var(--line);padding:56px 0 calc(40px + env(safe-area
           </div>
           <div>
             <p class="muted" style="font-size:19px;max-width:44ch;text-wrap:pretty">Optimizamos la presencia local de A Lo Cubano Fusión para aumentar su visibilidad cuando potenciales clientes buscaban restaurantes en la zona.</p>
-            <div class="date">Junio – septiembre de 2026</div>
+            <div class="date">Julio – septiembre de 2026</div>
           </div>
         </div>
         <div class="seo-kpis" data-rev>
-          <div><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8A3D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="v"><span data-count="15977">15.977</span></div><div class="l">Visualizaciones del perfil</div></div>
-          <div><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8A3D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div><div class="v"><span data-count="3316">3.316</span></div><div class="l">Búsquedas que mostraron el negocio</div></div>
-          <div><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8A3D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg></div><div class="v"><span data-count="69">69</span> %</div><div class="l">Del tráfico desde Google Maps móvil</div></div>
-          <div><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8A3D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 6.5c0-2-2.2-3-5-3s-5 .9-5 3 2.2 2.7 5 3.2 5 1.3 5 3.3-2.2 3-5 3-5-1-5-3"/></svg></div><div class="v">≈20.000 €</div><div class="l">Impacto potencial estimado</div></div>
+          <div><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8A3D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></div><div class="v"><span data-count="607">607</span></div><div class="l">Pidieron la ruta para llegar</div></div>
+          <div><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8A3D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div><div class="v"><span data-count="133">133</span></div><div class="l">Llamaron desde Google, sin buscar el teléfono</div></div>
+          <div><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8A3D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M9 11h7M9 15h7"/></svg></div><div class="v"><span data-count="302">302</span></div><div class="l">Miraron la carta</div></div>
+          <div><div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8A3D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div><div class="v"><span data-count="299">299</span></div><div class="l">Entraron en su web desde la ficha</div></div>
         </div>
         <div class="duo" data-rev>
           <article>
-            <h3>¿Qué significan estas visitas para el negocio?</h3>
-            <p>Con 15.977 visualizaciones del perfil y una estimación conservadora de conversión del 3–5 %, calculamos un potencial de aproximadamente <b>479–799 clientes</b> procedentes de este canal. Con un ticket medio estimado de 20–30 €, el impacto potencial se sitúa aproximadamente <b>entre 9.600 € y 24.000 €</b>.</p>
-            <div class="steps">
-              <div><div class="lab" style="margin-bottom:10px">Paso 1</div><div class="s">Visualizaciones</div><div class="v">15.977</div><small>Perfil mostrado en Google</small></div>
-              <div><div class="lab" style="margin-bottom:10px">Paso 2</div><div class="s">Clientes potenciales</div><div class="v">479 – 799</div><small>Conversión estimada 3–5 %</small></div>
-              <div class="hot"><div class="lab" style="margin-bottom:10px">Paso 3</div><div class="s">Impacto potencial</div><div class="v">9.600 – 24.000 €</div><small>Ticket medio 20–30 €</small></div>
+            <h3>Agosto, el mes más fuerte.</h3>
+            <p style="margin-bottom:22px">Interacciones con la ficha de Google, de media al día.</p>
+            <div class="chart" role="img" aria-label="Interacciones al día: junio 4, julio 11, agosto 23, septiembre 14">
+              <div class="col"><b>4</b><i style="height:17%"></i><span>Junio*</span></div>
+              <div class="col"><b>11</b><i style="height:48%"></i><span>Julio</span></div>
+              <div class="col"><b>23</b><i style="height:100%"></i><span>Agosto</span></div>
+              <div class="col"><b>14</b><i style="height:61%"></i><span>Sept.**</span></div>
             </div>
-            <p class="fine">Estimación orientativa basada en visualizaciones del perfil y un rango de conversión estimado. Google Business Profile no permite atribuir directamente cada visita física a una visualización del perfil.</p>
+            <p style="margin-top:20px">Agosto sumó 721 interacciones, unas 23 al día. En septiembre la actividad volvió al nivel de julio: encaja con el fin del verano y la marcha de los turistas.</p>
+            <p class="fine">* Solo 5 días (perfil creado el 26 de junio). ** Hasta el 20-21 de septiembre aprox.</p>
           </article>
           <article>
             <div class="src-h">
-              <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8A3D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
-              <div style="min-width:0"><h3>De dónde llega ese tráfico</h3><small>Google Business Profile · jun – sep 2026</small></div>
+              <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#FF8A3D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
+              <div style="min-width:0"><h3>Cómo le encuentran</h3><small>Búsquedas en las que apareció la ficha · jun – ago 2026</small></div>
             </div>
+            <p style="margin-bottom:18px"><b>Buscando «restaurantes», no su nombre.</b></p>
             <div style="display:grid;gap:14px">
-              <div class="src"><span>Maps · móvil</span><span class="track" aria-hidden="true"><i style="width:100%"></i></span><b>10.975</b></div>
-              <div class="src"><span>Google · móvil</span><span class="track" aria-hidden="true"><i style="width:42%"></i></span><b>4.597</b></div>
-              <div class="src"><span>Maps · ordenador</span><span class="track" aria-hidden="true"><i style="width:3%"></i></span><b>269</b></div>
-              <div class="src"><span>Google · ordenador</span><span class="track" aria-hidden="true"><i style="width:2%"></i></span><b>136</b></div>
+              <div class="src w"><span>restaurantes</span><span class="track" aria-hidden="true"><i style="width:100%"></i></span><b>5.677</b></div>
+              <div class="src w"><span>restaurants</span><span class="track" aria-hidden="true"><i style="width:6.2%"></i></span><b>352</b></div>
+              <div class="src w"><span>bares</span><span class="track" aria-hidden="true"><i style="width:6%"></i></span><b>343</b></div>
+              <div class="src w"><span>restaurante</span><span class="track" aria-hidden="true"><i style="width:3.9%"></i></span><b>224</b></div>
+              <div class="src w"><span>restaurantes en roquetas de mar</span><span class="track" aria-hidden="true"><i style="width:3.8%"></i></span><b>213</b></div>
             </div>
-            <div class="meaning"><div class="lab" style="margin-bottom:10px">Lo que significa</div><p>Casi siete de cada diez personas encuentran el restaurante desde el móvil, en Maps, con el teléfono en la mano y a pocos minutos de la mesa.</p></div>
+            <div class="meaning"><div class="lab" style="margin-bottom:10px">Lo que significa</div><p>Google le enseña el restaurante a quien aún no lo conoce. El siguiente paso es que lo busquen por «A lo Cubano».</p></div>
           </article>
+        </div>
+        <div class="honest" data-rev>
+          <div class="lab">Lo que todavía no podemos medir</div>
+          <p>Las reservas se hacen por la web y no sabemos cuántas llegan desde las redes o desde Google. Por eso no atribuimos reservas a nuestro trabajo. Este trimestre empezamos a medirlo con una pregunta en sala: «¿cómo nos has conocido?».</p>
+          <p class="fine">Datos del Perfil de Empresa de Google. Julio incluye del 1 al 7, antes de empezar. Septiembre llega hasta el 20-21 aprox.</p>
         </div>
         <div class="cta-box" data-rev>
           <div style="min-width:0;padding-left:8px">
@@ -854,7 +945,6 @@ footer{border-top:1px solid var(--line);padding:56px 0 calc(40px + env(safe-area
         <ul>
           <li><a href="#quienes">Quiénes somos</a></li>
           <li><a href="#equipo">El equipo</a></li>
-          <li><a href="#numeros">Resultados en números</a></li>
           <li><a href="#caso">Clientes y resultados</a></li>
           <li><a href="#seo-local">Caso real</a></li>
           <li><a href="#precios">Precios y planes</a></li>
@@ -872,8 +962,17 @@ footer{border-top:1px solid var(--line);padding:56px 0 calc(40px + env(safe-area
       </div>
     </div>
     <div class="legal">
-      <div id="aviso-legal"><h2>Aviso legal</h2><p><span class="pend">[PENDIENTE: titular, NIF, domicilio y correo de contacto]</span></p></div>
-      <div id="privacidad"><h2>Política de privacidad</h2><p><span class="pend">[PENDIENTE: responsable del tratamiento, finalidad, base legal, conservación y derechos]</span></p></div>
+      <div id="aviso-legal">
+        <span id="privacidad" class="sr"></span>
+        <h2>Aviso legal y privacidad</h2>
+        <p><b>Quién está detrás.</b> Esta web es de Rumbo, agencia de marketing para hostelería en Almería formada por Esteban y Eneko. Contacto: <a href="mailto:lakylabmarketing@gmail.com">lakylabmarketing@gmail.com</a>.</p>
+        <p><b>Qué datos recogemos y para qué.</b> Solo los que escribes en el formulario de consulta (nombre, local, correo, teléfono, población y mensaje). Los usamos para responder a tu consulta y no los cedemos a nadie. El formulario se procesa en Netlify, el servicio que aloja esta web.</p>
+      </div>
+      <div>
+        <p><b>Base legal y plazo.</b> Tu consentimiento, que das al marcar la casilla del formulario. Guardamos los datos el tiempo necesario para atender tu consulta.</p>
+        <p><b>Tus derechos.</b> Puedes pedir acceder a tus datos, corregirlos o borrarlos escribiendo al correo de arriba, y reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
+        <p><b>Cookies.</b> Esta web no usa cookies ni herramientas de seguimiento.</p>
+      </div>
     </div>
     <div class="base">
       <span>© <span data-anio>2026</span> Rumbo · rumboagencia.info</span>
