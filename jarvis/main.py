@@ -31,6 +31,21 @@ def index():
 def config():
     return {"busy": db.get_setting("busy") == "1", "autonomy": os.getenv("AUTONOMY", "full")}
 
+@app.get("/api/keystatus", dependencies=[Depends(auth)])
+def keystatus():
+    k = os.getenv("ANTHROPIC_API_KEY", "").strip()
+    return {"set": bool(k), "preview": (k[:7] + "…" + k[-4:]) if len(k) > 12 else ""}
+
+@app.post("/api/setkey", dependencies=[Depends(auth)])
+async def setkey(req: Request):
+    k = ((await req.json()).get("key") or "").strip().strip('"').strip("'")
+    if not k.startswith("sk-ant-"):
+        raise HTTPException(400, "La clave debe empezar por sk-ant-. Copia la clave completa desde console.anthropic.com > API Keys.")
+    (ROOT / ".env").touch()
+    set_key(str(ROOT / ".env"), "ANTHROPIC_API_KEY", k)
+    os.environ["ANTHROPIC_API_KEY"] = k
+    return keystatus()
+
 @app.post("/api/busy", dependencies=[Depends(auth)])
 async def busy(req: Request):
     db.set_setting("busy", "1" if (await req.json()).get("busy") else "0")
