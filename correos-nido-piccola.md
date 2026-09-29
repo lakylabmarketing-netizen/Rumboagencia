@@ -16,7 +16,7 @@ Envía desde lakylabmarketing@gmail.com. Antes de enviar, comprueba que el corre
 >
 > ¿Os viene bien esta semana, antes o después del servicio?
 >
-> Aquí tenéis nuestro portafolio, por si queréis ver cómo trabajamos: [ENLACE A LA WEB DE RUMBO]
+> Aquí tenéis nuestro portafolio, por si queréis ver cómo trabajamos: https://rumboagencia.info
 >
 > [Tu nombre] · Rumbo · [tu teléfono]
 >
@@ -36,7 +36,7 @@ Envía desde lakylabmarketing@gmail.com. Antes de enviar, comprueba que el corre
 >
 > ¿Os viene bien esta semana?
 >
-> Aquí tenéis nuestro portafolio, por si queréis ver cómo trabajamos: [ENLACE A LA WEB DE RUMBO]
+> Aquí tenéis nuestro portafolio, por si queréis ver cómo trabajamos: https://rumboagencia.info
 >
 > [Tu nombre] · Rumbo · [tu teléfono]
 >
