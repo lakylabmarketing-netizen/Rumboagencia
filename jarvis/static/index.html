@@ -1,0 +1,50 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jarvis · Rumbo</title>
+<style>
+:root{--bg:#0f1115;--card:#181b22;--tx:#e8eaf0;--mut:#8b90a0;--ac:#4f8cff;--bd:#272b36}
+*{box-sizing:border-box}body{margin:0;font:15px system-ui;background:var(--bg);color:var(--tx);display:flex;height:100vh}
+nav{width:190px;background:var(--card);border-right:1px solid var(--bd);padding:12px;display:flex;flex-direction:column;gap:4px}
+nav h1{font-size:18px;margin:4px 8px 12px}nav button{background:none;border:0;color:var(--tx);text-align:left;padding:9px 10px;border-radius:8px;cursor:pointer;font:inherit}
+nav button.on,nav button:hover{background:var(--bd)}main{flex:1;overflow:auto;padding:20px}
+.busy{margin-top:auto;padding:10px;border-radius:8px;background:var(--bd);cursor:pointer;text-align:center}.busy.on{background:#b3402f}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:8px;border-bottom:1px solid var(--bd);vertical-align:top}th{color:var(--mut);font-weight:500}
+form{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}input,select,textarea{background:var(--card);border:1px solid var(--bd);color:var(--tx);padding:8px;border-radius:8px;font:inherit}
+.btn{background:var(--ac);color:#fff;border:0;padding:8px 14px;border-radius:8px;cursor:pointer;font:inherit}.x{background:none;color:var(--mut);border:0;cursor:pointer}
+#log{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}.m{padding:10px 12px;border-radius:10px;max-width:80%;white-space:pre-wrap}.u{background:var(--ac);align-self:flex-end}.a{background:var(--card)}
+.tag{font-size:12px;padding:2px 8px;border-radius:99px;background:var(--bd)}.urg{background:#b3402f}
+</style></head><body>
+<nav><h1>🤖 Jarvis</h1><div id="tabs"></div><div class="busy" id="busy" onclick="toggleBusy()">Estoy libre</div></nav>
+<main id="main"></main>
+<script>
+const p=new URLSearchParams(location.search);if(p.get('t')){localStorage.tk=p.get('t');history.replaceState({},'','/')}
+const H=()=>({'x-token':localStorage.tk||'','content-type':'application/json'});
+const api=(m,u,b)=>fetch('/api/'+u,{method:m,headers:H(),body:b?JSON.stringify(b):undefined}).then(async r=>{if(!r.ok)throw new Error((await r.json().catch(()=>({}))).detail||r.status);return r.json()});
+const S={
+ chat:{t:'💬 Jarvis'},
+ messages:{t:'📥 Bandeja'},
+ clients:{t:'👥 Clientes',f:['name','email','phone','status','notes']},
+ projects:{t:'📁 Proyectos',f:['name','client_id','status','due','notes']},
+ tasks:{t:'✅ Tareas',f:['title','due','priority','notes']},
+ events:{t:'📅 Calendario',f:['title','start','end','notes']},
+ content:{t:'📣 Marketing',f:['title','channel','publish_at','status','body']}};
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+tabs.innerHTML=Object.entries(S).map(([k,v])=>`<button data-k="${k}" onclick="go('${k}')">${v.t}</button>`).join('');
+async function go(k){document.querySelectorAll('nav button[data-k]').forEach(b=>b.classList.toggle('on',b.dataset.k==k));
+ try{ if(k=='chat')return chat(); if(k=='messages')return inbox(); return table(k)}catch(e){main.innerHTML='Error: '+esc(e.message)}}
+async function table(k){const rows=await api('GET',k),f=S[k].f;
+ main.innerHTML=`<h2>${S[k].t}</h2><form onsubmit="add(event,'${k}')">${f.map(c=>`<input name="${c}" placeholder="${c}">`).join('')}<button class="btn">Añadir</button></form>
+ <table><tr>${f.map(c=>`<th>${c}</th>`).join('')}<th></th></tr>${rows.map(r=>`<tr>${f.map(c=>`<td>${esc(r[c])}</td>`).join('')}<td><button class="x" onclick="del('${k}',${r.id})">✕</button></td></tr>`).join('')}</table>`}
+async function add(e,k){e.preventDefault();await api('POST',k,Object.fromEntries(new FormData(e.target)));table(k)}
+async function del(k,id){await api('DELETE',k+'/'+id);table(k)}
+async function inbox(){const rows=await api('GET','messages');
+ main.innerHTML=`<h2>📥 Bandeja</h2><button class="btn" onclick="api('POST','messages/poll').then(inbox)">Revisar correo ahora</button><br><br>`+
+ (rows.filter(r=>!r.handled).map(r=>`<div class="m a" style="max-width:none"><b>${esc(r.sender)}</b> <span class="tag">${r.channel}</span> ${r.urgent?'<span class="tag urg">urgente</span>':''}<br><b>${esc(r.subject)}</b><br>${esc(r.body).slice(0,500)}
+ ${r.draft?`<br><br><i>Borrador:</i> ${esc(r.draft)}`:''}<br><br><button class="btn" onclick="api('POST','messages/${r.id}/handled').then(inbox)">Hecho</button></div>`).join('')||'Nada pendiente 🎉')}
+function chat(){main.innerHTML=`<h2>💬 Jarvis</h2><div id="log"></div><form onsubmit="send(event)"><input id="q" style="flex:1" placeholder="Pídeme algo: 'abre Chrome', 'resume mis clientes', 'crea tarea...'" autofocus><button class="btn">Enviar</button></form>`}
+async function send(e){e.preventDefault();const m=q.value.trim();if(!m)return;q.value='';
+ log.innerHTML+=`<div class="m u">${esc(m)}</div>`;const w=document.createElement('div');w.className='m a';w.textContent='…';log.appendChild(w);
+ try{w.textContent=(await api('POST','chat',{message:m})).reply}catch(e){w.textContent='Error: '+e.message}}
+async function toggleBusy(){const c=await api('POST','busy',{busy:!busyOn});paintBusy(c)}
+let busyOn=false;function paintBusy(c){busyOn=c.busy;busy.className='busy'+(busyOn?' on':'');busy.textContent=busyOn?'Ocupado · te llamo si es urgente':'Estoy libre'}
+api('GET','config').then(paintBusy).catch(()=>{});go('chat');
+</script></body></html>
