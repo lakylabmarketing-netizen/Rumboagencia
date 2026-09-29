@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jarvis</title>
+<style>
+:root{--bg:#05070d;--fg:#cfe8ff;--azul:#3aa0ff}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--fg);font-family:system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:16px;box-sizing:border-box}
+#orbe{width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,#8fd0ff,var(--azul) 55%,#0a2a55);box-shadow:0 0 60px var(--azul);transition:transform .3s}
+#orbe.escucha{transform:scale(1.15)}#orbe.piensa{animation:p 1s infinite alternate}#orbe.habla{animation:p .4s infinite alternate}
+@keyframes p{to{transform:scale(1.2);opacity:.75}}
+#estado{opacity:.8}#texto{max-width:640px;text-align:center;line-height:1.5;min-height:3em}
+button{background:var(--azul);color:#00101f;border:0;border-radius:999px;padding:14px 28px;font-size:1rem;cursor:pointer}
+</style></head><body>
+<div id="orbe"></div><div id="estado">Pulsa el boton para hablar</div><div id="texto"></div>
+<button id="boton">Hablar con Jarvis</button>
+<script>
+const orbe=document.getElementById('orbe'),estado=document.getElementById('estado'),texto=document.getElementById('texto'),boton=document.getElementById('boton');
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+function poner(c,t){orbe.className=c;estado.textContent=t}
+function hablar(t){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='es-ES';
+ const v=speechSynthesis.getVoices().find(v=>v.lang.startsWith('es'));if(v)u.voice=v;
+ u.onstart=()=>poner('habla','Hablando...');u.onend=()=>poner('','Listo');speechSynthesis.speak(u)}
+async function enviar(t){poner('piensa','Pensando...');texto.textContent='Tu: '+t;
+ try{const r=await fetch('/preguntar',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({texto:t})});
+ const j=await r.json();texto.textContent=j.respuesta;hablar(j.respuesta)}
+ catch(e){poner('','Error');texto.textContent='No consigo conectar con el servidor de Jarvis.'}}
+if(!SR){boton.disabled=true;estado.textContent='Usa Google Chrome: este navegador no tiene reconocimiento de voz.'}
+else{const rec=new SR();rec.lang='es-ES';rec.interimResults=false;
+ rec.onstart=()=>poner('escucha','Te escucho...');
+ rec.onresult=e=>enviar(e.results[0][0].transcript);
+ rec.onerror=e=>{poner('','Error de microfono: '+e.error)};
+ boton.onclick=()=>{speechSynthesis.cancel();rec.start()};
+ document.addEventListener('keydown',e=>{if(e.code==='Space'&&!e.repeat){e.preventDefault();try{rec.start()}catch(_){}}})}
+</script></body></html>
