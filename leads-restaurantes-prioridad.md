@@ -8,14 +8,14 @@ En la hoja hay teléfono pero no correo. El canal principal es la llamada (o pas
 
 | # | Local | Zona | Por qué ahora | Tel. |
 |---|---|---|---|---|
-| 1 | Asador La Gruta | Almería (N-340a) | Sociedad nueva (25/06/2026): posible cambio de dueño. 1.751 reseñas (4,6) y solo Instagram | sin teléfono en la hoja |
+| 1 | Asador La Gruta | Almería (N-340a) | Sociedad nueva (25/06/2026): posible cambio de dueño. 1.751 reseñas (4,6). OJO: sí tiene web (asadorlagruta.com); enfoque en reservas y captación | 950 23 93 35 (encontrado en búsqueda) |
 | 2 | Kumi Sushi | Almería | Su ficha de Google enlaza a una web que no es suya. Fallo concreto y arreglable | 950 23 04 13 |
-| 3 | Marabunda Almerimar | Almerimar | Negocio nuevo (agosto 2026), 178 reseñas. Necesita clientes ya | 623 78 98 99 |
-| 4 | Chiringuito Nido Playa | Roquetas | 3.304 reseñas (4,6), solo carta online. Mucha demanda sin sistema propio | 950 33 47 74 |
+| 3 | Marabunda Almerimar | Almerimar | Negocio nuevo (agosto 2026), 178 reseñas. OJO: sí tiene web (marabunda.es); enfoque en captación | 623 78 98 99 |
+| 4 | Chiringuito Nido Playa | Roquetas | 3.304 reseñas (4,6), solo carta online. Mucha demanda sin sistema propio | 950 33 47 74 · info@nidoplaya.es |
 | 5 | Restaurante El Ancla | Aguadulce | 1.504 reseñas (4,5) y sin web. Confirmar antes qué sociedad explota el local | 950 16 02 22 |
-| 6 | Mis Viejos Don Jamón II | Roquetas | 2.669 reseñas y nota de 4,2, sin web: hay margen de mejora | 643 21 28 51 |
+| 6 | Mis Viejos Don Jamón II | Roquetas | 2.669 reseñas y nota de 4,2. OJO: sí tiene web (misviejosdonjamonll.com); enfoque en reputación y reservas | 643 21 28 51 |
 | 7 | Asador Andaluz Roquetas | Roquetas | Nota de 4,7 pero solo 170 reseñas y sin web: buen producto poco visible | 950 32 82 38 |
-| 8 | La Piccola Italia | Roquetas | Nota de 4,8 (701 reseñas) y solo carta online | 617 85 97 63 |
+| 8 | La Piccola Italia | Roquetas | Nota de 4,8 (701 reseñas) y solo carta online | 617 85 97 63 · lapiccolaitalia1964@gmail.com |
 
 **Cuentas de varios locales (más valor):** El Callaito (Aguadulce y Almería centro, dos sociedades distintas) y Spice Hut (dos locales más en Almería).
 **Dejar para el final:** Casa Puga y Tony García. Son negocios grandes que probablemente ya tienen proveedor.
@@ -41,3 +41,6 @@ Estructura: motivo concreto, pregunta, propuesta de 10 minutos. No vendas nada e
 - Anota en la hoja: fecha, con quién hablaste y qué dijo. Sin esto no hay seguimiento.
 - Si dicen que no, agradece y no insistas.
 - Comprueba tú los datos de la hoja antes de nombrarlos en la llamada: no cites al administrador ni datos del registro salvo que sepas que el local es suyo.
+
+## Correcciones tras comprobar en la web
+La Gruta, Marabunda y Mis Viejos Don Jamón II figuraban como sin web y sí la tienen. Asador Andaluz aparece en otras fichas con el número 46 de la calle, no el 44. Correos públicos encontrados: Nido Playa y La Piccola Italia. Los demás, solo teléfono o formulario web.
