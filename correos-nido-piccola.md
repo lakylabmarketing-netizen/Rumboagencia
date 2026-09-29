@@ -16,6 +16,8 @@ Envía desde lakylabmarketing@gmail.com. Antes de enviar, comprueba que el corre
 >
 > ¿Os viene bien esta semana, antes o después del servicio?
 >
+> Aquí tenéis nuestro portafolio, por si queréis ver cómo trabajamos: [ENLACE A LA WEB DE RUMBO]
+>
 > [Tu nombre] · Rumbo · [tu teléfono]
 >
 > *Si prefieres no recibir más correos, responde "no" y no te escribo más.*
@@ -33,6 +35,8 @@ Envía desde lakylabmarketing@gmail.com. Antes de enviar, comprueba que el corre
 > En Rumbo (Almería) llevamos redes y montamos ese sistema para restaurantes. Si os interesa, os cuento en 10 minutos qué cambiaría en La Piccola Italia, sin compromiso.
 >
 > ¿Os viene bien esta semana?
+>
+> Aquí tenéis nuestro portafolio, por si queréis ver cómo trabajamos: [ENLACE A LA WEB DE RUMBO]
 >
 > [Tu nombre] · Rumbo · [tu teléfono]
 >
