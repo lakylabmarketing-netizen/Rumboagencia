@@ -18,7 +18,7 @@ Envía desde lakylabmarketing@gmail.com. Antes de enviar, comprueba que el corre
 >
 > Aquí tenéis nuestro portafolio, por si queréis ver cómo trabajamos: https://rumboagencia.info
 >
-> [Tu nombre] · Rumbo · [tu teléfono]
+> Eneko · Rumbo · 667 83 34 21
 >
 > *Si prefieres no recibir más correos, responde "no" y no te escribo más.*
 
@@ -38,9 +38,9 @@ Envía desde lakylabmarketing@gmail.com. Antes de enviar, comprueba que el corre
 >
 > Aquí tenéis nuestro portafolio, por si queréis ver cómo trabajamos: https://rumboagencia.info
 >
-> [Tu nombre] · Rumbo · [tu teléfono]
+> Eneko · Rumbo · 667 83 34 21
 >
 > *Si prefieres no recibir más correos, responde "no" y no te escribo más.*
 
 ## Seguimiento (día 4 si no responden)
-> Hola, una idea rápida para [local]: publicad cada semana el plato estrella con su precio y un botón para reservar. Es de lo que más reservas trae y cuesta 5 minutos. Si quieres, te digo otras dos. — [Tu nombre], Rumbo
+> Hola, una idea rápida para [local]: publicad cada semana el plato estrella con su precio y un botón para reservar. Es de lo que más reservas trae y cuesta 5 minutos. Si quieres, te digo otras dos. — Eneko, Rumbo
