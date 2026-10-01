@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rumbo · Portafolio</title>
+<meta name="description" content="Portafolio de Rumbo: marketing para hostelería en Almería: kebabs, restaurantes, bares y cafeterías. Resultados, casos y equipo.">
+<meta name="theme-color" content="#101012">
+<link rel="canonical" href="https://rumboagencia.info/portafolio/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Rumbo">
+<meta property="og:url" content="https://rumboagencia.info/portafolio/">
+<meta property="og:title" content="Rumbo · Portafolio">
+<meta property="og:description" content="Portafolio de Rumbo: marketing para hostelería en Almería: kebabs, restaurantes, bares y cafeterías. Resultados, casos y equipo.">
+<meta property="og:image" content="https://rumboagencia.info/portafolio/assets/esteban.jpg">
+<meta property="og:image:width" content="900">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="Esteban, socio de producción en Rumbo">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/portafolio/assets/favicon.png">
+<link rel="preload" href="/portafolio/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face { font-family:'Inter'; font-style:normal; font-weight:400 600; font-display:swap; src:url(/portafolio/assets/fonts/inter-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family:'Inter'; font-style:normal; font-weight:400 600; font-display:swap; src:url(/portafolio/assets/fonts/inter-latin.woff2) format('woff2'); unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+  html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body { margin:0; background:#101012; color:#F2EFEA; font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  *,*::before,*::after { box-sizing:border-box; }
+  img,video { display:block; max-width:100%; }
+  a { color:inherit; text-decoration:none; }
+  a:hover { color:#FF8A3D; }
+  h1,h2,h3,h4 { margin:0; font-weight:500; line-height:1; }
+  p,ul,figure,blockquote { margin:0; }
+  ::selection { background:rgba(240,78,23,.35); }
+  :focus-visible { outline:2px solid #FF8A3D; outline-offset:3px; border-radius:4px; }
+  [data-rail]::-webkit-scrollbar { display:none; }
+  [data-rev] { opacity:0; transform:translateY(24px); transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+  [data-rev].on { opacity:1; transform:none; }
+  @keyframes pf-rise { from { opacity:0; transform:translate3d(0,30px,0); } to { opacity:1; transform:none; } }
+  @keyframes pf-drift { 0%,100% { transform:translate3d(0,0,0) scale(1); } 50% { transform:translate3d(3%,-4%,0) scale(1.08); } }
+  @keyframes pf-hint { 0%,100% { transform:translateY(0); opacity:.5; } 50% { transform:translateY(8px); opacity:1; } }
+  [data-rise] { animation:pf-rise 1s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes pf-beam { 0%,100% { transform:rotate(-18deg); } 50% { transform:rotate(18deg); } }
+  @keyframes pf-eq { 0%,100% { transform:scaleY(.25); } 50% { transform:scaleY(1); } }
+  @keyframes pf-pulse { 0%,100% { box-shadow:0 0 0 0 rgba(240,78,23,.7); } 70% { box-shadow:0 0 0 9px rgba(240,78,23,0); } }
+  @keyframes pf-glow { 0%,100% { opacity:.55; } 50% { opacity:1; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    [data-rev] { opacity:1; transform:none; transition:none; }
+    [data-rise] { animation:none; }
+    [data-anim] { animation:none !important; }
+  }
+  .h1:hover { background:rgba(240,78,23,.24) !important;color:#F2EFEA !important }
+  .h2:hover { border-color:#F04E17 !important;color:#F2EFEA !important }
+  .h3:hover { border-color:#FF8A3D !important;background:rgba(240,78,23,.3) !important;color:#F2EFEA !important }
+</style>
+<noscript><style>[data-rev] { opacity:1; transform:none; }</style></noscript>
+</head>
+<body>
+<div style="background:#101012;color:#F2EFEA;font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden">
+
+  <header style="position:sticky;top:0;z-index:50;background:rgba(16,16,18,.72);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);border-bottom:1px solid rgba(242,239,234,.08)">
+    <div style="max-width:720px;margin:0 auto;padding:8px 20px;display:flex;align-items:center;gap:14px;min-height:60px">
+      <a href="#portada" aria-label="Rumbo, portada" style="display:block"><img src="/portafolio/assets/rumbo-logo.png" alt="Rumbo" style="width:96px"></a>
+      <span style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8c857d">Portafolio 2026</span>
+      <a href="#contacto" style="margin-left:auto;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid #F04E17;background:rgba(240,78,23,.1);font-size:14px;font-weight:600;color:#F2EFEA" class="h1">Hablemos</a>
+    </div>
+  </header>
+
+  <section id="portada" data-screen-label="01 Portada" style="position:relative;overflow:hidden">
+    <div aria-hidden="true" style="position:absolute;pointer-events:none;width:140vw;height:140vw;max-width:900px;max-height:900px;right:-40%;top:-20%;border-radius:50%;background:radial-gradient(circle,rgba(240,78,23,.4) 0%,rgba(240,78,23,.1) 42%,transparent 70%);filter:blur(24px);animation:pf-drift 22s ease-in-out infinite"></div>
+    <div style="position:relative;z-index:2;max-width:720px;margin:0 auto;padding:26px 20px 40px">
+      <div data-rise style="display:flex;flex-wrap:wrap;gap:8px">
+        <span style="border:1px solid rgba(240,78,23,.55);background:rgba(240,78,23,.1);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#FF8A3D">Hostelería</span>
+        <span style="border:1px solid rgba(240,78,23,.55);background:rgba(240,78,23,.1);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#FF8A3D">Restauración</span>
+        <span style="border:1px solid rgba(242,239,234,.16);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#C8BBAE">Almería</span>
+      </div>
+
+      <h1 data-rise style="animation-delay:.08s;margin-top:22px;font-size:clamp(40px,11.5vw,84px);letter-spacing:-.055em;line-height:.92;text-wrap:balance">Que tu local sea <span style="color:#F04E17">el que todos guardan.</span></h1>
+
+      <div data-rise style="animation-delay:.18s;margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+        <figure style="position:relative;aspect-ratio:3/4;border-radius:16px;overflow:hidden;background:#17171A;isolation:isolate">
+          <img src="/portafolio/assets/esteban.jpg" alt="Esteban, socio de producción en Rumbo" style="width:100%;height:100%;object-fit:cover;object-position:50% 8%;filter:grayscale(1) contrast(1.08) brightness(.82)">
+          <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(240,78,23,.9),rgba(191,54,12,.3));mix-blend-mode:color"></div>
+          <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(16,16,18,.95) 0%,rgba(16,16,18,.2) 45%,transparent 70%)"></div>
+          <figcaption style="position:absolute;left:14px;right:14px;bottom:14px">
+            <div style="font-size:clamp(22px,6.4vw,32px);font-weight:500;letter-spacing:-.04em;line-height:1">Esteban</div>
+            <div style="margin-top:6px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#FF8A3D">Producción</div>
+            <div style="margin-top:4px;font-size:13px;color:#C8BBAE;line-height:1.35">Graba, edita y publica</div>
+          </figcaption>
+        </figure>
+        <figure style="position:relative;aspect-ratio:3/4;border-radius:16px;overflow:hidden;background:#17171A;isolation:isolate;margin-top:34px">
+          <img src="/portafolio/assets/eneko.jpg" alt="Eneko, socio de cliente y sistemas en Rumbo" style="width:100%;height:100%;object-fit:cover;object-position:50% 12%;filter:grayscale(1) contrast(1.08) brightness(.82)">
+          <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(240,78,23,.9),rgba(191,54,12,.3));mix-blend-mode:color"></div>
+          <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(16,16,18,.95) 0%,rgba(16,16,18,.2) 45%,transparent 70%)"></div>
+          <figcaption style="position:absolute;left:14px;right:14px;bottom:14px">
+            <div style="font-size:clamp(22px,6.4vw,32px);font-weight:500;letter-spacing:-.04em;line-height:1">Eneko</div>
+            <div style="margin-top:6px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#FF8A3D">Cliente y sistemas</div>
+            <div style="margin-top:4px;font-size:13px;color:#C8BBAE;line-height:1.35">Capta, responde y mide</div>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p data-rise style="animation-delay:.28s;margin-top:26px;font-size:clamp(18px,5vw,22px);line-height:1.4;letter-spacing:-.01em;text-wrap:pretty">Somos Esteban y Eneko, <b style="font-weight:600">Rumbo</b>. Hacemos que tu kebab, tu restaurante o tu bar sea el sitio del que todo el mundo habla y al que todo el mundo quiere ir.</p>
+      <p data-rise style="animation-delay:.34s;margin-top:12px;color:#C8BBAE;text-wrap:pretty">Dos personas, sin intermediarios: quien graba tu local es quien lo publica.</p>
+
+      <div data-rise style="animation-delay:.4s;margin-top:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(242,239,234,.14);border-radius:14px;overflow:hidden">
+        <div style="background:rgba(23,23,26,.9);padding:14px 12px">
+          <div style="font-size:clamp(20px,6vw,28px);font-weight:500;letter-spacing:-.04em;line-height:1">18.107</div>
+          <div style="font-size:12px;color:#C8BBAE;margin-top:6px;line-height:1.3">vieron su ficha de Google</div>
+        </div>
+        <div style="background:rgba(23,23,26,.9);padding:14px 12px">
+          <div style="font-size:clamp(20px,6vw,28px);font-weight:500;letter-spacing:-.04em;line-height:1">172,9<span style="font-size:.5em;color:#F04E17"> mil</span></div>
+          <div style="font-size:12px;color:#C8BBAE;margin-top:6px;line-height:1.3">vistas en TikTok en 11 semanas</div>
+        </div>
+        <div style="background:rgba(23,23,26,.9);padding:14px 12px">
+          <div style="font-size:clamp(20px,6vw,28px);font-weight:500;letter-spacing:-.04em;line-height:1">5,0<span style="font-size:.6em;color:#FF8A3D">★</span></div>
+          <div style="font-size:12px;color:#C8BBAE;margin-top:6px;line-height:1.3">151 reseñas en Google</div>
+        </div>
+      </div>
+      <div aria-hidden="true" style="margin-top:26px;display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8c857d">
+        <span style="display:inline-block;animation:pf-hint 2.2s ease-in-out infinite">↓</span>Desliza
+      </div>
+    </div>
+  </section>
+
+  <main style="max-width:720px;margin:0 auto;padding:0 20px">
+
+    <section id="hosteleria" data-screen-label="02 Hostelería" data-rev style="margin-top:32px;position:relative;overflow:hidden;isolation:isolate;border-radius:22px;border:1px solid rgba(240,78,23,.45);background:#0B0B0D;padding:30px 22px 24px;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 60px rgba(240,78,23,.12)">
+      <div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden">
+        <div data-anim style="position:absolute;right:-30%;top:-35%;width:110%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(240,78,23,.42) 0%,rgba(240,78,23,.1) 45%,transparent 70%);animation:pf-drift 18s ease-in-out infinite"></div>
+        <div data-anim style="position:absolute;left:-35%;bottom:-40%;width:90%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,138,61,.2) 0%,transparent 65%);animation:pf-drift 24s ease-in-out infinite reverse"></div>
+        <div style="position:absolute;inset:0;opacity:.3;background-image:radial-gradient(rgba(242,239,234,.5) 1px,transparent 1.2px);background-size:22px 22px;-webkit-mask-image:linear-gradient(to bottom,#000,transparent 45%);mask-image:linear-gradient(to bottom,#000,transparent 45%)"></div>
+      </div>
+
+      <span style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(240,78,23,.5);background:rgba(240,78,23,.12);border-radius:999px;padding:6px 13px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#FF8A3D"><span data-anim style="width:7px;height:7px;border-radius:50%;background:#F04E17;animation:pf-pulse 1.6s ease-out infinite"></span>Para hostelería</span>
+      <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px">
+        <span style="border:1px solid rgba(242,239,234,.16);background:rgba(16,16,18,.6);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600;color:#F2EFEA">Kebabs</span><span style="border:1px solid rgba(242,239,234,.16);background:rgba(16,16,18,.6);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600;color:#F2EFEA">Restaurantes</span><span style="border:1px solid rgba(242,239,234,.16);background:rgba(16,16,18,.6);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600;color:#F2EFEA">Bares</span><span style="border:1px solid rgba(242,239,234,.16);background:rgba(16,16,18,.6);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600;color:#F2EFEA">Cafeterías</span><span style="border:1px solid rgba(242,239,234,.16);background:rgba(16,16,18,.6);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600;color:#F2EFEA">Hamburgueserías</span>
+      </div>
+      <h2 style="margin-top:20px;font-size:clamp(30px,8.6vw,50px);letter-spacing:-.05em;line-height:.95;text-wrap:balance">Dónde comer se decide en el móvil, <span data-anim style="color:#F04E17;text-shadow:0 0 28px rgba(240,78,23,.55);animation:pf-glow 3s ease-in-out infinite">antes de salir de casa.</span></h2>
+      <p style="margin-top:16px;color:#C8BBAE;text-wrap:pretty">Un vídeo que abre el apetito, una ficha de Google que convence y un mensaje contestado a tiempo. Así pasa alguien de mirar tu perfil a sentarse en tu mesa.</p>
+
+      <div aria-label="Semana tipo" style="margin-top:22px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px">
+        <div style="border:1px solid rgba(242,239,234,.14);border-radius:12px;padding:10px 8px;background:rgba(16,16,18,.6)"><div style="font-size:10px;font-weight:600;letter-spacing:.12em;color:#8c857d">LUN</div><div style="margin-top:4px;font-size:12px;line-height:1.3">Plato estrella</div></div><div style="border:1px solid rgba(242,239,234,.14);border-radius:12px;padding:10px 8px;background:rgba(16,16,18,.6)"><div style="font-size:10px;font-weight:600;letter-spacing:.12em;color:#8c857d">MIÉ</div><div style="margin-top:4px;font-size:12px;line-height:1.3">Detrás de barra</div></div><div style="border:1px solid rgba(242,239,234,.14);border-radius:12px;padding:10px 8px;background:rgba(16,16,18,.6)"><div style="font-size:10px;font-weight:600;letter-spacing:.12em;color:#8c857d">VIE</div><div style="margin-top:4px;font-size:12px;line-height:1.3">Plan de finde</div></div><div style="border:1px solid #F04E17;border-radius:12px;padding:10px 8px;background:rgba(240,78,23,.16);box-shadow:0 0 22px rgba(240,78,23,.3)"><div style="font-size:10px;font-weight:600;letter-spacing:.12em;color:#FF8A3D">SÁB</div><div style="margin-top:4px;font-size:12px;font-weight:600;line-height:1.3">Mesas llenas</div></div>
+      </div>
+
+      <ul style="list-style:none;padding:0;margin-top:14px;display:grid;gap:1px;background:rgba(242,239,234,.12);border-radius:14px;overflow:hidden">
+        <li style="background:rgba(16,16,18,.82);padding:16px;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px">
+          <span style="font-size:13px;font-weight:600;color:#F04E17;padding-top:2px">01</span>
+          <div><div style="font-weight:600">Producto que entra por los ojos</div><div style="font-size:14px;color:#C8BBAE;margin-top:3px;line-height:1.45">Grabamos tu carta como se come: el corte del kebab, el queso fundiéndose, la caña recién tirada.</div></div>
+        </li>
+        <li style="background:rgba(16,16,18,.82);padding:16px;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px">
+          <span style="font-size:13px;font-weight:600;color:#F04E17;padding-top:2px">02</span>
+          <div><div style="font-weight:600">Tu ficha de Google, siempre al día</div><div style="font-size:14px;color:#C8BBAE;margin-top:3px;line-height:1.45">Fotos, horario, carta y reseñas cuidadas para que salgas primero cuando buscan «cerca de mí».</div></div>
+        </li>
+        <li style="background:rgba(16,16,18,.82);padding:16px;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px">
+          <span style="font-size:13px;font-weight:600;color:#F04E17;padding-top:2px">03</span>
+          <div><div style="font-weight:600">Pedidos y reservas por mensaje</div><div style="font-size:14px;color:#C8BBAE;margin-top:3px;line-height:1.45">Respuesta rápida y automatizaciones por DM y WhatsApp para no perder a nadie con hambre.</div></div>
+        </li>
+        <li style="background:rgba(16,16,18,.82);padding:16px;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px">
+          <span style="font-size:13px;font-weight:600;color:#F04E17;padding-top:2px">04</span>
+          <div><div style="font-weight:600">Clientes que repiten</div><div style="font-size:14px;color:#C8BBAE;margin-top:3px;line-height:1.45">Reseñas, caras conocidas y contenido de tu equipo: que vuelvan y te recomienden.</div></div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="caso-real" data-screen-label="03 Caso real" style="padding:88px 0 0">
+      <div data-rev>
+        <span style="display:block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#F04E17;margin-bottom:16px">Caso real · A Lo Cubano Fusión</span>
+        <h2 style="font-size:clamp(32px,9vw,54px);letter-spacing:-.045em;line-height:.98;text-wrap:balance">Se lo preguntamos <span style="color:#F04E17">a Manuel.</span></h2>
+        <p style="margin-top:16px;color:#C8BBAE;text-wrap:pretty">Manuel Llera abrió A Lo Cubano a finales de junio de 2026. Empezamos a trabajar juntos el 8 de julio. Llevamos sus redes desde el primer día; esto es lo que cuenta él. Toca para escucharle.</p>
+      </div>
+      <div data-rail data-rev style="margin:26px -20px 0;padding:0 7% 4px;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none">
+        
+          <article style="flex:0 0 min(86%,340px);scroll-snap-align:center;display:flex;flex-direction:column;gap:14px">
+            <figure data-tbox style="position:relative;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:#17171A;border:1px solid rgba(242,239,234,.14);box-shadow:0 24px 60px rgba(0,0,0,.5)">
+              <video data-testi="/video/testimonio-3.mp4" playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#17171A"></video>
+              <button data-tplay type="button" aria-label="Reproducir testimonio 01" style="position:absolute;inset:0;width:100%;border:0;padding:0;margin:0;cursor:pointer;background:linear-gradient(to top,rgba(16,16,18,.85) 0%,rgba(16,16,18,.1) 40%,rgba(16,16,18,0) 60%,rgba(16,16,18,.55) 100%);display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;text-align:left;color:#F2EFEA;font:inherit;transition:opacity .3s">
+                <span style="margin:12px;background:rgba(16,16,18,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(242,239,234,.14);border-radius:999px;padding:5px 11px;font-size:11px;font-weight:600;letter-spacing:.08em;color:#FF8A3D">01 / 02 · Manuel</span>
+                <span style="align-self:center;width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:rgba(240,78,23,.9);box-shadow:0 0 0 10px rgba(240,78,23,.2),0 14px 40px rgba(0,0,0,.5)"><svg viewBox="0 0 24 24" style="width:28px;height:28px;margin-left:4px" fill="#F2EFEA"><path d="M7 4.5v15l12-7.5z"></path></svg></span>
+                <span style="margin:0 16px 16px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600"><svg viewBox="0 0 24 24" fill="none" stroke="#F2EFEA" stroke-width="2" style="width:16px;height:16px"><path d="M11 5 6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"></path></svg>Con sonido</span>
+              </button>
+            </figure>
+            <div style="font-size:14px;color:#C8BBAE;line-height:1.4;text-wrap:pretty">¿Qué ha cambiado en estos tres meses?</div>
+            <blockquote style="border-left:2px solid #F04E17;padding-left:14px;font-size:18px;line-height:1.35;letter-spacing:-.01em;text-wrap:pretty">«Estamos repletos de clientes que vienen a vernos por las redes.»</blockquote>
+          </article>
+        
+          <article style="flex:0 0 min(86%,340px);scroll-snap-align:center;display:flex;flex-direction:column;gap:14px">
+            <figure data-tbox style="position:relative;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:#17171A;border:1px solid rgba(242,239,234,.14);box-shadow:0 24px 60px rgba(0,0,0,.5)">
+              <video data-testi="/video/testimonio-2.mp4" playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#17171A"></video>
+              <button data-tplay type="button" aria-label="Reproducir testimonio 02" style="position:absolute;inset:0;width:100%;border:0;padding:0;margin:0;cursor:pointer;background:linear-gradient(to top,rgba(16,16,18,.85) 0%,rgba(16,16,18,.1) 40%,rgba(16,16,18,0) 60%,rgba(16,16,18,.55) 100%);display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;text-align:left;color:#F2EFEA;font:inherit;transition:opacity .3s">
+                <span style="margin:12px;background:rgba(16,16,18,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(242,239,234,.14);border-radius:999px;padding:5px 11px;font-size:11px;font-weight:600;letter-spacing:.08em;color:#FF8A3D">02 / 02 · Manuel</span>
+                <span style="align-self:center;width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:rgba(240,78,23,.9);box-shadow:0 0 0 10px rgba(240,78,23,.2),0 14px 40px rgba(0,0,0,.5)"><svg viewBox="0 0 24 24" style="width:28px;height:28px;margin-left:4px" fill="#F2EFEA"><path d="M7 4.5v15l12-7.5z"></path></svg></span>
+                <span style="margin:0 16px 16px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600"><svg viewBox="0 0 24 24" fill="none" stroke="#F2EFEA" stroke-width="2" style="width:16px;height:16px"><path d="M11 5 6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"></path></svg>Con sonido</span>
+              </button>
+            </figure>
+            <div style="font-size:14px;color:#C8BBAE;line-height:1.4;text-wrap:pretty">Estabas abriendo un negocio con mil cosas encima. ¿Por qué te fiaste de nosotros, que empezábamos?</div>
+            <blockquote style="border-left:2px solid #F04E17;padding-left:14px;font-size:18px;line-height:1.35;letter-spacing:-.01em;text-wrap:pretty">«Para nosotros, ustedes han sido uno más de la familia. Empezamos desde el primer día juntos.»</blockquote>
+          </article>
+        
+      </div>
+
+      <div data-rev style="margin-top:56px">
+        <span style="display:block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8c857d;margin-bottom:12px">Informe · 8 jul – 24 sep 2026</span>
+        <h3 style="font-size:clamp(26px,7.4vw,40px);letter-spacing:-.04em;line-height:1;text-wrap:balance">Once semanas, <span style="color:#F04E17">en una pantalla.</span></h3>
+      </div>
+      <div data-rev style="margin-top:22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(242,239,234,.12);border-radius:14px;overflow:hidden">
+        <div style="background:#101012;padding:14px 12px"><div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8c857d">Antes</div><div style="margin-top:6px;font-size:13px;color:#C8BBAE;line-height:1.35">12 reseñas en Google</div></div>
+        <div style="background:#101012;padding:14px 12px"><div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8c857d">Antes</div><div style="margin-top:6px;font-size:13px;color:#C8BBAE;line-height:1.35">45 seguidores en Instagram</div></div>
+        <div style="background:#101012;padding:14px 12px"><div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8c857d">Antes</div><div style="margin-top:6px;font-size:13px;color:#C8BBAE;line-height:1.35">Sin cuenta de TikTok</div></div>
+      </div>
+      <div style="margin-top:12px;display:grid;gap:1px;background:rgba(242,239,234,.12);border-radius:16px;overflow:hidden">
+        <div data-rev style="background:#17171A;padding:24px 22px">
+          <div style="font-size:clamp(52px,16vw,92px);font-weight:500;letter-spacing:-.06em;line-height:.85">172.900</div>
+          <div style="margin-top:12px;font-size:15px;line-height:1.4"><b style="font-weight:600">Visualizaciones en TikTok</b> <span style="color:#C8BBAE">en una cuenta que en julio no existía. El 89 % llegó a gente que no los conocía.</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px">
+          <div data-rev style="background:#17171A;padding:20px">
+            <div style="font-size:clamp(30px,9vw,48px);font-weight:500;letter-spacing:-.05em;line-height:.9">18.107</div>
+            <div style="margin-top:10px;font-size:14px;color:#C8BBAE;line-height:1.35">Personas vieron su ficha en Google</div>
+          </div>
+          <div data-rev style="background:#17171A;padding:20px">
+            <div style="font-size:clamp(30px,9vw,48px);font-weight:500;letter-spacing:-.05em;line-height:.9">607</div>
+            <div style="margin-top:10px;font-size:14px;color:#C8BBAE;line-height:1.35">Veces pidieron la ruta al local</div>
+          </div>
+          <div data-rev style="background:#17171A;padding:20px">
+            <div style="font-size:clamp(30px,9vw,48px);font-weight:500;letter-spacing:-.05em;line-height:.9">0<span style="color:#F04E17">→</span>1.091</div>
+            <div style="margin-top:10px;font-size:14px;color:#C8BBAE;line-height:1.35">Seguidores en TikTok</div>
+          </div>
+          <div data-rev style="background:#17171A;padding:20px">
+            <div style="font-size:clamp(30px,9vw,48px);font-weight:500;letter-spacing:-.05em;line-height:.9">76.885</div>
+            <div style="margin-top:10px;font-size:14px;color:#C8BBAE;line-height:1.35">Visualizaciones en Instagram</div>
+          </div>
+        </div>
+        <div data-rev style="background:linear-gradient(140deg,rgba(240,78,23,.2),#17171A 70%);padding:22px;display:flex;align-items:center;gap:18px">
+          <div style="font-size:clamp(40px,12vw,64px);font-weight:500;letter-spacing:-.06em;line-height:.85">12<span style="color:#F04E17">→</span>151</div>
+          <div>
+            <div style="color:#FF8A3D;letter-spacing:.2em;font-size:14px">★★★★★</div>
+            <div style="margin-top:6px;font-size:14px;line-height:1.35">Reseñas en Google, todas de cinco estrellas</div>
+          </div>
+        </div>
+      </div>
+      <p data-rev style="margin-top:16px;font-size:15px;text-wrap:pretty"><b style="font-weight:600">30 vídeos, 13 posts y 108 stories</b> <span style="color:#C8BBAE">en 11 semanas, sin interrumpir nunca el servicio.</span></p>
+
+      <div data-rev style="margin-top:40px">
+        <h3 style="font-size:20px;font-weight:600;letter-spacing:-.02em">Piezas que hicimos para ellos</h3>
+        <p style="margin-top:4px;font-size:14px;color:#C8BBAE">Desliza · se reproducen solas</p>
+      </div>
+      <div data-rail style="margin:16px -20px 0;padding:0 20px;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:20px;scrollbar-width:none">
+        
+          <figure style="flex:0 0 min(58%,220px);scroll-snap-align:start;position:relative;border-radius:14px;overflow:hidden;background:#17171A;border:1px solid rgba(242,239,234,.14);aspect-ratio:9/16">
+            <video data-reel="/portafolio/assets/pieza-1.mp4" poster="/portafolio/assets/pieza-1-poster.jpg" muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover"></video>
+            <div aria-hidden="true" style="position:absolute;left:0;right:0;top:0;height:40%;pointer-events:none;background:linear-gradient(to bottom,rgba(16,16,18,.88),transparent)"></div>
+            <figcaption style="position:absolute;left:12px;right:12px;top:11px;pointer-events:none"><div style="font-size:11px;font-weight:600;letter-spacing:.08em;color:#FF8A3D;margin-bottom:3px">#01 · Captación</div><div style="font-size:14px;font-weight:600;line-height:1.25">POV: buscas buena comida en Almería</div></figcaption>
+          </figure>
+        
+          <figure style="flex:0 0 min(58%,220px);scroll-snap-align:start;position:relative;border-radius:14px;overflow:hidden;background:#17171A;border:1px solid rgba(242,239,234,.14);aspect-ratio:9/16">
+            <video data-reel="/portafolio/assets/pieza-3.mp4" poster="/portafolio/assets/pieza-3-poster.jpg" muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover"></video>
+            <div aria-hidden="true" style="position:absolute;left:0;right:0;top:0;height:40%;pointer-events:none;background:linear-gradient(to bottom,rgba(16,16,18,.88),transparent)"></div>
+            <figcaption style="position:absolute;left:12px;right:12px;top:11px;pointer-events:none"><div style="font-size:11px;font-weight:600;letter-spacing:.08em;color:#FF8A3D;margin-bottom:3px">#02 · Equipo</div><div style="font-size:14px;font-weight:600;line-height:1.25">El trend en barra, con la plantilla</div></figcaption>
+          </figure>
+        
+          <figure style="flex:0 0 min(58%,220px);scroll-snap-align:start;position:relative;border-radius:14px;overflow:hidden;background:#17171A;border:1px solid rgba(242,239,234,.14);aspect-ratio:9/16">
+            <video data-reel="/portafolio/assets/pieza-4.mp4" poster="/portafolio/assets/pieza-4-poster.jpg" muted loop playsinline preload="none" style="width:100%;height:100%;object-fit:cover"></video>
+            <div aria-hidden="true" style="position:absolute;left:0;right:0;top:0;height:40%;pointer-events:none;background:linear-gradient(to bottom,rgba(16,16,18,.88),transparent)"></div>
+            <figcaption style="position:absolute;left:12px;right:12px;top:11px;pointer-events:none"><div style="font-size:11px;font-weight:600;letter-spacing:.08em;color:#FF8A3D;margin-bottom:3px">#03 · Promoción</div><div style="font-size:14px;font-weight:600;line-height:1.25">Cumpleaños, reservas y cocina sin cerrar</div></figcaption>
+          </figure>
+        
+      </div>
+      <div data-rev style="margin-top:18px;display:flex;flex-wrap:wrap;gap:10px">
+        <a href="https://www.google.com/maps/search/?api=1&query=36.7228772,-2.6287304" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid rgba(242,239,234,.16);border-radius:999px;font-size:14px;color:#C8BBAE" class="h2">Leer las 151 reseñas ↗</a>
+        <a href="https://www.instagram.com/alocubanofusion/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid rgba(242,239,234,.16);border-radius:999px;font-size:14px;color:#C8BBAE" class="h2">@alocubanofusion ↗</a>
+      </div>
+    </section>
+
+    <section id="servicios" data-screen-label="05 Qué hacemos" style="padding:88px 0 0">
+      <div data-rev>
+        <span style="display:block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#F04E17;margin-bottom:16px">Qué hacemos</span>
+        <h2 style="font-size:clamp(32px,9vw,54px);letter-spacing:-.045em;line-height:.98;text-wrap:balance">Del primer vídeo <span style="color:#F04E17">a la puerta.</span></h2>
+      </div>
+      <div data-rev style="margin-top:28px;display:grid;gap:1px;background:rgba(242,239,234,.12);border-radius:16px;overflow:hidden">
+        <div style="background:#17171A;padding:20px;display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px">
+          <div style="font-size:14px;font-weight:500;color:#F04E17;border-top:2px solid #F04E17;padding-top:6px">01</div>
+          <div><h4 style="font-size:18px;font-weight:600">Estrategia</h4><p style="margin-top:5px;font-size:15px;color:#C8BBAE;line-height:1.45;text-wrap:pretty">Auditoría del local y la competencia, líneas creativas y calendario antes de grabar nada.</p></div>
+        </div>
+        <div style="background:#17171A;padding:20px;display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px">
+          <div style="font-size:14px;font-weight:500;color:#F04E17;border-top:2px solid #F04E17;padding-top:6px">02</div>
+          <div>
+            <h4 style="font-size:18px;font-weight:600">Gestión de redes</h4>
+            <p style="margin-top:5px;font-size:15px;color:#C8BBAE;line-height:1.45;text-wrap:pretty">Nos quedamos con tus cuentas y tú te olvidas de ellas. Instagram y TikTok, de principio a fin:</p>
+            <ul style="list-style:none;padding:0;margin-top:14px;display:grid;gap:12px">
+              <li style="display:grid;grid-template-columns:16px minmax(0,1fr);gap:10px;font-size:15px;line-height:1.45"><span style="color:#F04E17">→</span><span><b style="font-weight:600">Un día de grabación al mes</b> <span style="color:#C8BBAE">en tu local, en horario tranquilo. Salimos con el mes entero rodado.</span></span></li>
+              <li style="display:grid;grid-template-columns:16px minmax(0,1fr);gap:10px;font-size:15px;line-height:1.45"><span style="color:#F04E17">→</span><span><b style="font-weight:600">Reels, posts y stories</b> <span style="color:#C8BBAE">editados con gancho en los tres primeros segundos, subtítulos y ritmo pensado para móvil.</span></span></li>
+              <li style="display:grid;grid-template-columns:16px minmax(0,1fr);gap:10px;font-size:15px;line-height:1.45"><span style="color:#F04E17">→</span><span><b style="font-weight:600">Calendario y copys</b> <span style="color:#C8BBAE">escritos por nosotros. Apruebas el mes de una vez, no pieza por pieza.</span></span></li>
+              <li style="display:grid;grid-template-columns:16px minmax(0,1fr);gap:10px;font-size:15px;line-height:1.45"><span style="color:#F04E17">→</span><span><b style="font-weight:600">Publicación constante</b> <span style="color:#C8BBAE">en las mejores horas, sin huecos: la cuenta nunca se queda en blanco.</span></span></li>
+              <li style="display:grid;grid-template-columns:16px minmax(0,1fr);gap:10px;font-size:15px;line-height:1.45"><span style="color:#F04E17">→</span><span><b style="font-weight:600">Comentarios y mensajes</b> <span style="color:#C8BBAE">contestados en menos de 24 horas laborables.</span></span></li>
+              <li style="display:grid;grid-template-columns:16px minmax(0,1fr);gap:10px;font-size:15px;line-height:1.45"><span style="color:#F04E17">→</span><span><b style="font-weight:600">Informe cada mes</b> <span style="color:#C8BBAE">con lo que ha funcionado y lo que cambiamos el mes siguiente.</span></span></li>
+            </ul>
+            <p style="margin-top:14px;font-size:14px;color:#C8BBAE;line-height:1.45;border-left:2px solid #F04E17;padding-left:12px;text-wrap:pretty">En A Lo Cubano: 30 vídeos, 13 posts y 108 stories en 11 semanas. Las cuentas y el material grabado son siempre tuyos.</p>
+          </div>
+        </div>
+        <div style="background:#17171A;padding:20px;display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px">
+          <div style="font-size:14px;font-weight:500;color:#F04E17;border-top:2px solid #F04E17;padding-top:6px">03</div>
+          <div><h4 style="font-size:18px;font-weight:600">Clientes</h4><p style="margin-top:5px;font-size:15px;color:#C8BBAE;line-height:1.45;text-wrap:pretty">Ficha de Google, reseñas, mensajes y automatizaciones que convierten atención en visitas.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" data-screen-label="06 Contacto" data-rev style="margin:88px 0 0;padding:32px 22px;border-radius:20px;border:1px solid rgba(242,239,234,.12);background:linear-gradient(180deg,#17171A,#101012)">
+      <div style="display:flex">
+        <img src="/portafolio/assets/esteban.jpg" alt="" aria-hidden="true" style="width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:50% 10%;border:2px solid #17171A">
+        <img src="/portafolio/assets/eneko.jpg" alt="" aria-hidden="true" style="width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:50% 14%;border:2px solid #17171A;margin-left:-14px">
+      </div>
+      <h2 style="margin-top:20px;font-size:clamp(30px,8.4vw,48px);letter-spacing:-.045em;line-height:.98;text-wrap:balance">¿Tu local es <span style="color:#F04E17">el siguiente?</span></h2>
+      <p style="margin-top:14px;color:#C8BBAE;text-wrap:pretty">Treinta minutos y te contamos qué haríamos con él. Trabajamos con un local por zona.</p>
+      <div style="margin-top:24px;display:grid;gap:10px">
+        <a href="mailto:lakylabmarketing@gmail.com" style="display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:0 22px;border-radius:999px;border:1px solid #F04E17;background:linear-gradient(180deg,rgba(240,78,23,.24),rgba(240,78,23,.08));font-weight:600;color:#F2EFEA" class="h3"><span>Escríbenos</span><span style="font-size:13px;font-weight:500;color:#C8BBAE">lakylabmarketing@gmail.com</span></a>
+        <a href="https://rumboagencia.info/#consulta" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;min-height:56px;padding:0 22px;border-radius:999px;border:1px solid rgba(242,239,234,.18);font-weight:600;color:#F2EFEA" class="h2"><span>Reservar consulta</span><span style="color:#FF8A3D">↗</span></a>
+      </div>
+    </section>
+
+    <footer style="padding:40px 0 48px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;color:#8c857d">
+      <img src="/portafolio/assets/rumbo-logo.png" alt="Rumbo" style="width:80px;opacity:.8">
+      <span>rumboagencia.info · Almería</span>
+    </footer>
+  </main>
+</div>
+<script>
+(function () {
+  // Lógica de componentDidMount, tal cual.
+  var self = {};
+  self.scan = function () {
+    document.querySelectorAll("[data-rev]:not([data-obs])").forEach((el) => { el.dataset.obs = "1"; self.io.observe(el); });
+    document.querySelectorAll("video[data-reel]:not([data-obs])").forEach((el) => { el.dataset.obs = "1"; self.rio.observe(el); });
+    document.querySelectorAll("video[data-testi]:not([data-obs])").forEach((el) => { el.dataset.obs = "1"; self.tio.observe(el); });
+  };
+  (function () {
+    const root = document;
+    this.io = new IntersectionObserver((ents) => {
+      ents.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("on"); this.io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+    this.rio = new IntersectionObserver((ents) => {
+      ents.forEach((e) => {
+        const v = e.target;
+        if (e.isIntersecting && e.intersectionRatio > 0.55) {
+          if (!v.src && v.dataset.reel) v.src = v.dataset.reel;
+          v.play().catch(() => {});
+        } else if (!v.paused) v.pause();
+      });
+    }, { threshold: [0, 0.55, 1] });
+    this.tio = new IntersectionObserver((ents) => {
+      ents.forEach((e) => {
+        const v = e.target;
+        if (e.isIntersecting && !v.src) { v.src = v.dataset.testi + "#t=0.8"; this.tio.unobserve(v); }
+        if (!e.isIntersecting && !v.paused) v.pause();
+      });
+    }, { rootMargin: "600px 2000px" });
+    this.onPlay = (ev) => {
+      const t = ev.target;
+      if (t.tagName !== "VIDEO" || !t.dataset.testi) return;
+      root.querySelectorAll("video[data-testi]").forEach((o) => { if (o !== t && !o.paused) o.pause(); });
+      const b = t.parentNode.querySelector("[data-tplay]"); if (b) { b.style.opacity = "0"; b.style.pointerEvents = "none"; }
+      t.controls = true;
+    };
+    this.onPause = (ev) => {
+      const t = ev.target;
+      if (t.tagName !== "VIDEO" || !t.dataset.testi || t.seeking) return;
+      const b = t.parentNode.querySelector("[data-tplay]"); if (b) { b.style.opacity = "1"; b.style.pointerEvents = "auto"; }
+      t.controls = false;
+    };
+    this.onTap = (ev) => {
+      const b = ev.target.closest && ev.target.closest("[data-tplay]");
+      if (!b) return;
+      const v = b.parentNode.querySelector("video");
+      if (!v.src) v.src = v.dataset.testi;
+      v.muted = false;
+      v.play().catch(() => {});
+    };
+    root.addEventListener("play", this.onPlay, true);
+    root.addEventListener("pause", this.onPause, true);
+    root.addEventListener("ended", this.onPause, true);
+    root.addEventListener("click", this.onTap);
+    this.scan();
+    this.mo = new MutationObserver(() => this.scan());
+    this.mo.observe(document.body, { childList: true, subtree: true });
+  }).call(self);
+})();
+</script>
+</body>
+</html>

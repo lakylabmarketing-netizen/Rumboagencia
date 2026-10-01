@@ -22,9 +22,7 @@ var CONFIG = {
   // Tu web (sin barra final).
   WEB: 'https://rumboagencia.info',
 
-  // Perfiles sociales. PENDIENTE: aún no existen.
-  INSTAGRAM_URL: '',
-  TIKTOK_URL: '',
+  // Perfiles sociales: botón retirado temporalmente hasta tener las cuentas.
 
   // Ficha de Google de Rumbo.
   GOOGLE_FICHA_URL: 'https://share.google/GnTpqiGGJO6bbH6Xn'
@@ -101,18 +99,9 @@ a.b.wa:hover{background:var(--brasa);color:var(--ink)}
 .meta{display:block;margin-top:6px;font-size:15px;font-weight:600;color:var(--cal)}
 .meta .star{color:var(--brasa)}
 
-/* Instagram · TikTok: un botón, dos zonas separadas por un trazo a 10° */
-.split{display:grid;grid-template-columns:1fr 1fr;border-radius:16px;overflow:hidden;background:var(--surface);min-height:64px}
-.split>*{display:flex;align-items:center;justify-content:center;gap:10px;min-height:64px;padding:12px;font-weight:600;font-size:18px;position:relative}
-.split>*+*::before{content:"";position:absolute;left:0;top:16px;bottom:16px;width:3px;background:var(--naranja);transform:skewX(var(--sl))}
-.split a:hover{background:var(--surface-2);color:var(--cal)}
-.split .ic{width:22px;height:22px}
 
 .pending{opacity:.72}
 .pend{display:inline-block;margin-top:6px;font:600 12px/1.3 var(--f-body);letter-spacing:.03em;color:var(--ink);background:var(--brasa);padding:3px 7px;border-radius:4px}
-.split .pending{flex-direction:column;gap:4px}
-.split .pending .pend{margin:0;font-size:11px;white-space:nowrap}
-.split .lbl{display:inline-flex;align-items:center;gap:10px}
 
 footer{margin-top:auto;padding-top:40px;text-align:center;font-size:14px;color:var(--muted)}
 footer a{color:var(--arena);text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:10px 4px}
@@ -159,10 +148,10 @@ footer a:hover{color:var(--cal)}
         </a>
       </li>
       <li>
-        <div class="split" role="group" aria-label="Instagram · TikTok">
-          <span class="pending" data-link="instagram"><span class="lbl"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram</span><span class="pend">[PENDIENTE: URL]</span></span>
-          <span class="pending" data-link="tiktok"><span class="lbl"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 2h-3.3v13.2a2.9 2.9 0 1 1-2-2.8V9a6.3 6.3 0 1 0 5.3 6.2V8.6a7.9 7.9 0 0 0 4.4 1.4V6.7a4.5 4.5 0 0 1-4.4-4.7Z"/></svg>TikTok</span><span class="pend">[PENDIENTE: URL]</span></span>
-        </div>
+        <a class="b" data-link="portafolio" href="https://rumboagencia.info/portafolio/?utm_source=bio&amp;utm_medium=social&amp;utm_content=portafolio">
+          <span class="t"><strong>Ver portafolio</strong><small>Vídeos, cifras y testimonios de nuestro trabajo en hostelería</small></span>
+          <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
       </li>
       <li>
         <a class="b" data-link="google" href="https://share.google/GnTpqiGGJO6bbH6Xn" target="_blank" rel="noopener">
@@ -191,11 +180,10 @@ footer a:hover{color:var(--cal)}
     caso:      web ? web + '/' + utm('caso-real') + '#caso' : '',
     web:       web ? web + '/' + utm('nuestra-web') : '',
     legal:     web ? web + '/' + utm('aviso-legal') + '#aviso-legal' : '',
-    instagram: C.INSTAGRAM_URL || '',
-    tiktok:    C.TIKTOK_URL || '',
+    portafolio: web ? web + '/portafolio/' + utm('portafolio') : '',
     google:    C.GOOGLE_FICHA_URL || ''
   };
-  var externos = { instagram:1, tiktok:1, google:1 };
+  var externos = { google:1 };
   document.querySelectorAll('[data-link]').forEach(function(el){
     var url = urls[el.getAttribute('data-link')];
     if (!url) return;                       // sin URL: se queda como [PENDIENTE]
