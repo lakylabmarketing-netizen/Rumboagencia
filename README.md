@@ -1,15 +1,20 @@
 # Rumbo · web
 
-Sitio estático para rumboagencia.info. Sin frameworks ni dependencias.
+Web de rumboagencia.info. Next.js (App Router, exportación estática) + TypeScript + Tailwind + GSAP + Lenis + React Three Fiber.
 
 ```
-index.html            La web (CSS, JS y tipografías incrustados)
-enlaces/index.html    Página de enlaces de la bio de Instagram (/enlaces)
-portafolio/           Portafolio (/portafolio), con sus vídeos y fuentes en portafolio/assets
-img/                  Imágenes optimizadas, favicon e imagen para compartir (og.jpg)
-video/                Testimonios de A Lo Cubano en H.264 (carga al pulsar play)
+app/                  Layout, página y estilos globales
+components/           Hero (anillo 3D), intro, cursor, marquesina, proyectos, formulario…
+lib/content.ts        Todos los textos y cifras de la web
+tailwind.config.ts    Tokens de diseño (colores, tipografías, tamaños, radios)
+public/enlaces/       Página de enlaces de la bio de Instagram (/enlaces), HTML autónomo
+public/portafolio/    Portafolio (/portafolio), HTML autónomo con sus vídeos
+public/img, video     Imágenes y testimonios de A Lo Cubano
+legacy-index.html     Versión estática anterior (no se publica; solo referencia)
 ```
 
-- Datos de la página de enlaces (WhatsApp, mensajes, URLs): bloque `CONFIG` al principio de `enlaces/index.html`.
+- Desarrollo: `npm install` y `npm run dev`. Publicación: `npm run build` genera `out/` (Netlify lo hace solo con `netlify.toml`).
+- Datos de la página de enlaces (WhatsApp, mensajes, URLs): bloque `CONFIG` al principio de `public/enlaces/index.html`.
 - El formulario de consulta usa Netlify Forms (`name="consulta"`). Los avisos por correo se activan en Netlify › Forms › Form notifications.
-- Busca `[PENDIENTE` en los archivos para ver los datos que faltan.
+- La intro solo se muestra la primera vez (clave `rumbo-intro-2026` en localStorage) y nunca con «reducir movimiento».
+- Busca `PENDIENTE` en los archivos para ver los datos que faltan.

@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Tipografías (servidas desde la propia web) ── */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url(/fonts/inter-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url(/fonts/inter-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url(/fonts/jetbrains-mono-400.woff2) format('woff2'); }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 700; font-display: swap; src: url(/fonts/jetbrains-mono-700.woff2) format('woff2'); }
+
+:root { color-scheme: dark; }
+html { background: #0B0B0B; -webkit-text-size-adjust: 100%; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+body {
+  background: #0B0B0B; color: #F2EFEA; font-family: Inter, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden; text-rendering: optimizeLegibility;
+  padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right);
+}
+::selection { background: rgba(240,78,23,.4); color: #F2EFEA; }
+:focus-visible { outline: 2px solid #FF8A3D; outline-offset: 3px; }
+img, video, canvas { display: block; max-width: 100%; }
+
+/* Etiquetas técnicas en monoespaciada */
+.tech { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; }
+.caps { text-transform: uppercase; letter-spacing: .04em; }
+.kw { font-weight: 800; }  /* palabra clave: con JS el peso se anima de Light a Bold */
+.js-kw .kw:not(.is-bold) { font-weight: 300; }
+
+/* Crucetas "+" de interfaz técnica */
+.plus { position: absolute; width: 11px; height: 11px; pointer-events: none; }
+.plus::before, .plus::after { content: ''; position: absolute; background: currentColor; }
+.plus::before { left: 5px; top: 0; width: 1px; height: 11px; }
+.plus::after { top: 5px; left: 0; height: 1px; width: 11px; }
+
+/* Grano de película animado (barato: una textura y saltos de posición) */
+.grain { position: fixed; inset: -50%; z-index: 60; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1s steps(6) infinite; }
+@keyframes grain { 0%{transform:translate(0,0)} 20%{transform:translate(-4%,3%)} 40%{transform:translate(3%,-5%)} 60%{transform:translate(-6%,-2%)} 80%{transform:translate(5%,4%)} 100%{transform:translate(0,0)} }
+.vignette { position: fixed; inset: 0; z-index: 59; pointer-events: none; background: radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(0,0,0,.55) 100%); }
+
+/* Línea de escaneo / glitch entre secciones */
+.scan { position: fixed; left: 0; right: 0; top: 0; height: 2px; z-index: 61; pointer-events: none; opacity: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,138,61,.9), transparent); box-shadow: 0 0 18px rgba(240,78,23,.6); }
+.glitch { animation: glitch .38s steps(2) 1; }
+@keyframes glitch {
+  0% { text-shadow: 2px 0 rgba(255,0,60,.75), -2px 0 rgba(0,200,255,.75); transform: translateX(1px); }
+  50% { text-shadow: -3px 0 rgba(255,0,60,.75), 3px 0 rgba(0,200,255,.75); transform: translateX(-2px); clip-path: inset(10% 0 30% 0); }
+  100% { text-shadow: none; transform: none; clip-path: none; }
+}
+
+/* Separación RGB al pasar por encima de una imagen */
+.rgb { position: relative; overflow: hidden; }
+.rgb > img, .rgb > video { transition: transform .8s cubic-bezier(.2,.7,.2,1), filter .4s; }
+.rgb:hover > img, .rgb:hover > video { transform: scale(1.04); filter: url(#rgb-shift); }
+
+/* Revelado de líneas: la máscara la crea SplitText */
+.line-mask { overflow: hidden; display: block; padding-bottom: .04em; }
+
+/* Marquee */
+.marquee-track { display: flex; width: max-content; will-change: transform; }
+
+/* Cursor personalizado */
+.cursor-dot, .cursor-hud { position: fixed; left: 0; top: 0; z-index: 80; pointer-events: none; will-change: transform; }
+@media (hover: none), (pointer: coarse) { .cursor-dot, .cursor-hud { display: none !important; } }
+@media (hover: hover) and (pointer: fine) { .has-cursor, .has-cursor a, .has-cursor button { cursor: none; } }
+
+/* Intro: pantalla negra hasta que monta el componente (solo si el script decide mostrarla) */
+html.intro-pending body { overflow: hidden; }
+html.intro-pending #intro-veil { display: block; }
+#intro-veil { display: none; position: fixed; inset: 0; z-index: 100; background: #0B0B0B; }
+
+@media (prefers-reduced-motion: reduce) {
+  .grain, .glitch { animation: none !important; }
+  .scan { display: none; }
+  .rgb:hover > img, .rgb:hover > video { transform: none; filter: none; }
+  .kw { font-weight: 800; }
+}
