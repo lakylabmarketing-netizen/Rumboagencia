@@ -1,8 +1,8 @@
 'use client';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Environment, Lightformer } from '@react-three/drei';
+import { Environment, Lightformer, useGLTF } from '@react-three/drei';
 import { EffectComposer, DepthOfField, ChromaticAberration, Noise, Vignette } from '@react-three/postprocessing';
 import { BlendFunction } from 'postprocessing';
 import { R_PATH, R_W } from '@/lib/logo';
@@ -45,13 +45,14 @@ function useCoinGeometries() {
   }, []);
 }
 
-type Props = { count: number; reduced: boolean };
+type Part = { geometry: THREE.BufferGeometry; material: THREE.Material };
+type Props = { count: number; reduced: boolean; parts: Part[] };
 
-function CoinRing({ count, reduced }: Props) {
-  const { body, deco } = useCoinGeometries();
+const MODEL = '/models/moneda-r.glb';
+
+function CoinRing({ count, reduced, parts }: Props) {
   const group = useRef<THREE.Group>(null);
-  const bodyRef = useRef<THREE.InstancedMesh>(null);
-  const decoRefs = useRef<(THREE.InstancedMesh | null)[]>([]);
+  const meshes = useRef<(THREE.InstancedMesh | null)[]>([]);
   const { pointer } = useThree();
   const target = useRef(new THREE.Vector2());
   const dummy = useMemo(() => new THREE.Object3D(), []);
@@ -60,9 +61,6 @@ function CoinRing({ count, reduced }: Props) {
     tilt: new THREE.Euler(Math.random() * 1.2 - 0.6, Math.random() * 1.2 - 0.6, Math.random() * Math.PI),
     r: 2.75 + (Math.random() - 0.5) * 0.35, s: 0.82 + Math.random() * 0.3,
   })), [count]);
-
-  const metal = useMemo(() => new THREE.MeshStandardMaterial({ color: '#6c6c72', metalness: 1, roughness: 0.46 }), []);
-  const relief = useMemo(() => new THREE.MeshStandardMaterial({ color: '#9a9aa2', metalness: 1, roughness: 0.3 }), []);
 
   useFrame((state, dt) => {
     const t = reduced ? 0 : state.clock.elapsedTime;
@@ -74,24 +72,52 @@ function CoinRing({ count, reduced }: Props) {
       group.current.rotation.z = t * 0.06;
     }
     seeds.forEach((sd, i) => {
-      const a = sd.a;
-      dummy.position.set(Math.cos(a) * sd.r, Math.sin(a) * sd.r, Math.sin(t * 0.6 + sd.wob) * 0.12);
+      dummy.position.set(Math.cos(sd.a) * sd.r, Math.sin(sd.a) * sd.r, Math.sin(t * 0.6 + sd.wob) * 0.12);
       dummy.rotation.set(sd.tilt.x + Math.PI / 2 + Math.sin(t * 0.4 + sd.wob) * 0.25, sd.tilt.y + t * sd.spin, sd.tilt.z);
       dummy.scale.setScalar(sd.s);
       dummy.updateMatrix();
-      bodyRef.current?.setMatrixAt(i, dummy.matrix);
-      decoRefs.current.forEach((m) => m?.setMatrixAt(i, dummy.matrix));
+      meshes.current.forEach((m) => m?.setMatrixAt(i, dummy.matrix));
     });
-    if (bodyRef.current) bodyRef.current.instanceMatrix.needsUpdate = true;
-    decoRefs.current.forEach((m) => { if (m) m.instanceMatrix.needsUpdate = true; });
+    meshes.current.forEach((m) => { if (m) m.instanceMatrix.needsUpdate = true; });
   });
 
   return (
     <group ref={group}>
-      <instancedMesh ref={bodyRef} args={[body, metal, count]} />
-      {deco.map((g, i) => <instancedMesh key={i} ref={(m) => { decoRefs.current[i] = m; }} args={[g, relief, count]} />)}
+      {parts.map((p, i) => <instancedMesh key={i} ref={(m) => { meshes.current[i] = m; }} args={[p.geometry, p.material, count]} />)}
     </group>
   );
+}
+
+/** Monedas hechas por código: se ven mientras carga el modelo de Higgsfield. */
+function ProceduralRing({ count, reduced }: { count: number; reduced: boolean }) {
+  const { body, deco } = useCoinGeometries();
+  const parts = useMemo(() => {
+    const metal = new THREE.MeshStandardMaterial({ color: '#6c6c72', metalness: 1, roughness: 0.46 });
+    const relief = new THREE.MeshStandardMaterial({ color: '#9a9aa2', metalness: 1, roughness: 0.3 });
+    return [{ geometry: body, material: metal }, ...deco.map((g) => ({ geometry: g, material: relief }))];
+  }, [body, deco]);
+  return <CoinRing count={count} reduced={reduced} parts={parts} />;
+}
+
+/** Moneda R modelada en 3D con Higgsfield (Tripo): geometría y texturas PBR del GLB. */
+function ModelRing({ count, reduced }: { count: number; reduced: boolean }) {
+  const { scene } = useGLTF(MODEL, false);
+  const parts = useMemo(() => {
+    const out: Part[] = [];
+    scene.updateMatrixWorld(true);
+    scene.traverse((o) => {
+      const m = o as THREE.Mesh;
+      if (!m.isMesh) return;
+      const g = m.geometry.clone().applyMatrix4(m.matrixWorld);
+      g.scale(0.85, 0.85, 0.36); // el modelo sale grueso: lo dejamos con proporción de moneda
+      g.computeBoundingSphere();
+      const mat = (m.material as THREE.MeshStandardMaterial).clone();
+      mat.envMapIntensity = 1.4;
+      out.push({ geometry: g, material: mat });
+    });
+    return out;
+  }, [scene]);
+  return <CoinRing count={count} reduced={reduced} parts={parts} />;
 }
 
 function Pauser({ visible }: { visible: boolean }) {
@@ -110,23 +136,29 @@ export default function Ring() {
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     let webgl = false;
     try { webgl = !!document.createElement('canvas').getContext('webgl2'); } catch { /* sin WebGL */ }
+    // Precarga el modelo en cuanto sabemos que se va a usar
+    if (webgl && !mobile && !reduced) useGLTF.preload(MODEL, false);
     setCfg({ mobile, reduced, webgl });
     const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0 });
     if (wrap.current) io.observe(wrap.current);
     return () => io.disconnect();
   }, []);
 
+  // Escritorio con WebGL: anillo 3D en vivo. Móvil o sin WebGL: el vídeo de Higgsfield en bucle.
+  // Reducir movimiento: solo el fotograma fijo.
+  const mode = !cfg ? null : cfg.reduced ? 'still' : cfg.mobile || !cfg.webgl ? 'video' : '3d';
+  const small = !!cfg?.mobile;
+
   return (
     <div ref={wrap} className="absolute inset-0" aria-hidden>
-      {cfg?.webgl && (
+      {mode === '3d' && cfg && (
         <Canvas
-          dpr={cfg.mobile ? [1, 1.25] : [1, 1.75]}
+          dpr={[1, 1.75]}
           camera={{ position: [0, 0, 7.2], fov: 38 }}
           gl={{ antialias: false, powerPreference: 'high-performance', alpha: false }}
-          frameloop={cfg.reduced ? 'demand' : 'always'}
           onCreated={({ gl }) => { gl.setClearColor('#0B0B0B'); gl.toneMapping = THREE.ACESFilmicToneMapping; }}
         >
-          {!cfg.reduced && <Pauser visible={visible} />}
+          <Pauser visible={visible} />
           <fog attach="fog" args={['#0B0B0B', 6, 12]} />
           <ambientLight intensity={0.15} />
           <pointLight position={[-3, 3, 4]} intensity={30} color="#ffffff" />
@@ -136,16 +168,31 @@ export default function Ring() {
             <Lightformer form="rect" intensity={1.2} color="#FF8A3D" position={[-5, -1, -2]} scale={[2, 6, 1]} />
             <Lightformer form="ring" intensity={0.8} position={[4, 1, 2]} scale={2.5} />
           </Environment>
-          <CoinRing count={cfg.mobile ? 11 : 16} reduced={cfg.reduced} />
+          <Suspense fallback={<ProceduralRing count={16} reduced={false} />}>
+            <ModelRing count={16} reduced={false} />
+          </Suspense>
           <EffectComposer multisampling={0} enableNormalPass={false}>
-            {cfg.mobile ? <></> : <DepthOfField focusDistance={0.012} focalLength={0.03} bokehScale={5} />}
+            <DepthOfField focusDistance={0.012} focalLength={0.03} bokehScale={5} />
             <ChromaticAberration blendFunction={BlendFunction.NORMAL} offset={new THREE.Vector2(0.0016, 0.0011)} radialModulation modulationOffset={0.35} />
             <Noise premultiply blendFunction={BlendFunction.ADD} opacity={0.35} />
             <Vignette offset={0.28} darkness={0.82} />
           </EffectComposer>
         </Canvas>
       )}
-      {cfg && !cfg.webgl && <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_45%,rgba(240,78,23,.14),transparent_70%)]" />}
+      {mode === 'video' && (
+        <video
+          ref={(v) => { if (v) { if (visible) v.play().catch(() => {}); else v.pause(); } }}
+          className="absolute inset-0 h-full w-full object-cover opacity-80"
+          src={small ? '/video/anillo-movil.mp4' : '/video/anillo.mp4'}
+          poster={small ? '/img/anillo-movil.webp' : '/img/anillo.webp'}
+          muted loop playsInline autoPlay preload="auto" disablePictureInPicture
+        />
+      )}
+      {mode === 'still' && (
+        <img src={small ? '/img/anillo-movil.webp' : '/img/anillo.webp'} alt="" className="absolute inset-0 h-full w-full object-cover opacity-70" />
+      )}
+      {/* oscurece el centro para que el titular se lea siempre */}
+      {mode && mode !== '3d' && <div className="absolute inset-0 bg-[radial-gradient(55%_45%_at_50%_45%,rgba(11,11,11,.72),rgba(11,11,11,.25)_70%,rgba(11,11,11,.6))]" />}
     </div>
   );
 }
