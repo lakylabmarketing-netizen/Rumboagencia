@@ -38,6 +38,8 @@ export default function SiteNav() {
 
   return (
     <>
+      {/* En móvil, fundido oscuro detrás del menú para que el texto que pasa por debajo no se mezcle */}
+      <div aria-hidden className="pointer-events-none fixed inset-x-0 top-0 z-40 h-[calc(76px+env(safe-area-inset-top))] bg-[linear-gradient(180deg,#0B0B0B_0%,#0B0B0B_62%,rgba(11,11,11,0)_100%)] md:hidden" />
       <header className="fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)] mix-blend-difference">
         <div className="grid h-[64px] grid-cols-4 items-center px-4 md:grid-cols-6 md:px-[30px]">
           <span aria-hidden />
