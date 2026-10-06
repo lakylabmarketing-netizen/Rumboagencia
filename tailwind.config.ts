@@ -20,10 +20,9 @@ const config: Config = {
       fontFamily: {
         sans: ['Inter', 'Helvetica Neue', 'Arial', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-        display: ['Archivo', 'Impact', '"Arial Narrow"', 'sans-serif'],
       },
       fontSize: {
-        mega: ['clamp(3.4rem, 12.6vw, 14rem)', { lineHeight: '0.84', letterSpacing: '-0.01em' }],
+        mega: ['clamp(2.7rem, 9.4vw, 10.5rem)', { lineHeight: '0.96', letterSpacing: '-0.045em' }],
         display: ['clamp(2.6rem, 7.2vw, 8rem)', { lineHeight: '0.92', letterSpacing: '0.04em' }],
         h2: ['clamp(2rem, 4.6vw, 4rem)', { lineHeight: '0.98', letterSpacing: '0.02em' }],
         h3: ['clamp(1.35rem, 2.2vw, 1.75rem)', { lineHeight: '1.15', letterSpacing: '0.01em' }],

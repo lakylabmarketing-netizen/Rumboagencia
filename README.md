@@ -2,7 +2,7 @@
 
 Web de rumboagencia.info. Next.js (App Router, exportación estática) + TypeScript + Tailwind + GSAP + Lenis.
 
-Tipografías: Archivo (titulares gigantes, condensada), Inter (texto) y JetBrains Mono (etiquetas).
+Tipografía: Inter en toda la web (titulares en negrita, frase normal; la palabra clave en naranja). JetBrains Mono solo en la intro tipo terminal.
 
 ```
 app/                  Layout, página y estilos globales

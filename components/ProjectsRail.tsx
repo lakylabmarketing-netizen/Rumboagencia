@@ -60,7 +60,7 @@ export default function ProjectsRail() {
       <div ref={track} className="flex snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 pb-6 pt-24 [scrollbar-width:none] min-[900px]:h-full min-[900px]:snap-none min-[900px]:items-center min-[900px]:overflow-visible min-[900px]:px-8 min-[900px]:pt-16">
         <div className="flex w-[78vw] max-w-[420px] shrink-0 snap-start flex-col justify-center pr-6 min-[900px]:w-[30vw]">
           <span className="tech text-muted"><span className="text-naranja">+</span> 02 · Proyectos</span>
-          <h2 className="mega mt-5 text-[clamp(3rem,6.4vw,6.8rem)] leading-[.86]"><span className="ln"><span>A Lo</span></span><span className="ln deep"><span>Cubano</span></span></h2>
+          <h2 className="mega mt-5 text-[clamp(2.4rem,5.2vw,5.4rem)] leading-[.98]"><span className="ln"><span>A Lo</span></span><span className="ln deep"><span>Cubano</span></span></h2>
           <p className="mt-4 text-body text-gris">Cocina cubana de fusión en Roquetas de Mar. Abrió a finales de junio de 2026 y empezamos el 8 de julio: vídeo, ficha de Google y captación de reseñas.</p>
           <p className="tech mt-6 text-cal">5,0 <span className="text-brasa">★</span> · 151 reseñas en Google</p>
           <p className="tech mt-8 hidden text-muted min-[900px]:block">Sigue bajando →</p>

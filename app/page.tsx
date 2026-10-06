@@ -15,7 +15,7 @@ function SectionHead({ index, title, kw, lead, light = false }: { index: string;
     <header className="mb-14 grid gap-6 md:mb-20 md:grid-cols-[minmax(0,1.3fr)_minmax(0,.7fr)] md:items-end">
       <div>
         <span className={`tech ${light ? 'text-[#6b6b70]' : 'text-muted'}`}><span className="text-naranja">+</span> {index}</span>
-        <h2 className={`mega mt-5 text-[clamp(3rem,8.4vw,8.6rem)] leading-[.86] ${light ? 'on-light' : ''}`}>
+        <h2 className={`mega mt-5 text-[clamp(2.4rem,6.2vw,6.6rem)] leading-[.98] ${light ? 'on-light' : ''}`}>
           <span className="ln"><span>{title.replace(/\s*×\s*$/, '')}</span></span>
           <span className="ln deep"><span>{kw}</span></span>
         </h2>
@@ -60,7 +60,7 @@ export default function Page() {
             <div className="mt-16 grid grid-cols-2 gap-px bg-black/15 md:grid-cols-4">
               {[['Desde 550 €/mes', 'Tres planes con el mismo equipo.'], ['3 meses', 'Permanencia mínima; después, mes a mes.'], ['100 % tuyo', 'Cuentas y material grabado, también si te vas.'], ['1 informe al mes', 'Con las métricas, en todos los planes.']].map(([v, l]) => (
                 <div key={v} data-rise className="relative bg-niebla p-5 md:p-7">
-                  <div className="font-mono text-lg font-bold md:text-xl">{v}</div>
+                  <div className="num text-lg font-bold md:text-xl">{v}</div>
                   <p className="mt-2 text-[15px] text-[#3d3d42]">{l}</p>
                 </div>
               ))}
@@ -89,7 +89,7 @@ export default function Page() {
                   {g.items.map((m) => (
                     <div key={m.label} className="relative border-l border-line pl-5">
                       <span aria-hidden className="plus -left-[6px] -top-[6px] text-naranja" />
-                      <div className="font-mono text-[clamp(1.7rem,3.2vw,2.6rem)] font-bold leading-none"><Counter v={m.v} from={m.from} suffix={m.suffix} /></div>
+                      <div className="num text-[clamp(1.9rem,3.4vw,2.8rem)] font-bold leading-none"><Counter v={m.v} from={m.from} suffix={m.suffix} /></div>
                       <p className="mt-3 text-[15px] text-gris">{m.label}</p>
                     </div>
                   ))}
@@ -103,7 +103,7 @@ export default function Page() {
               <ol className="mt-5 border-t border-line">
                 {topVideos.map((t) => (
                   <li key={t.v} className="grid grid-cols-[96px_minmax(0,1fr)] gap-4 border-b border-line py-4">
-                    <b className="font-mono text-xl">{t.v}</b>
+                    <b className="num text-xl">{t.v}</b>
                     <span>{t.title}<small className="tech mt-1 block text-[10px] text-muted">{t.meta}</small></span>
                   </li>
                 ))}
@@ -139,7 +139,7 @@ export default function Page() {
           <div className="mt-24 grid gap-10 md:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)]">
             <div>
               <span className="tech text-muted">Lo que firmamos</span>
-              <p className="caps mt-4 text-[clamp(1.6rem,3vw,2.6rem)] font-light leading-[1.05]">En tres meses tendrás un <b className="font-extrabold">sistema montado</b> y <b className="font-extrabold">datos</b> para saber si funciona.</p>
+              <p className="caps mt-4 text-[clamp(1.6rem,3vw,2.6rem)] font-normal leading-[1.1]">En tres meses tendrás un <b className="font-extrabold">sistema montado</b> y <b className="font-extrabold">datos</b> para saber si funciona.</p>
             </div>
             <ul className="border-t border-line">
               {commitments.map((c) => (
@@ -167,13 +167,13 @@ export default function Page() {
                     <h3 className="tech text-gris">{p.name}</h3>
                     {p.rec && <span className="tech bg-naranja px-2 py-1 text-[10px] text-ink">Recomendado</span>}
                   </div>
-                  <div className="mt-6 font-mono text-[clamp(2.8rem,4.6vw,4rem)] font-bold leading-none">{p.price}<span className="text-[.4em]"> €/mes</span></div>
+                  <div className="num mt-6 text-[clamp(2.8rem,4.6vw,4rem)] font-bold leading-none">{p.price}<span className="text-[.4em]"> €/mes</span></div>
                   <p className="caps mt-6 border-b border-line pb-6 text-[1.05rem] font-bold leading-snug">{p.claim}</p>
                   <p className="tech mt-6 text-[10px] text-muted">{p.inc}</p>
                   <ul className="mb-8 mt-4 grid gap-2.5">
                     {p.items.map((it) => <li key={it} className="grid grid-cols-[14px_minmax(0,1fr)] gap-2.5 text-[16px] text-gris"><span className="text-naranja">+</span>{it}</li>)}
                   </ul>
-                  <a href="#contacto" data-plan={p.value} data-cursor="ELEGIR" className={`mt-auto flex min-h-[52px] items-center justify-center font-mono text-[12px] font-bold uppercase tracking-[.16em] transition-colors ${p.rec ? 'bg-naranja text-ink hover:bg-brasa' : 'border border-cal/30 text-cal hover:border-brasa hover:text-brasa'}`}>Reservar consulta</a>
+                  <a href="#contacto" data-plan={p.value} data-cursor="ELEGIR" className={`mt-auto flex min-h-[52px] items-center justify-center text-[15px] font-semibold transition-colors ${p.rec ? 'bg-naranja text-ink hover:bg-brasa' : 'border border-cal/30 text-cal hover:border-brasa hover:text-brasa'}`}>Reservar consulta</a>
                 </article>
               ))}
             </div>
@@ -196,13 +196,13 @@ export default function Page() {
           <div className="mx-auto grid max-w-wrap gap-12 px-5 py-28 sm:px-8 md:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] md:py-40">
             <div>
               <span className="tech text-muted"><span className="text-naranja">+</span> 05 · Preguntas</span>
-              <h2 className="mega mt-5 text-[clamp(3rem,8.4vw,8.6rem)] leading-[.86]"><span className="ln"><span>Antes de</span></span><span className="ln deep"><span>firmar</span></span></h2>
+              <h2 className="mega mt-5 text-[clamp(2.4rem,6.2vw,6.6rem)] leading-[.98]"><span className="ln"><span>Antes de</span></span><span className="ln deep"><span>firmar</span></span></h2>
             </div>
             <div className="border-t border-line">
               {faqs.map((f) => (
                 <details key={f.q} className="group border-b border-line py-5">
                   <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 text-[1.1rem] font-semibold [&::-webkit-details-marker]:hidden">
-                    {f.q}<span className="font-mono text-xl text-naranja transition-transform group-open:rotate-45" aria-hidden>+</span>
+                    {f.q}<span className="text-2xl font-light text-naranja transition-transform group-open:rotate-45" aria-hidden>+</span>
                   </summary>
                   <p className="mt-3 max-w-[62ch] text-[16px] text-gris">{f.a}</p>
                 </details>
@@ -217,7 +217,7 @@ export default function Page() {
           <div className="mx-auto grid max-w-wrap gap-14 px-5 py-28 sm:px-8 md:grid-cols-2 md:py-40">
             <div>
               <span className="tech text-muted"><span className="text-naranja">+</span> 06 · Contacto</span>
-              <h2 className="mega mt-5 text-[clamp(2.8rem,6.6vw,6.6rem)] leading-[.86]"><span className="ln"><span>Cuéntanos qué mesa</span></span><span className="ln deep"><span>hay que llenar</span></span></h2>
+              <h2 className="mega mt-5 text-[clamp(2.3rem,5.4vw,5.6rem)] leading-[.98]"><span className="ln"><span>Cuéntanos qué mesa</span></span><span className="ln deep"><span>hay que llenar</span></span></h2>
               <p className="mt-6 max-w-[44ch] text-body text-gris">Treinta minutos, sin compromiso. Miramos tu perfil y tu ficha de Google antes de la llamada y te decimos qué haríamos primero.</p>
               <ul className="tech mt-8 grid gap-3 text-[11px] text-gris">
                 <li><span className="text-naranja">+</span> Respondemos en menos de 24 horas laborables</li>

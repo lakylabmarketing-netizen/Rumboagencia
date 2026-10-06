@@ -34,8 +34,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: introScript }} />
         <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossOrigin="" />
-        <link rel="preload" href="/fonts/jetbrains-mono-700.woff2" as="font" type="font/woff2" crossOrigin="" />
-        <link rel="preload" href="/fonts/archivo-var.woff2" as="font" type="font/woff2" crossOrigin="" />
       </head>
       <body>
         <div id="intro-veil" aria-hidden />

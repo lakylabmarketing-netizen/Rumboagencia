@@ -9,8 +9,6 @@
 @font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap;
   src: url(/fonts/inter-latin-ext.woff2) format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-/* Archivo variable (peso y anchura): solo para los titulares gigantes */
-@font-face { font-family: 'Archivo'; font-style: normal; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; src: url(/fonts/archivo-var.woff2) format('woff2'); }
 @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url(/fonts/jetbrains-mono-400.woff2) format('woff2'); }
 @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 700; font-display: swap; src: url(/fonts/jetbrains-mono-700.woff2) format('woff2'); }
 
@@ -28,20 +26,20 @@ body {
 img, video, canvas { display: block; max-width: 100%; }
 
 /* Etiquetas técnicas en monoespaciada */
-.tech { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; }
-.caps { text-transform: uppercase; letter-spacing: .04em; }
+.tech { font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; }
+.num { font-variant-numeric: tabular-nums; letter-spacing: -.03em; }
+.caps { letter-spacing: -.02em; }
 .kw { font-weight: 800; }  /* palabra clave: con JS el peso se anima de Light a Bold */
 .js-kw .kw:not(.is-bold) { font-weight: 300; }
 
-/* Titulares gigantes: Archivo condensada y negra con degradado acero */
-.mega { font-family: Archivo, Impact, 'Arial Narrow', sans-serif; font-weight: 900; font-stretch: 64%; text-transform: uppercase; }
-.mega .ln { display: block; overflow: hidden; padding: .16em 0 .02em; margin-top: -.16em; }
-.mega .ln > span { display: block; padding-top: .16em; margin-top: -.16em; background: linear-gradient(180deg, #C3C3C8 0%, #9A9AA2 55%, #77777E 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent; }
-.mega .ln.deep > span { background-image: linear-gradient(180deg, #FF8A3D 0%, #F04E17 55%, #C23A0E 100%); }
-.mega.on-light .ln > span { background-image: linear-gradient(180deg, #2B2B2F 0%, #55555B 100%); }
-.mega.on-light .ln.deep > span { background-image: linear-gradient(180deg, #F04E17 0%, #C23A0E 100%); }
-.mega-sub { font-family: Archivo, Impact, sans-serif; font-weight: 800; font-stretch: 70%; text-transform: uppercase; letter-spacing: 0; line-height: .9; }
+/* Titulares grandes: Inter en negrita, frase normal y bien apretada. La palabra clave, en naranja */
+.mega { font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-weight: 700; letter-spacing: -.045em; }
+.mega .ln { display: block; overflow: hidden; padding: .12em 0 .06em; margin-top: -.12em; }
+.mega .ln > span { display: block; color: #F2EFEA; }
+.mega .ln.deep > span { color: #F04E17; }
+.mega.on-light .ln > span { color: #0B0B0B; }
+.mega.on-light .ln.deep > span { color: #E0440F; }
+.mega-sub { font-family: Inter, 'Helvetica Neue', Arial, sans-serif; font-weight: 700; letter-spacing: -.025em; line-height: 1.05; }
 
 /* Rejilla de columnas finas, fija detrás de todo */
 .gridlines { position: fixed; inset: 0; z-index: 1; pointer-events: none; display: grid; grid-template-columns: repeat(4, 1fr);

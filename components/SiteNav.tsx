@@ -75,7 +75,7 @@ export default function SiteNav() {
           {[...LINKS, ...MORE, ['#contacto', 'Contacto'] as [string, string]].map(([h, l]) => (
             <a key={h} href={h} onClick={() => setOpen(false)}
               className="mega-sub flex items-baseline justify-between border-b border-line py-3 text-[clamp(2.4rem,12vw,3.4rem)] text-cal">
-              {l}<span className="font-mono text-base text-naranja">↘</span>
+              {l}<span className="text-base text-naranja">↘</span>
             </a>
           ))}
         </nav>

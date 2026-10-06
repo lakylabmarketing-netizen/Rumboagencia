@@ -75,7 +75,7 @@ export default function ContactForm() {
         <label htmlFor="rgpd" className="text-[15px] text-gris">He leído y acepto la <a href="#privacidad" className="underline underline-offset-4">política de privacidad</a> y que Rumbo use estos datos para responder a mi consulta.</label>
       </div>
       <button type="submit" disabled={state === 'sending'} data-cursor="ENVIAR"
-        className="min-h-[56px] bg-naranja px-6 font-mono text-[13px] font-bold uppercase tracking-[.16em] text-ink transition-colors hover:bg-brasa disabled:opacity-60">
+        className="min-h-[56px] bg-naranja px-6 text-[15px] font-semibold text-ink transition-colors hover:bg-brasa disabled:opacity-60">
         {state === 'sending' ? 'Enviando…' : 'Reservar mi consulta'}
       </button>
       <div role="status" aria-live="polite">

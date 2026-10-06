@@ -70,14 +70,14 @@ export default function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%] bg-[radial-gradient(45%_60%_at_50%_100%,rgba(240,78,23,.55),rgba(255,138,61,.12)_55%,transparent_75%)]" />
       <p data-hero="cap" className="tech relative z-10 px-4 text-[11px] text-gris/80 md:hidden">Marketing para hostelería <span className="text-naranja">×</span> Almería</p>
 
-      <h1 id="t-hero" className="mega relative [word-spacing:.06em] z-0 mt-3 px-4 text-center text-mega md:mt-0 md:px-[30px]">
+      <h1 id="t-hero" className="mega relative z-0 mt-3 px-4 text-center text-mega md:mt-0 md:px-[30px]">
         <span className="ln"><span>Que tu local</span></span>
         <span className="ln"><span>sea <span aria-hidden className="font-light text-naranja [-webkit-text-fill-color:#F04E17]">×</span> el que</span></span>
-        <span className="ln deep"><span className="italic">todos guardan</span></span>
+        <span className="ln deep"><span>todos guardan</span></span>
       </h1>
 
       {/* Móvil con una pieza real de Rumbo. Capas: posición/scroll › inclinación base › entrada › ratón */}
-      <div ref={phone} className="relative z-10 mx-auto -mt-[5vw] w-[min(50vw,230px)] [perspective:1200px] md:absolute md:inset-x-0 md:bottom-[-14vh] md:mt-0 md:w-[clamp(220px,19vw,310px)]">
+      <div ref={phone} className="relative z-10 mx-auto mt-4 w-[min(50vw,230px)] [perspective:1200px] md:absolute md:inset-x-0 md:bottom-[-14vh] md:mt-0 md:w-[clamp(220px,19vw,310px)]">
         <div data-phone="base" className="[transform-style:preserve-3d] [transform:rotateX(16deg)_rotateY(-14deg)_rotateZ(-7deg)]">
           <div data-phone="intro" className="[transform-style:preserve-3d]">
             <div data-phone="tilt" className="rounded-[2.4rem] border-[9px] border-[#111] bg-[#111] shadow-[0_40px_80px_-20px_rgba(0,0,0,.7)] md:rounded-[2.8rem] md:border-[11px]">

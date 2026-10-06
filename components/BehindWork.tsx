@@ -31,7 +31,7 @@ export default function BehindWork() {
           </picture>
           {/* Titular detrás de las personas */}
           <div className="stage-mask absolute inset-0">
-            <h2 id="t-nosotros" className="mega absolute inset-x-0 top-[9%] px-4 text-center text-[clamp(3.6rem,16vw,17rem)] leading-[.84] md:px-[30px]">
+            <h2 id="t-nosotros" className="mega absolute inset-x-0 top-[10%] px-4 text-center text-[clamp(2.9rem,11vw,11rem)] leading-[.96] sm:top-[8%] lg:top-[6.5%] lg:text-[clamp(2.9rem,9.2vw,10rem)] md:px-[30px]">
               <span className="ln"><span>Detrás del</span></span>
               <span className="ln deep"><span>trabajo</span></span>
             </h2>

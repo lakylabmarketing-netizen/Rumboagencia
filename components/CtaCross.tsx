@@ -27,7 +27,7 @@ export default function CtaCross({ href, children, className = '', solid = false
 
   return (
     <a ref={a} href={href} onClick={onClick} data-cursor={cursor}
-      className={`group relative inline-flex min-h-[52px] items-center justify-center px-7 py-4 font-mono text-[13px] font-bold uppercase tracking-[.16em] transition-[transform,color,background-color] duration-300 ease-out ${solid ? 'bg-naranja text-ink hover:bg-brasa' : 'text-cal hover:text-brasa'} ${className}`}>
+      className={`group relative inline-flex min-h-[52px] items-center justify-center px-7 py-4 text-[15px] font-semibold transition-[transform,color,background-color] duration-300 ease-out ${solid ? 'bg-naranja text-ink hover:bg-brasa' : 'text-cal hover:text-brasa'} ${className}`}>
       {/* borde fino que se "dibuja" al pasar por encima */}
       <svg className="pointer-events-none absolute inset-0 h-full w-full overflow-visible" aria-hidden>
         <rect x="0.5" y="0.5" width="100%" height="100%" fill="none" stroke="currentColor" strokeOpacity={solid ? 0 : 0.28} strokeDasharray="3 4" style={{ width: 'calc(100% - 1px)', height: 'calc(100% - 1px)' }} />
