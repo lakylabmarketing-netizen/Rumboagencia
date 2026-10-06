@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     type: 'website', locale: 'es_ES', siteName: 'Rumbo', url: SITE + '/',
     title: 'Rumbo · Marketing para hostelería en Almería',
     description: 'Marketing para restaurantes, hoteles y cafeterías de Almería y provincia.',
-    images: [{ url: '/img/og.jpg', width: 1200, height: 630, alt: 'Rumbo, marketing para hostelería en Almería' }],
+    images: [{ url: '/img/og-rumbo.jpg', width: 1200, height: 630, alt: 'Rumbo, marketing para hostelería en Almería' }],
   },
   twitter: { card: 'summary_large_image' },
 };
