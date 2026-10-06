@@ -5,14 +5,17 @@ import Cursor from '@/components/Cursor';
 import Intro from '@/components/Intro';
 import SiteNav from '@/components/SiteNav';
 
+// Netlify da en URL la dirección principal del sitio (el dominio propio cuando esté conectado).
+const SITE = process.env.URL || 'https://rumboagencia.info';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rumboagencia.info'),
+  metadataBase: new URL(SITE),
   title: 'Rumbo · Marketing para hostelería en Almería',
   description: 'Agencia de marketing para restaurantes en Almería. Contenido en vídeo, gestión de redes, ficha de Google y captación de reseñas.',
   alternates: { canonical: '/' },
   icons: { icon: '/img/favicon-32.png', apple: '/img/apple-touch-icon.png' },
   openGraph: {
-    type: 'website', locale: 'es_ES', siteName: 'Rumbo', url: 'https://rumboagencia.info/',
+    type: 'website', locale: 'es_ES', siteName: 'Rumbo', url: SITE + '/',
     title: 'Rumbo · Marketing para hostelería en Almería',
     description: 'Marketing para restaurantes, hoteles y cafeterías de Almería y provincia.',
     images: [{ url: '/img/og.jpg', width: 1200, height: 630, alt: 'Rumbo, marketing para hostelería en Almería' }],
