@@ -38,8 +38,9 @@ img, video, canvas { display: block; max-width: 100%; }
 .mega .ln { display: block; overflow: hidden; padding: .16em 0 .02em; margin-top: -.16em; }
 .mega .ln > span { display: block; padding-top: .16em; margin-top: -.16em; background: linear-gradient(180deg, #C3C3C8 0%, #9A9AA2 55%, #77777E 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent; }
-.mega .ln.deep > span { background-image: linear-gradient(180deg, #6E6E75 0%, #3E3E44 100%); }
+.mega .ln.deep > span { background-image: linear-gradient(180deg, #FF8A3D 0%, #F04E17 55%, #C23A0E 100%); }
 .mega.on-light .ln > span { background-image: linear-gradient(180deg, #2B2B2F 0%, #55555B 100%); }
+.mega.on-light .ln.deep > span { background-image: linear-gradient(180deg, #F04E17 0%, #C23A0E 100%); }
 .mega-sub { font-family: Archivo, Impact, sans-serif; font-weight: 800; font-stretch: 70%; text-transform: uppercase; letter-spacing: 0; line-height: .9; }
 
 /* Rejilla de columnas finas, fija detrás de todo */
@@ -51,7 +52,7 @@ img, video, canvas { display: block; max-width: 100%; }
 @media (min-width: 768px) { .gridlines { grid-template-columns: repeat(6, 1fr); padding: 0 30px; } .gridlines > i:nth-child(n+5) { display: block; } }
 
 /* Retrato del equipo: el vídeo se encaja abajo y el titular pasa por detrás de la silueta */
-.stage-video { position: absolute; bottom: 0; left: 50%; width: 190%; max-width: none; aspect-ratio: 1276 / 720; transform: translateX(-50%);
+.stage-video { position: absolute; bottom: 0; left: 50%; width: 190%; max-width: none; aspect-ratio: 2688 / 1520; transform: translateX(-50%);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent); mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent); }
 .stage-mask { -webkit-mask-image: linear-gradient(#000,#000), url(/img/equipo-silueta.png); mask-image: linear-gradient(#000,#000), url(/img/equipo-silueta.png);
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: 0 0, center bottom; mask-position: 0 0, center bottom;

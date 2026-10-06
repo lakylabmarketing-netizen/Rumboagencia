@@ -6,8 +6,8 @@ export default function SlantBand({ items }: { items: string[] }) {
       <div className="slant-track flex w-max">
         {row.map((t, i) => (
           <div key={i} aria-hidden
-            className="slant -mr-[2.4vw] flex h-[clamp(96px,14vw,230px)] w-[clamp(220px,26vw,420px)] shrink-0 items-center justify-center bg-[#FAFAFA]">
-            <span className="mega-sub text-[clamp(1.6rem,3vw,3rem)] text-[#56565c]">{t}</span>
+            className={`slant -mr-[2.4vw] flex h-[clamp(96px,14vw,230px)] w-[clamp(220px,26vw,420px)] shrink-0 items-center justify-center ${i % 3 === 1 ? 'bg-naranja' : 'bg-[#FAFAFA]'}`}>
+            <span className={`mega-sub text-[clamp(1.6rem,3vw,3rem)] ${i % 3 === 1 ? 'text-ink' : 'text-[#56565c]'}`}>{t}</span>
           </div>
         ))}
       </div>

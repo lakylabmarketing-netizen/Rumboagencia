@@ -17,7 +17,7 @@ function SectionHead({ index, title, kw, lead, light = false }: { index: string;
         <span className={`tech ${light ? 'text-[#6b6b70]' : 'text-muted'}`}><span className="text-naranja">+</span> {index}</span>
         <h2 className={`mega mt-5 text-[clamp(3rem,8.4vw,8.6rem)] leading-[.86] ${light ? 'on-light' : ''}`}>
           <span className="ln"><span>{title.replace(/\s*×\s*$/, '')}</span></span>
-          <span className={`ln ${light ? '' : 'deep'}`}><span>{kw}</span></span>
+          <span className="ln deep"><span>{kw}</span></span>
         </h2>
       </div>
       {lead && <p className={`max-w-[40ch] text-[clamp(1.15rem,1.6vw,1.45rem)] font-semibold leading-[1.2] tracking-[-.015em] md:justify-self-end ${light ? 'text-[#3d3d42]' : 'text-cal/85'}`}>{lead}</p>}

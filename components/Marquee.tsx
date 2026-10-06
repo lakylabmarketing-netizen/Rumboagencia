@@ -27,7 +27,7 @@ export default function Marquee({ items }: { items: string[] }) {
   }, []);
   const row = items.map((t, i) => (
     <span key={i} className="flex items-center gap-[.35em] pr-[.35em]">
-      <span className={i % 2 ? 'text-transparent [-webkit-text-stroke:1.5px_#9A9AA2]' : 'text-acero'}>{t}</span>
+      <span className={i % 2 ? 'text-transparent [-webkit-text-stroke:1.5px_#F04E17]' : 'text-acero'}>{t}</span>
       <span className="font-thin text-naranja">×</span>
     </span>
   ));

@@ -65,7 +65,9 @@ export default function Hero() {
 
   return (
     <section ref={root} id="inicio" aria-labelledby="t-hero"
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#0B0B0B_0%,#121214_38%,#3c3c41_78%,#5d5d63_100%)] pb-10 pt-[calc(96px+env(safe-area-inset-top))] md:flex md:min-h-[100svh] md:flex-col md:pb-0 md:pt-[88px]">
+      className="relative overflow-hidden bg-[linear-gradient(180deg,#0B0B0B_0%,#121214_40%,#2a1912_78%,#4a2414_100%)] pb-10 pt-[calc(96px+env(safe-area-inset-top))] md:flex md:min-h-[100svh] md:flex-col md:pb-0 md:pt-[88px]">
+      {/* resplandor naranja de marca detrás del móvil */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%] bg-[radial-gradient(45%_60%_at_50%_100%,rgba(240,78,23,.55),rgba(255,138,61,.12)_55%,transparent_75%)]" />
       <p data-hero="cap" className="tech relative z-10 px-4 text-[11px] text-gris/80 md:hidden">Marketing para hostelería <span className="text-naranja">×</span> Almería</p>
 
       <h1 id="t-hero" className="mega relative [word-spacing:.06em] z-0 mt-3 px-4 text-center text-mega md:mt-0 md:px-[30px]">

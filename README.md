@@ -11,7 +11,7 @@ lib/content.ts        Todos los textos y cifras de la web
 tailwind.config.ts    Tokens de diseño (colores, tipografías, tamaños, radios)
 public/enlaces/       Página de enlaces de la bio de Instagram (/enlaces), HTML autónomo
 public/portafolio/    Portafolio (/portafolio), HTML autónomo con sus vídeos
-public/img, video     Imágenes, testimonios de A Lo Cubano, bucles de las piezas y el vídeo del equipo (Higgsfield)
+public/img, video     Imágenes, testimonios de A Lo Cubano, bucles de las piezas y el retrato del equipo (Higgsfield)
 legacy-index.html     Versión estática anterior (no se publica; solo referencia)
 ```
 
@@ -21,4 +21,4 @@ legacy-index.html     Versión estática anterior (no se publica; solo referenci
 - La intro solo se muestra la primera vez (clave `rumbo-intro-2026` en localStorage) y nunca con «reducir movimiento».
 - Busca `PENDIENTE` en los archivos para ver los datos que faltan.
 
-- «Detrás del trabajo»: `public/video/equipo.mp4` es el retrato animado con Higgsfield a partir de las fotos de Esteban y Eneko. `public/img/equipo-silueta.png` es su silueta: el titular la usa de máscara para pasar por detrás.
+- «Detrás del trabajo»: `public/img/equipo.webp` es el retrato creado con Higgsfield a partir de las fotos de Esteban y Eneko (foto fija). `public/img/equipo-silueta.png` es su silueta: el titular la usa de máscara para pasar por detrás.
