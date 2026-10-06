@@ -3,6 +3,9 @@ import { useEffect, useRef } from 'react';
 import { gsap, ScrollTrigger, prefersReduced } from '@/lib/gsap';
 import { pieces, testimonials } from '@/lib/content';
 
+// Piezas con vídeo real disponible (bucles cortos y sin sonido)
+const LOOPS = [1, 3, 4];
+
 /** Proyectos: scroll horizontal fijado en escritorio; carrusel con snap en móvil. */
 export default function ProjectsRail() {
   const section = useRef<HTMLDivElement>(null);
@@ -33,19 +36,31 @@ export default function ProjectsRail() {
     return () => mm.revert();
   }, []);
 
+  // Los bucles de las piezas se reproducen solos cuando se ven
+  useEffect(() => {
+    if (prefersReduced()) return;
+    const vids = section.current!.querySelectorAll<HTMLVideoElement>('video[data-loop]');
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      const v = e.target as HTMLVideoElement;
+      if (e.isIntersecting) v.play().catch(() => {}); else v.pause();
+    }), { threshold: 0.3 });
+    vids.forEach((v) => io.observe(v));
+    return () => io.disconnect();
+  }, []);
+
   // Solo suena un vídeo a la vez
   useEffect(() => {
-    const onPlay = (e: Event) => document.querySelectorAll('video').forEach((v) => { if (v !== e.target && !v.paused) v.pause(); });
+    const onPlay = (e: Event) => (e.target as HTMLVideoElement).controls && document.querySelectorAll<HTMLVideoElement>('video[controls]').forEach((v) => { if (v !== e.target && !v.paused) v.pause(); });
     document.addEventListener('play', onPlay, true);
     return () => document.removeEventListener('play', onPlay, true);
   }, []);
 
   return (
     <div ref={section} className="relative overflow-hidden min-[900px]:h-[100svh]">
-      <div ref={track} className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-6 pt-24 [scrollbar-width:none] min-[900px]:h-full min-[900px]:snap-none min-[900px]:items-center min-[900px]:overflow-visible min-[900px]:px-8 min-[900px]:pt-16">
+      <div ref={track} className="flex snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 pb-6 pt-24 [scrollbar-width:none] min-[900px]:h-full min-[900px]:snap-none min-[900px]:items-center min-[900px]:overflow-visible min-[900px]:px-8 min-[900px]:pt-16">
         <div className="flex w-[78vw] max-w-[420px] shrink-0 snap-start flex-col justify-center pr-6 min-[900px]:w-[30vw]">
-          <span className="tech text-muted">03 · Proyectos</span>
-          <h2 className="caps mt-4 text-h2 font-light" data-scramble>A Lo <span className="font-extrabold">Cubano</span></h2>
+          <span className="tech text-muted"><span className="text-naranja">+</span> 02 · Proyectos</span>
+          <h2 className="mega mt-5 text-[clamp(3rem,6.4vw,6.8rem)] leading-[.86]"><span className="ln"><span>A Lo</span></span><span className="ln deep"><span>Cubano</span></span></h2>
           <p className="mt-4 text-body text-gris">Cocina cubana de fusión en Roquetas de Mar. Abrió a finales de junio de 2026 y empezamos el 8 de julio: vídeo, ficha de Google y captación de reseñas.</p>
           <p className="tech mt-6 text-cal">5,0 <span className="text-brasa">★</span> · 151 reseñas en Google</p>
           <p className="tech mt-8 hidden text-muted min-[900px]:block">Sigue bajando →</p>
@@ -69,8 +84,16 @@ export default function ProjectsRail() {
         {pieces.map((p) => (
           <figure key={p.n} data-card className="m-0 flex w-[66vw] max-w-[320px] shrink-0 snap-start flex-col min-[900px]:w-[22vw]">
             <div className="rgb relative aspect-[9/16] max-h-[64svh] overflow-hidden rounded-md bg-surface min-[900px]:max-h-[62svh]" data-cursor="PIEZA">
-              <img src={`/img/portada-pieza-${p.n}.webp`} alt={`Portada del vídeo «${p.title}»`} loading="lazy" className="h-full w-full object-cover" />
-              <span className="tech absolute bottom-3 left-3 bg-brasa px-2 py-1 text-ink">[PENDIENTE: GIF]</span>
+              {LOOPS.includes(p.n) ? (
+                <video data-loop muted loop playsInline preload="none" poster={`/portafolio/assets/pieza-${p.n}-poster.jpg`} className="h-full w-full object-cover" aria-label={`Vídeo «${p.title}»`}>
+                  <source src={`/video/pieza-${p.n}-loop.mp4`} type="video/mp4" />
+                </video>
+              ) : (
+                <>
+                  <img src={`/img/portada-pieza-${p.n}.webp`} alt={`Portada del vídeo «${p.title}»`} loading="lazy" className="h-full w-full object-cover" />
+                  <span className="tech absolute bottom-3 left-3 bg-brasa px-2 py-1 text-ink">[PENDIENTE: vídeo]</span>
+                </>
+              )}
             </div>
             <figcaption className="mt-4">
               <span className="tech text-brasa">#0{p.n} · {p.tag}</span>

@@ -16,7 +16,7 @@ export default function FooterBig() {
   }, []);
   return (
     <div ref={root} className="overflow-hidden">
-      <p className="caps flex justify-between text-[23.5vw] font-extrabold leading-[.8] tracking-[-.02em]" aria-label="Rumbo">
+      <p className="mega flex justify-between text-[33vw] leading-[.8] text-acero" aria-label="Rumbo">
         {'RUMBO'.split('').map((l, i) => <span key={i} data-letter aria-hidden className={i === 0 ? 'text-naranja' : ''}>{l}</span>)}
       </p>
       <p data-final className="tech mt-6 text-center text-gris">Ya puedes apagar el móvil y abrir la cocina<span className="animate-pulse text-naranja">_</span></p>

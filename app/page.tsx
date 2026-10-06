@@ -1,27 +1,32 @@
 import Hero from '@/components/Hero';
 import Marquee from '@/components/Marquee';
+import BehindWork from '@/components/BehindWork';
+import SlantBand from '@/components/SlantBand';
 import ProjectsRail from '@/components/ProjectsRail';
 import Counter from '@/components/Counter';
 import ContactForm from '@/components/ContactForm';
 import FooterBig from '@/components/FooterBig';
 import CtaCross from '@/components/CtaCross';
 import { Logo } from '@/components/Logo';
-import { CONTACT_EMAIL, commitments, conditions, faqs, metricGroups, plans, process, services, team, topVideos } from '@/lib/content';
+import { CONTACT_EMAIL, commitments, conditions, faqs, metricGroups, plans, process, services, topVideos } from '@/lib/content';
 
-function SectionHead({ index, title, kw, lead }: { index: string; title: string; kw: string; lead?: string }) {
+function SectionHead({ index, title, kw, lead, light = false }: { index: string; title: string; kw: string; lead?: string; light?: boolean }) {
   return (
-    <header className="mb-14 grid gap-5 md:mb-20 md:grid-cols-[minmax(0,1fr)_minmax(0,.8fr)] md:items-end">
+    <header className="mb-14 grid gap-6 md:mb-20 md:grid-cols-[minmax(0,1.3fr)_minmax(0,.7fr)] md:items-end">
       <div>
-        <span className="tech text-muted">{index}</span>
-        <h2 className="caps mt-4 text-h2 font-light">{title} <span className="font-extrabold">{kw}</span></h2>
+        <span className={`tech ${light ? 'text-[#6b6b70]' : 'text-muted'}`}><span className="text-naranja">+</span> {index}</span>
+        <h2 className={`mega mt-5 text-[clamp(3rem,8.4vw,8.6rem)] leading-[.86] ${light ? 'on-light' : ''}`}>
+          <span className="ln"><span>{title.replace(/\s*×\s*$/, '')}</span></span>
+          <span className={`ln ${light ? '' : 'deep'}`}><span>{kw}</span></span>
+        </h2>
       </div>
-      {lead && <p className="max-w-[48ch] text-body text-gris md:justify-self-end">{lead}</p>}
+      {lead && <p className={`max-w-[40ch] text-[clamp(1.15rem,1.6vw,1.45rem)] font-semibold leading-[1.2] tracking-[-.015em] md:justify-self-end ${light ? 'text-[#3d3d42]' : 'text-cal/85'}`}>{lead}</p>}
     </header>
   );
 }
 
-function PlanNote({ children }: { children: string }) {
-  return <span className="tech ml-0 mt-2 inline-block border border-brasa/50 px-2 py-0.5 text-[10px] text-brasa md:ml-3 md:mt-0">{children}</span>;
+function PlanNote({ children, light = false }: { children: string; light?: boolean }) {
+  return <span className={`tech ml-0 mt-2 inline-block border px-2 py-0.5 align-middle text-[10px] md:ml-3 md:mt-0 ${light ? 'border-[#C2410C]/50 text-[#C2410C]' : 'border-brasa/50 text-brasa'}`}>{children}</span>;
 }
 
 const corners = (cls = 'text-cal/40') => (
@@ -38,27 +43,28 @@ export default function Page() {
     <>
       <main id="contenido">
         <Hero />
-        <Marquee items={['Vídeo', 'Redes', 'Ficha de Google', 'Reseñas', 'Almería']} />
-
-        {/* QUÉ HACEMOS */}
-        <section id="servicios" data-fx className="mx-auto max-w-wrap px-5 py-28 sm:px-8 md:py-40" aria-label="Qué hacemos">
-          <SectionHead index="01 · Qué hacemos" title="Qué" kw="hacemos" lead="Rumbo es una agencia de Almería que trabaja solo con hostelería: restaurantes, hoteles, cafeterías y locales de ocio de la provincia." />
-          <ul className="border-t border-line">
-            {services.map((s) => (
-              <li key={s.k} data-rise className="grid gap-3 border-b border-line py-8 md:grid-cols-[120px_minmax(0,.9fr)_minmax(0,1.2fr)] md:items-baseline md:py-10">
-                <span className="tech text-naranja">{s.k}</span>
-                <h3 className="caps text-h3 font-bold">{s.title}{s.note && <PlanNote>{s.note}</PlanNote>}</h3>
-                <p className="max-w-[56ch] text-body text-gris">{s.text}</p>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-16 grid grid-cols-2 gap-px bg-line md:grid-cols-4">
-            {[['Desde 550 €/mes', 'Tres planes con el mismo equipo.'], ['3 meses', 'Permanencia mínima; después, mes a mes.'], ['100 % tuyo', 'Cuentas y material grabado, también si te vas.'], ['1 informe al mes', 'Con las métricas, en todos los planes.']].map(([v, l]) => (
-              <div key={v} data-rise className="relative bg-ink p-5 md:p-7">
-                <div className="font-mono text-lg font-bold md:text-xl">{v}</div>
-                <p className="mt-2 text-[15px] text-gris">{l}</p>
-              </div>
-            ))}
+        {/* QUÉ HACEMOS (sección clara) */}
+        <section id="servicios" data-fx className="relative bg-niebla text-ink" aria-label="Qué hacemos">
+          <div className="pt-20 md:pt-28"><SlantBand items={['Vídeo', 'Redes', 'Ficha de Google', 'Reseñas', 'Hostelería', 'Almería']} /></div>
+          <div className="mx-auto max-w-wrap px-5 pb-28 pt-20 sm:px-8 md:pb-40 md:pt-28">
+            <SectionHead light index="01 · Qué hacemos" title="Qué" kw="hacemos" lead="Rumbo es una agencia de Almería que trabaja solo con hostelería: restaurantes, hoteles, cafeterías y locales de ocio de la provincia." />
+            <ul className="border-t border-black/15">
+              {services.map((s) => (
+                <li key={s.k} data-rise className="grid gap-3 border-b border-black/15 py-8 md:grid-cols-[120px_minmax(0,.9fr)_minmax(0,1.2fr)] md:items-baseline md:py-10">
+                  <span className="tech text-[#C2410C]">{s.k}</span>
+                  <h3 className="mega-sub text-[clamp(1.8rem,3vw,2.6rem)]">{s.title}{s.note && <PlanNote light>{s.note}</PlanNote>}</h3>
+                  <p className="max-w-[56ch] text-body text-[#3d3d42]">{s.text}</p>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-16 grid grid-cols-2 gap-px bg-black/15 md:grid-cols-4">
+              {[['Desde 550 €/mes', 'Tres planes con el mismo equipo.'], ['3 meses', 'Permanencia mínima; después, mes a mes.'], ['100 % tuyo', 'Cuentas y material grabado, también si te vas.'], ['1 informe al mes', 'Con las métricas, en todos los planes.']].map(([v, l]) => (
+                <div key={v} data-rise className="relative bg-niebla p-5 md:p-7">
+                  <div className="font-mono text-lg font-bold md:text-xl">{v}</div>
+                  <p className="mt-2 text-[15px] text-[#3d3d42]">{l}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -146,31 +152,8 @@ export default function Page() {
           </div>
         </section>
 
-        {/* SOBRE NOSOTROS */}
-        <section id="nosotros" data-fx className="border-t border-line" aria-label="Sobre nosotros">
-          <span id="quienes" className="sr-only" /><span id="equipo" className="sr-only" />
-          <div className="mx-auto max-w-wrap px-5 py-28 sm:px-8 md:py-40">
-            <SectionHead index="03 · Sobre nosotros" title="Dos personas ×" kw="un equipo" lead="Quien edita no atiende clientes: así el trabajo sale a tiempo y sabes siempre con quién hablar." />
-            <div className="grid gap-10 md:grid-cols-2">
-              {team.map((m) => (
-                <figure key={m.name} data-rise className="m-0">
-                  <div className="rgb relative aspect-[4/5] overflow-hidden rounded-md bg-surface">
-                    <img src={m.img} width={m.w} height={m.h} alt={`${m.name}, socio de Rumbo`} loading="lazy" className="h-full w-full object-cover object-[50%_18%]" />
-                    {corners('text-cal/60')}
-                  </div>
-                  <figcaption className="mt-6">
-                    <div className="flex flex-wrap items-baseline justify-between gap-3">
-                      <h3 className="caps text-h2 font-extrabold">{m.name}</h3>
-                      <span className="tech text-brasa">{m.role}</span>
-                    </div>
-                    <p className="mt-4 max-w-[48ch] text-body text-gris">{m.text}</p>
-                    <p className="tech mt-4 text-[10px] leading-relaxed text-muted">{m.tasks}</p>
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* SOBRE NOSOTROS: detrás del trabajo */}
+        <BehindWork />
 
         {/* PRECIOS */}
         <section id="precios" data-fx className="border-t border-line" aria-label="Precios">
@@ -212,8 +195,8 @@ export default function Page() {
         <section id="faq" data-fx className="border-t border-line" aria-label="Preguntas frecuentes">
           <div className="mx-auto grid max-w-wrap gap-12 px-5 py-28 sm:px-8 md:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] md:py-40">
             <div>
-              <span className="tech text-muted">05 · Preguntas</span>
-              <h2 className="caps mt-4 text-h2 font-light">Antes de <span className="font-extrabold">firmar</span></h2>
+              <span className="tech text-muted"><span className="text-naranja">+</span> 05 · Preguntas</span>
+              <h2 className="mega mt-5 text-[clamp(3rem,8.4vw,8.6rem)] leading-[.86]"><span className="ln"><span>Antes de</span></span><span className="ln deep"><span>firmar</span></span></h2>
             </div>
             <div className="border-t border-line">
               {faqs.map((f) => (
@@ -233,8 +216,8 @@ export default function Page() {
           <span id="consulta" className="sr-only" />
           <div className="mx-auto grid max-w-wrap gap-14 px-5 py-28 sm:px-8 md:grid-cols-2 md:py-40">
             <div>
-              <span className="tech text-muted">06 · Contacto</span>
-              <h2 className="caps mt-4 text-h2 font-light">Cuéntanos qué mesa <span className="font-extrabold">hay que llenar</span></h2>
+              <span className="tech text-muted"><span className="text-naranja">+</span> 06 · Contacto</span>
+              <h2 className="mega mt-5 text-[clamp(2.8rem,6.6vw,6.6rem)] leading-[.86]"><span className="ln"><span>Cuéntanos qué mesa</span></span><span className="ln deep"><span>hay que llenar</span></span></h2>
               <p className="mt-6 max-w-[44ch] text-body text-gris">Treinta minutos, sin compromiso. Miramos tu perfil y tu ficha de Google antes de la llamada y te decimos qué haríamos primero.</p>
               <ul className="tech mt-8 grid gap-3 text-[11px] text-gris">
                 <li><span className="text-naranja">+</span> Respondemos en menos de 24 horas laborables</li>

@@ -27,13 +27,13 @@ export default function Marquee({ items }: { items: string[] }) {
   }, []);
   const row = items.map((t, i) => (
     <span key={i} className="flex items-center gap-[.35em] pr-[.35em]">
-      <span className={i % 2 ? 'font-light text-transparent [-webkit-text-stroke:1px_#F2EFEA]' : 'font-extrabold'}>{t}</span>
+      <span className={i % 2 ? 'text-transparent [-webkit-text-stroke:1.5px_#9A9AA2]' : 'text-acero'}>{t}</span>
       <span className="font-thin text-naranja">×</span>
     </span>
   ));
   return (
     <div className="relative overflow-hidden border-y border-line py-6 sm:py-9" aria-hidden>
-      <div ref={track} className="marquee-track caps whitespace-nowrap text-[clamp(3.2rem,11vw,10rem)] leading-none">
+      <div ref={track} className="marquee-track mega whitespace-nowrap text-[clamp(3.6rem,13vw,12rem)] leading-none">
         {row}{row}
       </div>
     </div>

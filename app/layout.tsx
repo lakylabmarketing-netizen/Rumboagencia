@@ -35,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: introScript }} />
         <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="preload" href="/fonts/jetbrains-mono-700.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/archivo-var.woff2" as="font" type="font/woff2" crossOrigin="" />
       </head>
       <body>
         <div id="intro-veil" aria-hidden />
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <feBlend in="rg" in2="b2" mode="screen" />
           </filter>
         </svg>
+        <div className="gridlines" aria-hidden>{Array.from({ length: 6 }, (_, i) => <i key={i} />)}</div>
         <SiteNav />
         {children}
         <div className="grain" aria-hidden />
