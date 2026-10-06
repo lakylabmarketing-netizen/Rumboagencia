@@ -100,9 +100,13 @@ img, video, canvas { display: block; max-width: 100%; }
 .marquee-track { display: flex; width: max-content; will-change: transform; }
 
 /* Cursor personalizado */
-.cursor-dot, .cursor-hud { position: fixed; left: 0; top: 0; z-index: 80; pointer-events: none; will-change: transform; }
-@media (hover: none), (pointer: coarse) { .cursor-dot, .cursor-hud { display: none !important; } }
-@media (hover: hover) and (pointer: fine) { .has-cursor, .has-cursor a, .has-cursor button { cursor: none; } }
+.cursor-dot { position: fixed; left: 0; top: 0; z-index: 80; pointer-events: none; will-change: transform; }
+.cursor-dot > span { position: absolute; left: -6px; top: -6px; width: 12px; height: 12px; border-radius: 50%;
+  background: #F04E17; border: 1.5px solid #F04E17; transition: transform .25s cubic-bezier(.2,.7,.2,1), background-color .25s, opacity .2s; }
+.cursor-dot.is-hover > span { transform: scale(3.4); background: rgba(240,78,23,.12); border-width: .5px; }
+.cursor-dot.is-hidden > span { opacity: 0; }
+@media (hover: none), (pointer: coarse) { .cursor-dot { display: none !important; } }
+@media (hover: hover) and (pointer: fine) { .has-cursor, .has-cursor a, .has-cursor button, .has-cursor summary, .has-cursor label { cursor: none; } }
 
 /* Intro: pantalla negra hasta que monta el componente (solo si el script decide mostrarla) */
 html.intro-pending body { overflow: hidden; }

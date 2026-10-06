@@ -1,13 +1,13 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 
-// El texto se actualiza por referencia: sin renders de React en cada movimiento.
-
-/** Punto + cruceta HUD con coordenadas o etiqueta según el elemento. Solo con ratón. */
+/**
+ * Cursor sencillo: un punto naranja que sigue al ratón con un poco de inercia.
+ * Sobre enlaces, botones y vídeos se abre en un aro; en los campos de texto se oculta y vuelve el cursor normal.
+ * Solo con ratón; en pantallas táctiles no existe.
+ */
 export default function Cursor() {
   const dot = useRef<HTMLDivElement>(null);
-  const hud = useRef<HTMLDivElement>(null);
-  const txt = useRef<HTMLSpanElement>(null);
   const [on, setOn] = useState(false);
 
   useEffect(() => {
@@ -16,36 +16,36 @@ export default function Cursor() {
     if (!fine) return;
     setOn(true);
     document.documentElement.classList.add('has-cursor');
-    let x = innerWidth / 2, y = innerHeight / 2, hx = x, hy = y, raf = 0;
+    let x = -100, y = -100, cx = x, cy = y, raf = 0;
     const move = (e: PointerEvent) => {
       x = e.clientX; y = e.clientY;
-      const t = (e.target as HTMLElement).closest<HTMLElement>('[data-cursor], a, button, video, summary, input, textarea, label');
-      const lab = t ? t.dataset.cursor || (t.tagName === 'VIDEO' ? 'PLAY' : t.matches('input,textarea') ? 'TYPE' : 'VIEW') : '';
-      if (txt.current) txt.current.textContent = lab || `X ${String(Math.round(x)).padStart(4, '0')} · Y ${String(Math.round(y)).padStart(4, '0')}`;
+      const el = dot.current;
+      if (!el) return;
+      const t = e.target as HTMLElement;
+      el.classList.toggle('is-hover', !!t.closest('a, button, summary, label, video, [data-cursor]'));
+      el.classList.toggle('is-hidden', !!t.closest('input, textarea, select'));
     };
+    const leave = () => dot.current?.classList.add('is-hidden');
+    const enter = () => dot.current?.classList.remove('is-hidden');
     const loop = () => {
-      const k = reduced ? 1 : 0.18;
-      hx += (x - hx) * k; hy += (y - hy) * k;
-      if (dot.current) dot.current.style.transform = `translate3d(${x - 3}px, ${y - 3}px, 0)`;
-      if (hud.current) hud.current.style.transform = `translate3d(${hx - 22}px, ${hy - 22}px, 0)`;
+      const k = reduced ? 1 : 0.22;
+      cx += (x - cx) * k; cy += (y - cy) * k;
+      if (dot.current) dot.current.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
       raf = requestAnimationFrame(loop);
     };
     addEventListener('pointermove', move, { passive: true });
+    document.addEventListener('pointerleave', leave);
+    document.addEventListener('pointerenter', enter);
     raf = requestAnimationFrame(loop);
-    return () => { removeEventListener('pointermove', move); cancelAnimationFrame(raf); document.documentElement.classList.remove('has-cursor'); };
+    return () => {
+      removeEventListener('pointermove', move);
+      document.removeEventListener('pointerleave', leave);
+      document.removeEventListener('pointerenter', enter);
+      cancelAnimationFrame(raf);
+      document.documentElement.classList.remove('has-cursor');
+    };
   }, []);
 
   if (!on) return null;
-  return (
-    <>
-      <div ref={dot} className="cursor-dot h-1.5 w-1.5 rounded-full bg-naranja" aria-hidden />
-      <div ref={hud} className="cursor-hud h-11 w-11 text-cal/70" aria-hidden>
-        <span className="plus" style={{ left: -5, top: -5 }} />
-        <span className="plus" style={{ right: -5, top: -5 }} />
-        <span className="plus" style={{ left: -5, bottom: -5 }} />
-        <span className="plus" style={{ right: -5, bottom: -5 }} />
-        <span ref={txt} className="tech absolute left-14 top-1 whitespace-nowrap text-[10px] text-cal/80" />
-      </div>
-    </>
-  );
+  return <div ref={dot} className="cursor-dot" aria-hidden><span /></div>;
 }
