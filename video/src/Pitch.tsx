@@ -111,7 +111,8 @@ export const Pitch = () => {
         </Sequence>
         {blocks.map((b, i) => {
           const from = Math.round(b.start * FPS);
-          const dur = Math.max(6, Math.round((b.end - b.start) * FPS) + 3);
+          const next = blocks[i + 1] ? Math.round(blocks[i + 1].start * FPS) : Infinity;
+          const dur = Math.max(4, Math.min(Math.round((b.end - b.start) * FPS) + 3, next - from)); // sin solapar con el siguiente
           return (
             <Sequence key={i} from={from} durationInFrames={dur}>
               <Caption block={b} />
