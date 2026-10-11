@@ -1,8 +1,9 @@
+import type React from 'react';
 import {AbsoluteFill, Easing, Img, OffthreadVideo, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import cuts from '../public/cuts.json';
 import captions from '../public/captions.json';
 import {BRAND, FPS, OUTRO_FRAMES, W} from './brand';
-import {Block, Word, atSeq, toBlocks} from './captions';
+import {KEYWORDS, Word, atSeq, toBlocks} from './captions';
 import {Card, CardView} from './Cards';
 
 const keep = cuts.keep as number[][];
@@ -19,19 +20,19 @@ const words = captions as Word[];
 const blocks = toBlocks(words);
 
 // ── Tarjetas a pantalla completa, disparadas por palabras del guion ─────────────────────────────
-const CARD_DEFS: {seq: string[]; big: string; small?: string; frames: number}[] = [
+const CARD_DEFS: {seq: string[]; big: string; small?: string; frames: number; count?: {to: number; suffix: string}}[] = [
   {seq: ['auténtica'], big: 'AUTÉNTICA', frames: 34},
   {seq: ['unimos'], big: 'NORTE + SUR', frames: 40},
   {seq: ['brasa'], big: 'BRASA', small: 'comedor con brasa', frames: 36},
-  {seq: ['40'], big: '40', small: 'cubiertos al día', frames: 40},
-  {seq: ['35'], big: '35 €', small: 'ticket medio', frames: 40},
-  {seq: ['120.000'], big: '120.000 €', small: 'para abrir', frames: 46},
-  {seq: ['20'], big: '20 %', small: 'de participación', frames: 46},
+  {seq: ['40'], big: '40', small: 'cubiertos al día', frames: 44, count: {to: 40, suffix: ''}},
+  {seq: ['35'], big: '35 €', small: 'ticket medio', frames: 44, count: {to: 35, suffix: ' €'}},
+  {seq: ['120.000'], big: '120.000 €', small: 'para abrir', frames: 52, count: {to: 120000, suffix: ' €'}},
+  {seq: ['20'], big: '20 %', small: 'de participación', frames: 50, count: {to: 20, suffix: ' %'}},
   {seq: ['hablamos'], big: '¿HABLAMOS?', frames: 60},
 ];
 const cards: Card[] = CARD_DEFS.flatMap((d) => {
   const t = atSeq(words, d.seq);
-  return t === null ? [] : [{at: t, big: d.big, small: d.small, frames: d.frames}];
+  return t === null ? [] : [{at: t, big: d.big, small: d.small, frames: d.frames, count: d.count}];
 });
 
 // ── Títulos de sección ─────────────────────────────────────────────────────────────────────────
@@ -49,8 +50,13 @@ const sections = SECTION_DEFS.flatMap((d) => {
   return t === null ? [] : [{at: t, label: d.label}];
 });
 
-// Golpe de zoom en cada palabra clave
-const keyFrames = blocks.map((b) => Math.round(b.words[b.keyIndex].s * FPS));
+// Solo palabras clave: una por bloque, y solo si está en el vocabulario del pitch
+const keys = blocks
+  .map((b) => b.words[b.keyIndex])
+  .filter((w) => KEYWORDS.has(w.w))
+  .map((w, i, arr) => ({text: w.w, from: Math.round(w.s * FPS), to: Math.min(Math.round(w.e * FPS) + 14, i + 1 < arr.length ? Math.round(arr[i + 1].s * FPS) : Infinity)}))
+  .filter((k) => k.to - k.from >= 6);
+const keyFrames = keys.map((k) => k.from);
 
 const VIDEO_H = Math.round((W * 9) / 16); // 608: 16:9 a todo el ancho, sin estirar el 720p
 
@@ -69,38 +75,84 @@ const useZoom = () => {
   return base + pulse;
 };
 
-/** Subtítulo palabra a palabra: cada palabra entra cuando se dice; la clave va en serif cursiva y se subraya. */
-const Caption = ({block}: {block: Block}) => {
+/** Palabra clave a pantalla completa de ancho, con 5 entradas distintas que rotan (pop, letras, máscara, desenfoque, giro). */
+const KeyWord = ({text, variant, dur}: {text: string; variant: number; dur: number}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
-  const reveal = (w: {s: number}, d = 6) => {
-    const f = Math.round((w.s - block.start) * FPS);
-    const t = interpolate(frame - f, [0, d], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
-    return {opacity: t, transform: `translateY(${(1 - t) * 22}px)`};
-  };
-  const small = {fontFamily: BRAND.sans, fontWeight: 800, fontSize: 66, letterSpacing: -1, color: BRAND.white, display: 'inline-block', margin: '0 12px'} as const;
-  const key = block.words[block.keyIndex];
-  const kf = Math.round((key.s - block.start) * FPS);
-  const pop = spring({frame: frame - kf, fps, config: {damping: 11, stiffness: 190}, durationInFrames: 16});
-  const under = interpolate(frame - kf, [2, 14], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
+  const size = Math.min(230, Math.floor(960 / (text.length * 0.4)));
+  const out = interpolate(frame, [dur - 5, dur], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const under = interpolate(frame, [5, 16], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
+  const sp = (d = 0, damping = 11, stiffness = 190) => spring({frame: frame - d, fps, config: {damping, stiffness}, durationInFrames: 18});
+  const ring = interpolate(frame, [0, 16], [0, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
+  const base = {fontFamily: BRAND.serif, fontStyle: 'italic', fontSize: size, color: BRAND.white, lineHeight: 1.05, letterSpacing: -3, whiteSpace: 'nowrap'} as const;
+  let inner: React.ReactNode;
+  if (variant === 0) {
+    const p = sp();
+    inner = <div style={{...base, transform: `scale(${0.6 + 0.4 * p})`, opacity: Math.min(1, p * 1.6)}}>{text}</div>;
+  } else if (variant === 1) {
+    inner = (
+      <div style={base}>
+        {text.split('').map((c, i) => {
+          const p = sp(i * 1.4, 12, 170);
+          return <span key={i} style={{display: 'inline-block', transform: `translateY(${(1 - p) * 90}px) rotate(${(1 - p) * 8}deg)`, opacity: Math.min(1, p * 2)}}>{c}</span>;
+        })}
+      </div>
+    );
+  } else if (variant === 2) {
+    const t = interpolate(frame, [0, 9], [110, 0], {extrapolateRight: 'clamp', easing: Easing.out(Easing.exp)});
+    inner = <div style={{overflow: 'hidden', padding: '0 12px'}}><div style={{...base, transform: `translateY(${t}%)`}}>{text}</div></div>;
+  } else if (variant === 3) {
+    const t = interpolate(frame, [0, 9], [0, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
+    inner = <div style={{...base, filter: `blur(${(1 - t) * 22}px)`, transform: `scale(${1.25 - 0.25 * t})`, opacity: t}}>{text}</div>;
+  } else {
+    const p = sp(0, 10, 150);
+    inner = <div style={{...base, transform: `translateX(${(1 - p) * -90}px) rotate(${(1 - p) * -7}deg)`, opacity: Math.min(1, p * 1.8)}}>{text}</div>;
+  }
   return (
-    <div style={{position: 'absolute', left: 50, right: 50, top: 1262, textAlign: 'center'}}>
-      <div style={{minHeight: 78}}>
-        {block.words.slice(0, block.keyIndex).map((w, i) => (
-          <span key={i} style={{...small, ...reveal(w)}}>{w.w}</span>
-        ))}
-      </div>
-      <div style={{position: 'relative', display: 'inline-block', opacity: Math.min(1, pop * 1.5), transform: `scale(${0.7 + 0.3 * pop})`}}>
-        <div style={{fontFamily: BRAND.serif, fontStyle: 'italic', fontSize: 190, color: BRAND.white, lineHeight: 1.02, letterSpacing: -3}}>{key.w}</div>
-        <div style={{position: 'absolute', left: 0, bottom: 4, height: 5, width: `${under * 100}%`, background: BRAND.white, borderRadius: 3}} />
-      </div>
-      <div style={{minHeight: 78}}>
-        {block.words.slice(block.keyIndex + 1).map((w, i) => (
-          <span key={i} style={{...small, ...reveal(w)}}>{w.w}</span>
-        ))}
+    <div style={{position: 'absolute', left: 0, width: W, top: 1255, display: 'flex', justifyContent: 'center', opacity: out, transform: `translateY(${(1 - out) * -14}px)`}}>
+      <div style={{position: 'absolute', top: 70, width: 160 + ring * 900, height: 160 + ring * 900, marginTop: -(80 + ring * 450), borderRadius: '50%', border: '3px solid rgba(255,255,255,0.35)', opacity: (1 - ring) * 0.9}} />
+      <div style={{position: 'relative'}}>
+        {inner}
+        <div style={{position: 'absolute', left: 0, bottom: 6, height: 5, width: `${under * 100}%`, background: BRAND.white, borderRadius: 3}} />
       </div>
     </div>
   );
+};
+
+/** Cinta de texto que se desplaza abajo (identidad de marca en movimiento). */
+const Ticker = () => {
+  const frame = useCurrentFrame();
+  const unit = 'TABERNA VASCA  ·  ALMERÍA  ·  JOSEBA AÑORGA  ·  ';
+  return (
+    <div style={{position: 'absolute', left: 0, width: W, top: 1740, overflow: 'hidden', opacity: 0.28}}>
+      <div style={{whiteSpace: 'nowrap', transform: `translateX(${-(frame * 2.2) % 1180}px)`, fontFamily: BRAND.sans, fontWeight: 700, fontSize: 30, letterSpacing: 9, color: BRAND.white}}>
+        {unit.repeat(8)}
+      </div>
+    </div>
+  );
+};
+
+/** Esquinas que se dibujan alrededor del vídeo. */
+const Corners = () => {
+  const frame = useCurrentFrame();
+  const t = interpolate(frame, [4, 24], [0, 1], {extrapolateRight: 'clamp', extrapolateLeft: 'clamp', easing: Easing.out(Easing.cubic)});
+  const L = 54 * t, top = 560, bottom = 560 + VIDEO_H, m = 26;
+  const line = {position: 'absolute', background: BRAND.white} as const;
+  return (
+    <>
+      <div style={{...line, left: m, top: top + m, width: L, height: 3}} /><div style={{...line, left: m, top: top + m, width: 3, height: L}} />
+      <div style={{...line, right: m, top: top + m, width: L, height: 3}} /><div style={{...line, right: m, top: top + m, width: 3, height: L}} />
+      <div style={{...line, left: m, top: bottom - m - 3, width: L, height: 3}} /><div style={{...line, left: m, top: bottom - m - L, width: 3, height: L}} />
+      <div style={{...line, right: m, top: bottom - m - 3, width: L, height: 3}} /><div style={{...line, right: m, top: bottom - m - L, width: 3, height: L}} />
+    </>
+  );
+};
+
+/** Barrido blanco entre secciones. */
+const Whip = () => {
+  const frame = useCurrentFrame();
+  const x = interpolate(frame, [0, 10], [-260, W + 60], {extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic)});
+  return <div style={{position: 'absolute', top: 0, left: x, width: 220, height: 1920, background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent)', opacity: 0.8}} />;
 };
 
 const SectionTag = ({label}: {label: string}) => {
@@ -164,14 +216,16 @@ export const Pitch = () => {
       <style>{`@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;src:url(${staticFile('fonts/instrument-serif-latin-400-italic.woff2')}) format('woff2')}`}</style>
       <Sequence durationInFrames={VIDEO_FRAMES}>
         {/* Fondo: el mismo plano ampliado y desenfocado (pre-renderizado en bg.mp4) */}
-        <AbsoluteFill style={{opacity: 0.45}}>
+        <AbsoluteFill style={{opacity: 0.45, transform: `scale(${1 + 0.12 * (frame / VIDEO_FRAMES)})`}}>
           <OffthreadVideo src={staticFile('bg.mp4')} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} />
         </AbsoluteFill>
         <div style={{position: 'absolute', top: 560, left: 0, width: W, height: VIDEO_H, overflow: 'hidden'}}>
           <OffthreadVideo src={staticFile('mi-video-cut.mp4')} style={{width: W, height: VIDEO_H, transform: `scale(${zoom})`}} />
         </div>
-        <Img src={staticFile('logo.png')} style={{position: 'absolute', top: 170, left: (W - 230) / 2, width: 230, opacity: logoIn}} />
+        <Img src={staticFile('logo.png')} style={{position: 'absolute', top: 170, left: (W - 230) / 2, width: 230, opacity: logoIn, transform: `scale(${1 + 0.025 * Math.sin(frame / 14)})`}} />
         <Progress />
+        <Corners />
+        <Ticker />
         <Sequence from={6} durationInFrames={96}>
           <Hook />
         </Sequence>
@@ -180,16 +234,16 @@ export const Pitch = () => {
             <SectionTag label={sc.label} />
           </Sequence>
         ))}
-        {blocks.map((b, i) => {
-          const from = Math.round(b.start * FPS);
-          const next = blocks[i + 1] ? Math.round(blocks[i + 1].start * FPS) : Infinity;
-          const dur = Math.max(4, Math.min(Math.round((b.end - b.start) * FPS) + 4, next - from)); // sin solapar con el siguiente
-          return (
-            <Sequence key={i} from={from} durationInFrames={dur}>
-              <Caption block={b} />
-            </Sequence>
-          );
-        })}
+        {keys.map((k, i) => (
+          <Sequence key={`k${i}`} from={k.from} durationInFrames={k.to - k.from}>
+            <KeyWord text={k.text} variant={i % 5} dur={k.to - k.from} />
+          </Sequence>
+        ))}
+        {sections.map((sc, i) => (
+          <Sequence key={`w${i}`} from={Math.round(sc.at * FPS)} durationInFrames={12}>
+            <Whip />
+          </Sequence>
+        ))}
         {cards.map((c, i) => (
           <Sequence key={`c${i}`} from={Math.round(c.at * FPS)} durationInFrames={c.frames}>
             <CardView card={c} />
