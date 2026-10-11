@@ -13,7 +13,7 @@ export const CardView = ({card}: {card: Card}) => {
   const jx = glitch ? (random(`x${frame}`) - 0.5) * 60 : 0;
   const slice = glitch ? Math.round(random(`s${frame}`) * 70) : 0;
   const bigStyle = {
-    fontFamily: BRAND.sans, fontWeight: 900, fontSize: card.big.length > 6 ? 168 : 250, letterSpacing: -8, lineHeight: 0.92, color: BRAND.white,
+    fontFamily: BRAND.sans, fontWeight: 900, fontSize: Math.min(250, Math.floor(940 / (card.big.length * 0.64))), letterSpacing: -8, lineHeight: 0.92, color: BRAND.white,
     textTransform: 'uppercase' as const, textAlign: 'center' as const, whiteSpace: 'nowrap' as const,
   };
   return (
