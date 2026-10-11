@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>Rumbo · motion</title>
+<style>
+:root{--bg:#0B0B0B;--or:#F0501A;--wh:#F2F0EB;--gr:#8B8B8B;--card:#151515;--line:#2A2A2A}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000;width:1080px;height:1920px;overflow:hidden}
+body{font-family:'Inter','Inter Display',Helvetica,Arial,sans-serif;color:var(--wh);-webkit-font-smoothing:antialiased}
+#stage{position:relative;width:1080px;height:1920px;background:var(--bg);overflow:hidden}
+#bg,#fx{position:absolute;inset:0}
+.grid{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.06)}
+.sc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 70px}
+.line{letter-spacing:-.045em;text-align:center;white-space:nowrap}
+.logo{position:absolute;left:64px;top:96px;display:flex;align-items:center;gap:16px;z-index:9}
+.logo b{font-size:64px;font-weight:900;font-style:italic;color:var(--or);letter-spacing:-.06em;line-height:1}
+.logo span{font-size:24px;font-weight:700;letter-spacing:.14em;color:var(--gr);text-transform:uppercase}
+.card{background:var(--card);border:1px solid var(--line);border-radius:44px}
+.chip{display:inline-flex;align-items:center;gap:12px;border:2px solid var(--or);color:var(--or);border-radius:14px;padding:12px 22px;font-weight:800;font-size:34px;letter-spacing:.04em;text-transform:uppercase}
+.kick{font-size:30px;font-weight:700;letter-spacing:.18em;color:var(--or);text-transform:uppercase}
+.tile{border-radius:22px;position:relative;overflow:hidden}
+</style></head>
+<body><div id="stage">
+<div id="bg"></div><div id="fx"></div>
+<div class="logo"><b>R</b><span>Rumbo Agencia</span></div>
+<div id="root"></div>
+</div>
+<script>
+/* ───────── utilidades ───────── */
+const Q=new URLSearchParams(location.search), V=+(Q.get('v')||1);
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const E={lin:x=>x,out:x=>1-Math.pow(1-x,3),inout:x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2,
+ back:x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)},
+ elastic:x=>x===0||x===1?x:Math.pow(2,-9*x)*Math.sin((x*10-.75)*(2*Math.PI)/3)+1};
+const P=(t,a,d,e=E.out)=>e(clamp((t-a)/d));
+const fmt=n=>Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+const count=(a,b,t,s,d)=>fmt(a+(b-a)*P(t,s,d,E.inout));
+const OR='#F0501A',WH='#F2F0EB',GR='#8B8B8B';
+
+/* hueco para el clip del usuario (9:16) – también lo lee el compositor */
+const SLOT={x:216,y:300,w:648,h:1152,r:44};
+const TEST={x:260,y:330,w:560,h:996,r:44};
+const CLIP={1:[9,16],2:[10,17],3:[10,17],4:[11,18]}[V];
+
+/* palabras con entrada cinética. '*palabra' = naranja */
+function words(str,t,a,o={}){
+  const {size=120,stag=.08,w=800,color=WH,lh=1.02,dur=.55}=o;
+  let on=false;
+  return `<div class="line" style="font-size:${size}px;font-weight:${w};line-height:${lh}">`+
+  str.split(' ').map((wd,i)=>{const p=P(t,a+i*stag,dur,E.out);
+    if(wd[0]==='*'){on=true;wd=wd.slice(1)}
+    let end=false; if(wd.endsWith('*')){end=true;wd=wd.slice(0,-1)}
+    const c=on?OR:color; if(end)on=false;
+    return `<span style="display:inline-block;margin:0 .13em;color:${c};opacity:${p};transform:translateY(${(1-p)*46}px) scale(${.88+.12*p});filter:blur(${(1-p)*16}px)">${wd}</span>`}).join('')+`</div>`;
+}
+function sc(t,a,b,fn,o={}){
+  if(t<a||t>b)return '';
+  const lt=t-a, out=P(t,b-.32,.32,E.inout), inn=P(t,a,.25,E.out);
+  return `<div class="sc" style="opacity:${(o.noIn?1:inn)*(1-out)};transform:scale(${1+out*.05});filter:blur(${out*12}px)">${fn(lt,b-a)}</div>`;
+}
+function cursor(x,y,t,clickAt){
+  const c=clickAt!=null?P(t,clickAt,.22,E.out):0, press=clickAt!=null&&t>clickAt&&t<clickAt+.18?.86:1;
+  const rip=clickAt!=null&&t>clickAt?clamp((t-clickAt)/.5):-1;
+  return (rip>=0&&rip<1?`<div style="position:absolute;left:${x-60}px;top:${y-60}px;width:120px;height:120px;border-radius:50%;border:4px solid ${OR};opacity:${1-rip};transform:scale(${.3+rip*1.3})"></div>`:'')+
+  `<svg style="position:absolute;left:${x}px;top:${y}px;transform:scale(${press});filter:drop-shadow(0 8px 14px rgba(0,0,0,.6))" width="76" height="76" viewBox="0 0 24 24"><path d="M5 2l14 9-6.2 1.4L16 20l-3 1.2-3.2-7.4L5 18z" fill="#fff" stroke="#000" stroke-width="1.1"/></svg>`;
+}
+const abs=(x,y,inner,st='')=>`<div style="position:absolute;left:${x}px;top:${y}px;${st}">${inner}</div>`;
+
+/* ───────── piezas reutilizables ───────── */
+function profile(t,a,{follFrom=89,follTo=331,view=76885,lbl=true}={}){
+  const p=P(t,a,.7,E.back);
+  const foll=count(follFrom,follTo,t,a+.6,2.4);
+  const tile=(c1,c2,i)=>{const pp=P(t,a+.5+i*.09,.5,E.back);return `<div class="tile" style="height:250px;background:linear-gradient(135deg,${c1},${c2});opacity:${pp};transform:scale(${.7+.3*pp})"><div style="position:absolute;right:16px;bottom:12px;font-size:26px;font-weight:700;opacity:.9">▶</div></div>`};
+  const cs=[['#7a2e0e','#e8873a'],['#1d3b2f','#e8c04a'],['#5a1a1a','#f0501a'],['#2b2b2b','#a8742c'],['#3a2a14','#e0a040'],['#14283a','#ef6a2c']];
+  return `<div class="card" style="width:900px;padding:44px;opacity:${p};transform:translateY(${(1-p)*80}px) scale(${.92+.08*p})">
+   <div style="display:flex;align-items:center;gap:30px">
+    <div style="width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,${OR},#ffb347);display:flex;align-items:center;justify-content:center;font-size:48px;font-weight:900;color:#0b0b0b">AO</div>
+    <div><div style="font-size:42px;font-weight:800;letter-spacing:-.02em">alocubanofusion</div><div style="font-size:28px;color:${GR};margin-top:6px">Restaurante · Cocina cubana fusión</div></div>
+   </div>
+   <div style="display:flex;justify-content:space-between;margin:40px 0 34px;text-align:center">
+    <div><div style="font-size:64px;font-weight:900;letter-spacing:-.04em">30</div><div style="font-size:26px;color:${GR}">vídeos</div></div>
+    <div><div style="font-size:64px;font-weight:900;letter-spacing:-.04em;color:${OR}">${foll}</div><div style="font-size:26px;color:${GR}">seguidores</div></div>
+    <div><div style="font-size:64px;font-weight:900;letter-spacing:-.04em">${count(0,view,t,a+.6,2.6)}</div><div style="font-size:26px;color:${GR}">visualizaciones</div></div>
+   </div>
+   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">${cs.map((c,i)=>tile(c[0],c[1],i)).join('')}</div>
+  </div>`;
+}
+function slotScene(t,dur,{kicker,label}){
+  const p=P(t,0,.55,E.back);
+  const pulse=.5+.5*Math.sin(t*5);
+  return abs(SLOT.x,SLOT.y,`<div style="width:${SLOT.w}px;height:${SLOT.h}px;border-radius:${SLOT.r}px;background:#101010;border:4px solid ${OR};box-shadow:0 0 ${60+30*pulse}px rgba(240,80,26,${.35+.2*pulse});display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px">
+    <div style="font-size:46px;font-weight:900;letter-spacing:-.03em;color:${OR}">TU CLIP</div>
+    <div style="font-size:30px;color:${GR};text-align:center;line-height:1.35;padding:0 50px">${label}</div></div>`,
+    `transform:scale(${.86+.14*p});opacity:${p}`)+
+  abs(0,SLOT.y-100,`<div class="kick" style="width:1080px;text-align:center;opacity:${p}">${kicker}</div>`);
+}
+function cta(t){
+  const click=1.9, pressed=t>click;
+  const bp=P(t,.5,.6,E.back);
+  const pulse=pressed?1:1+.025*Math.sin(t*7);
+  return `<div style="display:flex;flex-direction:column;align-items:center;gap:36px;margin-top:-60px">
+   <div class="kick" style="opacity:${P(t,0,.4)}">100% gratis</div>
+   ${words('Asesoría',t,.1,{size:140,lh:1.0})}
+   ${words('*personalizada*',t,.3,{size:140,lh:1.0})}
+   ${words('para tu negocio',t,.5,{size:84,w:700,color:GR})}
+   <div style="margin-top:34px;padding:40px 70px;border-radius:30px;background:${pressed?'#ff6a2e':OR};color:#0b0b0b;font-size:62px;font-weight:900;letter-spacing:-.03em;opacity:${bp};transform:scale(${(.7+.3*bp)*pulse*(t>click&&t<click+.15?.94:1)});box-shadow:0 0 ${pressed?90:50}px rgba(240,80,26,.55)">${pressed?'¡Reunión agendada! ✓':'Agenda tu reunión →'}</div>
+   <div style="font-size:46px;font-weight:700;letter-spacing:-.01em;color:${WH};opacity:${P(t,1.2,.5)};margin-top:8px">rumboagencia.info</div>
+  </div>`+(t>.9?cursor(830,1128,t,click):'');
+}
+function cursorMove(t,a,d,x0,y0,x1,y1,click){const p=P(t,a,d,E.inout);return cursor(x0+(x1-x0)*p,y0+(y1-y0)*p,t,click)}
+
+/* ───────── guiones ───────── */
+const VID={};
+
+/* 1 · EL PROBLEMA */
+VID[1]=t=>[
+ sc(t,0,4.4,lt=>`<div style="display:flex;flex-direction:column;gap:6px">
+   ${words('Subes vídeos.',lt,.05,{size:128})}
+   ${words('Subes stories.',lt,.85,{size:128})}
+   ${words('Subes posts.',lt,1.65,{size:128})}
+   <div style="height:26px"></div>
+   ${words('¿Y *nadie* viene?',lt,2.6,{size:128,stag:.12})}</div>`,{noIn:1}),
+ sc(t,4.4,9.2,(lt)=>`<div style="display:flex;flex-direction:column;align-items:center;gap:44px">
+   <div class="card" style="width:880px;padding:36px;opacity:${P(lt,0,.5)};transform:translateY(${(1-P(lt,0,.6))*70}px)">
+     <div style="display:flex;align-items:center;gap:22px;margin-bottom:26px"><div style="width:84px;height:84px;border-radius:50%;background:${OR}"></div><div style="font-size:36px;font-weight:800">tu_negocio</div></div>
+     <div class="tile" style="height:430px;background:linear-gradient(135deg,#2a2a2a,#3b2a1c)"></div>
+     <div style="font-size:42px;margin-top:26px;color:${GR}">♡ ${Math.round(2+P(lt,.4,.8)*1)} Me gusta</div>
+   </div>
+   <div style="display:flex;gap:22px;opacity:${P(lt,1.2,.5)};transform:scale(${.8+.2*P(lt,1.2,.6,E.back)})">
+     <div class="card" style="padding:26px 34px;border-radius:26px;text-align:center"><div style="font-size:88px;font-weight:900;color:${OR};line-height:1">0</div><div style="font-size:26px;color:${GR}">clientes nuevos</div></div>
+     <div class="card" style="padding:26px 34px;border-radius:26px;text-align:center"><div style="font-size:88px;font-weight:900;line-height:1">0</div><div style="font-size:26px;color:${GR}">reservas</div></div>
+   </div>
+   ${words('Publicar no es *vender*.',lt,2.1,{size:92})}
+  </div>`),
+ sc(t,9.2,16,(lt,d)=>slotScene(lt,d,{kicker:'Clip 1 · el gancho',label:'Aquí va tu clip<br>(5–7 s, con tu voz)'}),{noIn:1}),
+ sc(t,16,22.2,lt=>`<div style="display:flex;flex-direction:column;align-items:center;gap:40px">
+   ${words('No es falta de esfuerzo.',lt,.1,{size:72,w:700,color:GR})}
+   ${words('Es falta de *sistema.*',lt,.7,{size:98})}
+   <div class="card" style="width:900px;padding:36px;margin-top:20px;border-radius:36px">
+     ${[['LUN','Qué se entrega'],['MAR–JUE','Edición'],['VIE','Programar y medir']].map((r,i)=>{const p=P(lt,1.7+i*.55,.5,E.back);return `<div style="display:flex;align-items:center;gap:26px;padding:22px 8px;border-top:${i?'1px solid var(--line)':'0'};opacity:${p};transform:translateX(${(1-p)*-60}px)"><span class="chip" style="min-width:210px;justify-content:center;font-size:30px">${r[0]}</span><span style="font-size:44px;font-weight:800;letter-spacing:-.02em">${r[1]}</span><span style="margin-left:auto;font-size:44px;color:${OR}">✓</span></div>`}).join('')}
+   </div></div>`),
+ sc(t,22.2,26,lt=>`<div style="display:flex;flex-direction:column;align-items:center;gap:34px">
+   <div class="kick" style="opacity:${P(lt,0,.4)}">Caso real · Al Ocubano Fusión</div>
+   <div style="font-size:250px;font-weight:900;letter-spacing:-.07em;line-height:1;color:${WH}"><span style="color:${GR}">${count(89,89,lt,0,1)}</span><span style="color:${OR};font-size:150px"> → </span>${count(89,331,lt,.3,2.2)}</div>
+   ${words('seguidores en Instagram',lt,.5,{size:70,w:700,color:GR})}</div>`),
+ sc(t,26,30,lt=>cta(lt),{}),
+].join('');
+
+/* 2 · RESULTADOS */
+VID[2]=t=>[
+ sc(t,0,3.8,lt=>`<div style="display:flex;flex-direction:column;align-items:center;gap:20px">
+   <div class="kick" style="opacity:${P(lt,0,.4)}">Caso real</div>
+   ${words('De *89* a *331*',lt,.1,{size:164,stag:.14})}
+   ${words('seguidores',lt,.7,{size:120,w:700,color:GR})}</div>`,{noIn:1}),
+ sc(t,3.8,10.2,(lt)=>`<div style="display:flex;flex-direction:column;align-items:center;gap:40px">
+   ${profile(lt,0)}
+   <div style="display:flex;gap:16px;opacity:${P(lt,2.4,.5)};transform:translateY(${(1-P(lt,2.4,.6))*30}px)"><span class="chip" style="font-size:28px">10 sesiones de grabación</span><span class="chip" style="font-size:28px">30 vídeos</span></div>
+  </div>`),
+ sc(t,10.2,17,(lt,d)=>slotScene(lt,d,{kicker:'Clip 2 · por qué funciona',label:'Aquí va tu clip<br>(5–7 s, con tu voz)'}),{noIn:1}),
+ sc(t,17,23.2,lt=>`<div style="display:flex;flex-direction:column;align-items:center;gap:26px;width:100%">
+   <div class="kick" style="opacity:${P(lt,0,.4)}">Sus 3 vídeos que más funcionaron</div>
+   ${[['29.000','«POV: Buscas un restaurante con la mejor comida de Almería…»','TikTok'],['26.000','«Si quieres venir… vení»','TikTok'],['21.000','Vídeo de presentación','TikTok']].map((r,i)=>{const p=P(lt,.3+i*.6,.6,E.back);return `<div class="card" style="width:920px;padding:34px 40px;display:flex;align-items:center;gap:34px;border-radius:36px;opacity:${p};transform:translateX(${(1-p)*140}px)">
+      <div style="font-size:96px;font-weight:900;letter-spacing:-.05em;color:${i==0?OR:WH};min-width:330px">${count(0,+r[0].replace('.',''),lt,.3+i*.6,.9)}</div>
+      <div><div style="font-size:36px;font-weight:700;line-height:1.2">${r[1]}</div><div style="font-size:26px;color:${GR};margin-top:8px">vistas en ${r[2]}</div></div></div>`}).join('')}
+   <div style="margin-top:14px;font-size:54px;font-weight:800;letter-spacing:-.03em;opacity:${P(lt,2.4,.5)}"><span style="color:${OR}">★★★★★</span> ${count(0,151,lt,2.4,.9)} reseñas</div>
+  </div>`),
+ sc(t,23.2,26,lt=>`<div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+   ${words('¿Y si el siguiente',lt,.05,{size:104})}
+   ${words('caso es *el tuyo?*',lt,.5,{size:124})}</div>`),
+ sc(t,26,30,lt=>cta(lt),{}),
+].join('');
+
+/* 3 · EL MITO */
+VID[3]=t=>[
+ sc(t,0,4.2,lt=>`<div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+   ${words('Subir vídeos',lt,.05,{size:128})}
+   ${words('bonitos no',lt,.45,{size:128})}
+   ${words('llena tu *local.*',lt,.85,{size:128})}</div>`,{noIn:1}),
+ sc(t,4.2,10,lt=>`<div style="display:flex;flex-direction:column;align-items:center;gap:30px;width:100%">
+   <div class="kick" style="opacity:${P(lt,0,.4)}">Lo que te han contado</div>
+   ${['Más vídeos = más clientes','Hacerlo tú en tus ratos libres','Si queda bonito, funciona'].map((m,i)=>{const p=P(lt,.2+i*.35,.5,E.back),s=P(lt,1.3+i*1.3,.4,E.out);return `<div class="card" style="width:920px;padding:44px 40px;border-radius:36px;opacity:${p};transform:translateY(${(1-p)*60}px);display:flex;align-items:center;gap:26px;position:relative">
+      <span style="font-size:56px;color:${s>.5?OR:GR}">${s>.5?'✕':'•'}</span>
+      <span style="font-size:50px;font-weight:800;letter-spacing:-.03em;color:${s>.5?GR:WH}">${m}</span>
+      <div style="position:absolute;left:40px;top:50%;height:6px;width:${s*840}px;background:${OR};border-radius:3px"></div></div>`}).join('')}
+  </div>`+cursorMove(lt,.6,.8,760,1450,700,880,1.3)+(lt>2.4?cursorMove(lt,2.4,.5,700,880,700,1010,2.6):'')+(lt>3.7?cursorMove(lt,3.7,.5,700,1010,700,1140,3.9):'')),
+ sc(t,10,17,(lt,d)=>slotScene(lt,d,{kicker:'Clip 3 · lo que sí funciona',label:'Aquí va tu clip<br>(5–7 s, con tu voz)'}),{noIn:1}),
+ sc(t,17,25.6,lt=>`<div style="display:flex;flex-direction:column;align-items:center;gap:30px;width:100%">
+   ${words('Lo que sí funciona:',lt,.05,{size:68,w:700,color:GR})}
+   ${words('un *sistema*',lt,.45,{size:150})}
+   ${[['01','Grabamos en tu local'],['02','Calendario semanal fijo'],['03','Datos para medir qué funciona']].map((r,i)=>{const p=P(lt,1.5+i*.6,.5,E.back);return `<div class="card" style="width:920px;padding:34px 40px;border-radius:34px;display:flex;align-items:center;gap:30px;opacity:${p};transform:scale(${.85+.15*p})"><span style="font-size:46px;font-weight:900;color:${OR}">${r[0]}</span><span style="font-size:48px;font-weight:800;letter-spacing:-.03em">${r[1]}</span></div>`}).join('')}
+   <div style="margin-top:18px;opacity:${P(lt,3.9,.5)};transform:scale(${.8+.2*P(lt,3.9,.7,E.back)})"><span class="chip" style="font-size:40px;padding:18px 32px">En 3 meses: sistema montado</span></div>
+  </div>`),
+ sc(t,25.6,26,lt=>'',{}),
+ sc(t,26,30,lt=>cta(lt),{}),
+].join('');
+
+/* 4 · SIN RIESGO */
+VID[4]=t=>[
+ sc(t,0,4.4,lt=>`<div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+   ${words('¿Miedo a',lt,.05,{size:128})}
+   ${words('contratar una',lt,.45,{size:128})}
+   ${words('agencia y que',lt,.85,{size:128})}
+   ${words('no pase *nada?*',lt,1.25,{size:128})}</div>`,{noIn:1}),
+ sc(t,4.4,11,lt=>`<div style="display:flex;flex-direction:column;align-items:center;gap:26px;width:100%">
+   <div class="kick" style="opacity:${P(lt,0,.4)}">Lo que firmamos</div>
+   ${[['↩','Si falta algo del contrato, te devolvemos el mes'],['🔑','Tus cuentas, tu web y tu material son tuyos'],['⏱','Respuesta en menos de 24 h laborables'],['📍','Un solo negocio de tu tipo por zona']].map((r,i)=>{const p=P(lt,.3+i*1.4,.5,E.back),k=P(lt,.3+i*1.4+.45,.3,E.elastic);return `<div class="card" style="width:930px;padding:38px 40px;border-radius:36px;display:flex;align-items:center;gap:30px;opacity:${p};transform:translateX(${(1-p)*-160}px)">
+      <span style="font-size:60px">${r[0]}</span><span style="font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1.15;flex:1">${r[1]}</span>
+      <span style="font-size:70px;color:${OR};transform:scale(${k});display:inline-block">✓</span></div>`}).join('')}
+  </div>`),
+ sc(t,11,18,(lt,d)=>slotScene(lt,d,{kicker:'Clip 4 · tu promesa',label:'Aquí va tu clip<br>(5–7 s, con tu voz)'}),{noIn:1}),
+ sc(t,18,26,lt=>{const p=P(lt,0,.6,E.back);return abs(0,TEST.y-100,`<div class="kick" style="width:1080px;text-align:center;opacity:${p}">Lo dicen nuestros clientes</div>`)+
+   abs(TEST.x,TEST.y,`<div style="width:${TEST.w}px;height:${TEST.h}px;border-radius:${TEST.r}px;background:#101010;border:4px solid ${OR};box-shadow:0 0 70px rgba(240,80,26,.35)"></div>`,`transform:scale(${.88+.12*p});opacity:${p}`)},{noIn:1}),
+ sc(t,26,30,lt=>cta(lt),{}),
+].join('');
+
+/* ───────── render ───────── */
+const bg=document.getElementById('bg'),root=document.getElementById('root');
+bg.innerHTML=[25,50,75].map(p=>`<div class="grid" style="left:${p}%"></div>`).join('')+'<div id="glow" style="position:absolute;inset:0"></div>';
+const glow=document.getElementById('glow');
+window.seek=t=>{
+  const gx=540+Math.sin(t*.5)*320,gy=1000+Math.cos(t*.4)*500;
+  glow.style.background=`radial-gradient(900px 900px at ${gx}px ${gy}px, rgba(240,80,26,.20), rgba(240,80,26,0) 70%)`;
+  root.innerHTML=VID[V](t);
+};
+window.SLOT=SLOT;window.TEST=TEST;window.CLIP=CLIP;
+seek(+(Q.get('t')||0));
+</script></body></html>
