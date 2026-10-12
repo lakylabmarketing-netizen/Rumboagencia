@@ -45,9 +45,9 @@ export default function Page() {
         <Hero />
         {/* QUÉ HACEMOS (sección clara) */}
         <section id="servicios" data-fx className="relative bg-niebla text-ink" aria-label="Qué hacemos">
-          <div className="pt-20 md:pt-28"><SlantBand items={['Vídeo', 'Redes', 'Ficha de Google', 'Reseñas', 'Hostelería', 'Almería']} /></div>
+          <div className="pt-20 md:pt-28"><SlantBand items={['Vídeo', 'Redes', 'Ficha de Google', 'Reseñas', 'Tu negocio', 'Almería']} /></div>
           <div className="mx-auto max-w-wrap px-5 pb-28 pt-20 sm:px-8 md:pb-40 md:pt-28">
-            <SectionHead light index="01 · Qué hacemos" title="Qué" kw="hacemos" lead="Rumbo es una agencia de Almería que trabaja solo con hostelería: restaurantes, hoteles, cafeterías y locales de ocio de la provincia." />
+            <SectionHead light index="01 · Qué hacemos" title="Qué" kw="hacemos" lead="Rumbo es una agencia de marketing de Almería para todo tipo de negocios: restaurantes, tiendas, clínicas, gimnasios, inmobiliarias, despachos… Si tienes clientes que ganar, trabajamos contigo." />
             <ul className="border-t border-black/15">
               {services.map((s) => (
                 <li key={s.k} data-rise className="grid gap-3 border-b border-black/15 py-8 md:grid-cols-[120px_minmax(0,.9fr)_minmax(0,1.2fr)] md:items-baseline md:py-10">
@@ -158,7 +158,7 @@ export default function Page() {
         {/* PRECIOS */}
         <section id="precios" data-fx className="border-t border-line" aria-label="Precios">
           <div className="mx-auto max-w-wrap px-5 py-28 sm:px-8 md:py-40">
-            <SectionHead index="04 · Precios" title="Elige el plan que" kw="te llena el local" lead="Tres planes con el mismo equipo. Cambian el volumen de contenido y el trabajo de captación." />
+            <SectionHead index="04 · Precios" title="Elige el plan que" kw="hace crecer tu negocio" lead="Tres planes con el mismo equipo. Cambian el volumen de contenido y el trabajo de captación." />
             <div className="grid gap-6 lg:grid-cols-3">
               {plans.map((p) => (
                 <article key={p.id} data-rise className={`relative flex flex-col p-7 md:p-9 ${p.rec ? 'bg-[#1a1210] outline outline-1 outline-naranja/70' : 'bg-surface'}`}>
@@ -217,7 +217,7 @@ export default function Page() {
           <div className="mx-auto grid max-w-wrap gap-14 px-5 py-28 sm:px-8 md:grid-cols-2 md:py-40">
             <div>
               <span className="tech text-muted"><span className="text-naranja">+</span> 06 · Contacto</span>
-              <h2 className="mega mt-5 text-[clamp(2.3rem,5.4vw,5.6rem)] leading-[.98]"><span className="ln"><span>Cuéntanos qué mesa</span></span><span className="ln deep"><span>hay que llenar</span></span></h2>
+              <h2 className="mega mt-5 text-[clamp(2.3rem,5.4vw,5.6rem)] leading-[.98]"><span className="ln"><span>Cuéntanos qué necesita</span></span><span className="ln deep"><span>tu negocio</span></span></h2>
               <p className="mt-6 max-w-[44ch] text-body text-gris">Treinta minutos, sin compromiso. Miramos tu perfil y tu ficha de Google antes de la llamada y te decimos qué haríamos primero.</p>
               <ul className="tech mt-8 grid gap-3 text-[11px] text-gris">
                 <li><span className="text-naranja">+</span> Respondemos en menos de 24 horas laborables</li>
@@ -237,7 +237,7 @@ export default function Page() {
         <div className="mx-auto mt-20 grid max-w-wrap gap-10 border-t border-line pt-10 text-[15px] text-gris md:grid-cols-3">
           <div>
             <Logo className="h-6 w-auto" />
-            <p className="mt-4 max-w-[30ch]">Agencia de marketing para hostelería. Almería y provincia.</p>
+            <p className="mt-4 max-w-[30ch]">Agencia de marketing para todo tipo de negocios. Almería y provincia.</p>
           </div>
           <nav aria-label="Secciones del pie" className="tech grid gap-2 text-[11px]">
             {[['#servicios', 'Qué hacemos'], ['#proyectos', 'Proyectos'], ['#proceso', 'Proceso'], ['#nosotros', 'Sobre nosotros'], ['#precios', 'Precios'], ['#faq', 'Preguntas'], ['#contacto', 'Contacto']].map(([h, l]) => (
@@ -247,13 +247,13 @@ export default function Page() {
           <div id="aviso-legal" className="text-[14px] leading-relaxed text-muted">
             <span id="privacidad" className="sr-only" />
             <h2 className="tech mb-3 text-gris">Aviso legal y privacidad</h2>
-            <p><b className="text-gris">Quién está detrás.</b> Esta web es de Rumbo, agencia de marketing para hostelería en Almería formada por Esteban y Eneko. Contacto: <a className="underline" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+            <p><b className="text-gris">Quién está detrás.</b> Esta web es de Rumbo, agencia de marketing en Almería formada por Esteban y Eneko. Contacto: <a className="underline" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
             <p className="mt-2"><b className="text-gris">Datos.</b> Solo los que escribes en el formulario de consulta, para responderte; no los cedemos a nadie. El formulario se procesa en Netlify, el servicio que aloja esta web. Base legal: tu consentimiento. Puedes pedir acceder, corregir o borrar tus datos en el correo de arriba y reclamar ante la AEPD (aepd.es).</p>
             <p className="mt-2"><b className="text-gris">Cookies.</b> Esta web no usa cookies ni herramientas de seguimiento.</p>
           </div>
         </div>
         <div className="tech mx-auto mt-10 flex max-w-wrap flex-wrap justify-between gap-3 text-[10px] text-muted">
-          <span>© 2026 Rumbo · rumboagencia.info</span><span>Almería · Hostelería</span>
+          <span>© 2026 Rumbo · rumboagencia.info</span><span>Almería · Marketing para negocios</span>
         </div>
       </footer>
     </>

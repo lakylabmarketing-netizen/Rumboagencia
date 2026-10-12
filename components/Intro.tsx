@@ -6,8 +6,8 @@ const KEY = 'rumbo-intro-2026';
 
 const LINES = [
   'RUMBO.SYS v1.0 · ALMERÍA · 1996',
-  '> Detectando local ............ OK',
-  '> Cargando carta .............. OK',
+  '> Detectando negocio .......... OK',
+  '> Cargando catálogo ........... OK',
   '> Clientes nuevos ............. 0',
   '> Buscando actualización ...... RUMBO 2026',
   '> Installing update…',
@@ -18,7 +18,7 @@ const COUNTERS = [
   { label: 'AÑO', from: 1996, to: 2026, plain: true },
   { label: 'VISUALIZACIONES', from: 0, to: 172900 },
   { label: 'RESEÑAS', from: 12, to: 151 },
-  { label: 'RUTAS AL LOCAL', from: 0, to: 607 },
+  { label: 'RUTAS PEDIDAS', from: 0, to: 607 },
 ];
 
 const fmt = (n: number, plain?: boolean) => (plain ? String(Math.round(n)) : Math.round(n).toLocaleString('es-ES').replace(/\B(?=(\d{3})+(?!\d))/g, '.'));

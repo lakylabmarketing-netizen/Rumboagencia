@@ -4,8 +4,8 @@
 export const CONTACT_EMAIL = 'lakylabmarketing@gmail.com'; // provisional
 
 export const services = [
-  { k: '01', title: 'Estrategia', text: 'Auditoría del local y de la competencia, líneas creativas y calendario del primer trimestre, antes de grabar nada.' },
-  { k: '02', title: 'Contenido', text: 'Grabación en tu local, piezas de vídeo de tres duraciones, diseño gráfico y stories. Publicamos nosotros, con los copys escritos.' },
+  { k: '01', title: 'Estrategia', text: 'Auditoría de tu negocio y de la competencia, líneas creativas y calendario del primer trimestre, antes de grabar nada.' },
+  { k: '02', title: 'Contenido', text: 'Grabación en tu negocio, piezas de vídeo de tres duraciones, diseño gráfico y stories. Publicamos nosotros, con los copys escritos.' },
   { k: '03', title: 'Clientes', note: 'Crecimiento y Marca', text: 'Ficha de Google optimizada, sistema de captación de reseñas, respuesta a mensajes y automatizaciones de WhatsApp o DM.' },
 ];
 
@@ -55,7 +55,7 @@ export const topVideos = [
 ];
 
 export const process = [
-  { k: 'Grabación', title: 'En tu local, en horario de bajo servicio', text: 'Según el plan: media jornada al mes (Esencial), una jornada completa (Crecimiento) o dos medias jornadas (Marca).' },
+  { k: 'Grabación', title: 'En tu negocio, en el momento más tranquilo', text: 'Según el plan: media jornada al mes (Esencial), una jornada completa (Crecimiento) o dos medias jornadas (Marca).' },
   { k: 'Lunes', title: 'Qué se entrega', text: 'Los dos socios repasan la semana: qué sale, qué está trabado y qué necesitamos de ti.' },
   { k: 'Martes a jueves', title: 'Edición', text: 'Esteban monta las piezas; Eneko lleva la comunicación contigo.' },
   { k: 'Viernes', title: 'Programar y medir', text: 'Se programa la semana siguiente y se revisan las métricas. Apruebas el mes de una vez, no pieza por pieza.' },
@@ -65,12 +65,12 @@ export const commitments = [
   { title: 'Entrega', text: 'Si al cierre del mes falta algo de lo que pone el contrato, se devuelve el mes completo, sin que tengas que pedirlo.' },
   { title: 'Propiedad', text: 'Tus cuentas, tu web y todo el material grabado son tuyos. Si te vas, te llevas los archivos originales.' },
   { title: 'Respuesta', note: 'Crecimiento y Marca', text: 'Mensajes y comentarios contestados en menos de 24 horas laborables.' },
-  { title: 'Exclusividad', note: 'Crecimiento y Marca', text: 'Un solo negocio de tu tipo de cocina por zona.' },
+  { title: 'Exclusividad', note: 'Crecimiento y Marca', text: 'Un solo negocio de tu mismo sector por zona.' },
 ];
 
 export const team = [
   { name: 'Esteban', role: 'Grabación y producción', img: '/portafolio/assets/esteban.jpg', w: 900, h: 900,
-    text: 'Graba en tu local, edita las piezas, diseña y lleva el calendario de publicación.',
+    text: 'Graba en tu negocio, edita las piezas, diseña y lleva el calendario de publicación.',
     tasks: 'Grabación · Edición · Publicación · Calendario · Diseño gráfico · Branding' },
   { name: 'Eneko', role: 'Clientes, sistemas y web', img: '/portafolio/assets/eneko.jpg', w: 675, h: 900,
     text: 'Es tu interlocutor: lleva las reuniones y los informes. En los planes que lo incluyen, también los mensajes, la web y las automatizaciones.',
@@ -80,7 +80,7 @@ export const team = [
 export const plans = [
   { id: 'esencial', name: 'Esencial', price: '550', claim: 'Para empezar a estar presente cada semana.', inc: 'Incluye', value: 'Esencial · 550 €/mes',
     items: ['10 piezas de vídeo (2 largas, 4 medias, 4 cortas)', '3 diseños gráficos + 12 stories', '1 media jornada de grabación', 'Calendario, publicación y copys', 'Informe mensual de métricas'] },
-  { id: 'crecimiento', name: 'Crecimiento', price: '950', rec: true, claim: 'Para llenar entre semana, no solo el sábado.', inc: 'Todo lo de Esencial, y además', value: 'Crecimiento · 950 €/mes',
+  { id: 'crecimiento', name: 'Crecimiento', price: '950', rec: true, claim: 'Para tener clientes todas las semanas, no solo en temporada alta.', inc: 'Todo lo de Esencial, y además', value: 'Crecimiento · 950 €/mes',
     items: ['16 piezas de vídeo (4 largas, 6 medias, 6 cortas)', '6 diseños gráficos + 20 stories', '1 jornada completa de grabación', 'Gestión de mensajes y comentarios', 'Ficha de Google optimizada', 'Sistema de captación de reseñas', '1 automatización (WhatsApp o DM)', 'Gestión de publicidad', 'Informe de negocio + llamada mensual', 'Exclusividad en tu zona'] },
   { id: 'marca', name: 'Marca', price: '1.600', claim: 'Para construir una marca, no solo publicar.', inc: 'Todo lo de Crecimiento, y además', value: 'Marca · 1.600 €/mes',
     items: ['24 piezas de vídeo (4 largas, 8 medias, 12 cortas)', '10 diseños gráficos + stories sin límite', '2 medias jornadas de grabación', '3 automatizaciones', 'Web o landing incluida', 'Campañas con creatividades propias', 'Reunión estratégica presencial'] },
@@ -95,11 +95,11 @@ export const conditions = [
 ];
 
 export const faqs = [
-  { q: '¿Tengo que salir yo en los vídeos?', a: 'No. Funciona mejor si sales tú o alguien de tu equipo, pero se puede grabar todo centrado en cocina, producto y sala. Lo decides antes de la primera grabación.' },
-  { q: '¿Cuándo empiezo a notar algo?', a: 'El primer mes se nota en la presencia: publicas de forma constante. El movimiento en reservas y consultas suele aparecer entre el segundo y el tercer mes; por eso la permanencia mínima es de tres meses.' },
+  { q: '¿Tengo que salir yo en los vídeos?', a: 'No. Funciona mejor si sales tú o alguien de tu equipo, pero se puede grabar todo centrado en tu producto, tu servicio y tu espacio. Lo decides antes de la primera grabación.' },
+  { q: '¿Cuándo empiezo a notar algo?', a: 'El primer mes se nota en la presencia: publicas de forma constante. El movimiento en clientes, reservas y consultas suele aparecer entre el segundo y el tercer mes; por eso la permanencia mínima es de tres meses.' },
   { q: '¿Qué pasa si no me gusta una pieza?', a: 'Cada pieza lleva una ronda de revisión incluida. Si al cierre del mes falta algo de lo que pone el contrato, se devuelve el mes completo.' },
-  { q: '¿Y si no puedo grabar el día que venís?', a: 'Las grabaciones se acuerdan con antelación y se reprograman avisando con 48 horas. Grabamos en horario de bajo servicio.' },
+  { q: '¿Y si no puedo grabar el día que venís?', a: 'Las grabaciones se acuerdan con antelación y se reprograman avisando con 48 horas. Grabamos en el momento más tranquilo de tu negocio.' },
   { q: '¿La publicidad está incluida en el precio?', a: 'La gestión sí, en Crecimiento y Marca. La inversión en Meta o Google va aparte y la decides tú.' },
-  { q: '¿Trabajáis con mi competencia?', a: 'En Crecimiento y Marca hay exclusividad: un solo negocio de tu tipo de cocina en tu zona. Si tu zona ya está ocupada, te lo decimos en la primera llamada.' },
+  { q: '¿Trabajáis con mi competencia?', a: 'En Crecimiento y Marca hay exclusividad: un solo negocio de tu mismo sector en tu zona. Si tu zona ya está ocupada, te lo decimos en la primera llamada.' },
   { q: 'Si me voy, ¿qué me llevo?', a: 'Las cuentas, la web y el material original grabado son tuyos desde el primer día. Te entregamos los archivos y los accesos.' },
 ];

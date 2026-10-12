@@ -68,10 +68,10 @@ export default function Hero() {
       className="relative overflow-hidden bg-[linear-gradient(180deg,#0B0B0B_0%,#121214_40%,#2a1912_78%,#4a2414_100%)] pb-10 pt-[calc(96px+env(safe-area-inset-top))] md:flex md:min-h-[100svh] md:flex-col md:pb-0 md:pt-[88px]">
       {/* resplandor naranja de marca detrás del móvil */}
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%] bg-[radial-gradient(45%_60%_at_50%_100%,rgba(240,78,23,.55),rgba(255,138,61,.12)_55%,transparent_75%)]" />
-      <p data-hero="cap" className="tech relative z-10 px-4 text-[11px] text-gris/80 md:hidden">Marketing para hostelería <span className="text-naranja">×</span> Almería</p>
+      <p data-hero="cap" className="tech relative z-10 px-4 text-[11px] text-gris/80 md:hidden">Marketing para negocios <span className="text-naranja">×</span> Almería</p>
 
       <h1 id="t-hero" className="mega relative z-0 mt-3 px-4 text-center text-mega md:mt-0 md:px-[30px]">
-        <span className="ln"><span>Que tu local</span></span>
+        <span className="ln"><span>Que tu negocio</span></span>
         <span className="ln"><span>sea <span aria-hidden className="font-light text-naranja [-webkit-text-fill-color:#F04E17]">×</span> el que</span></span>
         <span className="ln deep"><span>todos guardan</span></span>
       </h1>
@@ -96,7 +96,7 @@ export default function Hero() {
 
       {/* Esquina inferior izquierda: quiénes y dónde */}
       <div data-hero="cap" className="tech relative z-10 mt-10 grid gap-1 px-4 text-[11px] leading-snug text-gris md:absolute md:bottom-8 md:left-[30px] md:mt-0 md:w-[calc((100%-60px)/6*2)] md:px-3">
-        <span className="hidden md:block">Marketing para hostelería <span className="text-naranja">×</span> Almería</span>
+        <span className="hidden md:block">Marketing para negocios <span className="text-naranja">×</span> Almería</span>
         <span>Rumbo · Almería &nbsp; <Clock /></span>
         <span className="text-muted">Esteban y Eneko: hablas con quien hace el trabajo</span>
       </div>
@@ -105,7 +105,7 @@ export default function Hero() {
       <div data-hero="cap" className="relative z-10 mt-8 grid gap-6 px-4 md:absolute md:bottom-8 md:left-[calc(30px+(100%-60px)/6*4)] md:mt-0 md:w-[calc((100%-60px)/6*2)] md:px-3">
         <p className="text-[clamp(1.25rem,1.9vw,1.75rem)] font-semibold leading-[1.12] tracking-[-.02em] text-cal/90">
           Vídeo, redes y ficha de Google para que te descubran y te elijan.
-          <span className="text-gris/70"> En treinta minutos te contamos qué haríamos con tu local.</span>
+          <span className="text-gris/70"> En treinta minutos te contamos qué haríamos con tu negocio.</span>
         </p>
         <div className="flex flex-wrap items-center gap-5">
           <CtaCross href="#contacto">Reservar consulta</CtaCross>
