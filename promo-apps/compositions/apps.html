@@ -1,0 +1,123 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #F4F1EC; font-family: "Inter"; color: #0B0B0B; }
+    #apps-kicker { position: absolute; left: 140px; top: 110px; font-weight: 700; font-size: 52px; letter-spacing: -0.03em; color: #6b625a; }
+    #apps-kicker b { color: #E0440F; }
+    .apps-name { position: absolute; left: 136px; top: 300px; width: 880px; font-weight: 900; font-size: 190px; line-height: .9; letter-spacing: -0.065em; }
+    .apps-name small { display: block; margin-top: 26px; font-size: 64px; font-weight: 700; letter-spacing: -0.035em; color: #6b625a; }
+    #apps-n2, #apps-n3, #apps-n4, #apps-qr, #apps-card, #apps-map { opacity: 0; }
+    .apps-stage { position: absolute; left: 1060px; top: 250px; width: 720px; height: 680px; }
+    /* Turnos */
+    #apps-cal { border-radius: 36px; background: #fff; box-shadow: 0 30px 60px rgba(0,0,0,.08); padding: 44px; }
+    #apps-cal .hd { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; font-weight: 900; font-size: 30px; color: #6b625a; text-align: center; }
+    #apps-cal .gr { position: relative; margin-top: 22px; height: 500px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
+    #apps-cal .col { border-radius: 14px; background: #f1ece5; position: relative; }
+    .apps-shift { position: absolute; left: 8px; right: 8px; border-radius: 10px; background: #0B0B0B; }
+    .apps-shift.o { background: #F04E17; }
+    /* QR */
+    #apps-qr { border-radius: 36px; background: #fff; box-shadow: 0 30px 60px rgba(0,0,0,.08); display: grid; place-items: center; }
+    #apps-qrsvg { width: 540px; height: 540px; }
+    /* Tarjeta de sellos */
+    #apps-card { top: 330px; height: 460px; border-radius: 36px; background: #0B0B0B; color: #F2EFEA; padding: 48px 52px; box-shadow: 0 30px 60px rgba(0,0,0,.18); }
+    #apps-card h5 { font-weight: 900; font-size: 52px; letter-spacing: -0.04em; }
+    #apps-card p { margin-top: 6px; font-weight: 700; font-size: 30px; color: #CFCFCF; }
+    #apps-card .st { margin-top: 44px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+    .apps-stamp { width: 120px; height: 120px; border-radius: 50%; border: 4px dashed rgba(242,239,234,.35); display: grid; place-items: center; }
+    .apps-stamp i { display: block; width: 104px; height: 104px; border-radius: 50%; background: #F04E17; }
+    /* Repartos */
+    #apps-map { border-radius: 36px; background: #e9e3d9; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,.08); }
+    #apps-mapsvg { position: absolute; inset: 0; width: 720px; height: 740px; }
+    .apps-pin { position: absolute; width: 64px; height: 64px; border-radius: 50% 50% 50% 0; background: #F04E17; border: 6px solid #fff; }
+  </style>
+  <div id="root" data-composition-id="apps" data-width="1920" data-height="1080">
+    <p id="apps-kicker">Y cualquier tarea que repitas, <b>en una app</b></p>
+
+    <p class="apps-name" id="apps-n1">Turnos<small>y fichajes del equipo</small></p>
+    <p class="apps-name" id="apps-n2">Carta<small>digital, con QR</small></p>
+    <p class="apps-name" id="apps-n3">Clientes<small>que vuelven, con sellos</small></p>
+    <p class="apps-name" id="apps-n4">Repartos<small>con seguimiento</small></p>
+
+    <div class="apps-stage" id="apps-cal">
+      <div class="hd"><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+      <div class="gr">
+        <div class="col"><i class="apps-shift" style="top:20px;height:150px"></i><i class="apps-shift o" style="top:300px;height:180px"></i></div>
+        <div class="col"><i class="apps-shift o" style="top:60px;height:170px"></i><i class="apps-shift" style="top:330px;height:150px"></i></div>
+        <div class="col"><i class="apps-shift" style="top:20px;height:210px"></i></div>
+        <div class="col"><i class="apps-shift o" style="top:120px;height:160px"></i><i class="apps-shift" style="top:320px;height:150px"></i></div>
+        <div class="col"><i class="apps-shift" style="top:40px;height:150px"></i><i class="apps-shift o" style="top:280px;height:220px"></i></div>
+        <div class="col"><i class="apps-shift o" style="top:20px;height:260px"></i><i class="apps-shift" style="top:330px;height:190px"></i></div>
+        <div class="col"><i class="apps-shift" style="top:90px;height:170px"></i></div>
+      </div>
+    </div>
+
+    <div class="apps-stage" id="apps-qr"><svg id="apps-qrsvg" viewBox="0 0 25 25" shape-rendering="crispEdges"></svg></div>
+
+    <div class="apps-stage" id="apps-card">
+      <h5>Tarjeta de cliente</h5><p>8 visitas = 1 regalo</p>
+      <div class="st">
+        <div class="apps-stamp"><i></i></div><div class="apps-stamp"><i></i></div><div class="apps-stamp"><i></i></div><div class="apps-stamp"><i></i></div>
+        <div class="apps-stamp"><i></i></div><div class="apps-stamp"><i></i></div><div class="apps-stamp"><i></i></div><div class="apps-stamp"><i></i></div>
+      </div>
+    </div>
+
+    <div class="apps-stage" id="apps-map">
+      <svg id="apps-mapsvg" viewBox="0 0 720 740">
+        <g stroke="#d8d0c3" stroke-width="22" fill="none">
+          <path d="M-20 160 H740" /><path d="M-20 420 H740" /><path d="M-20 640 H740" />
+          <path d="M150 -20 V760" /><path d="M420 -20 V760" /><path d="M610 -20 V760" />
+        </g>
+        <path id="apps-route" d="M150 640 V420 H420 V160 H610" fill="none" stroke="#0B0B0B" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+      </svg>
+      <div class="apps-pin" id="apps-pin1" style="left:118px;top:568px"></div>
+      <div class="apps-pin" id="apps-pin2" style="left:388px;top:348px"></div>
+      <div class="apps-pin" id="apps-pin3" style="left:578px;top:88px"></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      // Código QR de ejemplo, determinista (semilla fija): solo decorativo, no enlaza a nada
+      const svg = document.getElementById("apps-qrsvg");
+      let s = 20261030; const rnd = () => ((s = (s * 1103515245 + 12345) % 2147483648) / 2147483648);
+      const finder = (x, y) => `<rect x="${x}" y="${y}" width="7" height="7" fill="#0B0B0B"/><rect x="${x + 1}" y="${y + 1}" width="5" height="5" fill="#fff"/><rect x="${x + 2}" y="${y + 2}" width="3" height="3" fill="#F04E17"/>`;
+      let cells = "";
+      for (let y = 0; y < 25; y++) for (let x = 0; x < 25; x++) {
+        const inFinder = (x < 8 && y < 8) || (x > 16 && y < 8) || (x < 8 && y > 16);
+        if (!inFinder && rnd() > 0.52) cells += `<rect x="${x}" y="${y}" width="1" height="1" fill="#0B0B0B"/>`;
+      }
+      svg.innerHTML = `<g id="apps-qrcells">${cells}</g>${finder(0, 0)}${finder(18, 0)}${finder(0, 18)}`;
+
+      const tl = gsap.timeline({ paused: true });
+      const names = ["#apps-n1", "#apps-n2", "#apps-n3", "#apps-n4"];
+      const stages = ["#apps-cal", "#apps-qr", "#apps-card", "#apps-map"];
+
+      // Kicker y primera app
+      tl.fromTo("#apps-kicker", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 0.25);
+      tl.fromTo("#apps-n1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out" }, 0.15);
+      tl.fromTo("#apps-cal", { scale: 0.7, y: 40 }, { scale: 1, y: 0, duration: 0.6, ease: "expo.out" }, 0);
+      tl.fromTo("#apps-cal .apps-shift", { scaleY: 0, transformOrigin: "50% 0%" }, { scaleY: 1, duration: 0.35, stagger: 0.07, ease: "back.out(1.6)" }, 0.45);
+
+      // Cambio de app: la anterior se desenfoca y sale, la siguiente aterriza en el mismo escenario
+      const swap = (i, t) => {
+        tl.to(names[i - 1], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power3.in" }, t);
+        tl.to(stages[i - 1], { opacity: 0, scale: 0.9, filter: "blur(12px)", duration: 0.22, ease: "power3.in" }, t);
+        tl.fromTo(names[i], { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out" }, t + 0.18);
+        tl.fromTo(stages[i], { opacity: 0, scale: 1.12, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, t + 0.16);
+      };
+      swap(1, 2.0);
+      tl.fromTo("#apps-qrcells", { clipPath: "inset(0 0 100% 0)" }, { clipPath: "inset(0 0 0% 0)", duration: 0.9, ease: "power2.inOut" }, 2.4);
+      swap(2, 4.0);
+      tl.fromTo("#apps-card .apps-stamp i", { scale: 0 }, { scale: 1, duration: 0.3, stagger: 0.14, ease: "back.out(1.8)" }, 4.45);
+      swap(3, 6.0);
+      tl.to("#apps-route", { strokeDashoffset: 0, duration: 1.0, ease: "power2.inOut" }, 6.35);
+      ["#apps-pin1", "#apps-pin2", "#apps-pin3"].forEach((p, i) =>
+        tl.fromTo(p, { scale: 0, rotation: -45, transformOrigin: "0% 100%" }, { scale: 1, rotation: -45, duration: 0.35, ease: "back.out(1.8)" }, 6.3 + i * 0.4));
+
+      // Salida hacia la noche: todo se recoge al centro
+      tl.to(["#apps-kicker", "#apps-n4"], { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power3.in" }, 7.65);
+      tl.to("#apps-map", { scale: 0.2, opacity: 0, duration: 0.3, ease: "power3.in" }, 7.65);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["apps"] = tl;
+    })();
+  </script>
+</template>

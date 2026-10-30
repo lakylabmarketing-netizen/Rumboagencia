@@ -1,6 +1,6 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
-import { WA_HOLA, servicePages, testimonials } from '@/lib/content';
+import { PROMO_APPS, WA_HOLA, servicePages, testimonials } from '@/lib/content';
 
 const Arrow = ({ dark = false }: { dark?: boolean }) => (
   <span aria-hidden className={`grid h-9 w-9 shrink-0 place-items-center rounded-full text-[14px] ${dark ? 'bg-ink text-cal' : 'bg-cal text-ink'}`}>↗</span>
@@ -26,14 +26,15 @@ export default function Home() {
                 className="fundido h-full w-full object-cover object-[50%_20%]" />
             </div>
 
-            {/* Tarjeta arriba a la derecha: consultoría */}
-            <a href="/asesoria/" className="sube d3 card card-clara absolute right-8 top-[120px] z-10 hidden w-[310px] grid-cols-[1fr_96px] gap-3 p-3 pl-4 md:grid">
+            {/* Tarjeta arriba a la derecha: apps a medida */}
+            <a href="/apps/" className="sube d3 card card-clara absolute right-8 top-[120px] z-10 hidden w-[330px] grid-cols-[1fr_110px] gap-3 p-3 pl-4 md:grid">
               <span className="py-1">
-                <b className="block text-[15px] font-bold uppercase tracking-[.02em]">Consultoría gratis</b>
-                <span className="mt-1 block text-[12.5px] leading-snug text-[#4a4744]">30 minutos para decirte qué haríamos primero.</span>
-                <span className="mt-3 inline-block rounded-full bg-ink px-3 py-1.5 text-[12px] font-semibold text-cal">Reservar</span>
+                <span className="mb-1.5 inline-block rounded-full bg-naranja px-2 py-0.5 text-[10.5px] font-bold uppercase text-ink">Nuevo</span>
+                <b className="block text-[15px] font-bold uppercase tracking-[.02em]">Apps a medida</b>
+                <span className="mt-1 block text-[12.5px] leading-snug text-[#4a4744]">Lo que repites cada día, convertido en una app.</span>
+                <span className="mt-2.5 inline-block rounded-full bg-ink px-3 py-1.5 text-[12px] font-semibold text-cal">Ver apps</span>
               </span>
-              <img src="/img/testimonio-3.webp" alt="" className="h-full w-full rounded-[14px] object-cover" />
+              <img src={PROMO_APPS.poster} alt="" className="h-full w-full rounded-[14px] object-cover" />
             </a>
 
             {/* Tarjetas abajo a la izquierda: redes y Google */}
@@ -62,6 +63,33 @@ export default function Home() {
                 <a href="/contacto/" className="btn btn-naranja w-full sm:w-auto">Reservar consulta gratis</a>
               </div>
               <p className="mt-4 text-[14px] text-muted md:hidden">Esteban y Eneko · Almería y provincia</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── APPS A MEDIDA (destacado) ── */}
+        <section id="apps" aria-labelledby="t-apps" className="mx-auto max-w-[1320px] px-4 pt-16 sm:px-8 md:pt-24">
+          <div className="card card-oscura relative grid gap-8 overflow-hidden p-5 sm:p-8 lg:grid-cols-[1.25fr_1fr] lg:items-center lg:gap-12 lg:p-10">
+            <div aria-hidden className="glow pointer-events-none absolute -left-40 -top-40 h-[520px] w-[520px]" />
+            <div className="relative overflow-hidden rounded-[18px] bg-black">
+              <video autoPlay muted loop playsInline preload="metadata" poster={PROMO_APPS.poster} className="aspect-video w-full object-cover"
+                aria-label="Vídeo: Rumbo convierte en apps las tareas que repites cada día">
+                <source src={PROMO_APPS.src} type="video/mp4" />
+              </video>
+            </div>
+            <div className="relative">
+              <span className="inline-block rounded-full bg-naranja px-3 py-1 text-[12px] font-bold uppercase text-ink">Nuevo servicio</span>
+              <h2 id="t-apps" className="mt-4 text-[clamp(2.2rem,4.4vw,3.8rem)] font-bold leading-[.98] tracking-[-.05em]">Apps a <span className="text-brasa">medida</span></h2>
+              <p className="mt-4 max-w-[40ch] text-[1.1rem] leading-[1.45] text-gris">Si hay una tarea que repites cada día, la convertimos en una app. Te la instalamos y nos encargamos del mantenimiento técnico.</p>
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {['Albaranes y facturas', 'Turnos y fichajes', 'Carta digital', 'Fidelización', 'Repartos'].map((t) => (
+                  <li key={t} className="rounded-full border border-cal/15 px-3 py-1.5 text-[13.5px] text-gris">{t}</li>
+                ))}
+              </ul>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a href="/apps/" className="btn btn-naranja">Ver qué apps hacemos</a>
+                <a href="/contacto/" className="btn btn-linea">Cuéntanos tu idea</a>
+              </div>
             </div>
           </div>
         </section>

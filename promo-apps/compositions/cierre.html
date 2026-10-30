@@ -1,0 +1,59 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #070707; font-family: "Inter"; color: #F2EFEA; }
+    #cierre-lamp { position: absolute; left: 310px; top: -200px; width: 1300px; height: 1300px; border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(240,78,23,.22), rgba(240,78,23,.07) 60%, rgba(240,78,23,0) 100%); }
+    #cierre-clock { position: absolute; left: 0; right: 0; top: 170px; display: flex; justify-content: center; font-weight: 900; font-size: 360px;
+      line-height: 1; letter-spacing: -0.06em; font-variant-numeric: tabular-nums; }
+    .cierre-d { display: block; height: 1em; overflow: hidden; }
+    .cierre-strip { display: block; }
+    .cierre-strip span { display: block; height: 1em; }
+    .cierre-sep { color: #F04E17; }
+    #cierre-line { position: absolute; left: 0; right: 0; top: 620px; text-align: center; font-weight: 700; font-size: 84px; letter-spacing: -0.04em; }
+    #cierre-line .w { display: inline-block; } #cierre-line .acc { color: #FF8A3D; }
+    #cierre-c1, #cierre-c2 { opacity: 0; }
+    .cierre-claim { position: absolute; left: 0; right: 0; text-align: center; font-weight: 900; letter-spacing: -0.055em; line-height: 1; }
+    #cierre-c1 { top: 340px; font-size: 84px; font-weight: 700; color: #CFCFCF; letter-spacing: -0.04em; }
+    #cierre-c2 { top: 470px; font-size: 132px; }
+    #cierre-c2 .acc { color: #F04E17; }
+    .cierre-claim .w { display: inline-block; }
+  </style>
+  <div id="root" data-composition-id="cierre" data-width="1920" data-height="1080">
+    <div id="cierre-lamp" data-layout-ignore></div>
+    <div id="cierre-clock" data-hold data-layout-allow-overflow>
+      <span class="cierre-d"><span class="cierre-strip" id="cierre-s1"><span>2</span></span></span>
+      <span class="cierre-d"><span class="cierre-strip" id="cierre-s2"><span>3</span><span>2</span><span>1</span></span></span>
+      <span class="cierre-sep">:</span>
+      <span class="cierre-d"><span class="cierre-strip" id="cierre-s3"><span>4</span><span>3</span></span></span>
+      <span class="cierre-d"><span class="cierre-strip" id="cierre-s4"><span>7</span><span>6</span><span>5</span><span>4</span><span>3</span><span>2</span><span>1</span><span>0</span></span></span>
+    </div>
+    <p id="cierre-line"><span class="w">Y</span> <span class="w">tú</span> <span class="w">cierras</span> <span class="w acc">a</span> <span class="w acc">tu</span> <span class="w acc">hora</span></p>
+
+    <p class="cierre-claim" id="cierre-c1"><span class="w">Si</span> <span class="w">hay</span> <span class="w">una</span> <span class="w">tarea</span> <span class="w">que</span> <span class="w">repites</span> <span class="w">cada</span> <span class="w">día,</span></p>
+    <p class="cierre-claim" id="cierre-c2"><span class="w">la</span> <span class="w">convertimos</span> <span class="w">en</span> <span class="w acc">una</span> <span class="w acc">app</span></p>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // El reloj aparece a las 23:47 y rueda hasta las 21:30
+      tl.fromTo("#cierre-clock", { opacity: 0, filter: "blur(12px)", scale: 1.06 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.45, ease: "expo.out" }, 0.05);
+      tl.fromTo("#cierre-s2", { yPercent: 0 }, { yPercent: -66.667, duration: 0.8, ease: "power3.inOut" }, 0.55);
+      tl.fromTo("#cierre-s3", { yPercent: 0 }, { yPercent: -50, duration: 0.6, ease: "power3.inOut" }, 0.65);
+      tl.fromTo("#cierre-s4", { yPercent: 0 }, { yPercent: -87.5, duration: 1.0, ease: "power3.inOut" }, 0.55);
+      tl.fromTo("#cierre-line .w", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, stagger: 0.08, ease: "power2.out" }, 1.25);
+
+      // La frase de la marca
+      tl.to(["#cierre-clock", "#cierre-line"], { opacity: 0, filter: "blur(10px)", duration: 0.25, ease: "power3.in" }, 2.85);
+      tl.set(["#cierre-c1", "#cierre-c2"], { opacity: 1 }, 3.1);
+      tl.fromTo("#cierre-c1 .w", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, stagger: 0.07, ease: "power2.out" }, 3.1);
+      tl.fromTo("#cierre-c2 .w", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.09, ease: "power2.out" }, 3.75);
+
+      // Salida hacia el cierre
+      tl.to(["#cierre-c1", "#cierre-c2"], { opacity: 0, filter: "blur(10px)", duration: 0.25, ease: "power3.in" }, 6.2);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["cierre"] = tl;
+    })();
+  </script>
+</template>

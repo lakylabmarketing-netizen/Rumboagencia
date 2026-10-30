@@ -8,11 +8,12 @@ export const WHATSAPP = '34624911599';
 export const wa = (msg: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 export const WA_HOLA = wa('Hola, quiero saber qué haríais con mi negocio.');
 export const WA_CONSULTA = wa('Hola, quiero la consultoría gratis de 30 minutos. Mi negocio es: ');
+export const PROMO_APPS = { src: '/video/promo-apps.mp4', poster: '/img/promo-apps.jpg' };
 export const GOOGLE_FICHA = 'https://share.google/GnTpqiGGJO6bbH6Xn';
 
 // Páginas de la web, en el orden del menú
 export const NAV: [string, string][] = [
-  ['/#servicios', 'Servicios'], ['/caso/', 'Caso real'], ['/precios/', 'Precios'], ['/nosotros/', 'Nosotros'],
+  ['/apps/', 'Apps'], ['/#servicios', 'Servicios'], ['/caso/', 'Caso real'], ['/precios/', 'Precios'], ['/nosotros/', 'Nosotros'],
 ];
 
 export const services = [
@@ -125,6 +126,22 @@ export type ServicePage = {
 
 export const servicePages: ServicePage[] = [
   {
+    slug: 'apps', name: 'Apps a medida', short: 'Aplicaciones de todo tipo para tu día a día.',
+    title: 'Desarrollo de aplicaciones', img: '', imgAlt: '',
+    lead: 'Si hay una tarea que repites cada día, la convertimos en una app. Te la instalamos y nos encargamos del mantenimiento técnico.',
+    plan: 'Presupuesto a medida',
+    items: [
+      ['Albaranes y facturas sin teclear', 'Llegan por correo o les haces una foto, y se guardan solos en tu sistema. Las facturas pueden ir directas a tu gestoría.'],
+      ['Horarios y fichajes', 'Todo tu equipo registrado en una app que ficha y te propone cómo repartir los turnos.'],
+      ['Carta o catálogo digital', 'Con QR, se edita desde el móvil y se carga a partir de una foto de la que ya tienes.'],
+      ['Pedidos desde la carta', 'Tus clientes piden desde la carta digital, conectada con tu programa de caja.'],
+      ['Fidelización', 'Tarjetas de cliente con niveles para que vuelvan.'],
+      ['Repartos', 'Lista de visitas y seguimiento de pedidos con web y WhatsApp.'],
+      ['La que necesites', 'Cuéntanos qué te quita tiempo y te decimos si se puede convertir en una app.'],
+    ],
+    proof: { title: 'Cómo trabajamos', stats: [['Instalación', 'técnica y no técnica, la hacemos nosotros'], ['Mantenimiento', 'técnico nuestro; tú solo eliges cómo configurarla']] },
+  },
+  {
     slug: 'redes', name: 'Redes sociales', short: 'Vídeo, diseño y publicación cada semana.',
     title: 'Redes sociales', img: '/portafolio/assets/pieza-1-poster.jpg', imgAlt: 'Fotograma de un vídeo de Rumbo para A Lo Cubano',
     lead: 'Grabamos en tu negocio, montamos las piezas y las publicamos con el texto escrito. Tú apruebas el mes de una vez.',
@@ -165,22 +182,6 @@ export const servicePages: ServicePage[] = [
       ['Es tuya', 'La web y todos los accesos son tuyos desde el primer día.'],
     ],
     proof: { title: 'A Lo Cubano', stats: [['299', 'personas entraron en su web desde Google'], ['alocubanofusion.com', 'la web que les hicimos']] },
-  },
-  {
-    slug: 'apps', name: 'Apps a medida', short: 'Aplicaciones de todo tipo para tu día a día.',
-    title: 'Desarrollo de aplicaciones', img: '', imgAlt: '',
-    lead: 'Si hay una tarea que repites cada día, la convertimos en una app. Te la instalamos y nos encargamos del mantenimiento técnico.',
-    plan: 'Presupuesto a medida',
-    items: [
-      ['Albaranes y facturas sin teclear', 'Llegan por correo o les haces una foto, y se guardan solos en tu sistema. Las facturas pueden ir directas a tu gestoría.'],
-      ['Horarios y fichajes', 'Todo tu equipo registrado en una app que ficha y te propone cómo repartir los turnos.'],
-      ['Carta o catálogo digital', 'Con QR, se edita desde el móvil y se carga a partir de una foto de la que ya tienes.'],
-      ['Pedidos desde la carta', 'Tus clientes piden desde la carta digital, conectada con tu programa de caja.'],
-      ['Fidelización', 'Tarjetas de cliente con niveles para que vuelvan.'],
-      ['Repartos', 'Lista de visitas y seguimiento de pedidos con web y WhatsApp.'],
-      ['La que necesites', 'Cuéntanos qué te quita tiempo y te decimos si se puede convertir en una app.'],
-    ],
-    proof: { title: 'Cómo trabajamos', stats: [['Instalación', 'técnica y no técnica, la hacemos nosotros'], ['Mantenimiento', 'técnico nuestro; tú solo eliges cómo configurarla']] },
   },
   {
     slug: 'asesoria', name: 'Asesoría', short: 'Antes de grabar nada, el plan.',

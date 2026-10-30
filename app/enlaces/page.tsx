@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Isotipo, Logo } from '@/components/Logo';
-import { GOOGLE_FICHA, WA_HOLA, servicePages } from '@/lib/content';
+import { GOOGLE_FICHA, PROMO_APPS, WA_HOLA, servicePages } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Enlaces',
@@ -36,6 +36,17 @@ export default function Enlaces() {
 
         <nav aria-label="Enlaces" className="mt-8 grid gap-2.5">
           <div className="sube d1"><Row accent href={utm('/contacto/', 'consultoria')} title="Consultoría gratis" sub="30 minutos: te decimos qué haríamos primero" /></div>
+          <a href={utm('/apps/', 'apps-destacado')} className="sube d1 card card-oscura block overflow-hidden">
+            <video autoPlay muted loop playsInline preload="metadata" poster={PROMO_APPS.poster} className="aspect-video w-full object-cover" aria-label="Vídeo de apps a medida">
+              <source src={PROMO_APPS.src} type="video/mp4" />
+            </video>
+            <span className="flex items-center justify-between gap-4 px-5 py-4">
+              <span><span className="mb-1 inline-block rounded-full bg-naranja px-2 py-0.5 text-[10.5px] font-bold uppercase text-ink">Nuevo</span>
+                <b className="block text-[17px] font-semibold">Desarrollo de aplicaciones</b>
+                <span className="block text-[13.5px] text-muted">Lo que repites cada día, convertido en una app</span></span>
+              <span aria-hidden className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-cal text-[13px] text-ink">↗</span>
+            </span>
+          </a>
           <div className="sube d1"><Row ext href={WA_HOLA} title="Escríbenos por WhatsApp" sub="Te contestamos nosotros" /></div>
 
           <p className="sube d2 tech mt-4 text-muted">Servicios</p>

@@ -1,0 +1,73 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #070707; font-family: "Inter"; color: #F2EFEA; }
+    #noche-lamp { position: absolute; left: 1050px; top: -260px; width: 1300px; height: 1300px; border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(240,78,23,.24), rgba(240,78,23,.08) 60%, rgba(240,78,23,0) 100%); }
+    #noche-clock { position: absolute; left: 120px; top: 150px; font-weight: 900; font-size: 330px; line-height: .9;
+      letter-spacing: -0.06em; font-variant-numeric: tabular-nums; }
+    #noche-clock .sep { color: #F04E17; }
+    .noche-line { position: absolute; left: 128px; top: 520px; width: 900px; font-weight: 700; font-size: 72px; line-height: 1.04; letter-spacing: -0.035em; }
+    .noche-line .w { display: inline-block; }
+    .noche-line .acc { color: #FF8A3D; }
+    #noche-count, #noche-l2 { opacity: 0; }
+    #noche-count { position: absolute; left: 128px; top: 760px; display: flex; align-items: baseline; gap: 24px; }
+    #noche-count b { font-weight: 900; font-size: 150px; letter-spacing: -0.05em; color: #F04E17; font-variant-numeric: tabular-nums; }
+    #noche-count span { font-weight: 700; font-size: 44px; color: #CFCFCF; letter-spacing: -0.02em; }
+    .noche-paper { position: absolute; left: 1150px; top: 170px; width: 560px; height: 760px; border-radius: 10px;
+      background: #F4F1EC; color: #0B0B0B; padding: 46px 48px; box-shadow: 0 30px 60px rgba(0,0,0,.5); }
+    .noche-paper h4 { font-weight: 900; font-size: 46px; letter-spacing: -0.03em; }
+    .noche-paper .meta { margin-top: 10px; font-weight: 700; font-size: 30px; color: #6b625a; }
+    .noche-paper .row { margin-top: 26px; height: 18px; border-radius: 4px; background: #d9d3ca; }
+    .noche-paper .row.s { width: 62%; } .noche-paper .row.m { width: 80%; }
+    .noche-paper .sign { position: absolute; right: 52px; bottom: 56px; width: 180px; height: 70px; border-bottom: 3px solid #2b2b2b; }
+  </style>
+  <div id="root" data-composition-id="noche" data-width="1920" data-height="1080">
+    <div id="noche-lamp" data-layout-ignore></div>
+
+    <div class="noche-paper" data-layout-ignore id="noche-p1"><h4>ALBARÁN</h4><p class="meta">Proveedor · 12 cajas</p><div class="row"></div><div class="row m"></div><div class="row s"></div><div class="row"></div><div class="row m"></div><div class="row s"></div><div class="sign"></div></div>
+    <div class="noche-paper" data-layout-ignore id="noche-p2"><h4>ALBARÁN</h4><p class="meta">Proveedor · 8 cajas</p><div class="row m"></div><div class="row"></div><div class="row s"></div><div class="row m"></div><div class="row"></div><div class="row s"></div><div class="sign"></div></div>
+    <div class="noche-paper" data-layout-ignore id="noche-p3"><h4>ALBARÁN</h4><p class="meta">Proveedor · 20 uds.</p><div class="row"></div><div class="row s"></div><div class="row m"></div><div class="row"></div><div class="row s"></div><div class="row m"></div><div class="sign"></div></div>
+    <div class="noche-paper" data-layout-ignore id="noche-p4"><h4>ALBARÁN</h4><p class="meta">Proveedor · 5 cajas</p><div class="row m"></div><div class="row s"></div><div class="row"></div><div class="row m"></div><div class="row"></div><div class="row s"></div><div class="sign"></div></div>
+    <div class="noche-paper" data-layout-ignore id="noche-p5"><h4>ALBARÁN</h4><p class="meta">Proveedor · 12 cajas</p><div class="row"></div><div class="row m"></div><div class="row s"></div><div class="row"></div><div class="row m"></div><div class="row s"></div><div class="sign"></div></div>
+
+    <div id="noche-clock">23<span class="sep">:</span>47</div>
+
+    <p class="noche-line" id="noche-l1"><span class="w">Otra</span> <span class="w">noche</span> <span class="w">tecleando</span> <span class="w acc">albaranes</span></p>
+    <p class="noche-line" id="noche-l2"><span class="w">Lo</span> <span class="w">mismo.</span> <span class="w acc">Cada</span> <span class="w acc">día.</span></p>
+
+    <div id="noche-count"><b id="noche-num">14</b><span>albaranes hoy</span></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const papers = ["#noche-p1", "#noche-p2", "#noche-p3", "#noche-p4", "#noche-p5"];
+      const rest = [-7, 4, -3, 6, -1];
+
+      // Frame 0 ya es una imagen: reloj, primera frase y dos hojas sobre la mesa
+      tl.set("#noche-clock", { opacity: 1 }, 0);
+      tl.fromTo("#noche-l1 .w", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, stagger: 0.09, ease: "power2.out" }, 0.15);
+      tl.fromTo(papers[0], { x: 0, y: 0, rotation: rest[0] }, { x: -10, y: 6, rotation: rest[0], duration: 0.6, ease: "power2.out" }, 0);
+      tl.fromTo(papers[1], { x: 40, y: -20, rotation: rest[1] }, { x: 30, y: -14, rotation: rest[1], duration: 0.6, ease: "power2.out" }, 0);
+
+      // Tensión: más hojas caen sobre el taco y el contador sube
+      tl.to("#noche-l1 .w", { opacity: 0, filter: "blur(8px)", duration: 0.18, stagger: 0.04, ease: "power3.in" }, 2.45);
+      tl.set("#noche-l2", { opacity: 1 }, 2.7);
+      tl.fromTo("#noche-l2 .w", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, stagger: 0.1, ease: "power2.out" }, 2.7);
+      tl.fromTo("#noche-count", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 2.75);
+      papers.slice(2).forEach((p, i) => {
+        tl.fromTo(p, { y: -1250, x: (i - 1) * 50, rotation: 18 - i * 9 }, { y: -8 * (i + 1), x: (i - 1) * 24, rotation: rest[i + 2], duration: 0.55, ease: "expo.out" }, 3.0 + i * 0.5);
+      });
+      const n = { v: 14 };
+      tl.to(n, { v: 23, duration: 2.4, ease: "none", onUpdate: () => { document.getElementById("noche-num").textContent = Math.round(n.v); } }, 3.0);
+
+      // Salida: el texto se va y la hoja de arriba avanza hacia cámara (la recoge la escena siguiente)
+      tl.to(["#noche-clock", "#noche-l2", "#noche-count"], { opacity: 0, filter: "blur(10px)", duration: 0.3, ease: "power3.in" }, 5.75);
+      tl.to(papers.slice(0, 4), { opacity: 0, duration: 0.3, ease: "power3.in" }, 5.8);
+      tl.to(papers[4], { x: -450, y: -60, scale: 1.25, rotation: 0, duration: 0.65, ease: "power2.inOut" }, 5.8);
+      tl.to("#noche-lamp", { opacity: 0, duration: 0.4, ease: "power2.inOut" }, 6.0);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["noche"] = tl;
+    })();
+  </script>
+</template>

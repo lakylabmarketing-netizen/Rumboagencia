@@ -3,3 +3,8 @@ node_modules/
 out/
 next-env.d.ts
 *.tsbuildinfo
+
+# HyperFrames (promo de apps)
+promo-apps/.hyperframes/
+promo-apps/render.log
+promo-apps/renders/

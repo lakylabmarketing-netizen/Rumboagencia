@@ -1,6 +1,6 @@
 import Nav from './Nav';
 import Footer from './Footer';
-import { servicePages, type ServicePage } from '@/lib/content';
+import { PROMO_APPS, servicePages, type ServicePage } from '@/lib/content';
 
 /** Móvil dibujado con una app esquemática (para el servicio de aplicaciones). */
 export function AppMock() {
@@ -37,7 +37,7 @@ export default function ServiceView({ s }: { s: ServicePage }) {
         <div aria-hidden className="glow pointer-events-none absolute -right-40 top-10 h-[620px] w-[620px] opacity-70" />
 
         {/* Cabecera */}
-        <section className="relative mx-auto grid max-w-[1320px] gap-10 px-4 pb-16 pt-[calc(104px+env(safe-area-inset-top))] sm:px-8 md:grid-cols-[1.1fr_.9fr] md:items-center md:pb-24 md:pt-36">
+        <section className="relative mx-auto grid max-w-[1320px] gap-10 px-4 pb-16 pt-[calc(104px+env(safe-area-inset-top))] sm:px-8 md:grid-cols-[1fr_1fr] md:items-center md:pb-24 md:pt-36">
           <div>
             <a href="/#servicios" className="sube tech inline-flex items-center gap-2 text-muted hover:text-cal">← Servicios</a>
             <p className="sube d1 tech mt-8 text-brasa">0{idx} / Servicio</p>
@@ -53,6 +53,13 @@ export default function ServiceView({ s }: { s: ServicePage }) {
               <div className="relative mx-auto aspect-[4/5] w-full max-w-[460px] overflow-hidden rounded-[28px]">
                 <img src={s.img} alt={s.imgAlt} className="h-full w-full object-cover" />
                 <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#070707]/70 via-transparent to-transparent" />
+              </div>
+            ) : s.slug === 'apps' ? (
+              <div className="relative overflow-hidden rounded-[24px] bg-black shadow-[0_40px_80px_-30px_rgba(240,78,23,.6)]">
+                <video autoPlay muted loop playsInline preload="metadata" poster={PROMO_APPS.poster} className="aspect-video w-full object-cover"
+                  aria-label="Vídeo: Rumbo convierte en apps las tareas que repites cada día">
+                  <source src={PROMO_APPS.src} type="video/mp4" />
+                </video>
               </div>
             ) : <AppMock />}
           </div>

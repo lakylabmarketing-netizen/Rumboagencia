@@ -26,7 +26,7 @@ export default function Nav() {
   }, [open]);
 
   const isActive = (href: string) => {
-    if (href.startsWith('/#')) return path === '/' || servicePages.some((s) => path.startsWith(`/${s.slug}`));
+    if (href.startsWith('/#')) return path === '/' || servicePages.some((s) => s.slug !== 'apps' && path.startsWith(`/${s.slug}`));
     return path.startsWith(href.replace(/\/$/, ''));
   };
 
