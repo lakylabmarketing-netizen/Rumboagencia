@@ -8,12 +8,12 @@ export function Isotipo({ className = '', fill = '#F04E17' }: { className?: stri
   );
 }
 
-export function Logo({ className = '', title = 'Rumbo' }: { className?: string; title?: string }) {
+export function Logo({ className = '', title = 'Rumbo', color = '#151515' }: { className?: string; title?: string; color?: string }) {
   const gap = 18, tw = R_W + gap + WM_W;
   return (
     <svg viewBox={`0 -3 ${tw} 62`} className={className} role="img" aria-label={title}>
       <path fill="#F04E17" fillRule="evenodd" d={R_PATH} />
-      <path fill="#F2EFEA" transform={`translate(${R_W + gap} 0)`} d={WM_PATH} />
+      <path fill={color} transform={`translate(${R_W + gap} 0)`} d={WM_PATH} />
     </svg>
   );
 }

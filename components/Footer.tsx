@@ -1,43 +1,53 @@
 import { Logo } from './Logo';
-import { CONTACT_EMAIL, WA_HOLA, servicePages } from '@/lib/content';
+import Icon, { WhatsIcon } from './Icon';
+import { WhatsFlotante } from './Nav';
+import { CONTACT_EMAIL, NAV, WA_HOLA, WHATSAPP_VISIBLE } from '@/lib/content';
 
-/** Llamada final + pie con todos los apartados. */
+/** Llamada final con las formas de contacto + pie. */
 export default function Footer({ cta = true }: { cta?: boolean }) {
   return (
-    <footer className="relative overflow-hidden px-4 pb-[calc(28px+env(safe-area-inset-bottom))] pt-20 sm:px-8">
+    <>
       {cta && (
-        <div className="card card-naranja relative mx-auto mb-16 grid max-w-[1320px] gap-6 overflow-hidden p-7 sm:p-10 md:grid-cols-[1fr_auto] md:items-end">
-          <div>
-            <p className="tech text-ink/70">Consultoría gratis · 30 minutos</p>
-            <p className="mt-3 max-w-[22ch] text-[clamp(1.9rem,4vw,3.4rem)] font-bold leading-[1.02] tracking-[-.04em]">Te decimos qué haríamos con tu negocio.</p>
+        <section aria-labelledby="t-hablamos" className="bg-papel px-4 py-20 sm:px-6 md:py-28">
+          <div className="mx-auto max-w-wrap text-center">
+            <h2 id="t-hablamos" className="text-[clamp(2.2rem,5vw,3.8rem)] uppercase">¿Hablamos de tu negocio?</h2>
+            <p className="mx-auto mt-4 max-w-[34ch] text-[20px] text-gris">Cuéntanos qué necesitas. Te respondemos en menos de 24 horas.</p>
+            <div className="mt-10 grid gap-4 text-left md:grid-cols-3">
+              <a href={WA_HOLA} target="_blank" rel="noopener" className="card bg-white p-7 text-center">
+                <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-[#25D366]/15 text-[#128C4A]"><WhatsIcon className="h-7 w-7" /></span>
+                <b className="head mt-4 block text-[22px]">Escríbenos por WhatsApp</b>
+                <span className="mt-1 block text-[18px]">{WHATSAPP_VISIBLE}</span>
+              </a>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="card bg-white p-7 text-center">
+                <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-naranja/15 text-naranja-osc"><Icon name="correo" className="h-7 w-7" /></span>
+                <b className="head mt-4 block text-[22px]">Envíanos un correo</b>
+                <span className="mt-1 block break-all text-[17px]">{CONTACT_EMAIL}</span>
+              </a>
+              <a href="/contacto/" className="card bg-white p-7 text-center">
+                <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-naranja/15 text-naranja-osc"><Icon name="calendario" className="h-7 w-7" /></span>
+                <b className="head mt-4 block text-[22px]">Consultoría gratis</b>
+                <span className="mt-1 block text-[17px]">30 minutos, sin compromiso</span>
+              </a>
+            </div>
+            <a href="/contacto/" className="btn btn-naranja mt-10">Quiero que Rumbo trabaje para mí <Icon name="flecha" className="h-5 w-5" /></a>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <a href="/contacto/" className="btn bg-ink text-cal">Reservar consulta</a>
-            <a href={WA_HOLA} target="_blank" rel="noopener" className="btn border border-ink/30 text-ink">WhatsApp</a>
-          </div>
-        </div>
+        </section>
       )}
-      <div className="mx-auto grid max-w-[1320px] gap-10 border-t border-line pt-10 text-[15px] text-gris md:grid-cols-[1.2fr_1fr_1fr]">
-        <div>
-          <Logo className="h-6 w-auto" />
-          <p className="mt-4 max-w-[32ch]">Agencia de marketing para todo tipo de negocios.</p>
-          <a href={`mailto:${CONTACT_EMAIL}`} className="mt-3 inline-block underline underline-offset-4 hover:text-cal">{CONTACT_EMAIL}</a>
+      <footer className="border-t border-line px-4 pb-[calc(100px+env(safe-area-inset-bottom))] pt-12 sm:px-6">
+        <div className="mx-auto flex max-w-wrap flex-col gap-8 md:flex-row md:items-start md:justify-between">
+          <div>
+            <Logo className="h-7 w-auto" />
+            <p className="mt-3 text-[17px] text-gris">Agencia de marketing. Grabamos en tu negocio.</p>
+          </div>
+          <nav aria-label="Pie" className="flex flex-wrap gap-x-6 gap-y-3 text-[17px]">
+            {[...NAV.slice(1), ['/legal/', 'Aviso legal y privacidad'] as [string, string]].map(([h, l]) => (
+              <a key={h} href={h} className="text-gris underline-offset-4 hover:text-ink hover:underline">{l}</a>
+            ))}
+          </nav>
         </div>
-        <nav aria-label="Servicios" className="grid content-start gap-2">
-          <span className="tech mb-1 text-muted">Servicios</span>
-          {servicePages.map((s) => <a key={s.slug} href={`/${s.slug}/`} className="w-fit hover:text-cal">{s.name}</a>)}
-        </nav>
-        <nav aria-label="Rumbo" className="grid content-start gap-2">
-          <span className="tech mb-1 text-muted">Rumbo</span>
-          {[['/caso/', 'Caso real'], ['/precios/', 'Precios'], ['/precios/#preguntas', 'Preguntas'], ['/nosotros/', 'Nosotros'], ['/contacto/', 'Contacto'], ['/legal/', 'Aviso legal y privacidad']].map(([h, l]) => (
-            <a key={h} href={h} className="w-fit hover:text-cal">{l}</a>
-          ))}
-        </nav>
-      </div>
-      <div className="tech mx-auto mt-10 flex max-w-[1320px] flex-wrap justify-between gap-3 text-[11px] text-muted">
-        <span>© 2026 Rumbo · rumboagencia.info</span>
-        <span>Sin cookies ni rastreo</span>
-      </div>
-    </footer>
+        <p className="mx-auto mt-10 max-w-wrap text-[15px] text-muted">© 2026 Rumbo · rumboagencia.info · Esta web no usa cookies</p>
+      </footer>
+      <WhatsFlotante />
+    </>
   );
 }

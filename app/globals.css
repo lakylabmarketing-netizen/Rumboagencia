@@ -2,85 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Tipografía (servida desde la propia web) ── */
-@font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap;
-  src: url(/fonts/inter-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-@font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap;
-  src: url(/fonts/inter-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-/* Tipografía original de Rumbo (General Sans para texto, Switzer para titulares); de momento solo en /enlaces */
+/* Tipografía de Rumbo: General Sans para el texto y Switzer para los titulares */
 @font-face { font-family: 'General Sans'; font-weight: 400; font-display: swap; src: url(/fonts/generalsans-400.woff2) format('woff2'); }
 @font-face { font-family: 'General Sans'; font-weight: 500; font-display: swap; src: url(/fonts/generalsans-500.woff2) format('woff2'); }
 @font-face { font-family: 'General Sans'; font-weight: 600; font-display: swap; src: url(/fonts/generalsans-600.woff2) format('woff2'); }
 @font-face { font-family: 'Switzer'; font-weight: 800; font-display: swap; src: url(/fonts/switzer-800.woff2) format('woff2'); }
-.f-rumbo { font-family: 'General Sans', 'Helvetica Neue', Arial, sans-serif; }
-.f-rumbo-head { font-family: 'Switzer', 'Helvetica Neue', Arial, sans-serif; font-weight: 800; }
 
-:root { color-scheme: dark; }
-html { background: #070707; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+:root { color-scheme: light; }
+html { background: #fff; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body {
-  background: #070707; color: #F2EFEA; font-family: Inter, 'Helvetica Neue', Arial, sans-serif;
-  -webkit-font-smoothing: antialiased; overflow-x: hidden; text-rendering: optimizeLegibility;
+  background: #fff; color: #151515; font-family: 'General Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; line-height: 1.55;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
   padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right);
 }
-::selection { background: rgba(240,78,23,.4); color: #F2EFEA; }
-:focus-visible { outline: 2px solid #FF8A3D; outline-offset: 3px; }
+h1, h2, h3, .head { font-family: Switzer, 'Helvetica Neue', Arial, sans-serif; font-weight: 800; letter-spacing: -.02em; line-height: 1.08; }
+::selection { background: rgba(228,86,27,.25); }
+:focus-visible { outline: 3px solid #E4561B; outline-offset: 3px; }
 img, video { display: block; max-width: 100%; }
-[id] { scroll-margin-top: 88px; }
-
-/* Etiquetas pequeñas */
-.tech { font-weight: 500; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; }
-.num { font-variant-numeric: tabular-nums; letter-spacing: -.03em; }
+[id] { scroll-margin-top: 96px; }
 
 @layer components {
-/* Botones */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-height: 48px; padding: 0 1.4rem;
-  border-radius: 999px; font-weight: 600; font-size: .95rem; transition: transform .25s ease, background-color .25s, color .25s, box-shadow .25s; }
-.btn:hover { transform: translateY(-1px); }
-.btn-naranja { background: linear-gradient(180deg, #FF8A3D 0%, #F04E17 100%); color: #0B0B0B; box-shadow: 0 10px 30px -10px rgba(240,78,23,.7); }
-.btn-naranja:hover { box-shadow: 0 14px 36px -10px rgba(240,78,23,.9); }
-.btn-claro { background: #F2EFEA; color: #0B0B0B; }
-.btn-linea { border: 1px solid rgba(242,239,234,.25); color: #F2EFEA; }
-.btn-linea:hover { border-color: #FF8A3D; color: #FF8A3D; }
+/* Etiqueta pequeña encima de los titulares */
+.etiqueta { display: inline-block; border: 1px solid #E5E3DF; background: #F6F5F2; border-radius: 999px; padding: .35rem .9rem;
+  font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #474747; }
+
+/* Botones grandes y claros */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 56px; padding: 0 1.6rem;
+  border-radius: 12px; font-weight: 600; font-size: 1.05rem; transition: background-color .2s, border-color .2s, color .2s; }
+.btn-naranja { background: #E4561B; color: #151515; }
+.btn-naranja:hover { background: #F0703A; }
+.btn-linea { border: 2px solid #151515; color: #151515; }
+.btn-linea:hover { background: #151515; color: #fff; }
 
 /* Tarjetas */
-.card { border-radius: 22px; transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s; }
-a.card:hover { transform: translateY(-3px); box-shadow: 0 24px 50px -24px rgba(0,0,0,.8); }
-.card-clara { background: #F4F1EC; color: #0B0B0B; }
-.card-oscura { background: #121212; border: 1px solid rgba(242,239,234,.08); }
-.card-naranja { background: linear-gradient(160deg, #FF8A3D 0%, #F04E17 70%); color: #0B0B0B; }
-
+.card { border: 1px solid #E5E3DF; background: #F6F5F2; border-radius: 16px; }
+a.card { transition: border-color .2s; }
+a.card:hover { border-color: #151515; }
 }
 
-/* Resplandor naranja de marca */
-.glow { background: radial-gradient(closest-side, rgba(240,78,23,.55), rgba(240,78,23,.18) 55%, transparent 100%); filter: blur(10px); }
-
-/* Foto que se funde con el fondo por los lados y por arriba */
-.fundido { -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 20%, #000 80%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 22%);
-  mask-image: linear-gradient(90deg, transparent 0%, #000 20%, #000 80%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 22%);
-  -webkit-mask-composite: source-in; mask-composite: intersect; }
-@media (max-width: 767px) {
-  .fundido { -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 18%, #000 70%, transparent 100%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 18%, #000 70%, transparent 100%); }
-}
-
-/* Entrada suave al cargar */
-@keyframes sube { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-.sube { animation: sube .9s cubic-bezier(.2,.7,.2,1) both; }
-.d1 { animation-delay: .08s; } .d2 { animation-delay: .16s; } .d3 { animation-delay: .24s; } .d4 { animation-delay: .32s; } .d5 { animation-delay: .4s; }
-
-/* Cursor sencillo */
-.cursor-dot { position: fixed; left: 0; top: 0; z-index: 80; pointer-events: none; will-change: transform; }
-.cursor-dot > span { position: absolute; left: -6px; top: -6px; width: 12px; height: 12px; border-radius: 50%;
-  background: #F04E17; border: 1.5px solid #F04E17; transition: transform .25s cubic-bezier(.2,.7,.2,1), background-color .25s, opacity .2s; }
-.cursor-dot.is-hover > span { transform: scale(3.4); background: rgba(240,78,23,.12); border-width: .5px; }
-.cursor-dot.is-hidden > span { opacity: 0; }
-@media (hover: none), (pointer: coarse) { .cursor-dot { display: none !important; } }
-@media (hover: hover) and (pointer: fine) { .has-cursor, .has-cursor a, .has-cursor button, .has-cursor summary, .has-cursor label { cursor: none; } }
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .sube { animation: none; }
-  .btn:hover, a.card:hover { transform: none; }
-}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

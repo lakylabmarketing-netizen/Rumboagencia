@@ -13,8 +13,9 @@ export const GOOGLE_FICHA = 'https://share.google/GnTpqiGGJO6bbH6Xn';
 
 // Páginas de la web, en el orden del menú
 export const NAV: [string, string][] = [
-  ['/apps/', 'Apps'], ['/#servicios', 'Servicios'], ['/caso/', 'Caso real'], ['/precios/', 'Precios'], ['/nosotros/', 'Nosotros'],
+  ['/', 'Inicio'], ['/#servicios', 'Servicios'], ['/apps/', 'Apps'], ['/caso/', 'Caso real'], ['/precios/', 'Precios'], ['/contacto/', 'Contacto'],
 ];
+export const WHATSAPP_VISIBLE = '+34 624 91 15 99';
 
 export const services = [
   { k: '01', title: 'Estrategia', text: 'Auditoría de tu negocio y de la competencia, líneas creativas y calendario del primer trimestre, antes de grabar nada.' },
@@ -67,27 +68,11 @@ export const topVideos = [
   { v: '21.000', title: 'Vídeo de presentación', meta: '8 de julio · TikTok' },
 ];
 
-export const process = [
-  { k: 'Grabación', title: 'En tu negocio, en el momento más tranquilo', text: 'Según el plan: media jornada al mes (Esencial), una jornada completa (Crecimiento) o dos medias jornadas (Marca).' },
-  { k: 'Lunes', title: 'Qué se entrega', text: 'Los dos socios repasan la semana: qué sale, qué está trabado y qué necesitamos de ti.' },
-  { k: 'Martes a jueves', title: 'Edición', text: 'Esteban monta las piezas; Eneko lleva la comunicación contigo.' },
-  { k: 'Viernes', title: 'Programar y medir', text: 'Se programa la semana siguiente y se revisan las métricas. Apruebas el mes de una vez, no pieza por pieza.' },
-];
-
 export const commitments = [
   { title: 'Entrega', text: 'Si al cierre del mes falta algo de lo que pone el contrato, se devuelve el mes completo, sin que tengas que pedirlo.' },
   { title: 'Propiedad', text: 'Tus cuentas, tu web y todo el material grabado son tuyos. Si te vas, te llevas los archivos originales.' },
   { title: 'Respuesta', note: 'Crecimiento y Marca', text: 'Mensajes y comentarios contestados en menos de 24 horas laborables.' },
   { title: 'Exclusividad', note: 'Crecimiento y Marca', text: 'Un solo negocio de tu mismo sector por zona.' },
-];
-
-export const team = [
-  { name: 'Esteban', role: 'Grabación y producción', img: '/portafolio/assets/esteban.jpg', w: 900, h: 900,
-    text: 'Graba en tu negocio, edita las piezas, diseña y lleva el calendario de publicación.',
-    tasks: 'Grabación · Edición · Publicación · Calendario · Diseño gráfico · Branding' },
-  { name: 'Eneko', role: 'Clientes, sistemas y web', img: '/portafolio/assets/eneko.jpg', w: 675, h: 900,
-    text: 'Es tu interlocutor: lleva las reuniones y los informes. En los planes que lo incluyen, también los mensajes, la web y las automatizaciones.',
-    tasks: 'Reuniones · Informes · Mensajes y DMs · Web · Captación · Automatizaciones' },
 ];
 
 export const plans = [
@@ -119,14 +104,14 @@ export const faqs = [
 
 // ── Páginas de cada servicio (portada tipo «enlaces»: cada tarjeta lleva a su página) ──
 export type ServicePage = {
-  slug: string; name: string; short: string; title: string; lead: string; img: string; imgAlt: string;
+  slug: string; name: string; short: string; icon: string; title: string; lead: string; img: string; imgAlt: string;
   plan: string; items: [string, string][];
   proof?: { title: string; stats: [string, string][]; note?: string };
 };
 
 export const servicePages: ServicePage[] = [
   {
-    slug: 'apps', name: 'Apps a medida', short: 'Aplicaciones de todo tipo para tu día a día.',
+    slug: 'apps', icon: 'movil', name: 'Apps a medida', short: 'Aplicaciones de todo tipo para tu día a día.',
     title: 'Desarrollo de aplicaciones', img: '', imgAlt: '',
     lead: 'Si hay una tarea que repites cada día, la convertimos en una app. Te la instalamos y nos encargamos del mantenimiento técnico.',
     plan: 'Presupuesto a medida',
@@ -142,7 +127,7 @@ export const servicePages: ServicePage[] = [
     proof: { title: 'Cómo trabajamos', stats: [['Instalación', 'técnica y no técnica, la hacemos nosotros'], ['Mantenimiento', 'técnico nuestro; tú solo eliges cómo configurarla']] },
   },
   {
-    slug: 'redes', name: 'Redes sociales', short: 'Vídeo, diseño y publicación cada semana.',
+    slug: 'redes', icon: 'video', name: 'Vídeos y redes sociales', short: 'Grabamos en tu negocio y lo publicamos cada semana.',
     title: 'Redes sociales', img: '/portafolio/assets/pieza-1-poster.jpg', imgAlt: 'Fotograma de un vídeo de Rumbo para A Lo Cubano',
     lead: 'Grabamos en tu negocio, montamos las piezas y las publicamos con el texto escrito. Tú apruebas el mes de una vez.',
     plan: 'En los tres planes',
@@ -157,7 +142,7 @@ export const servicePages: ServicePage[] = [
     proof: { title: 'A Lo Cubano · 11 semanas', stats: [['172.900', 'visualizaciones en TikTok'], ['1.091', 'seguidores en TikTok, desde cero'], ['89 %', 'de las vistas desde «Para ti», sin publicidad']] },
   },
   {
-    slug: 'google', name: 'Google y reseñas', short: 'Que te encuentren y que lo que lean convenza.',
+    slug: 'google', icon: 'estrella', name: 'Google y reseñas', short: 'Que te encuentren y que lo que lean convenza.',
     title: 'Google y reseñas', img: '/img/testimonio-3.webp', imgAlt: 'Manuel, dueño de A Lo Cubano, en la terraza de su restaurante',
     lead: 'Cuando alguien busca lo que vendes cerca de él, tu ficha de Google es lo primero que ve. La dejamos lista para que te elija.',
     plan: 'En Crecimiento y Marca',
@@ -170,7 +155,7 @@ export const servicePages: ServicePage[] = [
     proof: { title: 'A Lo Cubano · julio a septiembre', stats: [['18.107', 'personas vieron su ficha'], ['607', 'pidieron la ruta para llegar'], ['12 → 151', 'reseñas, todas de cinco estrellas']] },
   },
   {
-    slug: 'web', name: 'Página web', short: 'Una web sencilla, rápida y tuya.',
+    slug: 'web', icon: 'web', name: 'Página web', short: 'Una web sencilla, rápida y tuya.',
     title: 'Página web', img: '/img/portada-pieza-4.webp', imgAlt: 'Fotograma de una pieza de Rumbo',
     lead: 'Una web o landing a la que llegan desde tu ficha de Google y tus redes, pensada para que te escriban o te visiten sin rodeos.',
     plan: 'Incluida en Marca',
@@ -184,8 +169,8 @@ export const servicePages: ServicePage[] = [
     proof: { title: 'A Lo Cubano', stats: [['299', 'personas entraron en su web desde Google'], ['alocubanofusion.com', 'la web que les hicimos']] },
   },
   {
-    slug: 'asesoria', name: 'Asesoría', short: 'Antes de grabar nada, el plan.',
-    title: 'Asesoría', img: '/img/equipo.webp', imgAlt: 'Esteban y Eneko, los dos socios de Rumbo',
+    slug: 'asesoria', icon: 'idea', name: 'Asesoría', short: 'Antes de grabar nada, el plan.',
+    title: 'Asesoría', img: '/img/portada-pieza-2.webp', imgAlt: 'Fotograma de un vídeo de Rumbo para A Lo Cubano',
     lead: 'Miramos tu negocio y tu competencia y decidimos qué contar, dónde y cuándo. Empieza con una consulta gratis de treinta minutos.',
     plan: 'Cuota de arranque: 400 €, pago único',
     items: [

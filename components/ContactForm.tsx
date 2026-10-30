@@ -2,8 +2,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { CONTACT_EMAIL, plans } from '@/lib/content';
 
-const field = 'w-full border-0 border-b border-cal/25 bg-transparent px-0 py-3 text-[17px] text-cal placeholder:text-muted focus:border-naranja focus:outline-none focus:ring-0';
-const label = 'tech mb-1 block text-gris';
+const field = 'w-full rounded-xl border-2 border-line bg-white px-4 py-3.5 text-[18px] text-ink placeholder:text-muted focus:border-ink focus:outline-none';
+const label = 'mb-2 block text-[17px] font-semibold';
 
 /** Formulario de consulta. Lo procesa Netlify Forms; sin scripts de terceros. */
 export default function ContactForm() {
@@ -61,9 +61,9 @@ export default function ContactForm() {
         <legend className={label}>Plan que te interesa *</legend>
         <div className="mt-2 grid grid-cols-3 gap-2">
           {plans.map((p) => (
-            <label key={p.id} className="cursor-pointer rounded-xl border border-cal/20 px-2 py-3 text-center text-[15px] transition-colors hover:border-brasa has-[:checked]:border-naranja has-[:checked]:bg-naranja/15 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-brasa">
+            <label key={p.id} className="cursor-pointer rounded-xl border-2 border-line bg-white px-2 py-3 text-center text-[17px] font-semibold transition-colors hover:border-ink has-[:checked]:border-naranja has-[:checked]:bg-naranja/10 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-naranja">
               <input type="radio" name="plan" value={p.value} defaultChecked={p.rec} className="sr-only" required />
-              {p.name}<small className="tech mt-1 block text-[10px] text-muted">{p.price} €/mes</small>
+              {p.name}<small className="mt-1 block text-[14px] font-normal text-gris">{p.price} €/mes</small>
             </label>
           ))}
         </div>
@@ -79,15 +79,15 @@ export default function ContactForm() {
       <p className="hidden" aria-hidden><label>No rellenar <input name="_honey" tabIndex={-1} autoComplete="off" /></label></p>
       <div className="flex items-start gap-3">
         <input id="rgpd" name="rgpd" type="checkbox" value="acepta" required className="mt-1 h-5 w-5 accent-naranja" />
-        <label htmlFor="rgpd" className="text-[15px] text-gris">He leído y acepto la <a href="/legal/#privacidad" className="underline underline-offset-4">política de privacidad</a> y que Rumbo use estos datos para responder a mi consulta.</label>
+        <label htmlFor="rgpd" className="text-[16px] text-gris">He leído y acepto la <a href="/legal/#privacidad" className="underline underline-offset-4">política de privacidad</a> y que Rumbo use estos datos para responder a mi consulta.</label>
       </div>
       <button type="submit" disabled={state === 'sending'} data-cursor="ENVIAR"
-        className="btn btn-naranja min-h-[56px] disabled:opacity-60">
+        className="btn btn-naranja min-h-[60px] text-[1.15rem] disabled:opacity-60">
         {state === 'sending' ? 'Enviando…' : 'Reservar mi consulta'}
       </button>
       <div role="status" aria-live="polite">
-        {state === 'ok' && <p className="rounded-xl border border-naranja/60 bg-naranja/10 p-4 text-[15px]">Recibido. Te escribimos en menos de 24 horas laborables.</p>}
-        {state === 'error' && <p className="rounded-xl border border-red-400/50 bg-red-500/10 p-4 text-[15px] text-[#f5d0c9]">{error}</p>}
+        {state === 'ok' && <p className="rounded-xl border-2 border-[#128C4A] bg-[#25D366]/10 p-4 text-[17px]">Recibido. Te escribimos en menos de 24 horas laborables.</p>}
+        {state === 'error' && <p className="rounded-xl border-2 border-red-600 bg-red-50 p-4 text-[17px] text-red-800">{error}</p>}
       </div>
     </form>
   );

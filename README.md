@@ -1,6 +1,6 @@
 # Rumbo · web
 
-Web de rumboagencia.info. Next.js (App Router, exportación estática) + TypeScript + Tailwind. Tipografía: Inter.
+Web de rumboagencia.info. Next.js (App Router, exportación estática) + TypeScript + Tailwind. Tipografía: General Sans (texto) y Switzer (titulares). Fondo blanco.
 
 Portada sencilla (retrato, titular y llamada a la acción) y una página para cada apartado:
 
@@ -10,7 +10,6 @@ Portada sencilla (retrato, titular y llamada a la acción) y una página para ca
 /redes/  /google/  /web/  /apps/  /asesoria/   Servicios (plantilla común: components/ServiceView.tsx)
 /caso/       Caso real de A Lo Cubano (cifras, vídeos de Manuel y piezas)
 /precios/    Planes, condiciones y preguntas frecuentes (#preguntas)
-/nosotros/   Esteban y Eneko
 /contacto/   Formulario (Netlify Forms) y WhatsApp
 /legal/      Aviso legal y privacidad
 /portafolio/ Portafolio, HTML autónomo con sus vídeos
