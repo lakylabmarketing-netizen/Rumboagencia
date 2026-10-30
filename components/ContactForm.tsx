@@ -11,6 +11,13 @@ export default function ContactForm() {
   const [state, setState] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle');
   const [error, setError] = useState('');
 
+  // Si llegas desde un plan (/contacto/?plan=crecimiento), queda marcado
+  useEffect(() => {
+    const id = new URLSearchParams(location.search).get('plan');
+    const v = plans.find((p) => p.id === id)?.value;
+    if (v) form.current?.querySelectorAll<HTMLInputElement>('input[name="plan"]').forEach((r) => { r.checked = r.value === v; });
+  }, []);
+
   // Los botones de los planes preseleccionan el plan
   useEffect(() => {
     const pick = (e: Event) => {
@@ -54,7 +61,7 @@ export default function ContactForm() {
         <legend className={label}>Plan que te interesa *</legend>
         <div className="mt-2 grid grid-cols-3 gap-2">
           {plans.map((p) => (
-            <label key={p.id} className="cursor-pointer border border-cal/20 px-2 py-3 text-center text-[15px] transition-colors hover:border-brasa has-[:checked]:border-naranja has-[:checked]:bg-naranja/15 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-brasa">
+            <label key={p.id} className="cursor-pointer rounded-xl border border-cal/20 px-2 py-3 text-center text-[15px] transition-colors hover:border-brasa has-[:checked]:border-naranja has-[:checked]:bg-naranja/15 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-brasa">
               <input type="radio" name="plan" value={p.value} defaultChecked={p.rec} className="sr-only" required />
               {p.name}<small className="tech mt-1 block text-[10px] text-muted">{p.price} €/mes</small>
             </label>
@@ -72,15 +79,15 @@ export default function ContactForm() {
       <p className="hidden" aria-hidden><label>No rellenar <input name="_honey" tabIndex={-1} autoComplete="off" /></label></p>
       <div className="flex items-start gap-3">
         <input id="rgpd" name="rgpd" type="checkbox" value="acepta" required className="mt-1 h-5 w-5 accent-naranja" />
-        <label htmlFor="rgpd" className="text-[15px] text-gris">He leído y acepto la <a href="#privacidad" className="underline underline-offset-4">política de privacidad</a> y que Rumbo use estos datos para responder a mi consulta.</label>
+        <label htmlFor="rgpd" className="text-[15px] text-gris">He leído y acepto la <a href="/legal/#privacidad" className="underline underline-offset-4">política de privacidad</a> y que Rumbo use estos datos para responder a mi consulta.</label>
       </div>
       <button type="submit" disabled={state === 'sending'} data-cursor="ENVIAR"
-        className="min-h-[56px] bg-naranja px-6 text-[15px] font-semibold text-ink transition-colors hover:bg-brasa disabled:opacity-60">
+        className="btn btn-naranja min-h-[56px] disabled:opacity-60">
         {state === 'sending' ? 'Enviando…' : 'Reservar mi consulta'}
       </button>
       <div role="status" aria-live="polite">
-        {state === 'ok' && <p className="border border-naranja/60 bg-naranja/10 p-4 text-[15px]">Recibido. Te escribimos en menos de 24 horas laborables.</p>}
-        {state === 'error' && <p className="border border-red-400/50 bg-red-500/10 p-4 text-[15px] text-[#f5d0c9]">{error}</p>}
+        {state === 'ok' && <p className="rounded-xl border border-naranja/60 bg-naranja/10 p-4 text-[15px]">Recibido. Te escribimos en menos de 24 horas laborables.</p>}
+        {state === 'error' && <p className="rounded-xl border border-red-400/50 bg-red-500/10 p-4 text-[15px] text-[#f5d0c9]">{error}</p>}
       </div>
     </form>
   );

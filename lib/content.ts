@@ -3,6 +3,18 @@
 
 export const CONTACT_EMAIL = 'lakylabmarketing@gmail.com'; // provisional
 
+// WhatsApp de Rumbo y mensajes que se abren ya escritos
+export const WHATSAPP = '34624911599';
+export const wa = (msg: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+export const WA_HOLA = wa('Hola, quiero saber qué haríais con mi negocio.');
+export const WA_CONSULTA = wa('Hola, quiero la consultoría gratis de 30 minutos. Mi negocio es: ');
+export const GOOGLE_FICHA = 'https://share.google/GnTpqiGGJO6bbH6Xn';
+
+// Páginas de la web, en el orden del menú
+export const NAV: [string, string][] = [
+  ['/#servicios', 'Servicios'], ['/caso/', 'Caso real'], ['/precios/', 'Precios'], ['/nosotros/', 'Nosotros'],
+];
+
 export const services = [
   { k: '01', title: 'Estrategia', text: 'Auditoría de tu negocio y de la competencia, líneas creativas y calendario del primer trimestre, antes de grabar nada.' },
   { k: '02', title: 'Contenido', text: 'Grabación en tu negocio, piezas de vídeo de tres duraciones, diseño gráfico y stories. Publicamos nosotros, con los copys escritos.' },
@@ -102,4 +114,85 @@ export const faqs = [
   { q: '¿La publicidad está incluida en el precio?', a: 'La gestión sí, en Crecimiento y Marca. La inversión en Meta o Google va aparte y la decides tú.' },
   { q: '¿Trabajáis con mi competencia?', a: 'En Crecimiento y Marca hay exclusividad: un solo negocio de tu mismo sector en tu zona. Si tu zona ya está ocupada, te lo decimos en la primera llamada.' },
   { q: 'Si me voy, ¿qué me llevo?', a: 'Las cuentas, la web y el material original grabado son tuyos desde el primer día. Te entregamos los archivos y los accesos.' },
+];
+
+// ── Páginas de cada servicio (portada tipo «enlaces»: cada tarjeta lleva a su página) ──
+export type ServicePage = {
+  slug: string; name: string; short: string; title: string; lead: string; img: string; imgAlt: string;
+  plan: string; items: [string, string][];
+  proof?: { title: string; stats: [string, string][]; note?: string };
+};
+
+export const servicePages: ServicePage[] = [
+  {
+    slug: 'redes', name: 'Redes sociales', short: 'Vídeo, diseño y publicación cada semana.',
+    title: 'Redes sociales', img: '/portafolio/assets/pieza-1-poster.jpg', imgAlt: 'Fotograma de un vídeo de Rumbo para A Lo Cubano',
+    lead: 'Grabamos en tu negocio, montamos las piezas y las publicamos con el texto escrito. Tú apruebas el mes de una vez.',
+    plan: 'En los tres planes',
+    items: [
+      ['Grabación en tu negocio', 'Media jornada, una jornada completa o dos medias jornadas al mes, según el plan.'],
+      ['Vídeos de tres duraciones', 'Piezas largas, medias y cortas: de 10 a 24 al mes, según el plan.'],
+      ['Diseño gráfico y stories', 'De 3 a 10 diseños al mes, y de 12 stories a stories sin límite.'],
+      ['Calendario, publicación y copys', 'Programamos la semana y escribimos los textos. Nada sale sin tu visto bueno.'],
+      ['Mensajes y comentarios', 'Contestados en menos de 24 horas laborables, en Crecimiento y Marca.'],
+      ['Publicidad', 'Gestión de campañas en Crecimiento y Marca. La inversión va aparte y la decides tú.'],
+    ],
+    proof: { title: 'A Lo Cubano · 11 semanas', stats: [['172.900', 'visualizaciones en TikTok'], ['1.091', 'seguidores en TikTok, desde cero'], ['89 %', 'de las vistas desde «Para ti», sin publicidad']] },
+  },
+  {
+    slug: 'google', name: 'Google y reseñas', short: 'Que te encuentren y que lo que lean convenza.',
+    title: 'Google y reseñas', img: '/img/testimonio-3.webp', imgAlt: 'Manuel, dueño de A Lo Cubano, en la terraza de su restaurante',
+    lead: 'Cuando alguien busca lo que vendes cerca de él, tu ficha de Google es lo primero que ve. La dejamos lista para que te elija.',
+    plan: 'En Crecimiento y Marca',
+    items: [
+      ['Ficha de Google optimizada', 'Fotos, horario, categorías y descripción, siempre al día.'],
+      ['Sistema de captación de reseñas', 'Un QR y el momento justo para que tus clientes contentos lo cuenten.'],
+      ['Mensajes contestados a tiempo', 'En menos de 24 horas laborables, con automatizaciones de WhatsApp o DM.'],
+      ['Lo que pasa, cada mes', 'Cuánta gente te ve, te llama y pide la ruta, en el informe mensual.'],
+    ],
+    proof: { title: 'A Lo Cubano · julio a septiembre', stats: [['18.107', 'personas vieron su ficha'], ['607', 'pidieron la ruta para llegar'], ['12 → 151', 'reseñas, todas de cinco estrellas']] },
+  },
+  {
+    slug: 'web', name: 'Página web', short: 'Una web sencilla, rápida y tuya.',
+    title: 'Página web', img: '/img/portada-pieza-4.webp', imgAlt: 'Fotograma de una pieza de Rumbo',
+    lead: 'Una web o landing a la que llegan desde tu ficha de Google y tus redes, pensada para que te escriban o te visiten sin rodeos.',
+    plan: 'Incluida en Marca',
+    items: [
+      ['Web o landing incluida', 'Diseñada y montada por nosotros en el plan Marca.'],
+      ['Pensada para el móvil', 'Que se lea bien y cargue rápido, que es donde la van a abrir.'],
+      ['Contacto directo', 'WhatsApp, llamada o formulario: que te escriban en un toque.'],
+      ['Automatizaciones', 'Respuestas automáticas por WhatsApp o DM: una en Crecimiento, tres en Marca.'],
+      ['Es tuya', 'La web y todos los accesos son tuyos desde el primer día.'],
+    ],
+    proof: { title: 'A Lo Cubano', stats: [['299', 'personas entraron en su web desde Google'], ['alocubanofusion.com', 'la web que les hicimos']] },
+  },
+  {
+    slug: 'apps', name: 'Apps a medida', short: 'Aplicaciones de todo tipo para tu día a día.',
+    title: 'Desarrollo de aplicaciones', img: '', imgAlt: '',
+    lead: 'Si hay una tarea que repites cada día, la convertimos en una app. Te la instalamos y nos encargamos del mantenimiento técnico.',
+    plan: 'Presupuesto a medida',
+    items: [
+      ['Albaranes y facturas sin teclear', 'Llegan por correo o les haces una foto, y se guardan solos en tu sistema. Las facturas pueden ir directas a tu gestoría.'],
+      ['Horarios y fichajes', 'Todo tu equipo registrado en una app que ficha y te propone cómo repartir los turnos.'],
+      ['Carta o catálogo digital', 'Con QR, se edita desde el móvil y se carga a partir de una foto de la que ya tienes.'],
+      ['Pedidos desde la carta', 'Tus clientes piden desde la carta digital, conectada con tu programa de caja.'],
+      ['Fidelización', 'Tarjetas de cliente con niveles para que vuelvan.'],
+      ['Repartos', 'Lista de visitas y seguimiento de pedidos con web y WhatsApp.'],
+      ['La que necesites', 'Cuéntanos qué te quita tiempo y te decimos si se puede convertir en una app.'],
+    ],
+    proof: { title: 'Cómo trabajamos', stats: [['Instalación', 'técnica y no técnica, la hacemos nosotros'], ['Mantenimiento', 'técnico nuestro; tú solo eliges cómo configurarla']] },
+  },
+  {
+    slug: 'asesoria', name: 'Asesoría', short: 'Antes de grabar nada, el plan.',
+    title: 'Asesoría', img: '/img/equipo.webp', imgAlt: 'Esteban y Eneko, los dos socios de Rumbo',
+    lead: 'Miramos tu negocio y tu competencia y decidimos qué contar, dónde y cuándo. Empieza con una consulta gratis de treinta minutos.',
+    plan: 'Cuota de arranque: 400 €, pago único',
+    items: [
+      ['Consulta gratis de 30 minutos', 'Miramos tu perfil y tu ficha de Google antes de la llamada y te decimos qué haríamos primero.'],
+      ['Auditoría y estrategia', 'Tu negocio y tu competencia, estrategia de contenido y líneas creativas.'],
+      ['Puesta a punto', 'Optimización de perfiles, configuración de herramientas y calendario del primer trimestre.'],
+      ['Seguimiento cada mes', 'Informe de métricas en todos los planes; llamada mensual en Crecimiento; reunión presencial en Marca.'],
+    ],
+    proof: { title: 'Lo que firmamos', stats: [['3 meses', 'para tener un sistema montado y datos para saber si funciona'], ['100 %', 'tuyo: cuentas, web y material grabado']] },
+  },
 ];
