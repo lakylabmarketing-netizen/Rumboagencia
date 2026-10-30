@@ -7,14 +7,14 @@ const SITE = process.env.URL || 'https://rumboagencia.info';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: { default: 'Rumbo · Agencia de marketing en Almería', template: '%s · Rumbo' },
-  description: 'Agencia de marketing para todo tipo de negocios en Almería. Redes sociales, Google y reseñas, página web y asesoría.',
+  title: { default: 'Rumbo · Agencia de marketing', template: '%s · Rumbo' },
+  description: 'Agencia de marketing para todo tipo de negocios. Redes sociales, Google y reseñas, página web y asesoría.',
   icons: { icon: '/img/favicon-32.png', apple: '/img/apple-touch-icon.png' },
   openGraph: {
     type: 'website', locale: 'es_ES', siteName: 'Rumbo', url: SITE + '/',
-    title: 'Rumbo · Agencia de marketing en Almería',
-    description: 'Marketing para todo tipo de negocios de Almería y provincia: redes, Google, web y asesoría.',
-    images: [{ url: '/img/og-rumbo.jpg', width: 1200, height: 630, alt: 'Rumbo, agencia de marketing en Almería' }],
+    title: 'Rumbo · Agencia de marketing',
+    description: 'Marketing para todo tipo de negocios: redes, Google, web y asesoría.',
+    images: [{ url: '/img/og-rumbo.jpg', width: 1200, height: 630, alt: 'Rumbo, agencia de marketing' }],
   },
   twitter: { card: 'summary_large_image' },
 };

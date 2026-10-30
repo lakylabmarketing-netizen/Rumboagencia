@@ -74,7 +74,7 @@ export default function ContactForm() {
         <div><label htmlFor="email" className={label}>Correo electrónico *</label><input id="email" name="email" type="email" required autoComplete="email" placeholder="tucorreo@ejemplo.com" className={field} /></div>
         <div><label htmlFor="telefono" className={label}>Teléfono *</label><input id="telefono" name="telefono" type="tel" required autoComplete="tel" placeholder="600 00 00 00" className={field} /></div>
       </div>
-      <div><label htmlFor="poblacion" className={label}>Población</label><input id="poblacion" name="poblacion" autoComplete="address-level2" placeholder="Roquetas de Mar, Almería…" className={field} /></div>
+      <div><label htmlFor="poblacion" className={label}>Población</label><input id="poblacion" name="poblacion" autoComplete="address-level2" placeholder="Tu ciudad o pueblo" className={field} /></div>
       <div><label htmlFor="mensaje" className={label}>¿Qué te gustaría cambiar?</label><textarea id="mensaje" name="mensaje" rows={3} placeholder="Me cuesta que me encuentren en Google y quiero más clientes entre semana…" className={`${field} resize-y`} /></div>
       <p className="hidden" aria-hidden><label>No rellenar <input name="_honey" tabIndex={-1} autoComplete="off" /></label></p>
       <div className="flex items-start gap-3">

@@ -31,7 +31,6 @@ export default function Contacto() {
             <ul className="mt-4 grid gap-2 text-[15px] text-gris">
               <li><span className="text-naranja">+</span> Respondemos en menos de 24 horas laborables</li>
               <li><span className="text-naranja">+</span> Crecimiento o Marca: si tu sector ya está cogido en tu zona, te lo decimos en la primera llamada</li>
-              <li><span className="text-naranja">+</span> Almería y provincia</li>
             </ul>
           </div>
           <div className="card card-oscura p-6 sm:p-8"><ContactForm /></div>

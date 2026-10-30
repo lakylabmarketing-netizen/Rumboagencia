@@ -4,7 +4,7 @@ import { GOOGLE_FICHA, PROMO_APPS, WA_HOLA, servicePages } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Enlaces',
-  description: 'Rumbo, agencia de marketing para todo tipo de negocios en Almería. Consultoría gratis, servicios, caso real y contacto.',
+  description: 'Rumbo, agencia de marketing para todo tipo de negocios. Consultoría gratis, servicios, caso real y contacto.',
   alternates: { canonical: '/enlaces/' },
 };
 
@@ -31,7 +31,7 @@ export default function Enlaces() {
             <Isotipo className="h-9 w-auto" />
           </div>
           <h1 className="mt-5 flex justify-center"><Logo className="h-7 w-auto" title="Rumbo" /></h1>
-          <p className="mx-auto mt-3 max-w-[34ch] text-[15.5px] leading-snug text-gris">Agencia de marketing para todo tipo de negocios. Esteban y Eneko · Almería y provincia.</p>
+          <p className="mx-auto mt-3 max-w-[34ch] text-[15.5px] leading-snug text-gris">Agencia de marketing para todo tipo de negocios. Esteban y Eneko.</p>
         </header>
 
         <nav aria-label="Enlaces" className="mt-8 grid gap-2.5">

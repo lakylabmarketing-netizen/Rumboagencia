@@ -20,7 +20,7 @@ export default function Footer({ cta = true }: { cta?: boolean }) {
       <div className="mx-auto grid max-w-[1320px] gap-10 border-t border-line pt-10 text-[15px] text-gris md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
           <Logo className="h-6 w-auto" />
-          <p className="mt-4 max-w-[32ch]">Agencia de marketing para todo tipo de negocios. Almería y provincia.</p>
+          <p className="mt-4 max-w-[32ch]">Agencia de marketing para todo tipo de negocios.</p>
           <a href={`mailto:${CONTACT_EMAIL}`} className="mt-3 inline-block underline underline-offset-4 hover:text-cal">{CONTACT_EMAIL}</a>
         </div>
         <nav aria-label="Servicios" className="grid content-start gap-2">

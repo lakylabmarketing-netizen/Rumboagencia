@@ -62,7 +62,7 @@ export default function Home() {
               <div className="sube d4 mt-6 flex flex-wrap gap-3 md:absolute md:-top-16 md:right-0 md:mt-0">
                 <a href="/contacto/" className="btn btn-naranja w-full sm:w-auto">Reservar consulta gratis</a>
               </div>
-              <p className="mt-4 text-[14px] text-muted md:hidden">Esteban y Eneko · Almería y provincia</p>
+              <p className="mt-4 text-[14px] text-muted md:hidden">Esteban y Eneko</p>
             </div>
           </div>
         </section>
