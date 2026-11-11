@@ -79,11 +79,20 @@ export default function Home() {
         <section aria-labelledby="t-distinto" className="px-4 py-20 sm:px-6 md:py-28">
           <div className="mx-auto grid max-w-wrap items-center gap-12 md:grid-cols-2">
             <div className="order-2 grid grid-cols-2 gap-3 md:order-none">
-              <video autoPlay muted loop playsInline preload="metadata" poster="/portafolio/assets/pieza-4-poster.jpg"
-                className="aspect-[9/16] w-full rounded-2xl object-cover" aria-label="Vídeo terminado que hicimos para A Lo Cubano">
-                <source src="/video/pieza-4-loop.mp4" type="video/mp4" />
-              </video>
-              <img src="/img/portada-pieza-2.webp" alt="Grabación en la cocina de A Lo Cubano antes de abrir" loading="lazy" className="mt-12 aspect-[9/16] w-full rounded-2xl object-cover" />
+              <figure className="m-0">
+                <video autoPlay muted loop playsInline preload="metadata" poster="/portafolio/assets/pieza-4-poster.jpg"
+                  className="aspect-[9/16] w-full rounded-2xl object-cover" aria-label="Vídeo terminado que hicimos para A Lo Cubano">
+                  <source src="/video/pieza-4-loop.mp4" type="video/mp4" />
+                </video>
+                <figcaption className="mt-3 text-[17px] font-semibold">El vídeo terminado</figcaption>
+              </figure>
+              <figure className="m-0 mt-12">
+                <video autoPlay muted loop playsInline preload="metadata" poster="/img/grabando-poster.jpg"
+                  className="aspect-[9/16] w-full rounded-2xl object-cover" aria-label="Grabando a Manuel en la terraza de A Lo Cubano">
+                  <source src="/video/grabando-loop.mp4" type="video/mp4" />
+                </video>
+                <figcaption className="mt-3 text-[17px] font-semibold">Así lo grabamos en su local</figcaption>
+              </figure>
             </div>
             <div>
               <p className="etiqueta">Lo que nos hace distintos</p>
