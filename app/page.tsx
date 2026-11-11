@@ -4,9 +4,9 @@ import Icon from '@/components/Icon';
 import { PROMO_APPS, WA_HOLA, servicePages, testimonials } from '@/lib/content';
 
 const PASOS = [
-  ['local', 'Vamos a tu negocio', 'Vamos a tu local con la cámara y grabamos, en el momento más tranquilo del día.'],
-  ['video', 'Montamos y publicamos', 'Editamos los vídeos, escribimos los textos y los publicamos en tus redes y en Google.'],
-  ['estrella', 'Te llegan más clientes', 'Más gente te ve, te encuentra en Google y te deja buenas reseñas.'],
+  ['Preparamos el plan', 'Estudiamos tu negocio y a tu competencia, y decidimos qué grabar y qué contar para que te elijan a ti.'],
+  ['Grabamos en tu local', 'Vamos con nuestro equipo de grabación en el momento más tranquilo del día. Tú no tienes que preparar nada.'],
+  ['Publicamos y medimos', 'Editamos los vídeos, los publicamos en tus redes y en Google, y cada mes revisamos qué funciona para mejorarlo.'],
 ];
 
 const DISTINTO = [
@@ -40,28 +40,35 @@ export default function Home() {
               <a href="/contacto/" className="btn btn-naranja">Quiero la consultoría gratis <Icon name="flecha" className="h-5 w-5" /></a>
               <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-linea">Escríbenos por WhatsApp</a>
             </div>
-            <div className="mx-auto mt-12 grid max-w-[760px] grid-cols-3 gap-3 border-t border-line pt-8">
-              {[['151', 'reseñas de 5 estrellas'], ['172.900', 'visualizaciones en TikTok'], ['607', 'personas pidieron la ruta']].map(([v, l]) => (
-                <p key={l}><b className="head block text-[clamp(1.5rem,3.4vw,2.2rem)]">{v}</b><span className="mt-1 block text-[15px] leading-snug text-gris">{l}</span></p>
-              ))}
+            <div className="mx-auto mt-14 max-w-[980px] rounded-3xl bg-ink px-5 py-9 text-white sm:px-10 md:py-12">
+              <p className="text-[15px] font-semibold uppercase tracking-[.1em] text-white/70">Resultados reales · A Lo Cubano · julio a septiembre de 2026</p>
+              <div className="mt-7 grid gap-8 sm:grid-cols-3 sm:gap-4">
+                {[['151', 'reseñas de 5 estrellas en Google', 'empezó con 12'], ['172.900', 'visualizaciones en TikTok', 'el 89 % sin pagar publicidad'], ['607', 'personas pidieron la ruta para ir', 'desde su ficha de Google']].map(([v, l, n]) => (
+                  <p key={l}>
+                    <b className="head block text-[clamp(3rem,7vw,4.6rem)] leading-none text-naranja-vivo">{v}</b>
+                    <span className="mt-3 block text-[19px] font-semibold leading-snug">{l}</span>
+                    <span className="mt-1 block text-[16px] text-white/70">{n}</span>
+                  </p>
+                ))}
+              </div>
             </div>
-            <p className="mt-3 text-[15px] text-muted">Resultados reales de nuestro cliente A Lo Cubano, de julio a septiembre de 2026.</p>
           </div>
         </section>
 
         {/* ── CÓMO TRABAJAMOS ── */}
         <section aria-labelledby="t-pasos" className="bg-papel px-4 py-20 sm:px-6 md:py-24">
           <div className="mx-auto max-w-wrap">
-            <h2 id="t-pasos" className="text-center text-[clamp(2rem,4.4vw,3.2rem)]">Así de fácil</h2>
+            <p className="text-center"><span className="etiqueta">Nuestro método</span></p>
+            <h2 id="t-pasos" className="mx-auto mt-5 max-w-[22ch] text-center text-[clamp(2rem,4.4vw,3.2rem)]">Detrás de cada vídeo hay trabajo. <span className="text-naranja-osc">Tú solo nos abres la puerta.</span></h2>
+            <p className="mx-auto mt-4 max-w-[48ch] text-center text-[19px] text-gris">Con nuestro método, conseguir clientes por redes y Google no depende de la suerte. Lo hacemos en tres pasos, cada mes.</p>
             <ol className="mt-12 grid gap-4 md:grid-cols-3">
-              {PASOS.map(([icon, t, d], i) => (
+              {PASOS.map(([t, d], i) => (
                 <li key={t} className="rounded-2xl border border-line bg-white p-8">
                   <div className="flex items-center gap-4">
                     <span className="head grid h-14 w-14 shrink-0 place-items-center rounded-full bg-ink text-[24px] text-white">{i + 1}</span>
-                    <Icon name={icon} className="h-8 w-8 text-naranja-osc" />
+                    <h3 className="text-[26px]">{t}</h3>
                   </div>
-                  <h3 className="mt-6 text-[26px]">{t}</h3>
-                  <p className="mt-2 text-[18px] text-gris">{d}</p>
+                  <p className="mt-5 text-[18px] text-gris">{d}</p>
                 </li>
               ))}
             </ol>
@@ -72,9 +79,9 @@ export default function Home() {
         <section aria-labelledby="t-distinto" className="px-4 py-20 sm:px-6 md:py-28">
           <div className="mx-auto grid max-w-wrap items-center gap-12 md:grid-cols-2">
             <div className="order-2 grid grid-cols-2 gap-3 md:order-none">
-              <video autoPlay muted loop playsInline preload="metadata" poster="/portafolio/assets/pieza-3-poster.jpg"
-                className="aspect-[9/16] w-full rounded-2xl object-cover" aria-label="Vídeo que grabamos en A Lo Cubano">
-                <source src="/video/pieza-3-loop.mp4" type="video/mp4" />
+              <video autoPlay muted loop playsInline preload="metadata" poster="/portafolio/assets/pieza-4-poster.jpg"
+                className="aspect-[9/16] w-full rounded-2xl object-cover" aria-label="Vídeo terminado que hicimos para A Lo Cubano">
+                <source src="/video/pieza-4-loop.mp4" type="video/mp4" />
               </video>
               <img src="/img/portada-pieza-2.webp" alt="Grabación en la cocina de A Lo Cubano antes de abrir" loading="lazy" className="mt-12 aspect-[9/16] w-full rounded-2xl object-cover" />
             </div>
@@ -98,7 +105,7 @@ export default function Home() {
         <section id="servicios" aria-labelledby="t-servicios" className="bg-papel px-4 py-20 sm:px-6 md:py-28">
           <div className="mx-auto max-w-[920px] text-center">
             <p className="etiqueta">Lo que hacemos</p>
-            <h2 id="t-servicios" className="mx-auto mt-5 max-w-[20ch] text-[clamp(2rem,4.4vw,3.2rem)]">Todo lo que tu negocio necesita para que <span className="text-naranja-osc">te elijan</span></h2>
+            <h2 id="t-servicios" className="mx-auto mt-5 max-w-[20ch] text-[clamp(2rem,4.4vw,3.2rem)]">Todo lo que tu negocio necesita para que<span className="mt-2 block text-[1.35em] uppercase text-naranja-vivo">te elijan</span></h2>
             <div className="mt-12 grid gap-4 text-left sm:grid-cols-2">
               {servicePages.map((s) => (
                 <a key={s.slug} href={`/${s.slug}/`} className="card flex items-start gap-5 bg-white p-7">

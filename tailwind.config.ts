@@ -13,6 +13,7 @@ const config: Config = {
         papel: '#F6F5F2',        // fondo de tarjetas y franjas
         naranja: '#E4561B',      // botón principal
         'naranja-osc': '#B4400E', // naranja para texto sobre blanco
+        'naranja-vivo': '#FF5A12', // naranja llamativo para cifras y palabras clave grandes
       },
       fontFamily: {
         sans: ['"General Sans"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
