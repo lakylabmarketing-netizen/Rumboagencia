@@ -1,5 +1,6 @@
 // Todo el texto y las cifras de la web en un solo sitio.
-// Las cifras de A Lo Cubano salen del informe del 8 de julio al 24 de septiembre de 2026.
+// Cifras de A Lo Cubano: Google y reseñas, informe del 8 de julio al 24 de septiembre de 2026;
+// TikTok e Instagram, análisis del 11 de noviembre de 2026 (Windsor.ai y perfil público).
 
 export const CONTACT_EMAIL = 'lakylabmarketing@gmail.com'; // provisional
 
@@ -53,19 +54,18 @@ export const metricGroups: { q: string; src: string; items: Metric[] }[] = [
   { q: '¿Les recomiendan?', src: 'Reseñas en Google', items: [
     { v: 151, from: 12, label: 'reseñas, todas de cinco estrellas' },
   ] },
-  { q: '¿Les ven en redes?', src: 'TikTok 7 jul – 22 sep · Instagram 8 jul – 23 sep', items: [
-    { v: 172900, label: 'visualizaciones en TikTok' },
-    { v: 1091, from: 0, label: 'seguidores en TikTok' },
-    { v: 89, suffix: ' %', label: 'de las vistas de TikTok desde «Para ti», sin publicidad' },
-    { v: 331, from: 89, label: 'seguidores en Instagram' },
-    { v: 76885, label: 'visualizaciones en Instagram' },
+  { q: '¿Les ven en redes?', src: '32 vídeos en TikTok del 8 de julio al 11 de noviembre · seguidores a 11 de noviembre', items: [
+    { v: 432490, label: 'visualizaciones en TikTok' },
+    { v: 2457, from: 0, label: 'seguidores en TikTok' },
+    { v: 20031, label: 'me gusta en TikTok' },
+    { v: 1124, label: 'seguidores en Instagram' },
   ] },
 ];
 
 export const topVideos = [
-  { v: '29.000', title: '«POV: Buscas un restaurante con la mejor comida de Almería…»', meta: '6 de agosto · TikTok' },
-  { v: '26.000', title: '«Si quieres venir… vení»', meta: '12 de julio · TikTok' },
-  { v: '21.000', title: 'Vídeo de presentación', meta: '8 de julio · TikTok' },
+  { v: '94.781', title: 'Vídeo con Yolaxis', meta: '16 de octubre · TikTok · 778 seguidores nuevos' },
+  { v: '77.631', title: 'Humor: «no ha comido»', meta: '10 de octubre · TikTok · 270 seguidores nuevos' },
+  { v: '35.733', title: 'Probando los platos por primera vez', meta: 'TikTok' },
 ];
 
 export const commitments = [
@@ -139,7 +139,7 @@ export const servicePages: ServicePage[] = [
       ['Mensajes y comentarios', 'Contestados en menos de 24 horas laborables, en Crecimiento y Marca.'],
       ['Publicidad', 'Gestión de campañas en Crecimiento y Marca. La inversión va aparte y la decides tú.'],
     ],
-    proof: { title: 'A Lo Cubano · 11 semanas', stats: [['172.900', 'visualizaciones en TikTok'], ['1.091', 'seguidores en TikTok, desde cero'], ['89 %', 'de las vistas desde «Para ti», sin publicidad']] },
+    proof: { title: 'A Lo Cubano · julio a noviembre de 2026', stats: [['432.490', 'visualizaciones en TikTok con 32 vídeos'], ['2.457', 'seguidores en TikTok, desde cero'], ['1.124', 'seguidores en Instagram']] },
   },
   {
     slug: 'google', icon: 'estrella', name: 'Google y reseñas', short: 'Que te encuentren y que lo que lean convenza.',

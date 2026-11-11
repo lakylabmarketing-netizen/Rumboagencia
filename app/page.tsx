@@ -16,8 +16,8 @@ const DISTINTO = [
 
 const CIFRAS = [
   ['12 → 151', 'reseñas de cinco estrellas en Google'],
-  ['172.900', 'visualizaciones en TikTok'],
-  ['607', 'personas pidieron la ruta para llegar'],
+  ['432.490', 'visualizaciones en TikTok'],
+  ['2.457', 'seguidores en TikTok, desde cero'],
 ];
 
 export default function Home() {
@@ -41,9 +41,9 @@ export default function Home() {
               <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-linea">Escríbenos por WhatsApp</a>
             </div>
             <div className="mx-auto mt-14 max-w-[980px] rounded-3xl bg-ink px-5 py-9 text-white sm:px-10 md:py-12">
-              <p className="text-[15px] font-semibold uppercase tracking-[.1em] text-white/70">Resultados reales · A Lo Cubano · julio a septiembre de 2026</p>
+              <p className="text-[15px] font-semibold uppercase tracking-[.1em] text-white/70">Resultados reales · A Lo Cubano · desde julio de 2026</p>
               <div className="mt-7 grid gap-8 sm:grid-cols-3 sm:gap-4">
-                {[['151', 'reseñas de 5 estrellas en Google', 'empezó con 12'], ['172.900', 'visualizaciones en TikTok', 'el 89 % sin pagar publicidad'], ['607', 'personas pidieron la ruta para ir', 'desde su ficha de Google']].map(([v, l, n]) => (
+                {[['432.490', 'visualizaciones en TikTok', 'con 32 vídeos, hasta el 11 de noviembre'], ['2.457', 'seguidores en TikTok', 'empezó sin cuenta'], ['151', 'reseñas de 5 estrellas en Google', 'empezó con 12']].map(([v, l, n]) => (
                   <p key={l}>
                     <b className="head block text-[clamp(3rem,7vw,4.6rem)] leading-none text-naranja-vivo">{v}</b>
                     <span className="mt-3 block text-[19px] font-semibold leading-snug">{l}</span>
@@ -134,7 +134,7 @@ export default function Home() {
           <div className="mx-auto max-w-wrap">
             <p className="etiqueta">Un caso real</p>
             <h2 id="t-caso" className="mx-auto mt-5 max-w-[22ch] text-[clamp(2rem,4.4vw,3.2rem)]">Lo que conseguimos con el restaurante A Lo Cubano</h2>
-            <p className="mt-3 text-[18px] text-gris">De julio a septiembre de 2026, recién abierto.</p>
+            <p className="mt-3 text-[18px] text-gris">Recién abierto, desde julio de 2026.</p>
             <div className="mt-12 grid gap-10 md:grid-cols-3">
               {CIFRAS.map(([v, l]) => (
                 <p key={l}>

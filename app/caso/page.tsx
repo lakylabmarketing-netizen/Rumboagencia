@@ -6,7 +6,7 @@ import { metricGroups, pieces, testimonials, topVideos } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Caso real: A Lo Cubano',
-  description: 'Once semanas con A Lo Cubano, en Roquetas de Mar: 172.900 vistas en TikTok, 18.107 personas vieron su ficha de Google y de 12 a 151 reseñas.',
+  description: 'A Lo Cubano, en Roquetas de Mar: 432.490 visualizaciones y 2.457 seguidores en TikTok desde cero, 18.107 personas vieron su ficha de Google y de 12 a 151 reseñas.',
   alternates: { canonical: '/caso/' },
 };
 
@@ -18,7 +18,7 @@ export default function Caso() {
     <>
       <Nav />
       <main id="contenido">
-        <PageHead kicker="Caso real · julio a septiembre de 2026" title={<>Restaurante <span className="text-naranja-osc">A Lo Cubano</span></>}
+        <PageHead kicker="Caso real · desde julio de 2026" title={<>Restaurante <span className="text-naranja-osc">A Lo Cubano</span></>}
           lead="Cocina cubana en Roquetas de Mar. Abrió a finales de junio de 2026 y empezamos el 8 de julio: vídeos, ficha de Google y reseñas.">
           <p className="mt-6 text-[17px] text-gris">Antes de empezar: 12 reseñas en Google · 45 seguidores en Instagram · sin cuenta de TikTok</p>
         </PageHead>
@@ -87,7 +87,7 @@ export default function Caso() {
         <section className="px-4 py-20 sm:px-6 md:py-24">
           <div className="mx-auto grid max-w-wrap gap-4 md:grid-cols-2">
             <div className="card p-7 sm:p-9">
-              <h2 className="text-[26px]">Los tres vídeos más vistos</h2>
+              <h2 className="text-[26px]">Los tres vídeos más vistos en TikTok</h2>
               <ol className="mt-5">
                 {topVideos.map((t) => (
                   <li key={t.v} className="grid grid-cols-[100px_1fr] gap-4 border-t border-line py-4">
@@ -100,7 +100,7 @@ export default function Caso() {
             <div className="card p-7 sm:p-9">
               <h2 className="text-[26px]">Lo que todavía no medimos</h2>
               <p className="mt-4 text-[18px] text-gris">Las reservas se hacen por su web y no sabemos cuántas llegan desde las redes o desde Google, así que no las atribuimos a nuestro trabajo. Este trimestre empezamos a medirlo preguntando en sala: «¿cómo nos has conocido?».</p>
-              <p className="mt-4 text-[16px] text-muted">Qué hicimos: 10 sesiones de grabación · 30 vídeos · 13 posts · 108 stories · ficha de Google optimizada · carta con QR para reseñas · web alocubanofusion.com</p>
+              <p className="mt-4 text-[16px] text-muted">Qué hicimos hasta septiembre: 10 sesiones de grabación · 30 vídeos · 13 posts · 108 stories · ficha de Google optimizada · carta con QR para reseñas · web alocubanofusion.com</p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <a className="btn btn-linea" href="https://www.google.com/maps/search/?api=1&query=36.7228772,-2.6287304" target="_blank" rel="noopener">Leer las 151 reseñas</a>
                 <a className="btn btn-linea" href="https://www.instagram.com/alocubanofusion/" target="_blank" rel="noopener">Su Instagram</a>
