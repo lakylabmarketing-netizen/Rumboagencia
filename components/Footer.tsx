@@ -1,6 +1,5 @@
 import { Logo } from './Logo';
 import Icon, { WhatsIcon } from './Icon';
-import { WhatsFlotante } from './Nav';
 import { CONTACT_EMAIL, NAV, WA_HOLA, WHATSAPP_VISIBLE } from '@/lib/content';
 
 /** Llamada final con las formas de contacto + pie. */
@@ -33,7 +32,7 @@ export default function Footer({ cta = true }: { cta?: boolean }) {
           </div>
         </section>
       )}
-      <footer className="border-t border-line px-4 pb-[calc(100px+env(safe-area-inset-bottom))] pt-12 sm:px-6">
+      <footer className="border-t border-line px-4 pb-[calc(40px+env(safe-area-inset-bottom))] pt-12 sm:px-6">
         <div className="mx-auto flex max-w-wrap flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div>
             <Logo className="h-7 w-auto" />
@@ -47,7 +46,6 @@ export default function Footer({ cta = true }: { cta?: boolean }) {
         </div>
         <p className="mx-auto mt-10 max-w-wrap text-[15px] text-muted">© 2026 Rumbo · rumboagencia.info · Esta web no usa cookies</p>
       </footer>
-      <WhatsFlotante />
     </>
   );
 }

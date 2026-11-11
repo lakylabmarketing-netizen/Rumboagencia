@@ -62,12 +62,3 @@ export default function Nav() {
   );
 }
 
-/** Botón flotante de WhatsApp, abajo a la derecha. */
-export function WhatsFlotante() {
-  return (
-    <a href={WA_HOLA} target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"
-      className="fixed bottom-[calc(18px+env(safe-area-inset-bottom))] right-4 z-40 grid h-16 w-16 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(0,0,0,.18)] sm:right-6">
-      <WhatsIcon className="h-8 w-8" />
-    </a>
-  );
-}
