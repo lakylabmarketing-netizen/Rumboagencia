@@ -80,11 +80,11 @@ export default function Home() {
           <div className="mx-auto grid max-w-wrap items-center gap-12 md:grid-cols-2">
             <div className="order-2 grid grid-cols-2 gap-3 md:order-none">
               <figure className="m-0">
-                <video autoPlay muted loop playsInline preload="metadata" poster="/portafolio/assets/pieza-4-poster.jpg"
-                  className="aspect-[9/16] w-full rounded-2xl object-cover" aria-label="Vídeo terminado que hicimos para A Lo Cubano">
-                  <source src="/video/pieza-4-loop.mp4" type="video/mp4" />
+                <video autoPlay muted loop playsInline preload="metadata" poster="/img/manuel-poster.jpg"
+                  className="aspect-[9/16] w-full rounded-2xl object-cover" aria-label="Manuel, dueño de A Lo Cubano: «Estamos repletos de clientes que vienen por las redes»">
+                  <source src="/video/manuel-loop.mp4" type="video/mp4" />
                 </video>
-                <figcaption className="mt-3 text-[17px] font-semibold">El vídeo terminado</figcaption>
+                <figcaption className="mt-3 text-[17px] font-semibold">Manuel, dueño de A Lo Cubano</figcaption>
               </figure>
               <figure className="m-0 mt-12">
                 <video autoPlay muted loop playsInline preload="metadata" poster="/img/grabando-poster.jpg"
