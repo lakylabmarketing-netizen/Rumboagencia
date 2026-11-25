@@ -1,6 +1,6 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
-import { CONTACT_EMAIL, plans } from '@/lib/content';
+import { useRef, useState } from 'react';
+import { CONTACT_EMAIL } from '@/lib/content';
 
 const field = 'w-full rounded-xl border-2 border-line bg-white px-4 py-3.5 text-[18px] text-ink placeholder:text-muted focus:border-ink focus:outline-none';
 const label = 'mb-2 block text-[17px] font-semibold';
@@ -10,24 +10,6 @@ export default function ContactForm() {
   const form = useRef<HTMLFormElement>(null);
   const [state, setState] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle');
   const [error, setError] = useState('');
-
-  // Si llegas desde un plan (/contacto/?plan=crecimiento), queda marcado
-  useEffect(() => {
-    const id = new URLSearchParams(location.search).get('plan');
-    const v = plans.find((p) => p.id === id)?.value;
-    if (v) form.current?.querySelectorAll<HTMLInputElement>('input[name="plan"]').forEach((r) => { r.checked = r.value === v; });
-  }, []);
-
-  // Los botones de los planes preseleccionan el plan
-  useEffect(() => {
-    const pick = (e: Event) => {
-      const v = (e.currentTarget as HTMLElement).dataset.plan;
-      form.current?.querySelectorAll<HTMLInputElement>('input[name="plan"]').forEach((r) => { r.checked = r.value === v; });
-    };
-    const els = document.querySelectorAll<HTMLElement>('[data-plan]');
-    els.forEach((el) => el.addEventListener('click', pick));
-    return () => els.forEach((el) => el.removeEventListener('click', pick));
-  }, []);
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,8 +29,8 @@ export default function ContactForm() {
       if (!res.ok) throw new Error(String(res.status));
       e.currentTarget?.reset(); form.current?.reset(); setState('ok');
     } catch {
-      const body = ['Plan: ' + v('plan'), 'Nombre: ' + v('nombre'), 'Negocio: ' + v('local'), 'Email: ' + v('email'), 'Teléfono: ' + v('telefono'), 'Población: ' + v('poblacion'), '', v('mensaje')].join('\n');
-      location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Nueva consulta: ${v('local')} (${v('plan')})`)}&body=${encodeURIComponent(body)}`;
+      const body = ['Nombre: ' + v('nombre'), 'Negocio: ' + v('local'), 'Email: ' + v('email'), 'Teléfono: ' + v('telefono'), 'Población: ' + v('poblacion'), '', v('mensaje')].join('\n');
+      location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Nueva consulta: ${v('local')}`)}&body=${encodeURIComponent(body)}`;
       setError('El envío automático no ha respondido, así que hemos abierto tu programa de correo con la consulta ya escrita: solo tienes que darle a enviar.');
       setState('error');
     }
@@ -57,17 +39,6 @@ export default function ContactForm() {
   return (
     <form ref={form} name="consulta" method="POST" data-netlify="true" netlify-honeypot="_honey" onSubmit={submit} noValidate className="grid gap-7">
       <input type="hidden" name="form-name" value="consulta" />
-      <fieldset className="m-0 min-w-0 border-0 p-0">
-        <legend className={label}>Plan que te interesa *</legend>
-        <div className="mt-2 grid grid-cols-3 gap-2">
-          {plans.map((p) => (
-            <label key={p.id} className="cursor-pointer rounded-xl border-2 border-line bg-white px-2 py-3 text-center text-[17px] font-semibold transition-colors hover:border-ink has-[:checked]:border-naranja has-[:checked]:bg-naranja/10 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-naranja">
-              <input type="radio" name="plan" value={p.value} defaultChecked={p.rec} className="sr-only" required />
-              {p.name}<small className="mt-1 block text-[14px] font-normal text-gris">{p.price} €/mes</small>
-            </label>
-          ))}
-        </div>
-      </fieldset>
       <div className="grid gap-7 sm:grid-cols-2">
         <div><label htmlFor="nombre" className={label}>Tu nombre *</label><input id="nombre" name="nombre" required minLength={2} autoComplete="name" placeholder="Nombre y apellidos" className={field} /></div>
         <div><label htmlFor="local" className={label}>Nombre del negocio *</label><input id="local" name="local" required minLength={2} autoComplete="organization" placeholder="Tu negocio o empresa" className={field} /></div>

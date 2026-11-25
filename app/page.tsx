@@ -1,7 +1,7 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Icon from '@/components/Icon';
-import { PROMO_APPS, WA_HOLA, servicePages, testimonials } from '@/lib/content';
+import { WA_HOLA, servicePages, testimonials } from '@/lib/content';
 
 const PASOS = [
   ['Preparamos el plan', 'Estudiamos tu negocio y a tu competencia, y decidimos qué grabar y qué contar para que te elijan a ti.'],
@@ -37,7 +37,7 @@ export default function Home() {
               Grabamos tu negocio, publicamos los vídeos en tus redes y cuidamos tu ficha de Google. Tú sigues trabajando; nosotros nos encargamos.
             </p>
             <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-              <a href="/contacto/" className="btn btn-naranja">Quiero la consultoría gratis <Icon name="flecha" className="h-5 w-5" /></a>
+              <a href="/contacto/" className="btn btn-naranja">Quiero más clientes <Icon name="flecha" className="h-5 w-5" /></a>
               <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-linea">Escríbenos por WhatsApp</a>
             </div>
             <div className="mx-auto mt-14 max-w-[980px] rounded-3xl bg-ink px-5 py-9 text-white sm:px-10 md:py-12">
@@ -115,25 +115,17 @@ export default function Home() {
           <div className="mx-auto max-w-[920px] text-center">
             <p className="etiqueta">Lo que hacemos</p>
             <h2 id="t-servicios" className="mx-auto mt-5 max-w-[20ch] text-[clamp(2rem,4.4vw,3.2rem)]">Todo lo que tu negocio necesita para que<span className="mt-2 block text-[1.35em] uppercase text-naranja-vivo">te elijan</span></h2>
-            <div className="mt-12 grid gap-4 text-left sm:grid-cols-2">
+            <div className="mt-12 grid gap-4 text-left">
               {servicePages.map((s) => (
                 <a key={s.slug} href={`/${s.slug}/`} className="card flex items-start gap-5 bg-white p-7">
                   <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-naranja/15 text-naranja-osc"><Icon name={s.icon} className="h-7 w-7" /></span>
                   <span>
-                    <b className="head block text-[22px]">{s.name}{s.slug === 'apps' && <span className="ml-2 align-middle text-[13px] font-semibold uppercase tracking-[.06em] text-naranja-osc">Nuevo</span>}</b>
+                    <b className="head block text-[22px]">{s.name}</b>
                     <span className="mt-1 block text-[17px] text-gris">{s.short}</span>
                     <span className="mt-3 inline-flex items-center gap-1.5 text-[16px] font-semibold">Ver más <Icon name="flecha" className="h-4 w-4" /></span>
                   </span>
                 </a>
               ))}
-              <a href="/precios/" className="card flex items-start gap-5 bg-white p-7">
-                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-naranja/15 text-naranja-osc"><Icon name="calendario" className="h-7 w-7" /></span>
-                <span>
-                  <b className="head block text-[22px]">Planes y precios</b>
-                  <span className="mt-1 block text-[17px] text-gris">Desde 550 € al mes. Sin letra pequeña.</span>
-                  <span className="mt-3 inline-flex items-center gap-1.5 text-[16px] font-semibold">Ver precios <Icon name="flecha" className="h-4 w-4" /></span>
-                </span>
-              </a>
             </div>
           </div>
         </section>
@@ -153,22 +145,6 @@ export default function Home() {
               ))}
             </div>
             <a href="/caso/" className="btn btn-linea mt-12">Ver el caso completo <Icon name="flecha" className="h-5 w-5" /></a>
-          </div>
-        </section>
-
-        {/* ── APPS ── */}
-        <section id="apps" aria-labelledby="t-apps" className="bg-ink px-4 py-20 text-white sm:px-6 md:py-24">
-          <div className="mx-auto grid max-w-wrap items-center gap-10 md:grid-cols-2">
-            <video autoPlay muted loop playsInline preload="metadata" poster={PROMO_APPS.poster} className="aspect-video w-full rounded-2xl object-cover"
-              aria-label="Vídeo: convertimos en una app las tareas que repites cada día">
-              <source src={PROMO_APPS.src} type="video/mp4" />
-            </video>
-            <div>
-              <p className="inline-block rounded-full bg-white/10 px-3.5 py-1.5 text-[13px] font-semibold uppercase tracking-[.08em]">Nuevo servicio</p>
-              <h2 id="t-apps" className="mt-5 text-[clamp(2rem,4.4vw,3.2rem)]">Apps a medida para tu negocio</h2>
-              <p className="mt-4 text-[20px] leading-[1.5] text-white/80">Si hay una tarea que repites cada día, como teclear albaranes, hacer los turnos o la carta, la convertimos en una app. Te la instalamos y la mantenemos nosotros.</p>
-              <a href="/apps/" className="btn btn-naranja mt-8">Ver qué apps hacemos <Icon name="flecha" className="h-5 w-5" /></a>
-            </div>
           </div>
         </section>
 

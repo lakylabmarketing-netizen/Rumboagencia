@@ -23,9 +23,9 @@ export default function Footer({ cta = true }: { cta?: boolean }) {
                 <span className="mt-1 block break-all text-[17px]">{CONTACT_EMAIL}</span>
               </a>
               <a href="/contacto/" className="card bg-white p-7 text-center">
-                <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-naranja/15 text-naranja-osc"><Icon name="calendario" className="h-7 w-7" /></span>
-                <b className="head mt-4 block text-[22px]">Consultoría gratis</b>
-                <span className="mt-1 block text-[17px]">30 minutos, sin compromiso</span>
+                <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-naranja/15 text-naranja-osc"><Icon name="telefono" className="h-7 w-7" /></span>
+                <b className="head mt-4 block text-[22px]">Te llamamos</b>
+                <span className="mt-1 block text-[17px]">Déjanos tu teléfono</span>
               </a>
             </div>
             <a href="/contacto/" className="btn btn-naranja mt-10">Quiero que Rumbo trabaje para mí <Icon name="flecha" className="h-5 w-5" /></a>

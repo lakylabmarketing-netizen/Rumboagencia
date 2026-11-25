@@ -4,11 +4,11 @@ import Footer from '@/components/Footer';
 import PageHead from '@/components/PageHead';
 import ContactForm from '@/components/ContactForm';
 import Icon, { WhatsIcon } from '@/components/Icon';
-import { CONTACT_EMAIL, WA_CONSULTA, WHATSAPP_VISIBLE } from '@/lib/content';
+import { CONTACT_EMAIL, WA_HOLA, WHATSAPP_VISIBLE } from '@/lib/content';
 
 export const metadata: Metadata = {
-  title: 'Contacto y consultoría gratis',
-  description: 'Treinta minutos, sin compromiso. Miramos tu perfil y tu ficha de Google antes de la llamada y te decimos qué haríamos primero.',
+  title: 'Contacto',
+  description: 'Cuéntanos qué necesita tu negocio. Te respondemos en menos de 24 horas laborables.',
   alternates: { canonical: '/contacto/' },
 };
 
@@ -17,12 +17,12 @@ export default function Contacto() {
     <>
       <Nav />
       <main id="contenido">
-        <PageHead kicker="Consultoría gratis · 30 minutos" title={<>Cuéntanos qué necesita <span className="text-naranja-osc">tu negocio</span></>}
-          lead="Sin compromiso. Miramos tus redes y tu ficha de Google antes de la llamada y te decimos qué haríamos primero." />
+        <PageHead kicker="Contacto" title={<>Cuéntanos qué necesita <span className="text-naranja-osc">tu negocio</span></>}
+          lead="Escríbenos, llámanos o déjanos tus datos. Te respondemos en menos de 24 horas laborables." />
         <section className="px-4 pb-20 sm:px-6">
           <div className="mx-auto grid max-w-wrap gap-8 md:grid-cols-[.8fr_1.2fr]">
             <div className="grid content-start gap-4">
-              <a href={WA_CONSULTA} target="_blank" rel="noopener" className="card flex items-center gap-5 p-7">
+              <a href={WA_HOLA} target="_blank" rel="noopener" className="card flex items-center gap-5 p-7">
                 <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-[#25D366]/15 text-[#128C4A]"><WhatsIcon className="h-7 w-7" /></span>
                 <span><b className="head block text-[22px]">Por WhatsApp</b><span className="text-[18px]">{WHATSAPP_VISIBLE}</span><span className="block text-[16px] text-gris">Es lo más rápido.</span></span>
               </a>

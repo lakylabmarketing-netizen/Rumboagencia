@@ -6,10 +6,9 @@ Portada sencilla (retrato, titular y llamada a la acción) y una página para ca
 
 ```
 /            Portada
-/enlaces/    Página para la bio de Instagram (tipo Beacons): consultoría gratis, servicios, caso, precios…
-/redes/  /google/  /web/  /apps/  /asesoria/   Servicios (plantilla común: components/ServiceView.tsx)
+/enlaces/    Página para la bio de Instagram (tipo Beacons): contacto, servicios, caso real y WhatsApp
+/redes/  /google/  /web/   Servicios (plantilla común: components/ServiceView.tsx)
 /caso/       Caso real de A Lo Cubano (cifras, vídeos de Manuel y piezas)
-/precios/    Planes, condiciones y preguntas frecuentes (#preguntas)
 /contacto/   Formulario (Netlify Forms) y WhatsApp
 /legal/      Aviso legal y privacidad
 /portafolio/ Portafolio, HTML autónomo con sus vídeos

@@ -8,8 +8,6 @@ export const CONTACT_EMAIL = 'lakylabmarketing@gmail.com'; // provisional
 export const WHATSAPP = '34624911599';
 export const wa = (msg: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 export const WA_HOLA = wa('Hola, quiero saber qué haríais con mi negocio.');
-export const WA_CONSULTA = wa('Hola, quiero la consultoría gratis de 30 minutos. Mi negocio es: ');
-export const PROMO_APPS = { src: '/video/promo-apps.mp4', poster: '/img/promo-apps.jpg' };
 export const GOOGLE_FICHA = 'https://share.google/GnTpqiGGJO6bbH6Xn';
 
 // Páginas de la web, en el orden del menú
@@ -17,12 +15,6 @@ export const NAV: [string, string][] = [
   ['/', 'Inicio'], ['/#servicios', 'Servicios'], ['/caso/', 'Caso real'], ['/contacto/', 'Contacto'],
 ];
 export const WHATSAPP_VISIBLE = '+34 624 91 15 99';
-
-export const services = [
-  { k: '01', title: 'Estrategia', text: 'Auditoría de tu negocio y de la competencia, líneas creativas y calendario del primer trimestre, antes de grabar nada.' },
-  { k: '02', title: 'Contenido', text: 'Grabación en tu negocio, piezas de vídeo de tres duraciones, diseño gráfico y stories. Publicamos nosotros, con los copys escritos.' },
-  { k: '03', title: 'Clientes', note: 'Crecimiento y Marca', text: 'Ficha de Google optimizada, sistema de captación de reseñas, respuesta a mensajes y automatizaciones de WhatsApp o DM.' },
-];
 
 export const testimonials = [
   { n: 1, q: '¿Cómo fueron las primeras semanas, cuando abristeis y no os conocía nadie?', a: 'Era todo una incógnita. No sabíamos qué era lo que nos iba a exigir esto de verdad.' },
@@ -68,76 +60,25 @@ export const topVideos = [
   { v: '35.733', title: 'Probando los platos por primera vez', meta: 'TikTok' },
 ];
 
-export const commitments = [
-  { title: 'Entrega', text: 'Si al cierre del mes falta algo de lo que pone el contrato, se devuelve el mes completo, sin que tengas que pedirlo.' },
-  { title: 'Propiedad', text: 'Tus cuentas, tu web y todo el material grabado son tuyos. Si te vas, te llevas los archivos originales.' },
-  { title: 'Respuesta', note: 'Crecimiento y Marca', text: 'Mensajes y comentarios contestados en menos de 24 horas laborables.' },
-  { title: 'Exclusividad', note: 'Crecimiento y Marca', text: 'Un solo negocio de tu mismo sector por zona.' },
-];
-
-export const plans = [
-  { id: 'esencial', name: 'Esencial', price: '550', claim: 'Para empezar a estar presente cada semana.', inc: 'Incluye', value: 'Esencial · 550 €/mes',
-    items: ['10 piezas de vídeo (2 largas, 4 medias, 4 cortas)', '3 diseños gráficos + 12 stories', '1 media jornada de grabación', 'Calendario, publicación y copys', 'Informe mensual de métricas'] },
-  { id: 'crecimiento', name: 'Crecimiento', price: '950', rec: true, claim: 'Para tener clientes todas las semanas, no solo en temporada alta.', inc: 'Todo lo de Esencial, y además', value: 'Crecimiento · 950 €/mes',
-    items: ['16 piezas de vídeo (4 largas, 6 medias, 6 cortas)', '6 diseños gráficos + 20 stories', '1 jornada completa de grabación', 'Gestión de mensajes y comentarios', 'Ficha de Google optimizada', 'Sistema de captación de reseñas', '1 automatización (WhatsApp o DM)', 'Gestión de publicidad', 'Informe de negocio + llamada mensual', 'Exclusividad en tu zona'] },
-  { id: 'marca', name: 'Marca', price: '1.600', claim: 'Para construir una marca, no solo publicar.', inc: 'Todo lo de Crecimiento, y además', value: 'Marca · 1.600 €/mes',
-    items: ['24 piezas de vídeo (4 largas, 8 medias, 12 cortas)', '10 diseños gráficos + stories sin límite', '2 medias jornadas de grabación', '3 automatizaciones', 'Web o landing incluida', 'Campañas con creatividades propias', 'Reunión estratégica presencial'] },
-];
-
-export const conditions = [
-  { title: 'Cuota de arranque: 400 €', text: 'Pago único antes de empezar. Incluye auditoría del negocio y de la competencia, estrategia de contenido, líneas creativas, optimización de perfiles, configuración de herramientas y calendario del primer trimestre. La inversión en publicidad va aparte y la decides tú.' },
-  { title: 'Permanencia', text: 'Mínimo 3 meses; después, mes a mes con 30 días de preaviso. Reunión de revisión al tercer mes, sin penalización si no encaja.' },
-  { title: 'Pago', text: 'Por adelantado, entre el día 1 y el 5 de cada mes. Seis meses por adelantado: uno gratis.' },
-  { title: 'Revisiones', text: 'Una ronda de revisión por pieza incluida.' },
-  { title: 'Exclusividad', text: 'De zona, en Crecimiento y Marca.' },
-];
-
-export const faqs = [
-  { q: '¿Tengo que salir yo en los vídeos?', a: 'No. Funciona mejor si sales tú o alguien de tu equipo, pero se puede grabar todo centrado en tu producto, tu servicio y tu espacio. Lo decides antes de la primera grabación.' },
-  { q: '¿Cuándo empiezo a notar algo?', a: 'El primer mes se nota en la presencia: publicas de forma constante. El movimiento en clientes, reservas y consultas suele aparecer entre el segundo y el tercer mes; por eso la permanencia mínima es de tres meses.' },
-  { q: '¿Qué pasa si no me gusta una pieza?', a: 'Cada pieza lleva una ronda de revisión incluida. Si al cierre del mes falta algo de lo que pone el contrato, se devuelve el mes completo.' },
-  { q: '¿Y si no puedo grabar el día que venís?', a: 'Las grabaciones se acuerdan con antelación y se reprograman avisando con 48 horas. Grabamos en el momento más tranquilo de tu negocio.' },
-  { q: '¿La publicidad está incluida en el precio?', a: 'La gestión sí, en Crecimiento y Marca. La inversión en Meta o Google va aparte y la decides tú.' },
-  { q: '¿Trabajáis con mi competencia?', a: 'En Crecimiento y Marca hay exclusividad: un solo negocio de tu mismo sector en tu zona. Si tu zona ya está ocupada, te lo decimos en la primera llamada.' },
-  { q: 'Si me voy, ¿qué me llevo?', a: 'Las cuentas, la web y el material original grabado son tuyos desde el primer día. Te entregamos los archivos y los accesos.' },
-];
-
 // ── Páginas de cada servicio (portada tipo «enlaces»: cada tarjeta lleva a su página) ──
 export type ServicePage = {
   slug: string; name: string; short: string; icon: string; title: string; lead: string; img: string; imgAlt: string;
-  plan: string; items: [string, string][];
+  items: [string, string][];
   proof?: { title: string; stats: [string, string][]; note?: string };
 };
 
 export const servicePages: ServicePage[] = [
   {
-    slug: 'apps', icon: 'movil', name: 'Apps a medida', short: 'Aplicaciones de todo tipo para tu día a día.',
-    title: 'Desarrollo de aplicaciones', img: '', imgAlt: '',
-    lead: 'Si hay una tarea que repites cada día, la convertimos en una app. Te la instalamos y nos encargamos del mantenimiento técnico.',
-    plan: 'Presupuesto a medida',
-    items: [
-      ['Albaranes y facturas sin teclear', 'Llegan por correo o les haces una foto, y se guardan solos en tu sistema. Las facturas pueden ir directas a tu gestoría.'],
-      ['Horarios y fichajes', 'Todo tu equipo registrado en una app que ficha y te propone cómo repartir los turnos.'],
-      ['Carta o catálogo digital', 'Con QR, se edita desde el móvil y se carga a partir de una foto de la que ya tienes.'],
-      ['Pedidos desde la carta', 'Tus clientes piden desde la carta digital, conectada con tu programa de caja.'],
-      ['Fidelización', 'Tarjetas de cliente con niveles para que vuelvan.'],
-      ['Repartos', 'Lista de visitas y seguimiento de pedidos con web y WhatsApp.'],
-      ['La que necesites', 'Cuéntanos qué te quita tiempo y te decimos si se puede convertir en una app.'],
-    ],
-    proof: { title: 'Cómo trabajamos', stats: [['Instalación', 'técnica y no técnica, la hacemos nosotros'], ['Mantenimiento', 'técnico nuestro; tú solo eliges cómo configurarla']] },
-  },
-  {
     slug: 'redes', icon: 'video', name: 'Vídeos y redes sociales', short: 'Grabamos en tu negocio y lo publicamos cada semana.',
     title: 'Redes sociales', img: '/portafolio/assets/pieza-1-poster.jpg', imgAlt: 'Fotograma de un vídeo de Rumbo para A Lo Cubano',
     lead: 'Grabamos en tu negocio, montamos las piezas y las publicamos con el texto escrito. Tú apruebas el mes de una vez.',
-    plan: 'En los tres planes',
     items: [
-      ['Grabación en tu negocio', 'Media jornada, una jornada completa o dos medias jornadas al mes, según el plan.'],
-      ['Vídeos de tres duraciones', 'Piezas largas, medias y cortas: de 10 a 24 al mes, según el plan.'],
-      ['Diseño gráfico y stories', 'De 3 a 10 diseños al mes, y de 12 stories a stories sin límite.'],
+      ['Grabación en tu negocio', 'Vamos a tu local a grabar cada mes, en el momento más tranquilo del día.'],
+      ['Vídeos de tres duraciones', 'Piezas largas, medias y cortas, pensadas para cada red.'],
+      ['Diseño gráfico y stories', 'Diseños para tus publicaciones y stories cada semana.'],
       ['Calendario, publicación y copys', 'Programamos la semana y escribimos los textos. Nada sale sin tu visto bueno.'],
-      ['Mensajes y comentarios', 'Contestados en menos de 24 horas laborables, en Crecimiento y Marca.'],
-      ['Publicidad', 'Gestión de campañas en Crecimiento y Marca. La inversión va aparte y la decides tú.'],
+      ['Mensajes y comentarios', 'Contestados en menos de 24 horas laborables.'],
+      ['Publicidad', 'Gestión de campañas. La inversión en anuncios va aparte y la decides tú.'],
     ],
     proof: { title: 'A Lo Cubano · julio a noviembre de 2026', stats: [['432.490', 'visualizaciones en TikTok con 32 vídeos'], ['2.457', 'seguidores en TikTok, desde cero'], ['1.124', 'seguidores en Instagram']] },
   },
@@ -145,7 +86,6 @@ export const servicePages: ServicePage[] = [
     slug: 'google', icon: 'estrella', name: 'Google y reseñas', short: 'Que te encuentren y que lo que lean convenza.',
     title: 'Google y reseñas', img: '/img/testimonio-3.webp', imgAlt: 'Manuel, dueño de A Lo Cubano, en la terraza de su restaurante',
     lead: 'Cuando alguien busca lo que vendes cerca de él, tu ficha de Google es lo primero que ve. La dejamos lista para que te elija.',
-    plan: 'En Crecimiento y Marca',
     items: [
       ['Ficha de Google optimizada', 'Fotos, horario, categorías y descripción, siempre al día.'],
       ['Sistema de captación de reseñas', 'Un QR y el momento justo para que tus clientes contentos lo cuenten.'],
@@ -158,27 +98,13 @@ export const servicePages: ServicePage[] = [
     slug: 'web', icon: 'web', name: 'Página web', short: 'Una web sencilla, rápida y tuya.',
     title: 'Página web', img: '/img/portada-pieza-4.webp', imgAlt: 'Fotograma de una pieza de Rumbo',
     lead: 'Una web o landing a la que llegan desde tu ficha de Google y tus redes, pensada para que te escriban o te visiten sin rodeos.',
-    plan: 'Incluida en Marca',
     items: [
-      ['Web o landing incluida', 'Diseñada y montada por nosotros en el plan Marca.'],
+      ['Web o landing a medida', 'La diseñamos y la montamos nosotros.'],
       ['Pensada para el móvil', 'Que se lea bien y cargue rápido, que es donde la van a abrir.'],
       ['Contacto directo', 'WhatsApp, llamada o formulario: que te escriban en un toque.'],
-      ['Automatizaciones', 'Respuestas automáticas por WhatsApp o DM: una en Crecimiento, tres en Marca.'],
+      ['Automatizaciones', 'Respuestas automáticas por WhatsApp o mensaje directo.'],
       ['Es tuya', 'La web y todos los accesos son tuyos desde el primer día.'],
     ],
     proof: { title: 'A Lo Cubano', stats: [['299', 'personas entraron en su web desde Google'], ['alocubanofusion.com', 'la web que les hicimos']] },
-  },
-  {
-    slug: 'asesoria', icon: 'idea', name: 'Asesoría', short: 'Antes de grabar nada, el plan.',
-    title: 'Asesoría', img: '/img/portada-pieza-2.webp', imgAlt: 'Fotograma de un vídeo de Rumbo para A Lo Cubano',
-    lead: 'Miramos tu negocio y tu competencia y decidimos qué contar, dónde y cuándo. Empieza con una consulta gratis de treinta minutos.',
-    plan: 'Cuota de arranque: 400 €, pago único',
-    items: [
-      ['Consulta gratis de 30 minutos', 'Miramos tu perfil y tu ficha de Google antes de la llamada y te decimos qué haríamos primero.'],
-      ['Auditoría y estrategia', 'Tu negocio y tu competencia, estrategia de contenido y líneas creativas.'],
-      ['Puesta a punto', 'Optimización de perfiles, configuración de herramientas y calendario del primer trimestre.'],
-      ['Seguimiento cada mes', 'Informe de métricas en todos los planes; llamada mensual en Crecimiento; reunión presencial en Marca.'],
-    ],
-    proof: { title: 'Lo que firmamos', stats: [['3 meses', 'para tener un sistema montado y datos para saber si funciona'], ['100 %', 'tuyo: cuentas, web y material grabado']] },
   },
 ];

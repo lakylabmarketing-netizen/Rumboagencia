@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { Logo } from '@/components/Logo';
 import Icon, { WhatsIcon } from '@/components/Icon';
-import { PROMO_APPS, WA_HOLA } from '@/lib/content';
+import { WA_HOLA } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Enlaces',
-  description: 'Rumbo, agencia de marketing: grabamos en tu negocio. Consultoría gratis, apps, servicios, caso real y WhatsApp.',
+  description: 'Rumbo, agencia de marketing: grabamos en tu negocio. Contacto, servicios, caso real y WhatsApp.',
   alternates: { canonical: '/enlaces/' },
 };
 
@@ -34,19 +34,7 @@ export default function Enlaces() {
         </header>
 
         <nav aria-label="Enlaces" className="mt-8 grid gap-3">
-          <Row accent href={utm('/contacto/', 'consultoria')} title="Consultoría gratis" sub="30 minutos, sin compromiso" icon={<Icon name="calendario" />} />
-          <a href={utm('/apps/', 'apps-destacado')} className="block overflow-hidden rounded-2xl border-2 border-line bg-white hover:border-ink">
-            <video autoPlay muted loop playsInline preload="metadata" poster={PROMO_APPS.poster} className="aspect-video w-full object-cover" aria-label="Vídeo de apps a medida">
-              <source src={PROMO_APPS.src} type="video/mp4" />
-            </video>
-            <span className="flex items-center gap-4 p-4">
-              <span className="min-w-0 flex-1">
-                <b className="block text-[19px] font-semibold leading-tight">Apps para tu negocio <span className="ml-1 text-[14px] font-semibold uppercase text-naranja-osc">Nuevo</span></b>
-                <span className="mt-0.5 block text-[16px] text-gris">Lo que repites cada día, en una app</span>
-              </span>
-              <Icon name="flecha" className="h-6 w-6 shrink-0" />
-            </span>
-          </a>
+          <Row accent href={utm('/contacto/', 'contacto')} title="Quiero más clientes" sub="Cuéntanos qué necesita tu negocio" icon={<Icon name="telefono" />} />
           <Row href={`${utm('/', 'servicios')}#servicios`} title="Servicios" sub="Vídeos, redes, Google y web" icon={<Icon name="camara" />} />
           <Row href={utm('/caso/', 'caso')} title="Caso real" sub="De 12 a 151 reseñas en Google" icon={<Icon name="estrella" />} />
           <Row ext href={WA_HOLA} title="WhatsApp" sub="Escríbenos y te contestamos" icon={<WhatsIcon className="h-6 w-6 text-[#128C4A]" />} />
