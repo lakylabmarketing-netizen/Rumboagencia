@@ -183,19 +183,23 @@ export default function Home() {
           <div className="mx-auto max-w-wrap">
             <h2 id="t-pasos" data-reveal className="text-[clamp(2.8rem,7.4vw,6rem)]">De la primera llamada<br />al <span className="marca">bar lleno</span></h2>
             <p data-reveal className="mt-6 max-w-[40ch] text-[20px] text-gris">Cuatro pasos, cada mes. Lo que funciona se repite y lo que no, se cambia.</p>
-            {/* Camino: cada paso lleva al siguiente con una flecha */}
-            <ol className="mt-12 flex flex-col md:flex-row">
+            {/* Camino en vertical: las tarjetas van de un lado a otro y una flecha curva lleva de cada paso al siguiente */}
+            <ol className="mx-auto mt-12 flex max-w-[920px] flex-col">
               {PASOS.map(([t, d], i) => (
-                <li key={t} data-reveal className="flex flex-col items-center md:flex-1 md:flex-row">
-                  <div className="w-full rounded-[28px] bg-white p-8 md:h-full">
-                    <span className="head block text-[5rem] leading-none">0{i + 1}</span>
-                    <h3 className="mt-6 text-[2rem]">{t}</h3>
-                    <p className="mt-3 text-[18px] text-gris">{d}</p>
+                <li key={t} data-reveal className="flex flex-col">
+                  <div className={`flex w-full items-start gap-6 rounded-[28px] bg-white p-8 md:w-[78%] ${i % 2 ? 'md:self-end' : 'md:self-start'}`}>
+                    <span className="head shrink-0 text-[5rem] leading-[.85]">0{i + 1}</span>
+                    <div>
+                      <h3 className="text-[2rem]">{t}</h3>
+                      <p className="mt-2 text-[18px] text-gris">{d}</p>
+                    </div>
                   </div>
                   {i < PASOS.length - 1 && (
-                    <span aria-hidden className="grid h-16 w-16 shrink-0 place-items-center text-naranja md:h-auto md:w-12">
-                      <svg viewBox="0 0 24 24" className="h-10 w-10 rotate-90 md:rotate-0" fill="none" stroke="currentColor" strokeWidth={2.8} strokeLinecap="round" strokeLinejoin="round"><path d="M4 12h15m-6-6 6 6-6 6" /></svg>
-                    </span>
+                    <svg aria-hidden viewBox="0 0 240 110" fill="none" stroke="currentColor" strokeWidth={5} strokeLinecap="round" strokeLinejoin="round"
+                      className={`my-1 h-[90px] w-[200px] text-naranja md:h-[110px] md:w-[240px] ${i % 2 ? 'self-start -scale-x-100 md:ml-[30%]' : 'self-end md:mr-[30%]'}`}>
+                      <path d="M30 8 C 10 40, 60 62, 120 52 S 210 40, 206 92" />
+                      <path d="M188 80 L206 96 L222 76" />
+                    </svg>
                   )}
                 </li>
               ))}
