@@ -12,10 +12,10 @@ export default function Footer({ cta = true }: { cta?: boolean }) {
             <h2 id="t-hablamos" className="text-[clamp(2.2rem,5vw,3.8rem)] uppercase">¿Hablamos de tu bar?</h2>
             <p className="mx-auto mt-4 max-w-[34ch] text-[20px] text-gris">Cuéntanos qué necesitas. Te respondemos en menos de 24 horas.</p>
             <div className="mt-10 grid gap-4 text-left md:grid-cols-3">
-              <a href={WA_HOLA} target="_blank" rel="noopener" className="card bg-white p-7 text-center">
-                <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-[#25D366]/15 text-[#128C4A]"><WhatsIcon className="h-7 w-7" /></span>
-                <b className="head mt-4 block text-[22px]">Escríbenos por WhatsApp</b>
-                <span className="mt-1 block text-[18px]">{WHATSAPP_VISIBLE}</span>
+              <a href={WA_HOLA} target="_blank" rel="noopener" className="rounded-2xl bg-[#25D366] p-7 text-center text-[#0B2A17] transition-colors hover:bg-[#1EBE5A]">
+                <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-white/40"><WhatsIcon className="h-9 w-9" /></span>
+                <b className="head mt-4 block text-[24px]">Escríbenos por WhatsApp</b>
+                <span className="mt-1 block text-[19px] font-semibold">{WHATSAPP_VISIBLE}</span>
               </a>
               <a href={`mailto:${CONTACT_EMAIL}`} className="card bg-white p-7 text-center">
                 <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-naranja/15 text-naranja-osc"><Icon name="correo" className="h-7 w-7" /></span>
@@ -28,7 +28,9 @@ export default function Footer({ cta = true }: { cta?: boolean }) {
                 <span className="mt-1 block text-[17px]">Déjanos tu teléfono</span>
               </a>
             </div>
-            <a href="/contacto/" className="btn btn-naranja mt-10">Quiero que Rumbo trabaje para mí <Icon name="flecha" className="h-5 w-5" /></a>
+            <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+              <a href="/contacto/" className="btn btn-naranja">Quiero que Rumbo trabaje para mí <Icon name="flecha" className="h-5 w-5" /></a>
+            </div>
           </div>
         </section>
       )}

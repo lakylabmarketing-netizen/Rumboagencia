@@ -35,9 +35,13 @@ export default function Enlaces() {
 
         <nav aria-label="Enlaces" className="mt-8 grid gap-3">
           <Row accent href={utm('/contacto/', 'contacto')} title="Quiero llenar mi bar" sub="Cuéntanos cómo va tu invierno" icon={<Icon name="telefono" />} />
+          <a href={WA_HOLA} target="_blank" rel="noopener" className="flex items-center gap-4 rounded-2xl bg-[#25D366] p-4 text-[#0B2A17] hover:bg-[#1EBE5A]">
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white/40"><WhatsIcon className="h-8 w-8" /></span>
+            <span className="min-w-0 flex-1"><b className="block text-[20px] font-bold leading-tight">WhatsApp</b><span className="mt-0.5 block text-[16px]">Escríbenos y te contestamos</span></span>
+            <Icon name="flecha" className="h-6 w-6 shrink-0" />
+          </a>
           <Row href={`${utm('/', 'servicios')}#servicios`} title="Servicios" sub="Vídeos en redes y reseñas en Google" icon={<Icon name="camara" />} />
           <Row href={utm('/caso/', 'caso')} title="Caso real" sub="De 12 a 151 reseñas en Google" icon={<Icon name="estrella" />} />
-          <Row ext href={WA_HOLA} title="WhatsApp" sub="Escríbenos y te contestamos" icon={<WhatsIcon className="h-6 w-6 text-[#128C4A]" />} />
         </nav>
 
         <p className="mt-8 text-center text-[14px] text-muted"><a href="/legal/" className="underline underline-offset-2">Aviso legal y privacidad</a></p>

@@ -32,6 +32,9 @@ img, video { display: block; max-width: 100%; }
 .btn-naranja { background: #E4561B; color: #151515; }
 .btn-naranja:hover { background: #F0703A; }
 .btn-linea { border: 2px solid #151515; color: #151515; }
+/* WhatsApp: verde reconocible, más alto y con texto oscuro para que se lea bien */
+.btn-whatsapp { background: #25D366; color: #0B2A17; min-height: 64px; font-size: 1.15rem; font-weight: 700; }
+.btn-whatsapp:hover { background: #1EBE5A; }
 .btn-linea:hover { background: #151515; color: #fff; }
 
 /* Tarjetas */

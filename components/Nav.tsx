@@ -34,6 +34,10 @@ export default function Nav() {
             ))}
           </nav>
           <div className="flex items-center gap-2">
+            <a href={WA_HOLA} target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"
+              className="flex h-12 items-center gap-2 rounded-xl bg-[#25D366] px-3 text-[16px] font-bold text-[#0B2A17] hover:bg-[#1EBE5A] sm:px-4">
+              <WhatsIcon className="h-7 w-7" /><span className="hidden sm:inline">WhatsApp</span>
+            </a>
             <button type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu"
               className="flex h-12 items-center gap-2 rounded-xl border-2 border-ink px-4 text-[16px] font-semibold lg:hidden">
               Menú
@@ -54,7 +58,7 @@ export default function Nav() {
             </a>
           ))}
         </nav>
-        <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-linea mt-8 w-full"><WhatsIcon className="h-5 w-5" /> Escríbenos por WhatsApp</a>
+        <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-whatsapp mt-8 w-full"><WhatsIcon className="h-7 w-7" /> Escríbenos por WhatsApp</a>
       </div>
     </>
   );

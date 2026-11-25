@@ -22,9 +22,9 @@ export default function Contacto() {
         <section className="px-4 pb-20 sm:px-6">
           <div className="mx-auto grid max-w-wrap gap-8 md:grid-cols-[.8fr_1.2fr]">
             <div className="grid content-start gap-4">
-              <a href={WA_HOLA} target="_blank" rel="noopener" className="card flex items-center gap-5 p-7">
-                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-[#25D366]/15 text-[#128C4A]"><WhatsIcon className="h-7 w-7" /></span>
-                <span><b className="head block text-[22px]">Por WhatsApp</b><span className="text-[18px]">{WHATSAPP_VISIBLE}</span><span className="block text-[16px] text-gris">Es lo más rápido.</span></span>
+              <a href={WA_HOLA} target="_blank" rel="noopener" className="flex items-center gap-5 rounded-2xl bg-[#25D366] p-7 text-[#0B2A17] transition-colors hover:bg-[#1EBE5A]">
+                <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white/40"><WhatsIcon className="h-9 w-9" /></span>
+                <span><b className="head block text-[24px]">Por WhatsApp</b><span className="text-[19px] font-semibold">{WHATSAPP_VISIBLE}</span><span className="block text-[17px]">Es lo más rápido.</span></span>
               </a>
               <a href={`mailto:${CONTACT_EMAIL}`} className="card flex items-center gap-5 p-7">
                 <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-naranja/15 text-naranja-osc"><Icon name="correo" className="h-7 w-7" /></span>

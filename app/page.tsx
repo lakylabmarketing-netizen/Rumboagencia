@@ -1,6 +1,6 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
-import Icon from '@/components/Icon';
+import Icon, { WhatsIcon } from '@/components/Icon';
 import { WA_HOLA, servicePages, testimonials } from '@/lib/content';
 
 const PASOS = [
@@ -45,7 +45,7 @@ export default function Home() {
             </p>
             <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
               <a href="/contacto/" className="btn btn-naranja">Quiero llenar mi bar en invierno <Icon name="flecha" className="h-5 w-5" /></a>
-              <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-linea">Escríbenos por WhatsApp</a>
+              <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-whatsapp"><WhatsIcon className="h-7 w-7" /> Escríbenos por WhatsApp</a>
             </div>
           </div>
         </section>
@@ -121,7 +121,10 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <a href="/contacto/" className="btn btn-naranja mt-10">Quiero que grabéis mi bar <Icon name="flecha" className="h-5 w-5" /></a>
+              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+                <a href="/contacto/" className="btn btn-naranja">Quiero que grabéis mi bar <Icon name="flecha" className="h-5 w-5" /></a>
+                <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-whatsapp"><WhatsIcon className="h-7 w-7" /> WhatsApp</a>
+              </div>
             </div>
           </div>
         </section>
