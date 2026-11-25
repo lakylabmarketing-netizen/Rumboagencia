@@ -17,7 +17,7 @@ export default function ContactForm() {
     const v = (k: string) => String(fd.get(k) || '').trim();
     const missing: string[] = [];
     if (v('nombre').length < 2) missing.push('tu nombre');
-    if (v('local').length < 2) missing.push('el nombre del negocio');
+    if (v('local').length < 2) missing.push('el nombre del bar');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email'))) missing.push('un correo válido');
     if (v('telefono').replace(/\D/g, '').length < 9) missing.push('un teléfono de 9 dígitos');
     if (!fd.get('rgpd')) missing.push('aceptar la política de privacidad');
@@ -41,12 +41,12 @@ export default function ContactForm() {
       <input type="hidden" name="form-name" value="consulta" />
       <div className="grid gap-7 sm:grid-cols-2">
         <div><label htmlFor="nombre" className={label}>Tu nombre *</label><input id="nombre" name="nombre" required minLength={2} autoComplete="name" placeholder="Nombre y apellidos" className={field} /></div>
-        <div><label htmlFor="local" className={label}>Nombre del negocio *</label><input id="local" name="local" required minLength={2} autoComplete="organization" placeholder="Tu negocio o empresa" className={field} /></div>
+        <div><label htmlFor="local" className={label}>Nombre del bar *</label><input id="local" name="local" required minLength={2} autoComplete="organization" placeholder="Nombre de tu bar" className={field} /></div>
         <div><label htmlFor="email" className={label}>Correo electrónico *</label><input id="email" name="email" type="email" required autoComplete="email" placeholder="tucorreo@ejemplo.com" className={field} /></div>
         <div><label htmlFor="telefono" className={label}>Teléfono *</label><input id="telefono" name="telefono" type="tel" required autoComplete="tel" placeholder="600 00 00 00" className={field} /></div>
       </div>
-      <div><label htmlFor="poblacion" className={label}>Población</label><input id="poblacion" name="poblacion" autoComplete="address-level2" placeholder="Tu ciudad o pueblo" className={field} /></div>
-      <div><label htmlFor="mensaje" className={label}>¿Qué te gustaría cambiar?</label><textarea id="mensaje" name="mensaje" rows={3} placeholder="Me cuesta que me encuentren en Google y quiero más clientes entre semana…" className={`${field} resize-y`} /></div>
+      <div><label htmlFor="poblacion" className={label}>Población</label><input id="poblacion" name="poblacion" autoComplete="address-level2" placeholder="Roquetas de Mar, Aguadulce…" className={field} /></div>
+      <div><label htmlFor="mensaje" className={label}>¿Qué te gustaría cambiar?</label><textarea id="mensaje" name="mensaje" rows={3} placeholder="En invierno entre semana no entra casi nadie…" className={`${field} resize-y`} /></div>
       <p className="hidden" aria-hidden><label>No rellenar <input name="_honey" tabIndex={-1} autoComplete="off" /></label></p>
       <div className="flex items-start gap-3">
         <input id="rgpd" name="rgpd" type="checkbox" value="acepta" required className="mt-1 h-5 w-5 accent-naranja" />

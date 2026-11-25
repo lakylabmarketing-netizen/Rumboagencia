@@ -7,7 +7,7 @@ export const CONTACT_EMAIL = 'lakylabmarketing@gmail.com'; // provisional
 // WhatsApp de Rumbo y mensajes que se abren ya escritos
 export const WHATSAPP = '34624911599';
 export const wa = (msg: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
-export const WA_HOLA = wa('Hola, quiero saber qué haríais con mi negocio.');
+export const WA_HOLA = wa('Hola, tengo un bar en Roquetas y quiero saber qué haríais para llenarlo en invierno.');
 export const GOOGLE_FICHA = 'https://share.google/GnTpqiGGJO6bbH6Xn';
 
 // Páginas de la web, en el orden del menú
@@ -69,11 +69,11 @@ export type ServicePage = {
 
 export const servicePages: ServicePage[] = [
   {
-    slug: 'redes', icon: 'video', name: 'Vídeos y redes sociales', short: 'Grabamos en tu negocio y lo publicamos cada semana.',
+    slug: 'redes', icon: 'video', name: 'Vídeos y redes sociales', short: 'Grabamos tu bar y lo publicamos cada semana.',
     title: 'Redes sociales', img: '/portafolio/assets/pieza-1-poster.jpg', imgAlt: 'Fotograma de un vídeo de Rumbo para A Lo Cubano',
-    lead: 'Grabamos en tu negocio, montamos las piezas y las publicamos con el texto escrito. Tú apruebas el mes de una vez.',
+    lead: 'Grabamos en tu bar, montamos las piezas y las publicamos con el texto escrito. Tú apruebas el mes de una vez.',
     items: [
-      ['Grabación en tu negocio', 'Vamos a tu local a grabar cada mes, en el momento más tranquilo del día.'],
+      ['Grabación en tu bar', 'Vamos a tu bar a grabar cada mes, en el momento más tranquilo del día.'],
       ['Vídeos de tres duraciones', 'Piezas largas, medias y cortas, pensadas para cada red.'],
       ['Diseño gráfico y stories', 'Diseños para tus publicaciones y stories cada semana.'],
       ['Calendario, publicación y copys', 'Programamos la semana y escribimos los textos. Nada sale sin tu visto bueno.'],
@@ -85,7 +85,7 @@ export const servicePages: ServicePage[] = [
   {
     slug: 'google', icon: 'estrella', name: 'Google y reseñas', short: 'Que te encuentren y que lo que lean convenza.',
     title: 'Google y reseñas', img: '/img/testimonio-3.webp', imgAlt: 'Manuel, dueño de A Lo Cubano, en la terraza de su restaurante',
-    lead: 'Cuando alguien busca lo que vendes cerca de él, tu ficha de Google es lo primero que ve. La dejamos lista para que te elija.',
+    lead: 'Cuando alguien busca dónde comer o tomar algo en Roquetas, tu ficha de Google es lo primero que ve. La dejamos lista para que te elija.',
     items: [
       ['Ficha de Google optimizada', 'Fotos, horario, categorías y descripción, siempre al día.'],
       ['Sistema de captación de reseñas', 'Un QR y el momento justo para que tus clientes contentos lo cuenten.'],

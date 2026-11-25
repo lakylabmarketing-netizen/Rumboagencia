@@ -4,14 +4,21 @@ import Icon from '@/components/Icon';
 import { WA_HOLA, servicePages, testimonials } from '@/lib/content';
 
 const PASOS = [
-  ['Preparamos el plan', 'Estudiamos tu negocio y a tu competencia, y decidimos qué grabar y qué contar para que te elijan a ti.'],
-  ['Grabamos en tu local', 'Vamos con nuestro equipo de grabación en el momento más tranquilo del día. Tú no tienes que preparar nada.'],
+  ['Preparamos el plan', 'Estudiamos tu bar y a la competencia de tu zona, y decidimos qué grabar para que los de Roquetas te elijan a ti.'],
+  ['Grabamos en tu bar', 'Vamos con nuestro equipo de grabación en el momento más tranquilo del día. Tú no tienes que preparar nada.'],
   ['Publicamos y medimos', 'Editamos los vídeos, los publicamos en tus redes y en Google, y cada mes revisamos qué funciona para mejorarlo.'],
 ];
 
 const DISTINTO = [
-  'Vamos a tu local', 'Grabamos cuando a ti te viene bien', 'No tienes que salir si no quieres',
+  'Vamos a tu bar', 'Grabamos cuando a ti te viene bien', 'No tienes que salir si no quieres',
   'Montamos los vídeos', 'Escribimos los textos y publicamos', 'Todo lo grabado es tuyo',
+];
+
+const PROBLEMA = [
+  'Se van los turistas y la terraza se queda vacía.',
+  'Entre semana no entra casi nadie.',
+  'Los de Roquetas no te conocen o no se acuerdan de ti.',
+  'Publicas cuando puedes y no pasa nada.',
 ];
 
 const CIFRAS = [
@@ -29,29 +36,32 @@ export default function Home() {
         {/* ── PORTADA ── */}
         <section aria-labelledby="t-hero" className="px-4 pb-16 pt-14 text-center sm:px-6 md:pb-24 md:pt-20">
           <div className="mx-auto max-w-wrap">
-            <p className="etiqueta">Agencia de marketing · Grabamos en tu negocio</p>
-            <h1 id="t-hero" className="mx-auto mt-6 max-w-[17ch] text-[clamp(2.4rem,6.4vw,5rem)] uppercase leading-[1.02]">
-              Vamos a tu negocio, lo grabamos <span className="text-naranja-osc">y te traemos clientes</span>
+            <p className="etiqueta">Marketing para bares de Roquetas de Mar</p>
+            <h1 id="t-hero" className="mx-auto mt-6 max-w-[16ch] text-[clamp(2.4rem,6.4vw,5rem)] uppercase leading-[1.02]">
+              En invierno tu bar no tiene por qué <span className="text-naranja-osc">estar vacío</span>
             </h1>
             <p className="mx-auto mt-6 max-w-[40ch] text-[clamp(1.15rem,1.8vw,1.4rem)] leading-[1.5] text-gris">
-              Grabamos tu negocio, publicamos los vídeos en tus redes y cuidamos tu ficha de Google. Tú sigues trabajando; nosotros nos encargamos.
+              Cuando se van los turistas, las cajas bajan. Vamos a tu bar, lo grabamos y lo movemos en redes y en Google para que la gente de Roquetas venga también en invierno.
             </p>
             <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-              <a href="/contacto/" className="btn btn-naranja">Quiero más clientes <Icon name="flecha" className="h-5 w-5" /></a>
+              <a href="/contacto/" className="btn btn-naranja">Quiero llenar mi bar en invierno <Icon name="flecha" className="h-5 w-5" /></a>
               <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-linea">Escríbenos por WhatsApp</a>
             </div>
-            <div className="mx-auto mt-14 max-w-[980px] rounded-3xl bg-ink px-5 py-9 text-white sm:px-10 md:py-12">
-              <p className="text-[15px] font-semibold uppercase tracking-[.1em] text-white/70">Resultados reales · A Lo Cubano · desde julio de 2026</p>
-              <div className="mt-7 grid gap-8 sm:grid-cols-3 sm:gap-4">
-                {[['432.490', 'visualizaciones en TikTok', 'con 32 vídeos, hasta el 11 de noviembre'], ['2.457', 'seguidores en TikTok', 'empezó sin cuenta'], ['151', 'reseñas de 5 estrellas en Google', 'empezó con 12']].map(([v, l, n]) => (
-                  <p key={l}>
-                    <b className="head block text-[clamp(3rem,7vw,4.6rem)] leading-none text-naranja-vivo">{v}</b>
-                    <span className="mt-3 block text-[19px] font-semibold leading-snug">{l}</span>
-                    <span className="mt-1 block text-[16px] text-white/70">{n}</span>
-                  </p>
-                ))}
-              </div>
-            </div>
+          </div>
+        </section>
+
+        {/* ── EL PROBLEMA ── */}
+        <section aria-labelledby="t-problema" className="px-4 pb-20 sm:px-6 md:pb-28">
+          <div className="mx-auto max-w-[860px] text-center">
+            <h2 id="t-problema" className="text-[clamp(2.2rem,5vw,3.8rem)] uppercase">¿Te suena?</h2>
+            <ul className="mt-10 grid gap-3 text-left">
+              {PROBLEMA.map((p) => (
+                <li key={p} className="flex items-center gap-4 rounded-2xl border border-line bg-papel p-6 text-[clamp(1.15rem,2vw,1.4rem)] font-semibold">
+                  <span aria-hidden className="head grid h-10 w-10 shrink-0 place-items-center rounded-full bg-naranja/15 text-[22px] text-naranja-osc">✕</span>{p}
+                </li>
+              ))}
+            </ul>
+            <p className="mx-auto mt-10 max-w-[30ch] text-[clamp(1.4rem,2.6vw,2rem)] font-semibold leading-snug">No es culpa de tu cocina ni de tu servicio. <span className="text-naranja-osc">Es que en invierno no te ven.</span></p>
           </div>
         </section>
 
@@ -60,15 +70,21 @@ export default function Home() {
           <div className="mx-auto max-w-wrap">
             <p className="text-center"><span className="etiqueta">Nuestro método</span></p>
             <h2 id="t-pasos" className="mx-auto mt-5 max-w-[22ch] text-center text-[clamp(2rem,4.4vw,3.2rem)]">Detrás de cada vídeo hay trabajo. <span className="text-naranja-osc">Tú solo nos abres la puerta.</span></h2>
-            <p className="mx-auto mt-4 max-w-[48ch] text-center text-[19px] text-gris">Con nuestro método, conseguir clientes por redes y Google no depende de la suerte. Lo hacemos en tres pasos, cada mes.</p>
-            <ol className="mt-12 grid gap-4 md:grid-cols-3">
+            <p className="mx-auto mt-4 max-w-[48ch] text-center text-[19px] text-gris">Con nuestro método, llenar tu bar en temporada baja no depende de la suerte. Lo hacemos en tres pasos, cada mes.</p>
+            {/* Camino: cada paso lleva al siguiente con una flecha (abajo en móvil, a la derecha en ordenador) */}
+            <ol className="mt-12 flex flex-col items-stretch md:flex-row">
               {PASOS.map(([t, d], i) => (
-                <li key={t} className="rounded-2xl border border-line bg-white p-8">
-                  <div className="flex items-center gap-4">
-                    <span className="head grid h-14 w-14 shrink-0 place-items-center rounded-full bg-ink text-[24px] text-white">{i + 1}</span>
-                    <h3 className="text-[26px]">{t}</h3>
+                <li key={t} className="flex flex-col items-center md:flex-1 md:flex-row">
+                  <div className="w-full rounded-2xl border-2 border-line bg-white p-8 md:h-full">
+                    <span className="head grid h-14 w-14 place-items-center rounded-full bg-ink text-[24px] text-white">{i + 1}</span>
+                    <h3 className="mt-5 text-[26px]">{t}</h3>
+                    <p className="mt-3 text-[18px] text-gris">{d}</p>
                   </div>
-                  <p className="mt-5 text-[18px] text-gris">{d}</p>
+                  {i < PASOS.length - 1 && (
+                    <span aria-hidden className="grid h-16 w-16 shrink-0 place-items-center text-naranja md:h-auto md:w-14">
+                      <svg viewBox="0 0 24 24" className="h-11 w-11 rotate-90 md:rotate-0" fill="none" stroke="currentColor" strokeWidth={2.6} strokeLinecap="round" strokeLinejoin="round"><path d="M4 12h15m-6-6 6 6-6 6" /></svg>
+                    </span>
+                  )}
                 </li>
               ))}
             </ol>
@@ -97,7 +113,7 @@ export default function Home() {
             <div>
               <p className="etiqueta">Lo que nos hace distintos</p>
               <h2 id="t-distinto" className="mt-5 text-[clamp(2.2rem,4.8vw,3.6rem)] uppercase">Grabamos en tu negocio</h2>
-              <p className="mt-5 text-[20px] leading-[1.5] text-gris">No tienes que mandarnos fotos ni pensar qué publicar. Vamos nosotros a tu local, grabamos lo que te hace especial y nos encargamos de todo lo demás.</p>
+              <p className="mt-5 text-[20px] leading-[1.5] text-gris">No tienes que mandarnos fotos ni pensar qué publicar. Vamos nosotros a tu bar, grabamos lo que te hace especial y nos encargamos de todo lo demás.</p>
               <ul className="mt-8 grid gap-3 sm:grid-cols-2">
                 {DISTINTO.map((d) => (
                   <li key={d} className="flex items-start gap-3 text-[18px] font-medium">
@@ -105,7 +121,7 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <a href="/contacto/" className="btn btn-naranja mt-10">Quiero que grabéis mi negocio <Icon name="flecha" className="h-5 w-5" /></a>
+              <a href="/contacto/" className="btn btn-naranja mt-10">Quiero que grabéis mi bar <Icon name="flecha" className="h-5 w-5" /></a>
             </div>
           </div>
         </section>
@@ -114,7 +130,7 @@ export default function Home() {
         <section id="servicios" aria-labelledby="t-servicios" className="bg-papel px-4 py-20 sm:px-6 md:py-28">
           <div className="mx-auto max-w-[920px] text-center">
             <p className="etiqueta">Lo que hacemos</p>
-            <h2 id="t-servicios" className="mx-auto mt-5 max-w-[20ch] text-[clamp(2rem,4.4vw,3.2rem)]">Todo lo que tu negocio necesita para que<span className="mt-2 block text-[1.35em] uppercase text-naranja-vivo">te elijan</span></h2>
+            <h2 id="t-servicios" className="mx-auto mt-5 max-w-[20ch] text-[clamp(2rem,4.4vw,3.2rem)]">Todo lo que tu bar necesita para que<span className="mt-2 block text-[1.35em] uppercase text-naranja-vivo">te elijan</span></h2>
             <div className="mt-12 grid gap-4 text-left">
               {servicePages.map((s) => (
                 <a key={s.slug} href={`/${s.slug}/`} className="card flex items-start gap-5 bg-white p-7">

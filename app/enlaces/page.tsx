@@ -5,7 +5,7 @@ import { WA_HOLA } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Enlaces',
-  description: 'Rumbo, agencia de marketing: grabamos en tu negocio. Contacto, servicios, caso real y WhatsApp.',
+  description: 'Rumbo, marketing para bares de Roquetas de Mar. Contacto, servicios, caso real y WhatsApp.',
   alternates: { canonical: '/enlaces/' },
 };
 
@@ -30,11 +30,11 @@ export default function Enlaces() {
       <div className="mx-auto max-w-[460px]">
         <header className="text-center">
           <h1 className="flex justify-center"><Logo className="h-9 w-auto" title="Rumbo" /></h1>
-          <p className="mt-3 text-[18px] text-gris">Agencia de marketing.<br />Grabamos en tu negocio y te traemos clientes.</p>
+          <p className="mt-3 text-[18px] text-gris">Marketing para bares de Roquetas.<br />Que en invierno tu bar no esté vacío.</p>
         </header>
 
         <nav aria-label="Enlaces" className="mt-8 grid gap-3">
-          <Row accent href={utm('/contacto/', 'contacto')} title="Quiero más clientes" sub="Cuéntanos qué necesita tu negocio" icon={<Icon name="telefono" />} />
+          <Row accent href={utm('/contacto/', 'contacto')} title="Quiero llenar mi bar" sub="Cuéntanos cómo va tu invierno" icon={<Icon name="telefono" />} />
           <Row href={`${utm('/', 'servicios')}#servicios`} title="Servicios" sub="Vídeos, redes, Google y web" icon={<Icon name="camara" />} />
           <Row href={utm('/caso/', 'caso')} title="Caso real" sub="De 12 a 151 reseñas en Google" icon={<Icon name="estrella" />} />
           <Row ext href={WA_HOLA} title="WhatsApp" sub="Escríbenos y te contestamos" icon={<WhatsIcon className="h-6 w-6 text-[#128C4A]" />} />

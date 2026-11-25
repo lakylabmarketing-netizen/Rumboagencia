@@ -9,7 +9,7 @@ export default function Footer({ cta = true }: { cta?: boolean }) {
       {cta && (
         <section aria-labelledby="t-hablamos" className="bg-papel px-4 py-20 sm:px-6 md:py-28">
           <div className="mx-auto max-w-wrap text-center">
-            <h2 id="t-hablamos" className="text-[clamp(2.2rem,5vw,3.8rem)] uppercase">¿Hablamos de tu negocio?</h2>
+            <h2 id="t-hablamos" className="text-[clamp(2.2rem,5vw,3.8rem)] uppercase">¿Hablamos de tu bar?</h2>
             <p className="mx-auto mt-4 max-w-[34ch] text-[20px] text-gris">Cuéntanos qué necesitas. Te respondemos en menos de 24 horas.</p>
             <div className="mt-10 grid gap-4 text-left md:grid-cols-3">
               <a href={WA_HOLA} target="_blank" rel="noopener" className="card bg-white p-7 text-center">
@@ -36,7 +36,7 @@ export default function Footer({ cta = true }: { cta?: boolean }) {
         <div className="mx-auto flex max-w-wrap flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div>
             <Logo className="h-7 w-auto" />
-            <p className="mt-3 text-[17px] text-gris">Agencia de marketing. Grabamos en tu negocio.</p>
+            <p className="mt-3 text-[17px] text-gris">Marketing para bares de Roquetas de Mar.</p>
           </div>
           <nav aria-label="Pie" className="flex flex-wrap gap-x-6 gap-y-3 text-[17px]">
             {[...NAV.slice(1), ['/legal/', 'Aviso legal y privacidad'] as [string, string]].map(([h, l]) => (

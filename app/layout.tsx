@@ -6,14 +6,14 @@ const SITE = process.env.URL || 'https://rumboagencia.info';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: { default: 'Rumbo · Agencia de marketing', template: '%s · Rumbo' },
-  description: 'Agencia de marketing: vamos a tu negocio, lo grabamos y lo publicamos en tus redes y en Google para que te lleguen más clientes.',
+  title: { default: 'Rumbo · Marketing para bares en Roquetas de Mar', template: '%s · Rumbo' },
+  description: 'Marketing para bares de Roquetas de Mar: en invierno tu bar no tiene por qué estar vacío. Grabamos tu bar y lo movemos en redes y en Google.',
   icons: { icon: '/img/favicon-32.png', apple: '/img/apple-touch-icon.png' },
   openGraph: {
     type: 'website', locale: 'es_ES', siteName: 'Rumbo', url: SITE + '/',
-    title: 'Rumbo · Agencia de marketing',
-    description: 'Vamos a tu negocio, lo grabamos y lo publicamos para que te lleguen más clientes.',
-    images: [{ url: '/img/og-rumbo.jpg', width: 1200, height: 630, alt: 'Rumbo, agencia de marketing' }],
+    title: 'Rumbo · Marketing para bares en Roquetas de Mar',
+    description: 'En invierno tu bar no tiene por qué estar vacío. Marketing para bares de Roquetas de Mar.',
+    images: [{ url: '/img/og-rumbo.jpg', width: 1200, height: 630, alt: 'Rumbo, marketing para bares en Roquetas de Mar' }],
   },
   twitter: { card: 'summary_large_image' },
 };

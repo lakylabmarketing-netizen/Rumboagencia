@@ -16,7 +16,7 @@ export default function ServiceView({ s }: { s: ServicePage }) {
               <a href="/#servicios" className="text-[17px] font-medium text-gris underline-offset-4 hover:underline">← Todos los servicios</a>
               <h1 className="mt-6 text-[clamp(2.4rem,5.6vw,4.2rem)] uppercase leading-[1.03]">{s.title}</h1>
               <p className="mt-5 max-w-[42ch] text-[clamp(1.15rem,1.8vw,1.35rem)] leading-[1.5] text-gris">{s.lead}</p>
-              <a href="/contacto/" className="btn btn-naranja mt-8">Hablemos de tu negocio <Icon name="flecha" className="h-5 w-5" /></a>
+              <a href="/contacto/" className="btn btn-naranja mt-8">Hablemos de tu bar <Icon name="flecha" className="h-5 w-5" /></a>
             </div>
             <img src={s.img} alt={s.imgAlt} className="mx-auto aspect-[4/5] w-full max-w-[420px] rounded-2xl object-cover" />
           </div>
