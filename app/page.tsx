@@ -131,7 +131,7 @@ export default function Home() {
           <div className="mx-auto max-w-[920px] text-center">
             <p className="etiqueta">Lo que hacemos</p>
             <h2 id="t-servicios" className="mx-auto mt-5 max-w-[20ch] text-[clamp(2rem,4.4vw,3.2rem)]">Todo lo que tu bar necesita para que<span className="mt-2 block text-[1.35em] uppercase text-naranja-vivo">te elijan</span></h2>
-            <div className="mt-12 grid gap-4 text-left">
+            <div className="mt-12 grid gap-4 text-left md:grid-cols-2">
               {servicePages.map((s) => (
                 <a key={s.slug} href={`/${s.slug}/`} className="card flex items-start gap-5 bg-white p-7">
                   <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-naranja/15 text-naranja-osc"><Icon name={s.icon} className="h-7 w-7" /></span>

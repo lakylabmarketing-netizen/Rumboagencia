@@ -94,17 +94,4 @@ export const servicePages: ServicePage[] = [
     ],
     proof: { title: 'A Lo Cubano · julio a septiembre', stats: [['18.107', 'personas vieron su ficha'], ['607', 'pidieron la ruta para llegar'], ['12 → 151', 'reseñas, todas de cinco estrellas']] },
   },
-  {
-    slug: 'web', icon: 'web', name: 'Página web', short: 'Una web sencilla, rápida y tuya.',
-    title: 'Página web', img: '/img/portada-pieza-4.webp', imgAlt: 'Fotograma de una pieza de Rumbo',
-    lead: 'Una web o landing a la que llegan desde tu ficha de Google y tus redes, pensada para que te escriban o te visiten sin rodeos.',
-    items: [
-      ['Web o landing a medida', 'La diseñamos y la montamos nosotros.'],
-      ['Pensada para el móvil', 'Que se lea bien y cargue rápido, que es donde la van a abrir.'],
-      ['Contacto directo', 'WhatsApp, llamada o formulario: que te escriban en un toque.'],
-      ['Automatizaciones', 'Respuestas automáticas por WhatsApp o mensaje directo.'],
-      ['Es tuya', 'La web y todos los accesos son tuyos desde el primer día.'],
-    ],
-    proof: { title: 'A Lo Cubano', stats: [['299', 'personas entraron en su web desde Google'], ['alocubanofusion.com', 'la web que les hicimos']] },
-  },
 ];

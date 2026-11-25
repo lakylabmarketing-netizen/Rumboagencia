@@ -35,7 +35,7 @@ export default function Enlaces() {
 
         <nav aria-label="Enlaces" className="mt-8 grid gap-3">
           <Row accent href={utm('/contacto/', 'contacto')} title="Quiero llenar mi bar" sub="Cuéntanos cómo va tu invierno" icon={<Icon name="telefono" />} />
-          <Row href={`${utm('/', 'servicios')}#servicios`} title="Servicios" sub="Vídeos, redes, Google y web" icon={<Icon name="camara" />} />
+          <Row href={`${utm('/', 'servicios')}#servicios`} title="Servicios" sub="Vídeos en redes y reseñas en Google" icon={<Icon name="camara" />} />
           <Row href={utm('/caso/', 'caso')} title="Caso real" sub="De 12 a 151 reseñas en Google" icon={<Icon name="estrella" />} />
           <Row ext href={WA_HOLA} title="WhatsApp" sub="Escríbenos y te contestamos" icon={<WhatsIcon className="h-6 w-6 text-[#128C4A]" />} />
         </nav>

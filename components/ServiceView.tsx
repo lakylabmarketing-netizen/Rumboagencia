@@ -58,8 +58,8 @@ export default function ServiceView({ s }: { s: ServicePage }) {
         {/* Otros servicios */}
         <section aria-labelledby="t-otros" className="px-4 pb-20 sm:px-6">
           <div className="mx-auto max-w-wrap">
-            <h2 id="t-otros" className="text-[26px]">Otros servicios</h2>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <h2 id="t-otros" className="text-[26px]">El otro servicio</h2>
+            <div className="mt-6 grid gap-3">
               {others.map((o) => (
                 <a key={o.slug} href={`/${o.slug}/`} className="card flex items-center gap-4 p-5">
                   <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-naranja/15 text-naranja-osc"><Icon name={o.icon} className="h-6 w-6" /></span>
