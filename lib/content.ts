@@ -12,7 +12,7 @@ export const GOOGLE_FICHA = 'https://share.google/GnTpqiGGJO6bbH6Xn';
 
 // Páginas de la web, en el orden del menú
 export const NAV: [string, string][] = [
-  ['/', 'Inicio'], ['/#servicios', 'Servicios'], ['/caso/', 'Caso real'], ['/contacto/', 'Contacto'],
+  ['/', 'Inicio'], ['/#servicios', 'Servicios'], ['/#precios', 'Precios'], ['/caso/', 'Caso real'], ['/contacto/', 'Contacto'],
 ];
 export const WHATSAPP_VISIBLE = '+34 624 91 15 99';
 
@@ -58,6 +58,16 @@ export const topVideos = [
   { v: '94.781', title: 'Vídeo con Yolaxis', meta: '16 de octubre · TikTok · 778 seguidores nuevos' },
   { v: '77.631', title: 'Humor: «no ha comido»', meta: '10 de octubre · TikTok · 270 seguidores nuevos' },
   { v: '35.733', title: 'Probando los platos por primera vez', meta: 'TikTok' },
+];
+
+// Planes (de «Rumbo · Planes y servicios», 2026). Solo lo que ve el cliente: sin horas ni márgenes.
+export const plans = [
+  { id: 'campana', name: 'Campaña', kicker: 'Para empezar · campaña única', price: '189',
+    items: ['3 reels, 8 stories y 4 posts', 'Estrategia de la campaña', 'Pensado para captar clientes'] },
+  { id: 'presencia', name: 'Presencia', kicker: '3 meses', price: '449', rec: true,
+    items: ['6 reels, 12 stories y 6 posts', 'Estrategia de contenido cada mes', 'Estabilidad mes a mes'] },
+  { id: 'marca', name: 'Marca', kicker: '3 meses', price: '790',
+    items: ['8 reels virales y 6 posts', '16 stories y landing con hosting', 'Estrategia viral y de marca', 'Informe mensual y llamada'] },
 ];
 
 // ── Páginas de cada servicio (portada tipo «enlaces»: cada tarjeta lleva a su página) ──

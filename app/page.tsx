@@ -1,7 +1,7 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Icon, { WhatsIcon } from '@/components/Icon';
-import { WA_HOLA, servicePages, testimonials } from '@/lib/content';
+import { WA_HOLA, plans, servicePages, testimonials, wa } from '@/lib/content';
 
 const PASOS = [
   ['Preparamos el plan', 'Estudiamos tu bar y a la competencia de tu zona, y decidimos qué grabar para que los de Roquetas te elijan a ti.'],
@@ -144,6 +144,32 @@ export default function Home() {
                     <span className="mt-3 inline-flex items-center gap-1.5 text-[16px] font-semibold">Ver más <Icon name="flecha" className="h-4 w-4" /></span>
                   </span>
                 </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── PRECIOS ── */}
+        <section id="precios" aria-labelledby="t-precios" className="px-4 py-20 sm:px-6 md:py-28">
+          <div className="mx-auto max-w-wrap">
+            <p className="text-center"><span className="etiqueta">Precios</span></p>
+            <h2 id="t-precios" className="mx-auto mt-5 max-w-[20ch] text-center text-[clamp(2rem,4.4vw,3.2rem)]">Tres planes. <span className="text-naranja-osc">Sin sorpresas.</span></h2>
+            <p className="mx-auto mt-4 max-w-[44ch] text-center text-[19px] text-gris">Empieza con una campaña o quédate con nosotros tres meses. En todos vamos a tu bar a grabar.</p>
+            <div className="mt-12 grid gap-4 lg:grid-cols-3">
+              {plans.map((p) => (
+                <article key={p.id} className={`relative flex flex-col rounded-2xl p-8 ${p.rec ? 'border-[3px] border-naranja bg-white' : 'border-2 border-line bg-papel'}`}>
+                  {p.rec && <span className="absolute -top-4 left-8 rounded-full bg-naranja px-4 py-1 text-[15px] font-bold">Recomendado</span>}
+                  <p className="text-[15px] font-semibold uppercase tracking-[.08em] text-gris">{p.kicker}</p>
+                  <h3 className="mt-2 text-[30px]">{p.name}</h3>
+                  <p className="head mt-3 text-[3.6rem] leading-none">{p.price} €<span className="font-sans text-[.36em] font-semibold tracking-normal text-gris"> al mes</span></p>
+                  <ul className="mb-8 mt-6 grid gap-3 border-t border-line pt-6">
+                    {p.items.map((it) => (
+                      <li key={it} className="flex gap-3 text-[18px]"><Icon name="check" className="mt-1 h-5 w-5 shrink-0 text-naranja-osc" />{it}</li>
+                    ))}
+                  </ul>
+                  <a href={wa(`Hola, tengo un bar en Roquetas y me interesa el plan ${p.name} (${p.price} €/mes).`)} target="_blank" rel="noopener"
+                    className={`btn mt-auto ${p.rec ? 'btn-whatsapp' : 'btn-linea'}`}><WhatsIcon className="h-6 w-6" /> Quiero este plan</a>
+                </article>
               ))}
             </div>
           </div>
