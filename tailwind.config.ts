@@ -1,25 +1,25 @@
 import type { Config } from 'tailwindcss';
 
-/** Colores y letra de Rumbo: web clara, el naranja solo para lo importante. */
+/** Colores de Rumbo: fondo negro, texto blanco y naranja de marca. Las franjas claras usan la clase .claro (globals.css). */
 const config: Config = {
   content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        ink: '#151515',          // texto principal
-        gris: '#474747',         // texto secundario
-        muted: '#6B6B6B',        // notas pequeñas
-        line: '#E5E3DF',         // bordes
-        papel: '#F6F5F2',        // fondo de tarjetas y franjas
-        naranja: '#E4561B',      // botón principal
-        'naranja-osc': '#B4400E', // naranja para texto sobre blanco
-        'naranja-vivo': '#FF5A12', // naranja llamativo para cifras y palabras clave grandes
+        ink: '#0A0A0A',          // negro de fondo y texto sobre naranja
+        gris: '#BDBDBD',         // texto secundario sobre negro
+        muted: '#8C8C8C',        // notas pequeñas
+        line: '#2A2A2A',         // bordes
+        papel: '#161616',        // tarjetas sobre negro
+        naranja: '#F04E17',      // naranja de marca: botones y bloques
+        'naranja-osc': '#FF7A3D', // naranja para texto sobre negro
+        'naranja-vivo': '#FF5A12', // naranja llamativo para cifras
       },
       fontFamily: {
         sans: ['"General Sans"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
-        head: ['Switzer', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+        display: ['Anton', 'Impact', '"Arial Narrow"', 'sans-serif'],
       },
-      maxWidth: { wrap: '1180px' },
+      maxWidth: { wrap: '1240px' },
     },
   },
   plugins: [],

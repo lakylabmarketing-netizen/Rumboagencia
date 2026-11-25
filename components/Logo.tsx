@@ -8,7 +8,7 @@ export function Isotipo({ className = '', fill = '#F04E17' }: { className?: stri
   );
 }
 
-export function Logo({ className = '', title = 'Rumbo', color = '#151515' }: { className?: string; title?: string; color?: string }) {
+export function Logo({ className = '', title = 'Rumbo', color = '#FFFFFF' }: { className?: string; title?: string; color?: string }) {
   const gap = 18, tw = R_W + gap + WM_W;
   return (
     <svg viewBox={`0 -3 ${tw} 62`} className={className} role="img" aria-label={title}>

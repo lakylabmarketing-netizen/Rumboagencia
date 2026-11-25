@@ -14,7 +14,7 @@ const utm = (href: string, c: string) => `${href}${href.includes('?') ? '&' : '?
 
 const Row = ({ href, title, sub, icon, accent = false, ext = false }: { href: string; title: string; sub: string; icon: React.ReactNode; accent?: boolean; ext?: boolean }) => (
   <a href={href} {...(ext ? { target: '_blank', rel: 'noopener' } : {})}
-    className={`flex items-center gap-4 rounded-2xl border-2 p-4 ${accent ? 'border-naranja bg-naranja' : 'border-line bg-white hover:border-ink'}`}>
+    className={`flex items-center gap-4 rounded-2xl border-2 p-4 ${accent ? 'border-naranja bg-naranja text-ink' : 'border-line bg-papel hover:border-naranja'}`}>
     <span className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl ${accent ? 'bg-white/30' : 'bg-papel'}`}>{icon}</span>
     <span className="min-w-0 flex-1">
       <b className="block text-[19px] font-semibold leading-tight">{title}</b>
@@ -26,7 +26,7 @@ const Row = ({ href, title, sub, icon, accent = false, ext = false }: { href: st
 
 export default function Enlaces() {
   return (
-    <main id="contenido" className="min-h-[100svh] bg-papel px-4 pb-[calc(28px+env(safe-area-inset-bottom))] pt-[calc(36px+env(safe-area-inset-top))]">
+    <main id="contenido" className="min-h-[100svh] bg-ink px-4 pb-[calc(28px+env(safe-area-inset-bottom))] pt-[calc(36px+env(safe-area-inset-top))]">
       <div className="mx-auto max-w-[460px]">
         <header className="text-center">
           <h1 className="flex justify-center"><Logo className="h-9 w-auto" title="Rumbo" /></h1>

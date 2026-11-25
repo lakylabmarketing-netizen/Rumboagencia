@@ -32,7 +32,7 @@ export default function Contacto() {
               </a>
               <p className="mt-2 text-[17px] text-gris">Te respondemos en menos de 24 horas laborables.</p>
             </div>
-            <div className="rounded-2xl border border-line bg-white p-7 shadow-[0_10px_40px_-20px_rgba(0,0,0,.15)] sm:p-9">
+            <div className="card p-7 sm:p-9">
               <h2 className="text-[28px]">O déjanos tus datos</h2>
               <div className="mt-6"><ContactForm /></div>
             </div>

@@ -18,14 +18,14 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image' },
 };
 
-export const viewport: Viewport = { themeColor: '#ffffff', width: 'device-width', initialScale: 1, viewportFit: 'cover' };
+export const viewport: Viewport = { themeColor: '#0A0A0A', width: 'device-width', initialScale: 1, viewportFit: 'cover' };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
       <head>
         <link rel="preload" href="/fonts/generalsans-400.woff2" as="font" type="font/woff2" crossOrigin="" />
-        <link rel="preload" href="/fonts/switzer-800.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/anton-latin.woff2" as="font" type="font/woff2" crossOrigin="" />
       </head>
       <body>
         <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[90] focus:rounded-full focus:bg-naranja focus:px-4 focus:py-3 focus:text-ink">Saltar al contenido</a>

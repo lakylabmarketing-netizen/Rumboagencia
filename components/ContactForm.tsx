@@ -2,7 +2,7 @@
 import { useRef, useState } from 'react';
 import { CONTACT_EMAIL } from '@/lib/content';
 
-const field = 'w-full rounded-xl border-2 border-line bg-white px-4 py-3.5 text-[18px] text-ink placeholder:text-muted focus:border-ink focus:outline-none';
+const field = 'w-full rounded-2xl border-2 border-line bg-ink px-4 py-3.5 text-[18px] text-white placeholder:text-muted focus:border-naranja focus:outline-none';
 const label = 'mb-2 block text-[17px] font-semibold';
 
 /** Formulario de consulta. Lo procesa Netlify Forms; sin scripts de terceros. */
@@ -53,8 +53,8 @@ export default function ContactForm() {
         <label htmlFor="rgpd" className="text-[16px] text-gris">He leído y acepto la <a href="/legal/#privacidad" className="underline underline-offset-4">política de privacidad</a> y que Rumbo use estos datos para responder a mi consulta.</label>
       </div>
       <button type="submit" disabled={state === 'sending'} data-cursor="ENVIAR"
-        className="btn btn-naranja min-h-[60px] text-[1.15rem] disabled:opacity-60">
-        {state === 'sending' ? 'Enviando…' : 'Reservar mi consulta'}
+        className="btn btn-naranja min-h-[60px] !pr-6 text-[1.15rem] disabled:opacity-60">
+        {state === 'sending' ? 'Enviando…' : 'Enviar'}
       </button>
       <div role="status" aria-live="polite">
         {state === 'ok' && <p className="rounded-xl border-2 border-[#128C4A] bg-[#25D366]/10 p-4 text-[17px]">Recibido. Te escribimos en menos de 24 horas laborables.</p>}

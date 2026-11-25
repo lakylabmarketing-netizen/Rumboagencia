@@ -14,7 +14,7 @@ export default function ServiceView({ s }: { s: ServicePage }) {
           <div className="mx-auto grid max-w-wrap items-center gap-10 md:grid-cols-2">
             <div>
               <a href="/#servicios" className="text-[17px] font-medium text-gris underline-offset-4 hover:underline">← Todos los servicios</a>
-              <h1 className="mt-6 text-[clamp(2.4rem,5.6vw,4.2rem)] uppercase leading-[1.03]">{s.title}</h1>
+              <h1 className="mt-6 text-[clamp(3rem,7vw,5.4rem)]">{s.title}</h1>
               <p className="mt-5 max-w-[42ch] text-[clamp(1.15rem,1.8vw,1.35rem)] leading-[1.5] text-gris">{s.lead}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-whatsapp"><WhatsIcon className="h-7 w-7" /> Escríbenos por WhatsApp</a>
@@ -31,9 +31,9 @@ export default function ServiceView({ s }: { s: ServicePage }) {
             <h2 id="t-incluye" className="text-center text-[clamp(2rem,4.4vw,3.2rem)]">Qué incluye</h2>
             <ul className="mt-12 grid gap-4 md:grid-cols-2">
               {s.items.map(([t, d]) => (
-                <li key={t} className="flex gap-4 rounded-2xl border border-line bg-white p-7">
+                <li key={t} className="flex gap-4 rounded-2xl border border-line bg-ink p-7">
                   <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-naranja/15 text-naranja-osc"><Icon name="check" className="h-5 w-5" /></span>
-                  <span><b className="head block text-[22px]">{t}</b><span className="mt-1 block text-[18px] text-gris">{d}</span></span>
+                  <span><b className="head block text-[1.8rem]">{t}</b><span className="mt-1 block text-[18px] text-gris">{d}</span></span>
                 </li>
               ))}
             </ul>
@@ -61,7 +61,7 @@ export default function ServiceView({ s }: { s: ServicePage }) {
         {/* Otros servicios */}
         <section aria-labelledby="t-otros" className="px-4 pb-20 sm:px-6">
           <div className="mx-auto max-w-wrap">
-            <h2 id="t-otros" className="text-[26px]">El otro servicio</h2>
+            <h2 id="t-otros" className="text-[2.3rem]">El otro servicio</h2>
             <div className="mt-6 grid gap-3">
               {others.map((o) => (
                 <a key={o.slug} href={`/${o.slug}/`} className="card flex items-center gap-4 p-5">

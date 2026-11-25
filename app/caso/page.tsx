@@ -27,8 +27,8 @@ export default function Caso() {
         <section aria-label="Cifras" className="bg-papel px-4 py-20 sm:px-6 md:py-24">
           <div className="mx-auto grid max-w-wrap gap-4 md:grid-cols-2">
             {metricGroups.map((g) => (
-              <div key={g.q} className="rounded-2xl border border-line bg-white p-7 sm:p-9">
-                <h2 className="text-[26px]">{g.q}</h2>
+              <div key={g.q} className="rounded-2xl border border-line bg-ink p-7 sm:p-9">
+                <h2 className="text-[2.3rem]">{g.q}</h2>
                 <p className="mt-1 text-[15px] text-muted">{g.src}</p>
                 <div className="mt-6 grid gap-6 sm:grid-cols-2">
                   {g.items.map((m) => (
@@ -87,7 +87,7 @@ export default function Caso() {
         <section className="px-4 py-20 sm:px-6 md:py-24">
           <div className="mx-auto grid max-w-wrap gap-4 md:grid-cols-2">
             <div className="card p-7 sm:p-9">
-              <h2 className="text-[26px]">Los tres vídeos más vistos en TikTok</h2>
+              <h2 className="text-[2.3rem]">Los tres vídeos más vistos en TikTok</h2>
               <ol className="mt-5">
                 {topVideos.map((t) => (
                   <li key={t.v} className="grid grid-cols-[100px_1fr] gap-4 border-t border-line py-4">
@@ -98,7 +98,7 @@ export default function Caso() {
               </ol>
             </div>
             <div className="card p-7 sm:p-9">
-              <h2 className="text-[26px]">Lo que todavía no medimos</h2>
+              <h2 className="text-[2.3rem]">Lo que todavía no medimos</h2>
               <p className="mt-4 text-[18px] text-gris">Las reservas se hacen por su web y no sabemos cuántas llegan desde las redes o desde Google, así que no las atribuimos a nuestro trabajo. Este trimestre empezamos a medirlo preguntando en sala: «¿cómo nos has conocido?».</p>
               <p className="mt-4 text-[16px] text-muted">Qué hicimos hasta septiembre: 10 sesiones de grabación · 30 vídeos · 13 posts · 108 stories · ficha de Google optimizada · carta con QR para reseñas · web alocubanofusion.com</p>
               <div className="mt-6 flex flex-wrap gap-3">

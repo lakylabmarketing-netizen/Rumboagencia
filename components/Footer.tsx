@@ -1,52 +1,49 @@
 import { Logo } from './Logo';
 import Icon, { WhatsIcon } from './Icon';
+import ContactForm from './ContactForm';
 import { CONTACT_EMAIL, NAV, WA_HOLA, WHATSAPP_VISIBLE } from '@/lib/content';
 
-/** Llamada final con las formas de contacto + pie. */
+/** Cierre con formulario y formas de contacto + pie con el nombre en grande. */
 export default function Footer({ cta = true }: { cta?: boolean }) {
   return (
     <>
       {cta && (
-        <section aria-labelledby="t-hablamos" className="bg-papel px-4 py-20 sm:px-6 md:py-28">
-          <div className="mx-auto max-w-wrap text-center">
-            <h2 id="t-hablamos" className="text-[clamp(2.2rem,5vw,3.8rem)] uppercase">¿Hablamos de tu bar?</h2>
-            <p className="mx-auto mt-4 max-w-[34ch] text-[20px] text-gris">Cuéntanos qué necesitas. Te respondemos en menos de 24 horas.</p>
-            <div className="mt-10 grid gap-4 text-left md:grid-cols-3">
-              <a href={WA_HOLA} target="_blank" rel="noopener" className="rounded-2xl bg-[#25D366] p-7 text-center text-[#0B2A17] transition-colors hover:bg-[#1EBE5A]">
-                <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-white/40"><WhatsIcon className="h-9 w-9" /></span>
-                <b className="head mt-4 block text-[24px]">Escríbenos por WhatsApp</b>
-                <span className="mt-1 block text-[19px] font-semibold">{WHATSAPP_VISIBLE}</span>
-              </a>
-              <a href={`mailto:${CONTACT_EMAIL}`} className="card bg-white p-7 text-center">
-                <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-naranja/15 text-naranja-osc"><Icon name="correo" className="h-7 w-7" /></span>
-                <b className="head mt-4 block text-[22px]">Envíanos un correo</b>
-                <span className="mt-1 block break-all text-[17px]">{CONTACT_EMAIL}</span>
-              </a>
-              <a href="/contacto/" className="card bg-white p-7 text-center">
-                <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-naranja/15 text-naranja-osc"><Icon name="telefono" className="h-7 w-7" /></span>
-                <b className="head mt-4 block text-[22px]">Te llamamos</b>
-                <span className="mt-1 block text-[17px]">Déjanos tu teléfono</span>
-              </a>
+        <section id="contacto" aria-labelledby="t-hablamos" className="px-4 py-20 sm:px-6 md:py-28">
+          <div className="mx-auto grid max-w-wrap gap-10 lg:grid-cols-[.9fr_1.1fr]">
+            <div>
+              <p className="etiqueta">Respuesta en menos de 24 h laborables</p>
+              <h2 id="t-hablamos" className="mt-6 text-[clamp(3.2rem,8vw,6.4rem)]">¿Llenamos<br /><span className="marca">tu bar?</span></h2>
+              <p className="mt-6 max-w-[34ch] text-[20px] text-gris">Déjanos tus datos y te llamamos para conocer tu bar y decirte qué haríamos este invierno.</p>
+              <div className="mt-8 grid gap-3">
+                <a href={WA_HOLA} target="_blank" rel="noopener" className="flex items-center gap-4 rounded-[22px] bg-[#25D366] p-5 text-[#0B2A17] hover:bg-[#1EBE5A]">
+                  <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-white/40"><WhatsIcon className="h-8 w-8" /></span>
+                  <span><span className="block text-[15px] font-semibold">WhatsApp</span><b className="block text-[21px]">{WHATSAPP_VISIBLE}</b></span>
+                </a>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="card flex items-center gap-4 p-5">
+                  <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-naranja text-ink"><Icon name="correo" className="h-7 w-7" /></span>
+                  <span className="min-w-0"><span className="block text-[15px] text-gris">Correo</span><b className="block break-all text-[19px]">{CONTACT_EMAIL}</b></span>
+                </a>
+              </div>
             </div>
-            <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-              <a href="/contacto/" className="btn btn-naranja">Quiero que Rumbo trabaje para mí <Icon name="flecha" className="h-5 w-5" /></a>
+            <div className="card p-7 sm:p-9">
+              <h3 className="text-[2.4rem]">Hablemos de tu bar</h3>
+              <div className="mt-6"><ContactForm /></div>
             </div>
           </div>
         </section>
       )}
-      <footer className="border-t border-line px-4 pb-[calc(40px+env(safe-area-inset-bottom))] pt-12 sm:px-6">
-        <div className="mx-auto flex max-w-wrap flex-col gap-8 md:flex-row md:items-start md:justify-between">
-          <div>
-            <Logo className="h-7 w-auto" />
-            <p className="mt-3 text-[17px] text-gris">Marketing para bares de Roquetas de Mar.</p>
+      <footer className="border-t border-line px-4 pb-[calc(32px+env(safe-area-inset-bottom))] pt-14 sm:px-6">
+        <div className="mx-auto max-w-wrap">
+          <Logo className="h-auto w-full" />
+          <div className="mt-8 flex flex-col gap-5 text-[17px] md:flex-row md:items-center md:justify-between">
+            <p className="text-gris">Marketing para bares · Roquetas de Mar · © 2026</p>
+            <nav aria-label="Pie" className="flex flex-wrap gap-x-6 gap-y-3">
+              {[...NAV.slice(1), ['/legal/', 'Aviso legal y privacidad'] as [string, string]].map(([h, l]) => (
+                <a key={h} href={h} className="text-gris underline-offset-4 hover:text-white hover:underline">{l}</a>
+              ))}
+            </nav>
           </div>
-          <nav aria-label="Pie" className="flex flex-wrap gap-x-6 gap-y-3 text-[17px]">
-            {[...NAV.slice(1), ['/legal/', 'Aviso legal y privacidad'] as [string, string]].map(([h, l]) => (
-              <a key={h} href={h} className="text-gris underline-offset-4 hover:text-ink hover:underline">{l}</a>
-            ))}
-          </nav>
         </div>
-        <p className="mx-auto mt-10 max-w-wrap text-[15px] text-muted">© 2026 Rumbo · rumboagencia.info · Esta web no usa cookies</p>
       </footer>
     </>
   );

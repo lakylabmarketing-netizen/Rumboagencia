@@ -2,45 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Tipografía de Rumbo: General Sans para el texto y Switzer para los titulares */
+/* Tipografía: Anton para los titulares (estrechos y grandes) y General Sans para el texto */
+@font-face { font-family: 'Anton'; font-weight: 400; font-display: swap; src: url(/fonts/anton-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Anton'; font-weight: 400; font-display: swap; src: url(/fonts/anton-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
 @font-face { font-family: 'General Sans'; font-weight: 400; font-display: swap; src: url(/fonts/generalsans-400.woff2) format('woff2'); }
 @font-face { font-family: 'General Sans'; font-weight: 500; font-display: swap; src: url(/fonts/generalsans-500.woff2) format('woff2'); }
 @font-face { font-family: 'General Sans'; font-weight: 600; font-display: swap; src: url(/fonts/generalsans-600.woff2) format('woff2'); }
 @font-face { font-family: 'Switzer'; font-weight: 800; font-display: swap; src: url(/fonts/switzer-800.woff2) format('woff2'); }
 
-:root { color-scheme: light; }
-html { background: #fff; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+:root { color-scheme: dark; }
+html { background: #0A0A0A; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body {
-  background: #fff; color: #151515; font-family: 'General Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; line-height: 1.55;
+  background: #0A0A0A; color: #fff; font-family: 'General Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; line-height: 1.55;
   -webkit-font-smoothing: antialiased; overflow-x: hidden;
   padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right);
 }
-h1, h2, h3, .head { font-family: Switzer, 'Helvetica Neue', Arial, sans-serif; font-weight: 800; letter-spacing: -.02em; line-height: 1.08; }
-::selection { background: rgba(228,86,27,.25); }
-:focus-visible { outline: 3px solid #E4561B; outline-offset: 3px; }
+h1, h2, h3, .head { font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: .005em; line-height: .95; }
+::selection { background: rgba(240,78,23,.45); color: #fff; }
+:focus-visible { outline: 3px solid #F04E17; outline-offset: 3px; }
 img, video { display: block; max-width: 100%; }
-[id] { scroll-margin-top: 96px; }
+[id] { scroll-margin-top: 110px; }
+
+/* Franja clara (gris muy claro con texto negro) */
+.claro { background: #F2F2F2; color: #0A0A0A; }
+.claro .text-gris { color: #474747; }
+.claro .text-muted { color: #6B6B6B; }
+.claro .border-line { border-color: #E2E2E2; }
+.claro .bg-papel { background: #fff; }
+.claro .text-naranja-osc { color: #C2410C; }
 
 @layer components {
-/* Etiqueta pequeña encima de los titulares */
-.etiqueta { display: inline-block; background: #151515; color: #fff; border-radius: 999px; padding: .5rem 1.15rem;
-  font-size: .95rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+/* Palabra clave dentro de un bloque naranja */
+.marca { display: inline-block; background: #F04E17; color: #0A0A0A; padding: .16em .14em .02em; line-height: 1; }
 
-/* Botones grandes y claros */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 56px; padding: 0 1.6rem;
-  border-radius: 12px; font-weight: 600; font-size: 1.05rem; transition: background-color .2s, border-color .2s, color .2s; }
-.btn-naranja { background: #E4561B; color: #151515; }
-.btn-naranja:hover { background: #F0703A; }
-.btn-linea { border: 2px solid #151515; color: #151515; }
+/* Etiqueta pequeña encima de los titulares */
+.etiqueta { display: inline-block; border: 1px solid rgba(255,255,255,.22); color: #fff; border-radius: 999px; padding: .45rem 1.1rem;
+  font-size: .9rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.claro .etiqueta { border-color: rgba(0,0,0,.2); color: #0A0A0A; }
+
+/* Botones en forma de píldora, grandes y claros */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 60px; padding: 0 1.6rem;
+  border-radius: 999px; font-weight: 600; font-size: 1.1rem; transition: background-color .2s, border-color .2s, color .2s; }
+.btn-naranja { background: #F04E17; color: #0A0A0A; padding-right: .5rem; }
+.btn-naranja:hover { background: #FF6A2B; }
+.btn-naranja .circulo { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 999px; background: #0A0A0A; color: #fff; }
+.btn-linea { border: 2px solid rgba(255,255,255,.4); color: #fff; }
+.btn-linea:hover { background: #fff; color: #0A0A0A; }
+.claro .btn-linea { border-color: #0A0A0A; color: #0A0A0A; }
+.claro .btn-linea:hover { background: #0A0A0A; color: #fff; }
 /* WhatsApp: verde reconocible, más alto y con texto oscuro para que se lea bien */
 .btn-whatsapp { background: #25D366; color: #0B2A17; min-height: 64px; font-size: 1.15rem; font-weight: 700; }
 .btn-whatsapp:hover { background: #1EBE5A; }
-.btn-linea:hover { background: #151515; color: #fff; }
 
 /* Tarjetas */
-.card { border: 1px solid #E5E3DF; background: #F6F5F2; border-radius: 16px; }
+.card { border: 1px solid #2A2A2A; background: #161616; border-radius: 28px; }
 a.card { transition: border-color .2s; }
-a.card:hover { border-color: #151515; }
+a.card:hover { border-color: #F04E17; }
 }
 
+/* Carrusel horizontal sin barra visible */
+.carrusel { scrollbar-width: none; }
+.carrusel::-webkit-scrollbar { display: none; }
+
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ── Animaciones (todas se desactivan con «reducir movimiento») ── */
+/* Aparecer al llegar con el scroll */
+.con-reveal [data-reveal] { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.con-reveal [data-reveal].visto { opacity: 1; transform: none; }
+/* Columnas del collage que suben o bajan sin parar */
+@keyframes sube-col { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+@keyframes baja-col { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+.col-sube { animation: sube-col 38s linear infinite; }
+.col-baja { animation: baja-col 44s linear infinite; }
+/* Barras de «historia» en las tarjetas */
+@keyframes historia { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.historia > i { display: block; height: 3px; flex: 1; border-radius: 3px; background: rgba(255,255,255,.35); overflow: hidden; }
+.historia > i:first-child::after { content: ''; display: block; height: 100%; background: #fff; transform-origin: left; animation: historia 5s linear infinite; }
+/* Cinta de palabras */
+@keyframes cinta { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.cinta { animation: cinta 30s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .col-sube, .col-baja, .cinta, .historia > i:first-child::after { animation: none; }
+  .con-reveal [data-reveal] { opacity: 1; transform: none; }
+}

@@ -80,7 +80,7 @@ export type ServicePage = {
 export const servicePages: ServicePage[] = [
   {
     slug: 'redes', icon: 'video', name: 'Vídeos y redes sociales', short: 'Grabamos tu bar y lo publicamos cada semana.',
-    title: 'Redes sociales', img: '/portafolio/assets/pieza-1-poster.jpg', imgAlt: 'Fotograma de un vídeo de Rumbo para A Lo Cubano',
+    title: 'Redes sociales', img: '/img/grabando-poster.jpg', imgAlt: 'Grabando a Manuel en la terraza de A Lo Cubano',
     lead: 'Grabamos en tu bar, montamos las piezas y las publicamos con el texto escrito. Tú apruebas el mes de una vez.',
     items: [
       ['Grabación en tu bar', 'Vamos a tu bar a grabar cada mes, en el momento más tranquilo del día.'],
