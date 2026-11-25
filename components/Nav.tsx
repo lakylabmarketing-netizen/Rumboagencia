@@ -34,7 +34,6 @@ export default function Nav() {
             ))}
           </nav>
           <div className="flex items-center gap-2">
-            <a href="/contacto/" className="btn btn-naranja hidden !min-h-[48px] !px-5 !text-[16px] lg:inline-flex">Consultoría gratis</a>
             <button type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu"
               className="flex h-12 items-center gap-2 rounded-xl border-2 border-ink px-4 text-[16px] font-semibold lg:hidden">
               Menú
@@ -55,8 +54,7 @@ export default function Nav() {
             </a>
           ))}
         </nav>
-        <a href="/contacto/" className="btn btn-naranja mt-8 w-full">Consultoría gratis</a>
-        <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-linea mt-3 w-full"><WhatsIcon className="h-5 w-5" /> Escríbenos por WhatsApp</a>
+        <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-linea mt-8 w-full"><WhatsIcon className="h-5 w-5" /> Escríbenos por WhatsApp</a>
       </div>
     </>
   );

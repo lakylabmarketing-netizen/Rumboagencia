@@ -14,7 +14,7 @@ export const GOOGLE_FICHA = 'https://share.google/GnTpqiGGJO6bbH6Xn';
 
 // Páginas de la web, en el orden del menú
 export const NAV: [string, string][] = [
-  ['/', 'Inicio'], ['/#servicios', 'Servicios'], ['/apps/', 'Apps'], ['/caso/', 'Caso real'], ['/precios/', 'Precios'], ['/contacto/', 'Contacto'],
+  ['/', 'Inicio'], ['/#servicios', 'Servicios'], ['/caso/', 'Caso real'], ['/contacto/', 'Contacto'],
 ];
 export const WHATSAPP_VISIBLE = '+34 624 91 15 99';
 
