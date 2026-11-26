@@ -7,7 +7,7 @@ export const CONTACT_EMAIL = 'lakylabmarketing@gmail.com'; // provisional
 // WhatsApp de Rumbo y mensajes que se abren ya escritos
 export const WHATSAPP = '34624911599';
 export const wa = (msg: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
-export const WA_HOLA = wa('Hola, tengo un local en Roquetas y quiero saber qué haríais para llenarlo en invierno.');
+export const WA_HOLA = wa('Hola, tengo un local en Almería y quiero saber qué haríais para llenarlo en invierno.');
 export const GOOGLE_FICHA = 'https://share.google/GnTpqiGGJO6bbH6Xn';
 
 // Páginas de la web, en el orden del menú
@@ -95,7 +95,7 @@ export const servicePages: ServicePage[] = [
   {
     slug: 'google', icon: 'estrella', name: 'Google y reseñas', short: 'Que te encuentren y que lo que lean convenza.',
     title: 'Google y reseñas', img: '/img/testimonio-3.webp', imgAlt: 'Manuel, dueño de A Lo Cubano, en la terraza de su restaurante',
-    lead: 'Cuando alguien busca dónde comer o tomar algo en Roquetas, tu ficha de Google es lo primero que ve. La dejamos lista para que te elija.',
+    lead: 'Cuando alguien busca dónde comer o tomar algo cerca, tu ficha de Google es lo primero que ve. La dejamos lista para que te elija.',
     items: [
       ['Ficha de Google optimizada', 'Fotos, horario, categorías y descripción, siempre al día.'],
       ['Sistema de captación de reseñas', 'Un QR y el momento justo para que tus clientes contentos lo cuenten.'],

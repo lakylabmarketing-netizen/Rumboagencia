@@ -17,13 +17,13 @@ const COLUMNAS = [
 const PROBLEMA = [
   'Se van los turistas y la terraza se queda vacía.',
   'Entre semana no entra casi nadie.',
-  'Los de Roquetas no te conocen o no se acuerdan de ti.',
+  'La gente de tu zona no te conoce o no se acuerda de ti.',
   'Publicas cuando puedes y no pasa nada.',
 ];
 
 const PASOS = [
   ['Llamada', 'Te llamamos, conocemos tu local y te decimos qué haríamos para llenarlo en invierno.'],
-  ['Plan y guiones', 'Calendario del mes y un guion para cada vídeo, pensado para la gente de Roquetas.'],
+  ['Plan y guiones', 'Calendario del mes y un guion para cada vídeo, pensado para la gente de tu zona.'],
   ['Grabamos en tu local', 'Vamos en el momento más tranquilo del día. Tú no tienes que preparar nada.'],
   ['Publicamos y medimos', 'Editamos, publicamos en tus redes y en Google, y cada mes te contamos qué ha funcionado.'],
 ];
@@ -36,7 +36,7 @@ const DUDAS = [
   ['¿Cuándo voy a notar algo?', 'El primer mes se nota en la presencia: publicas de forma constante. El movimiento de clientes suele llegar entre el segundo y el tercer mes.'],
 ];
 
-const CINTA = ['Vídeos', 'Reseñas en Google', 'TikTok', 'Instagram', 'Roquetas de Mar', 'Grabamos en tu local'];
+const CINTA = ['Vídeos', 'Reseñas en Google', 'TikTok', 'Instagram', 'Almería', 'Grabamos en tu local'];
 
 const Tarjeta = ({ src, alt = '' }: { src: string; alt?: string }) => (
   <figure className="relative m-0 overflow-hidden rounded-[22px] border border-white/10">
@@ -59,12 +59,12 @@ export default function Home() {
         <section aria-labelledby="t-hero" className="rejilla relative overflow-hidden px-4 pb-16 pt-10 sm:px-6 md:pb-24 md:pt-16">
           <div className="mx-auto grid max-w-wrap items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
             <div className="relative">
-              <p className="etiqueta">Marketing para restauración y ocio en Roquetas de Mar</p>
+              <p className="etiqueta">Marketing para restauración y ocio en Almería</p>
               <h1 id="t-hero" className="mt-6 text-[clamp(2.6rem,6.6vw,5.4rem)]">
                 En invierno tu local no tiene por qué <span className="marca">estar vacío</span>
               </h1>
               <p className="mt-8 max-w-[38ch] text-[clamp(1.15rem,1.8vw,1.35rem)] leading-[1.5] text-gris">
-                Somos Rumbo, una agencia de marketing para restaurantes, bares y ocio en Roquetas de Mar. Vamos a tu local, grabamos los vídeos, los publicamos en tus redes y cuidamos tu ficha de Google para que te lleguen clientes también en invierno.
+                Somos Rumbo, una agencia de marketing para restaurantes, bares y ocio en Almería. Vamos a tu local, grabamos los vídeos, los publicamos en tus redes y cuidamos tu ficha de Google para que te lleguen clientes también en invierno.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-whatsapp"><WhatsIcon className="h-7 w-7" /> Escríbenos por WhatsApp</a>
@@ -248,7 +248,7 @@ export default function Home() {
                       <li key={it} className="flex gap-3 text-[18px]"><Icon name="check" className={`mt-1 h-5 w-5 shrink-0 text-naranja`} />{it}</li>
                     ))}
                   </ul>
-                  <a href={wa(`Hola, tengo un local en Roquetas y me interesa el paquete ${p.name}.`)} target="_blank" rel="noopener"
+                  <a href={wa(`Hola, tengo un local en Almería y me interesa el paquete ${p.name}.`)} target="_blank" rel="noopener"
                     className={`btn mt-auto ${p.rec ? 'btn-whatsapp' : 'btn-linea'}`}><WhatsIcon className="h-6 w-6" /> Quiero este paquete</a>
                 </article>
               ))}

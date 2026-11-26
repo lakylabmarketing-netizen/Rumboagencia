@@ -5,7 +5,7 @@ import { WA_HOLA } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Enlaces',
-  description: 'Rumbo, Marketing para restauración y ocio en Roquetas de Mar. Contacto, servicios, caso real y WhatsApp.',
+  description: 'Rumbo, Marketing para restauración y ocio en Almería. Contacto, servicios, caso real y WhatsApp.',
   alternates: { canonical: '/enlaces/' },
 };
 
@@ -30,7 +30,7 @@ export default function Enlaces() {
       <div className="mx-auto max-w-[460px]">
         <header className="text-center">
           <h1 className="flex justify-center"><Logo className="h-9 w-auto" title="Rumbo" /></h1>
-          <p className="mt-3 text-[18px] text-gris">Marketing para restauración y ocio en Roquetas.<br />Que en invierno tu local no esté vacío.</p>
+          <p className="mt-3 text-[18px] text-gris">Marketing para restauración y ocio en Almería.<br />Que en invierno tu local no esté vacío.</p>
         </header>
 
         <nav aria-label="Enlaces" className="mt-8 grid gap-3">

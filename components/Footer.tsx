@@ -36,7 +36,7 @@ export default function Footer({ cta = true }: { cta?: boolean }) {
         <div className="mx-auto max-w-wrap">
           <Logo className="desvanece h-auto w-full" />
           <div className="mt-8 flex flex-col gap-5 text-[17px] md:flex-row md:items-center md:justify-between">
-            <p className="text-gris">Marketing para restauración y ocio · Roquetas de Mar · © 2026</p>
+            <p className="text-gris">Marketing para restauración y ocio · Almería · © 2026</p>
             <nav aria-label="Pie" className="flex flex-wrap gap-x-6 gap-y-3">
               {[...NAV.slice(1), ['/legal/', 'Aviso legal y privacidad'] as [string, string]].map(([h, l]) => (
                 <a key={h} href={h} className="text-gris underline-offset-4 hover:text-white hover:underline">{l}</a>
