@@ -17,7 +17,7 @@ export default function ContactForm() {
     const v = (k: string) => String(fd.get(k) || '').trim();
     const missing: string[] = [];
     if (v('nombre').length < 2) missing.push('tu nombre');
-    if (v('local').length < 2) missing.push('el nombre del bar');
+    if (v('local').length < 2) missing.push('el nombre del local');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email'))) missing.push('un correo válido');
     if (v('telefono').replace(/\D/g, '').length < 9) missing.push('un teléfono de 9 dígitos');
     if (!fd.get('rgpd')) missing.push('aceptar la política de privacidad');
@@ -41,7 +41,7 @@ export default function ContactForm() {
       <input type="hidden" name="form-name" value="consulta" />
       <div className="grid gap-7 sm:grid-cols-2">
         <div><label htmlFor="nombre" className={label}>Tu nombre *</label><input id="nombre" name="nombre" required minLength={2} autoComplete="name" placeholder="Nombre y apellidos" className={field} /></div>
-        <div><label htmlFor="local" className={label}>Nombre del bar *</label><input id="local" name="local" required minLength={2} autoComplete="organization" placeholder="Nombre de tu bar" className={field} /></div>
+        <div><label htmlFor="local" className={label}>Nombre del local *</label><input id="local" name="local" required minLength={2} autoComplete="organization" placeholder="Nombre de tu local" className={field} /></div>
         <div><label htmlFor="email" className={label}>Correo electrónico *</label><input id="email" name="email" type="email" required autoComplete="email" placeholder="tucorreo@ejemplo.com" className={field} /></div>
         <div><label htmlFor="telefono" className={label}>Teléfono *</label><input id="telefono" name="telefono" type="tel" required autoComplete="tel" placeholder="600 00 00 00" className={field} /></div>
       </div>

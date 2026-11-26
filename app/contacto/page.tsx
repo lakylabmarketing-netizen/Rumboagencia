@@ -8,7 +8,7 @@ import { CONTACT_EMAIL, WA_HOLA, WHATSAPP_VISIBLE } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Contacto',
-  description: 'Cuéntanos qué necesita tu bar. Te respondemos en menos de 24 horas laborables.',
+  description: 'Cuéntanos qué necesita tu local. Te respondemos en menos de 24 horas laborables.',
   alternates: { canonical: '/contacto/' },
 };
 
@@ -17,7 +17,7 @@ export default function Contacto() {
     <>
       <Nav />
       <main id="contenido">
-        <PageHead kicker="Contacto" title={<>Cuéntanos qué necesita <span className="text-naranja-osc">tu bar</span></>}
+        <PageHead kicker="Contacto" title={<>Cuéntanos qué necesita <span className="text-naranja-osc">tu local</span></>}
           lead="Escríbenos, llámanos o déjanos tus datos. Te respondemos en menos de 24 horas laborables." />
         <section className="px-4 pb-20 sm:px-6">
           <div className="mx-auto grid max-w-wrap gap-8 md:grid-cols-[.8fr_1.2fr]">

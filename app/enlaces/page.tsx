@@ -5,7 +5,7 @@ import { WA_HOLA } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Enlaces',
-  description: 'Rumbo, marketing para bares de Roquetas de Mar. Contacto, servicios, caso real y WhatsApp.',
+  description: 'Rumbo, Marketing para restauración y ocio en Roquetas de Mar. Contacto, servicios, caso real y WhatsApp.',
   alternates: { canonical: '/enlaces/' },
 };
 
@@ -30,11 +30,11 @@ export default function Enlaces() {
       <div className="mx-auto max-w-[460px]">
         <header className="text-center">
           <h1 className="flex justify-center"><Logo className="h-9 w-auto" title="Rumbo" /></h1>
-          <p className="mt-3 text-[18px] text-gris">Marketing para bares de Roquetas.<br />Que en invierno tu bar no esté vacío.</p>
+          <p className="mt-3 text-[18px] text-gris">Marketing para restauración y ocio en Roquetas.<br />Que en invierno tu local no esté vacío.</p>
         </header>
 
         <nav aria-label="Enlaces" className="mt-8 grid gap-3">
-          <Row href={utm('/contacto/', 'contacto')} title="Quiero llenar mi bar" sub="Cuéntanos cómo va tu invierno" icon={<Icon name="telefono" />} />
+          <Row href={utm('/contacto/', 'contacto')} title="Quiero llenar mi local" sub="Cuéntanos cómo va tu invierno" icon={<Icon name="telefono" />} />
           <a href={WA_HOLA} target="_blank" rel="noopener" className="flex items-center gap-4 rounded-2xl bg-naranja p-4 text-ink hover:bg-[#FF6A2B]">
             <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white/40"><WhatsIcon className="h-8 w-8" /></span>
             <span className="min-w-0 flex-1"><b className="block text-[20px] font-bold leading-tight">WhatsApp</b><span className="mt-0.5 block text-[16px]">Escríbenos y te contestamos</span></span>

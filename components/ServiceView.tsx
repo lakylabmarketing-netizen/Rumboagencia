@@ -18,7 +18,7 @@ export default function ServiceView({ s }: { s: ServicePage }) {
               <p className="mt-5 max-w-[42ch] text-[clamp(1.15rem,1.8vw,1.35rem)] leading-[1.5] text-gris">{s.lead}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-whatsapp"><WhatsIcon className="h-7 w-7" /> Escríbenos por WhatsApp</a>
-                <a href="/contacto/" className="btn btn-linea">Hablemos de tu bar</a>
+                <a href="/contacto/" className="btn btn-linea">Hablemos de tu local</a>
               </div>
             </div>
             <img src={s.img} alt={s.imgAlt} className="mx-auto aspect-[4/5] w-full max-w-[420px] rounded-2xl object-cover" />

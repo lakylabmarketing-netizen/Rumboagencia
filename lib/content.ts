@@ -7,7 +7,7 @@ export const CONTACT_EMAIL = 'lakylabmarketing@gmail.com'; // provisional
 // WhatsApp de Rumbo y mensajes que se abren ya escritos
 export const WHATSAPP = '34624911599';
 export const wa = (msg: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
-export const WA_HOLA = wa('Hola, tengo un bar en Roquetas y quiero saber qué haríais para llenarlo en invierno.');
+export const WA_HOLA = wa('Hola, tengo un local en Roquetas y quiero saber qué haríais para llenarlo en invierno.');
 export const GOOGLE_FICHA = 'https://share.google/GnTpqiGGJO6bbH6Xn';
 
 // Páginas de la web, en el orden del menú
@@ -79,11 +79,11 @@ export type ServicePage = {
 
 export const servicePages: ServicePage[] = [
   {
-    slug: 'redes', icon: 'video', name: 'Vídeos y redes sociales', short: 'Grabamos tu bar y lo publicamos cada semana.',
+    slug: 'redes', icon: 'video', name: 'Vídeos y redes sociales', short: 'Grabamos tu local y lo publicamos cada semana.',
     title: 'Redes sociales', img: '/img/grabando-poster.jpg', imgAlt: 'Grabando a Manuel en la terraza de A Lo Cubano',
-    lead: 'Grabamos en tu bar, montamos las piezas y las publicamos con el texto escrito. Tú apruebas el mes de una vez.',
+    lead: 'Grabamos en tu local, montamos las piezas y las publicamos con el texto escrito. Tú apruebas el mes de una vez.',
     items: [
-      ['Grabación en tu bar', 'Vamos a tu bar a grabar cada mes, en el momento más tranquilo del día.'],
+      ['Grabación en tu local', 'Vamos a tu local a grabar cada mes, en el momento más tranquilo del día.'],
       ['Vídeos de tres duraciones', 'Piezas largas, medias y cortas, pensadas para cada red.'],
       ['Diseño gráfico y stories', 'Diseños para tus publicaciones y stories cada semana.'],
       ['Calendario, publicación y copys', 'Programamos la semana y escribimos los textos. Nada sale sin tu visto bueno.'],
