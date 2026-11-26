@@ -15,12 +15,9 @@ body {
   padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right);
 }
 h1, h2, h3, .head { font-family: 'General Sans', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; letter-spacing: -.025em; line-height: 1.04; }
-/* Titulares grandes con degradado de blanco a gris, como el metal pulido */
-h1, h2 { font-weight: 500; letter-spacing: -.04em; line-height: 1.02; padding-bottom: .06em;
-  background: linear-gradient(180deg, #fff 25%, rgba(255,255,255,.5) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-/* Palabra clave en naranja (también con degradado) */
-.marca, h1 .text-naranja, h2 .text-naranja, .grad-naranja {
-  background: linear-gradient(180deg, #FF9A62 0%, #F04E17 85%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* Titulares: General Sans Semibold, blancos y con la palabra clave en el naranja de Rumbo */
+h1, h2 { color: #fff; letter-spacing: -.03em; line-height: 1.03; }
+.marca, .grad-naranja { color: #F04E17; }
 ::selection { background: rgba(240,78,23,.45); color: #fff; }
 :focus-visible { outline: 3px solid #F04E17; outline-offset: 3px; }
 img, video { display: block; max-width: 100%; }
@@ -96,14 +93,10 @@ a.card:hover { border-color: #F04E17; }
 @keyframes historia { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 .historia > i { display: block; height: 3px; flex: 1; border-radius: 3px; background: rgba(255,255,255,.35); overflow: hidden; }
 .historia > i:first-child::after { content: ''; display: block; height: 100%; background: #fff; transform-origin: left; animation: historia 5s linear infinite; }
-/* Destellos que flotan */
-@keyframes flota { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-14px) rotate(6deg); } }
-.flota { animation: flota 7s ease-in-out infinite; }
-.flota-2 { animation: flota 9s ease-in-out infinite reverse; }
 /* Cinta de palabras */
 @keyframes cinta { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .cinta { animation: cinta 30s linear infinite; }
 @media (prefers-reduced-motion: reduce) {
-  .col-sube, .col-baja, .cinta, .flota, .flota-2, .historia > i:first-child::after { animation: none; }
+  .col-sube, .col-baja, .cinta, .historia > i:first-child::after { animation: none; }
   .con-reveal [data-reveal] { opacity: 1; transform: none; }
 }

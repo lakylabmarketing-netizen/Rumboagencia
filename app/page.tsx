@@ -4,7 +4,6 @@ import Icon, { WhatsIcon } from '@/components/Icon';
 import Reveal from '@/components/Reveal';
 import CountUp from '@/components/CountUp';
 import Carrusel from '@/components/Carrusel';
-import Destello from '@/components/Destello';
 import { WA_HOLA, plans, servicePages, testimonials, wa } from '@/lib/content';
 
 
@@ -60,8 +59,6 @@ export default function Home() {
         <section aria-labelledby="t-hero" className="rejilla relative overflow-hidden px-4 pb-16 pt-10 sm:px-6 md:pb-24 md:pt-16">
           <div className="mx-auto grid max-w-wrap items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
             <div className="relative">
-              <Destello id="d1" className="flota pointer-events-none absolute -top-2 right-[4%] hidden h-24 w-24 md:block lg:right-[-2%]" />
-              <Destello id="d2" naranja className="flota-2 pointer-events-none absolute right-[16%] top-24 hidden h-12 w-12 md:block lg:right-[8%]" />
               <p className="etiqueta">Marketing para restauración y ocio en Roquetas de Mar</p>
               <h1 id="t-hero" className="mt-6 text-[clamp(2.6rem,6.6vw,5.4rem)]">
                 En invierno tu local no tiene por qué <span className="marca">estar vacío</span>
@@ -89,21 +86,42 @@ export default function Home() {
 
         {/* ── CIFRAS ── */}
         <section aria-labelledby="t-cifras" className="relative overflow-hidden border-y border-line px-4 py-20 sm:px-6 md:py-24">
-          <Destello id="d3" naranja className="flota pointer-events-none absolute -right-6 top-10 h-40 w-40 opacity-80 md:h-56 md:w-56" />
           <div className="mx-auto max-w-wrap">
             <p className="etiqueta">Resultados reales</p>
-            <h2 id="t-cifras" data-reveal className="mt-6 max-w-[16ch] text-[clamp(2.2rem,5vw,4rem)]">Lo que conseguimos con <span className="text-naranja">A Lo Cubano</span></h2>
-            <p data-reveal className="mt-5 max-w-[40ch] text-[20px] text-gris">Restaurante en Roquetas de Mar. Datos de julio a noviembre de 2026.</p>
-            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <h2 id="t-cifras" data-reveal className="mt-6 max-w-[16ch] text-[clamp(2.2rem,5vw,4rem)]">Más gente les encuentra <span className="text-naranja">en Google</span></h2>
+            <p data-reveal className="mt-5 max-w-[40ch] text-[20px] text-gris">Resultados reales de A Lo Cubano, restaurante en Roquetas de Mar, de julio a noviembre de 2026.</p>
+            <div className="mt-12 grid gap-4 lg:grid-cols-3">
+              {/* Google, lo más importante: tarjeta grande */}
+              <div data-reveal className="card relative overflow-hidden p-8 ring-1 ring-naranja/50 shadow-[0_0_90px_-30px_rgba(240,78,23,.6)] sm:p-10 lg:col-span-2 lg:row-span-2">
+                <p className="flex items-center gap-3 text-[18px] font-semibold text-gris">
+                  <span className="grid h-11 w-11 place-items-center rounded-full bg-naranja text-ink"><Icon name="estrella" className="h-6 w-6" /></span>En Google
+                </p>
+                <p className="head mt-8 text-[clamp(4rem,10vw,7.5rem)] leading-none text-naranja"><CountUp to={18107} step={1000} k prefix="+" /></p>
+                <p className="mt-3 text-[clamp(1.3rem,2.2vw,1.7rem)] font-semibold">personas vieron su ficha de Google</p>
+                <div className="mt-10 grid gap-6 border-t border-line pt-8 sm:grid-cols-3">
+                  {[
+                    [<CountUp key="r" to={151} from={12} step={10} prefix="+" />, 'reseñas de 5 estrellas', 'empezó con 12'],
+                    [<CountUp key="ru" to={607} step={100} prefix="+" />, 'pidieron la ruta para ir', 'con Google Maps'],
+                    [<CountUp key="ll" to={133} step={10} prefix="+" />, 'llamaron por teléfono', 'desde su ficha'],
+                  ].map(([v, l, n], i) => (
+                    <div key={i}>
+                      <p className="head text-[clamp(2.4rem,4vw,3.2rem)] leading-none">{v}</p>
+                      <p className="mt-2 text-[18px] font-semibold leading-snug">{l}</p>
+                      <p className="text-[16px] text-gris">{n}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
               {[
-                [<CountUp key="a" to={432490} />, 'visualizaciones en TikTok'],
-                [<CountUp key="b" to={2457} />, 'seguidores en TikTok, desde cero'],
-                [<CountUp key="c" to={151} from={12} />, 'reseñas de 5 estrellas (empezó con 12)'],
-                [<CountUp key="d" to={18107} />, 'personas vieron su ficha de Google'],
+                [<CountUp key="v" to={432490} step={10000} k prefix="+" />, 'visualizaciones en TikTok'],
+                [<CountUp key="s" to={2457} step={100} prefix="+" />, 'seguidores en TikTok, desde cero'],
               ].map(([v, l], i) => (
-                <div key={i} data-reveal className="card p-7">
-                  <p className="head grad-naranja text-[clamp(2.6rem,4.4vw,3.6rem)] leading-none">{v}</p>
-                  <p className="mt-4 text-[19px] font-medium leading-snug text-gris">{l}</p>
+                <div key={i} data-reveal className="card flex flex-col justify-between p-8">
+                  <p className="text-[17px] font-semibold text-gris">En TikTok</p>
+                  <div className="mt-8">
+                    <p className="head text-[clamp(2.8rem,4.6vw,3.8rem)] leading-none text-naranja">{v}</p>
+                    <p className="mt-3 text-[19px] font-medium leading-snug text-gris">{l}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -129,7 +147,7 @@ export default function Home() {
         <div aria-hidden className="overflow-hidden border-y border-line py-5">
           <div className="cinta flex w-max gap-10 whitespace-nowrap">
             {[...CINTA, ...CINTA, ...CINTA, ...CINTA].map((w, i) => (
-              <span key={i} className="head flex items-center gap-10 text-[clamp(1.4rem,2.6vw,2rem)] text-white/35">{w}<span className="text-naranja/70">✦</span></span>
+              <span key={i} className="head flex items-center gap-10 text-[clamp(1.4rem,2.6vw,2rem)] text-white/35">{w}<span className="h-2.5 w-2.5 rounded-full bg-naranja/70" /></span>
             ))}
           </div>
         </div>
