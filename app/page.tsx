@@ -64,7 +64,7 @@ export default function Home() {
                 En invierno tu local no tiene por qué <span className="marca">estar vacío</span>
               </h1>
               <p className="mt-8 max-w-[38ch] text-[clamp(1.15rem,1.8vw,1.35rem)] leading-[1.5] text-gris">
-                Cuando se van los turistas, las cajas bajan. Vamos a tu local, lo grabamos y lo movemos en redes y en Google para que la gente de Roquetas venga también en invierno.
+                Somos Rumbo, una agencia de marketing para restaurantes, bares y ocio en Roquetas de Mar. Vamos a tu local, grabamos los vídeos, los publicamos en tus redes y cuidamos tu ficha de Google para que te lleguen clientes también en invierno.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-whatsapp"><WhatsIcon className="h-7 w-7" /> Escríbenos por WhatsApp</a>
