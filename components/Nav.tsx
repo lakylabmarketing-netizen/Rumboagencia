@@ -24,7 +24,7 @@ export default function Nav() {
     <>
       <header className="sticky top-0 z-50 bg-ink pt-[env(safe-area-inset-top)]">
         {/* Sombra negra que se difumina sobre el contenido blanco al bajar */}
-        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-full h-6 bg-gradient-to-b from-ink/70 to-transparent" />
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-full h-10 bg-[linear-gradient(180deg,rgba(10,10,10,.55)_0%,rgba(10,10,10,.3)_30%,rgba(10,10,10,.12)_60%,rgba(10,10,10,.03)_85%,rgba(10,10,10,0)_100%)]" />
         <div className="mx-auto flex h-[78px] max-w-wrap items-center justify-between gap-4 px-4 sm:px-6">
           <a href="/" aria-label="Rumbo, inicio"><Logo className="h-6 w-auto" /></a>
           <nav aria-label="Apartados" className="hidden items-center gap-1 lg:flex">

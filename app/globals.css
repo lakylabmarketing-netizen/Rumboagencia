@@ -25,10 +25,14 @@ img, video { display: block; max-width: 100%; }
 
 /* Contenido de las páginas en blanco. Arriba y abajo se funde con el negro del encabezado y del pie,
    para que no haya un corte seco entre negro y blanco. */
-.pagina-clara { position: relative; background: #fff; color: #0A0A0A; padding-top: 110px; padding-bottom: 150px; }
+.pagina-clara { position: relative; background: #fff; color: #0A0A0A; padding-top: 170px; padding-bottom: 210px;
+  /* Fundido con curva suave (sin línea visible): opacidad del negro de 1 a 0 siguiendo una curva de salida */
+  --fundido: rgba(10,10,10,1) 0%, rgba(10,10,10,.74) 19%, rgba(10,10,10,.54) 34%, rgba(10,10,10,.38) 47%, rgba(10,10,10,.28) 56.5%,
+    rgba(10,10,10,.19) 65%, rgba(10,10,10,.126) 73%, rgba(10,10,10,.075) 80.2%, rgba(10,10,10,.042) 86.1%, rgba(10,10,10,.021) 91%,
+    rgba(10,10,10,.008) 95.2%, rgba(10,10,10,.002) 98.2%, rgba(10,10,10,0) 100%; }
 .pagina-clara::before, .pagina-clara::after { content: ''; position: absolute; left: 0; right: 0; pointer-events: none; z-index: 1; }
-.pagina-clara::before { top: 0; height: 110px; background: linear-gradient(180deg, #0A0A0A 0%, rgba(10,10,10,.55) 35%, rgba(255,255,255,0) 100%); }
-.pagina-clara::after { bottom: 0; height: 150px; background: linear-gradient(0deg, #0A0A0A 0%, rgba(10,10,10,.55) 35%, rgba(255,255,255,0) 100%); }
+.pagina-clara::before { top: 0; height: 170px; background: linear-gradient(180deg, var(--fundido)); }
+.pagina-clara::after { bottom: 0; height: 210px; background: linear-gradient(0deg, var(--fundido)); }
 .pagina-clara h1, .pagina-clara h2, .claro h1, .claro h2 { color: #0A0A0A; }
 .claro { background: #F2F2F2; color: #0A0A0A; }
 :is(.pagina-clara, .claro) .text-gris { color: #474747; }

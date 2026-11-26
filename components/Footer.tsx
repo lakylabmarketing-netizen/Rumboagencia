@@ -32,7 +32,7 @@ export default function Footer({ cta = true }: { cta?: boolean }) {
           </div>
         </section>
       )}
-      <footer className="border-t border-line px-4 pb-[calc(32px+env(safe-area-inset-bottom))] pt-14 sm:px-6">
+      <footer className="px-4 pb-[calc(32px+env(safe-area-inset-bottom))] pt-14 sm:px-6">
         <div className="mx-auto max-w-wrap">
           <Logo className="desvanece h-auto w-full" />
           <div className="mt-8 flex flex-col gap-5 text-[17px] md:flex-row md:items-center md:justify-between">
