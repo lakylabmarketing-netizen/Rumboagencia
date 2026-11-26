@@ -85,8 +85,8 @@ a.card:hover { border-color: #F04E17; }
   background-size: 64px 64px; -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%); mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%); }
 .rejilla::after { content: ''; position: absolute; inset: 0 0 auto; height: 70%; z-index: -1; pointer-events: none;
   background: radial-gradient(ellipse 50% 60% at 50% 0%, rgba(255,255,255,.09), transparent 70%); }
-/* Pie: el nombre en grande se desvanece hacia abajo */
-.desvanece { -webkit-mask-image: linear-gradient(180deg, #000 20%, transparent 100%); mask-image: linear-gradient(180deg, #000 20%, transparent 100%); }
+/* Pie: el nombre en grande se apaga un poco hacia abajo */
+.desvanece { -webkit-mask-image: linear-gradient(180deg, #000 55%, rgba(0,0,0,.7) 100%); mask-image: linear-gradient(180deg, #000 55%, rgba(0,0,0,.7) 100%); }
 
 /* Carrusel horizontal sin barra visible */
 .carrusel { scrollbar-width: none; }
