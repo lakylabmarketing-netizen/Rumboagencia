@@ -16,7 +16,7 @@ export default function Contacto() {
   return (
     <>
       <Nav />
-      <main id="contenido">
+      <main id="contenido" className="pagina-clara">
         <PageHead kicker="Contacto" title={<>Cuéntanos qué necesita <span className="text-naranja-osc">tu local</span></>}
           lead="Escríbenos, llámanos o déjanos tus datos. Te respondemos en menos de 24 horas laborables." />
         <section className="px-4 pb-20 sm:px-6">

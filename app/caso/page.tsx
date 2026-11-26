@@ -17,7 +17,7 @@ export default function Caso() {
   return (
     <>
       <Nav />
-      <main id="contenido">
+      <main id="contenido" className="pagina-clara">
         <PageHead kicker="Caso real · desde julio de 2026" title={<>Restaurante <span className="text-naranja-osc">A Lo Cubano</span></>}
           lead="Cocina cubana en Roquetas de Mar. Abrió a finales de junio de 2026 y empezamos el 8 de julio: vídeos, ficha de Google y reseñas.">
           <p className="mt-6 text-[17px] text-gris">Antes de empezar: 12 reseñas en Google · 45 seguidores en Instagram · sin cuenta de TikTok</p>
@@ -27,7 +27,7 @@ export default function Caso() {
         <section aria-label="Cifras" className="bg-papel px-4 py-20 sm:px-6 md:py-24">
           <div className="mx-auto grid max-w-wrap gap-4 md:grid-cols-2">
             {metricGroups.map((g) => (
-              <div key={g.q} className="rounded-2xl border border-line bg-ink p-7 sm:p-9">
+              <div key={g.q} className="card p-7 sm:p-9">
                 <h2 className="text-[1.8rem]">{g.q}</h2>
                 <p className="mt-1 text-[15px] text-muted">{g.src}</p>
                 <div className="mt-6 grid gap-6 sm:grid-cols-2">

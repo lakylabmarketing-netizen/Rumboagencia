@@ -8,7 +8,7 @@ export default function ServiceView({ s }: { s: ServicePage }) {
   return (
     <>
       <Nav />
-      <main id="contenido">
+      <main id="contenido" className="pagina-clara">
         {/* Cabecera */}
         <section className="px-4 pb-16 pt-12 sm:px-6 md:pb-24 md:pt-20">
           <div className="mx-auto grid max-w-wrap items-center gap-10 md:grid-cols-2">
@@ -31,7 +31,7 @@ export default function ServiceView({ s }: { s: ServicePage }) {
             <h2 id="t-incluye" className="text-center text-[clamp(2rem,4.4vw,3.2rem)]">Qué incluye</h2>
             <ul className="mt-12 grid gap-4 md:grid-cols-2">
               {s.items.map(([t, d]) => (
-                <li key={t} className="flex gap-4 rounded-2xl border border-line bg-ink p-7">
+                <li key={t} className="card flex gap-4 p-7">
                   <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-naranja/15 text-naranja-osc"><Icon name="check" className="h-5 w-5" /></span>
                   <span><b className="head block text-[1.4rem]">{t}</b><span className="mt-1 block text-[18px] text-gris">{d}</span></span>
                 </li>

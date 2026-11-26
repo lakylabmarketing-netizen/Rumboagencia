@@ -5,7 +5,7 @@ import { Logo } from './Logo';
 import { WhatsIcon } from './Icon';
 import { NAV, WA_HOLA } from '@/lib/content';
 
-/** Menú flotante en forma de píldora: logo, apartados y WhatsApp. En móvil, menú a pantalla completa. */
+/** Encabezado negro: logo, apartados y WhatsApp. En móvil, menú a pantalla completa. */
 export default function Nav() {
   const path = usePathname() || '/';
   const [open, setOpen] = useState(false);
@@ -22,8 +22,10 @@ export default function Nav() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 px-3 pt-[calc(10px+env(safe-area-inset-top))] sm:px-6">
-        <div className="mx-auto flex h-[68px] max-w-wrap items-center justify-between gap-4 rounded-full border border-white/10 bg-[#141414]/90 pl-6 pr-2 backdrop-blur">
+      <header className="sticky top-0 z-50 bg-ink pt-[env(safe-area-inset-top)]">
+        {/* Sombra negra que se difumina sobre el contenido blanco al bajar */}
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-full h-6 bg-gradient-to-b from-ink/70 to-transparent" />
+        <div className="mx-auto flex h-[78px] max-w-wrap items-center justify-between gap-4 px-4 sm:px-6">
           <a href="/" aria-label="Rumbo, inicio"><Logo className="h-6 w-auto" /></a>
           <nav aria-label="Apartados" className="hidden items-center gap-1 lg:flex">
             {NAV.map(([h, l]) => (

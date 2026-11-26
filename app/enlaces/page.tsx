@@ -26,7 +26,7 @@ const Row = ({ href, title, sub, icon, accent = false, ext = false }: { href: st
 
 export default function Enlaces() {
   return (
-    <main id="contenido" className="min-h-[100svh] bg-ink px-4 pb-[calc(28px+env(safe-area-inset-bottom))] pt-[calc(36px+env(safe-area-inset-top))]">
+    <main id="contenido" className="pagina-clara min-h-[100svh] px-4">
       <div className="mx-auto max-w-[460px]">
         <header className="text-center">
           <h1 className="flex justify-center"><Logo className="h-9 w-auto" title="Rumbo" /></h1>

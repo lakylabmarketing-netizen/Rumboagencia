@@ -2,7 +2,7 @@
 import { useRef, useState } from 'react';
 import { CONTACT_EMAIL } from '@/lib/content';
 
-const field = 'w-full rounded-2xl border-2 border-line bg-ink px-4 py-3.5 text-[18px] text-white placeholder:text-muted focus:border-naranja focus:outline-none';
+const field = 'w-full rounded-2xl border-2 border-line bg-black/5 px-4 py-3.5 text-[18px] text-current placeholder:text-muted focus:border-naranja focus:outline-none';
 const label = 'mb-2 block text-[17px] font-semibold';
 
 /** Formulario de consulta. Lo procesa Netlify Forms; sin scripts de terceros. */

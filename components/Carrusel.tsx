@@ -5,7 +5,7 @@ import { useRef } from 'react';
 export default function Carrusel({ titulo, children }: { titulo: React.ReactNode; children: React.ReactNode }) {
   const fila = useRef<HTMLDivElement>(null);
   const mover = (dir: number) => fila.current?.scrollBy({ left: dir * fila.current.clientWidth * 0.8, behavior: 'smooth' });
-  const flecha = 'grid h-14 w-14 place-items-center rounded-full border-2 border-white/30 text-[22px] hover:border-naranja hover:text-naranja';
+  const flecha = 'grid h-14 w-14 place-items-center rounded-full border-2 border-line text-[22px] hover:border-naranja hover:text-naranja';
   return (
     <>
       <div className="mx-auto flex max-w-wrap items-end justify-between gap-6 px-4 sm:px-6">

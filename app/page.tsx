@@ -42,7 +42,7 @@ const Tarjeta = ({ src, alt = '' }: { src: string; alt?: string }) => (
   <figure className="relative m-0 overflow-hidden rounded-[22px] border border-white/10">
     <img src={src} alt={alt} loading="lazy" className="aspect-[9/14] w-full object-cover" />
     <span aria-hidden className="historia absolute inset-x-3 top-3 flex gap-1.5"><i /><i /><i /></span>
-    <figcaption className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-black/55 px-3 py-1.5 text-[14px] font-semibold backdrop-blur">
+    <figcaption className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-black/55 px-3 py-1.5 text-[14px] font-semibold text-white backdrop-blur">
       <span className="grid h-6 w-6 place-items-center rounded-full bg-naranja text-[11px] font-bold text-ink">AL</span>@alocubanofusion
     </figcaption>
   </figure>
@@ -54,7 +54,7 @@ export default function Home() {
     <>
       <Nav />
       <Reveal />
-      <main id="contenido">
+      <main id="contenido" className="pagina-clara">
         {/* ── PORTADA ── */}
         <section aria-labelledby="t-hero" className="rejilla relative overflow-hidden px-4 pb-16 pt-10 sm:px-6 md:pb-24 md:pt-16">
           <div className="mx-auto grid max-w-wrap items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
@@ -147,7 +147,7 @@ export default function Home() {
         <div aria-hidden className="overflow-hidden border-y border-line py-5">
           <div className="cinta flex w-max gap-10 whitespace-nowrap">
             {[...CINTA, ...CINTA, ...CINTA, ...CINTA].map((w, i) => (
-              <span key={i} className="head flex items-center gap-10 text-[clamp(1.4rem,2.6vw,2rem)] text-white/35">{w}<span className="h-2.5 w-2.5 rounded-full bg-naranja/70" /></span>
+              <span key={i} className="head flex items-center gap-10 text-[clamp(1.4rem,2.6vw,2rem)] opacity-35">{w}<span className="h-2.5 w-2.5 rounded-full bg-naranja/70" /></span>
             ))}
           </div>
         </div>
@@ -197,7 +197,7 @@ export default function Home() {
                   <video autoPlay muted loop playsInline preload="none" poster={p} className="aspect-[9/16] w-full object-cover" aria-label={t}><source src={v} type="video/mp4" /></video>
                 ) : <img src={p} alt={t} loading="lazy" className="aspect-[9/16] w-full object-cover" />}
                 <span aria-hidden className="historia absolute inset-x-4 top-4 flex gap-1.5"><i /><i /><i /></span>
-                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-5 pt-16 text-[18px] font-semibold">{t}</figcaption>
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-5 pt-16 text-[18px] font-semibold text-white">{t}</figcaption>
               </figure>
             ))}
           </Carrusel>
