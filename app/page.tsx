@@ -6,7 +6,6 @@ import CountUp from '@/components/CountUp';
 import Carrusel from '@/components/Carrusel';
 import { WA_HOLA, plans, servicePages, testimonials, wa } from '@/lib/content';
 
-const Flecha = () => <span className="circulo"><Icon name="flecha" className="h-5 w-5" /></span>;
 
 // Fotogramas reales de A Lo Cubano para el collage de la portada (cada columna se repite para el bucle)
 const COLUMNAS = [
@@ -32,8 +31,8 @@ const PASOS = [
 const DUDAS = [
   ['¿Tengo que salir yo en los vídeos?', 'No. Funciona mejor si sales tú o alguien de tu equipo, pero se puede grabar todo centrado en tu bar, tus platos y tu espacio. Lo decides antes de grabar.'],
   ['Nunca he grabado un vídeo. ¿Es un problema?', 'No. Nosotros llevamos el guion y la cámara, y te decimos qué hacer en cada toma.'],
-  ['¿Cuánto cuesta?', 'Desde 189 € al mes con el plan Campaña. Presencia cuesta 449 € al mes y Marca, 790 € al mes.'],
-  ['¿Hay permanencia?', 'Campaña es una campaña única. Presencia y Marca son planes de tres meses.'],
+  ['¿Cuánto cuesta?', 'Depende del paquete que elijas. Escríbenos por WhatsApp y te pasamos el precio sin compromiso.'],
+  ['¿Hay permanencia?', 'Campaña es una campaña única. Presencia y Marca son paquetes de tres meses.'],
   ['¿Cuándo voy a notar algo?', 'El primer mes se nota en la presencia: publicas de forma constante. El movimiento de clientes suele llegar entre el segundo y el tercer mes.'],
 ];
 
@@ -61,7 +60,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-wrap items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
             <div>
               <p className="etiqueta">Marketing para bares de Roquetas de Mar</p>
-              <h1 id="t-hero" className="mt-6 text-[clamp(3.4rem,10vw,7.6rem)]">
+              <h1 id="t-hero" className="mt-6 text-[clamp(2.6rem,6.6vw,5.4rem)]">
                 En invierno tu bar no tiene por qué <span className="marca">estar vacío</span>
               </h1>
               <p className="mt-8 max-w-[38ch] text-[clamp(1.15rem,1.8vw,1.35rem)] leading-[1.5] text-gris">
@@ -69,7 +68,7 @@ export default function Home() {
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a href={WA_HOLA} target="_blank" rel="noopener" className="btn btn-whatsapp"><WhatsIcon className="h-7 w-7" /> Escríbenos por WhatsApp</a>
-                <a href="#contacto" className="btn btn-naranja">Te llamamos <Flecha /></a>
+                <a href="#contacto" className="btn btn-linea">Te llamamos</a>
               </div>
             </div>
             {/* Collage que se mueve solo */}
@@ -95,7 +94,7 @@ export default function Home() {
               [<CountUp key="d" to={18107} />, 'personas vieron su ficha de Google'],
             ].map(([v, l], i) => (
               <div key={i} className="border-ink/20 px-6 py-10 sm:border-l sm:first:border-l-0 md:py-14">
-                <p className="head text-[clamp(3.4rem,7vw,5.4rem)] leading-none">{v}</p>
+                <p className="head text-[clamp(2.6rem,5vw,4rem)] leading-none">{v}</p>
                 <p className="mt-3 max-w-[22ch] text-[19px] font-semibold leading-snug">{l}</p>
               </div>
             ))}
@@ -106,7 +105,7 @@ export default function Home() {
         {/* ── EL PROBLEMA ── */}
         <section aria-labelledby="t-problema" className="px-4 py-20 sm:px-6 md:py-28">
           <div className="mx-auto max-w-wrap">
-            <h2 id="t-problema" data-reveal className="text-[clamp(3rem,8vw,6rem)]">¿Te <span className="marca">suena?</span></h2>
+            <h2 id="t-problema" data-reveal className="text-[clamp(2.4rem,5.6vw,4.4rem)]">¿Te <span className="marca">suena?</span></h2>
             <ul className="mt-10 grid gap-3 md:grid-cols-2">
               {PROBLEMA.map((p) => (
                 <li key={p} data-reveal className="card flex items-center gap-5 p-7 text-[clamp(1.15rem,2vw,1.4rem)] font-semibold">
@@ -122,7 +121,7 @@ export default function Home() {
         <div aria-hidden className="overflow-hidden border-y border-line py-5">
           <div className="cinta flex w-max gap-10 whitespace-nowrap">
             {[...CINTA, ...CINTA, ...CINTA, ...CINTA].map((w, i) => (
-              <span key={i} className="head flex items-center gap-10 text-[clamp(1.8rem,3.4vw,2.8rem)] text-white/90">{w}<span className="text-naranja">✦</span></span>
+              <span key={i} className="head flex items-center gap-10 text-[clamp(1.4rem,2.6vw,2rem)] text-white/90">{w}<span className="text-naranja">✦</span></span>
             ))}
           </div>
         </div>
@@ -130,7 +129,7 @@ export default function Home() {
         {/* ── SERVICIOS ── */}
         <section id="servicios" aria-labelledby="t-servicios" className="px-4 py-20 sm:px-6 md:py-28">
           <div className="mx-auto max-w-wrap">
-            <h2 id="t-servicios" data-reveal className="text-[clamp(2.8rem,7vw,5.6rem)]">Todo lo que tu bar necesita<br /><span className="text-naranja">en redes y en Google</span></h2>
+            <h2 id="t-servicios" data-reveal className="text-[clamp(2.2rem,5vw,4rem)]">Todo lo que tu bar necesita<br /><span className="text-naranja">en redes y en Google</span></h2>
             <p data-reveal className="mt-6 max-w-[40ch] text-[20px] text-gris">Cada mes preparamos, grabamos, editamos y publicamos. Tú solo tienes que abrirnos la puerta.</p>
             <div className="mt-12 grid gap-4 lg:grid-cols-[1.25fr_1fr]">
               <div data-reveal className="card grid grid-cols-3 gap-3 p-4">
@@ -145,7 +144,7 @@ export default function Home() {
                   <a key={s.slug} href={`/${s.slug}/`} data-reveal className={`flex flex-col justify-between rounded-[28px] p-8 transition-transform hover:-translate-y-1 ${i === 1 ? 'bg-naranja text-ink' : 'card'}`}>
                     <span className={`grid h-16 w-16 place-items-center rounded-2xl ${i === 1 ? 'bg-ink text-white' : 'bg-naranja text-ink'}`}><Icon name={s.icon} className="h-8 w-8" /></span>
                     <span className="mt-8 block">
-                      <b className="head block text-[clamp(2.2rem,4vw,3rem)]">{s.name}</b>
+                      <b className="head block text-[clamp(1.7rem,3vw,2.3rem)]">{s.name}</b>
                       <span className={`mt-2 block text-[19px] ${i === 1 ? 'text-ink/80' : 'text-gris'}`}>{s.short}</span>
                       <span className="mt-4 inline-flex items-center gap-2 text-[17px] font-bold">Ver qué incluye <Icon name="flecha" className="h-5 w-5" /></span>
                     </span>
@@ -158,7 +157,7 @@ export default function Home() {
 
         {/* ── ASÍ GRABAMOS ── */}
         <section aria-labelledby="t-grabamos" className="pb-20 md:pb-28">
-          <Carrusel titulo={<h2 id="t-grabamos" data-reveal className="text-[clamp(2.8rem,7vw,5.6rem)]">Así grabamos<br /><span className="text-naranja">en tu bar</span></h2>}>
+          <Carrusel titulo={<h2 id="t-grabamos" data-reveal className="text-[clamp(2.2rem,5vw,4rem)]">Así grabamos<br /><span className="text-naranja">en tu bar</span></h2>}>
             {[
               ['/video/grabando-loop.mp4', '/img/grabando-poster.jpg', 'Grabando a Manuel en la terraza'],
               ['/video/manuel-loop.mp4', '/img/manuel-poster.jpg', 'Manuel cuenta qué ha cambiado'],
@@ -181,16 +180,16 @@ export default function Home() {
         {/* ── MÉTODO ── */}
         <section aria-labelledby="t-pasos" className="claro px-4 py-20 sm:px-6 md:py-28">
           <div className="mx-auto max-w-wrap">
-            <h2 id="t-pasos" data-reveal className="text-[clamp(2.8rem,7.4vw,6rem)]">De la primera llamada<br />al <span className="marca">bar lleno</span></h2>
+            <h2 id="t-pasos" data-reveal className="text-[clamp(2.2rem,5.2vw,4.2rem)]">De la primera llamada<br />al <span className="marca">bar lleno</span></h2>
             <p data-reveal className="mt-6 max-w-[40ch] text-[20px] text-gris">Cuatro pasos, cada mes. Lo que funciona se repite y lo que no, se cambia.</p>
             {/* Camino en vertical: las tarjetas van de un lado a otro y una flecha curva lleva de cada paso al siguiente */}
             <ol className="mx-auto mt-12 flex max-w-[920px] flex-col">
               {PASOS.map(([t, d], i) => (
                 <li key={t} data-reveal className="flex flex-col">
                   <div className={`flex w-full items-start gap-6 rounded-[28px] bg-white p-8 md:w-[78%] ${i % 2 ? 'md:self-end' : 'md:self-start'}`}>
-                    <span className="head shrink-0 text-[5rem] leading-[.85]">0{i + 1}</span>
+                    <span className="head shrink-0 text-[3.6rem] leading-[.85]">0{i + 1}</span>
                     <div>
-                      <h3 className="text-[2rem]">{t}</h3>
+                      <h3 className="text-[1.6rem]">{t}</h3>
                       <p className="mt-2 text-[18px] text-gris">{d}</p>
                     </div>
                   </div>
@@ -207,25 +206,24 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── PRECIOS ── */}
-        <section id="precios" aria-labelledby="t-precios" className="px-4 py-20 sm:px-6 md:py-28">
+        {/* ── PAQUETES ── */}
+        <section id="paquetes" aria-labelledby="t-paquetes" className="px-4 py-20 sm:px-6 md:py-28">
           <div className="mx-auto max-w-wrap">
-            <h2 id="t-precios" data-reveal className="text-[clamp(2.8rem,7vw,5.6rem)]">Tres planes.<br /><span className="text-naranja">Sin sorpresas.</span></h2>
-            <p data-reveal className="mt-6 max-w-[40ch] text-[20px] text-gris">Empieza con una campaña o quédate con nosotros tres meses. En todos vamos a tu bar a grabar.</p>
+            <h2 id="t-paquetes" data-reveal className="text-[clamp(2.2rem,5vw,4rem)]">Tres paquetes.<br /><span className="text-naranja">Elige cómo empezar.</span></h2>
+            <p data-reveal className="mt-6 max-w-[40ch] text-[20px] text-gris">Empieza con una campaña o quédate con nosotros tres meses. En todos vamos a tu bar a grabar. Escríbenos y te pasamos el precio.</p>
             <div className="mt-12 grid gap-4 lg:grid-cols-3">
               {plans.map((p) => (
                 <article key={p.id} data-reveal className={`relative flex flex-col rounded-[28px] p-8 ${p.rec ? 'bg-naranja text-ink' : 'card'}`}>
                   {p.rec && <span className="absolute right-6 top-6 rounded-full bg-ink px-4 py-1.5 text-[14px] font-bold text-white">Recomendado</span>}
                   <p className={`text-[15px] font-semibold uppercase tracking-[.08em] ${p.rec ? 'text-ink/70' : 'text-gris'}`}>{p.kicker}</p>
-                  <h3 className="mt-3 text-[2.6rem]">{p.name}</h3>
-                  <p className="head mt-4 text-[4.6rem] leading-none">{p.price} €<span className={`font-sans text-[.3em] font-semibold normal-case ${p.rec ? 'text-ink/70' : 'text-gris'}`}> al mes</span></p>
+                  <h3 className="mt-3 text-[2rem]">{p.name}</h3>
                   <ul className={`mb-8 mt-6 grid gap-3 border-t pt-6 ${p.rec ? 'border-ink/20' : 'border-line'}`}>
                     {p.items.map((it) => (
                       <li key={it} className="flex gap-3 text-[18px]"><Icon name="check" className={`mt-1 h-5 w-5 shrink-0 ${p.rec ? '' : 'text-naranja'}`} />{it}</li>
                     ))}
                   </ul>
-                  <a href={wa(`Hola, tengo un bar en Roquetas y me interesa el plan ${p.name} (${p.price} €/mes).`)} target="_blank" rel="noopener"
-                    className={`btn mt-auto ${p.rec ? 'bg-ink text-white hover:bg-black' : 'btn-whatsapp'}`}><WhatsIcon className="h-6 w-6" /> Quiero este plan</a>
+                  <a href={wa(`Hola, tengo un bar en Roquetas y me interesa el paquete ${p.name}.`)} target="_blank" rel="noopener"
+                    className={`btn mt-auto ${p.rec ? 'bg-ink text-white hover:bg-black' : 'btn-whatsapp'}`}><WhatsIcon className="h-6 w-6" /> Quiero este paquete</a>
                 </article>
               ))}
             </div>
@@ -235,7 +233,7 @@ export default function Home() {
         {/* ── TESTIMONIOS ── */}
         <section aria-labelledby="t-opiniones" className="border-t border-line px-4 py-20 sm:px-6 md:py-28">
           <div className="mx-auto max-w-wrap">
-            <h2 id="t-opiniones" data-reveal className="text-[clamp(2.8rem,7vw,5.6rem)]">Lo que dice<br /><span className="text-naranja">Manuel</span></h2>
+            <h2 id="t-opiniones" data-reveal className="text-[clamp(2.2rem,5vw,4rem)]">Lo que dice<br /><span className="text-naranja">Manuel</span></h2>
             <div className="mt-12 grid gap-4 md:grid-cols-3">
               {quotes.map((t) => (
                 <figure key={t.n} data-reveal className="card m-0 flex flex-col justify-between p-8">
@@ -252,7 +250,7 @@ export default function Home() {
         <section id="dudas" aria-labelledby="t-dudas" className="border-t border-line px-4 py-20 sm:px-6 md:py-28">
           <div className="mx-auto grid max-w-wrap gap-10 lg:grid-cols-[.9fr_1.1fr]">
             <div>
-              <h2 id="t-dudas" data-reveal className="text-[clamp(2.8rem,7vw,5.6rem)]">Lo que nos preguntan los dueños</h2>
+              <h2 id="t-dudas" data-reveal className="text-[clamp(2.2rem,5vw,4rem)]">Lo que nos preguntan los dueños</h2>
               <p data-reveal className="mt-6 max-w-[32ch] text-[20px] text-gris">¿Otra pregunta? Escríbenos por WhatsApp y te contestamos.</p>
             </div>
             <div className="grid content-start gap-3">

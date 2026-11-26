@@ -12,7 +12,7 @@ export const GOOGLE_FICHA = 'https://share.google/GnTpqiGGJO6bbH6Xn';
 
 // Páginas de la web, en el orden del menú
 export const NAV: [string, string][] = [
-  ['/', 'Inicio'], ['/#servicios', 'Servicios'], ['/#precios', 'Precios'], ['/caso/', 'Caso real'], ['/contacto/', 'Contacto'],
+  ['/', 'Inicio'], ['/#servicios', 'Servicios'], ['/#paquetes', 'Paquetes'], ['/caso/', 'Caso real'], ['/contacto/', 'Contacto'],
 ];
 export const WHATSAPP_VISIBLE = '+34 624 91 15 99';
 
@@ -60,13 +60,13 @@ export const topVideos = [
   { v: '35.733', title: 'Probando los platos por primera vez', meta: 'TikTok' },
 ];
 
-// Planes (de «Rumbo · Planes y servicios», 2026). Solo lo que ve el cliente: sin horas ni márgenes.
+// Paquetes (de «Rumbo · Planes y servicios», 2026). Sin precios en la web: se dan por WhatsApp.
 export const plans = [
-  { id: 'campana', name: 'Campaña', kicker: 'Para empezar · campaña única', price: '189',
+  { id: 'campana', name: 'Campaña', kicker: 'Campaña única',
     items: ['3 reels, 8 stories y 4 posts', 'Estrategia de la campaña', 'Pensado para captar clientes'] },
-  { id: 'presencia', name: 'Presencia', kicker: '3 meses', price: '449', rec: true,
+  { id: 'presencia', name: 'Presencia', kicker: '3 meses', rec: true,
     items: ['6 reels, 12 stories y 6 posts', 'Estrategia de contenido cada mes', 'Estabilidad mes a mes'] },
-  { id: 'marca', name: 'Marca', kicker: '3 meses', price: '790',
+  { id: 'marca', name: 'Marca', kicker: '3 meses',
     items: ['8 reels virales y 6 posts', '16 stories y landing con hosting', 'Estrategia viral y de marca', 'Informe mensual y llamada'] },
 ];
 

@@ -1,6 +1,6 @@
 # Rumbo · web
 
-Web de rumboagencia.info. Next.js (App Router, exportación estática) + TypeScript + Tailwind. Tipografía: Anton (titulares) y General Sans (texto). Fondo negro, blanco y naranja.
+Web de rumboagencia.info. Next.js (App Router, exportación estática) + TypeScript + Tailwind. Tipografía: General Sans (Semibold 600 en titulares). Fondo negro, blanco y naranja. Seguridad: `npm run build` genera out/_headers con CSP por página, HSTS y demás cabeceras (scripts/seguridad.mjs).
 
 Portada sencilla (retrato, titular y llamada a la acción) y una página para cada apartado:
 

@@ -12,10 +12,10 @@ export default function Footer({ cta = true }: { cta?: boolean }) {
           <div className="mx-auto grid max-w-wrap gap-10 lg:grid-cols-[.9fr_1.1fr]">
             <div>
               <p className="etiqueta">Respuesta en menos de 24 h laborables</p>
-              <h2 id="t-hablamos" className="mt-6 text-[clamp(3.2rem,8vw,6.4rem)]">¿Llenamos<br /><span className="marca">tu bar?</span></h2>
+              <h2 id="t-hablamos" className="mt-6 text-[clamp(2.6rem,6vw,4.8rem)]">¿Llenamos<br /><span className="marca">tu bar?</span></h2>
               <p className="mt-6 max-w-[34ch] text-[20px] text-gris">Déjanos tus datos y te llamamos para conocer tu bar y decirte qué haríamos este invierno.</p>
               <div className="mt-8 grid gap-3">
-                <a href={WA_HOLA} target="_blank" rel="noopener" className="flex items-center gap-4 rounded-[22px] bg-[#25D366] p-5 text-[#0B2A17] hover:bg-[#1EBE5A]">
+                <a href={WA_HOLA} target="_blank" rel="noopener" className="flex items-center gap-4 rounded-[22px] bg-naranja p-5 text-ink hover:bg-[#FF6A2B]">
                   <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-white/40"><WhatsIcon className="h-8 w-8" /></span>
                   <span><span className="block text-[15px] font-semibold">WhatsApp</span><b className="block text-[21px]">{WHATSAPP_VISIBLE}</b></span>
                 </a>
@@ -26,7 +26,7 @@ export default function Footer({ cta = true }: { cta?: boolean }) {
               </div>
             </div>
             <div className="card p-7 sm:p-9">
-              <h3 className="text-[2.4rem]">Hablemos de tu bar</h3>
+              <h3 className="text-[1.9rem]">Hablemos de tu bar</h3>
               <div className="mt-6"><ContactForm /></div>
             </div>
           </div>

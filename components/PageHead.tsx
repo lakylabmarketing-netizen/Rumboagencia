@@ -5,7 +5,7 @@ export default function PageHead({ kicker, title, lead, children }:
     <section className="px-4 pb-14 pt-14 text-center sm:px-6 md:pb-20 md:pt-20">
       <div className="mx-auto max-w-wrap">
         <p className="etiqueta">{kicker}</p>
-        <h1 className="mx-auto mt-6 max-w-[18ch] text-[clamp(3rem,8vw,6rem)]">{title}</h1>
+        <h1 className="mx-auto mt-6 max-w-[18ch] text-[clamp(2.4rem,5.6vw,4.4rem)]">{title}</h1>
         {lead && <p className="mx-auto mt-6 max-w-[44ch] text-[clamp(1.15rem,1.8vw,1.35rem)] leading-[1.5] text-gris">{lead}</p>}
         {children}
       </div>

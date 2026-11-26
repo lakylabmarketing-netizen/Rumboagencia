@@ -34,8 +34,8 @@ export default function Enlaces() {
         </header>
 
         <nav aria-label="Enlaces" className="mt-8 grid gap-3">
-          <Row accent href={utm('/contacto/', 'contacto')} title="Quiero llenar mi bar" sub="Cuéntanos cómo va tu invierno" icon={<Icon name="telefono" />} />
-          <a href={WA_HOLA} target="_blank" rel="noopener" className="flex items-center gap-4 rounded-2xl bg-[#25D366] p-4 text-[#0B2A17] hover:bg-[#1EBE5A]">
+          <Row href={utm('/contacto/', 'contacto')} title="Quiero llenar mi bar" sub="Cuéntanos cómo va tu invierno" icon={<Icon name="telefono" />} />
+          <a href={WA_HOLA} target="_blank" rel="noopener" className="flex items-center gap-4 rounded-2xl bg-naranja p-4 text-ink hover:bg-[#FF6A2B]">
             <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white/40"><WhatsIcon className="h-8 w-8" /></span>
             <span className="min-w-0 flex-1"><b className="block text-[20px] font-bold leading-tight">WhatsApp</b><span className="mt-0.5 block text-[16px]">Escríbenos y te contestamos</span></span>
             <Icon name="flecha" className="h-6 w-6 shrink-0" />

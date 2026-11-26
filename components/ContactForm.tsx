@@ -57,7 +57,7 @@ export default function ContactForm() {
         {state === 'sending' ? 'Enviando…' : 'Enviar'}
       </button>
       <div role="status" aria-live="polite">
-        {state === 'ok' && <p className="rounded-xl border-2 border-[#128C4A] bg-[#25D366]/10 p-4 text-[17px]">Recibido. Te escribimos en menos de 24 horas laborables.</p>}
+        {state === 'ok' && <p className="rounded-xl border-2 border-naranja bg-naranja/10 p-4 text-[17px]">Recibido. Te escribimos en menos de 24 horas laborables.</p>}
         {state === 'error' && <p className="rounded-xl border-2 border-red-600 bg-red-50 p-4 text-[17px] text-red-800">{error}</p>}
       </div>
     </form>

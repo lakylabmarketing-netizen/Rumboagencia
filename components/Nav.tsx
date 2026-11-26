@@ -35,7 +35,7 @@ export default function Nav() {
           </nav>
           <div className="flex items-center gap-2">
             <a href={WA_HOLA} target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"
-              className="flex h-[52px] items-center gap-2 rounded-full bg-[#25D366] px-3.5 text-[16px] font-bold text-[#0B2A17] hover:bg-[#1EBE5A] sm:px-5">
+              className="flex h-[52px] items-center gap-2 rounded-full bg-naranja px-3.5 text-[16px] font-bold text-ink hover:bg-[#FF6A2B] sm:px-5">
               <WhatsIcon className="h-7 w-7" /><span className="hidden sm:inline">WhatsApp</span>
             </a>
             <button type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu"
@@ -53,7 +53,7 @@ export default function Nav() {
         </div>
         <nav aria-label="Menú" className="mt-8 grid">
           {NAV.map(([h, l]) => (
-            <a key={h} href={h} onClick={() => setOpen(false)} className="head flex items-center justify-between border-b border-line py-4 text-[2.6rem]">
+            <a key={h} href={h} onClick={() => setOpen(false)} className="head flex items-center justify-between border-b border-line py-4 text-[2rem]">
               {l}<span aria-hidden className="text-naranja">→</span>
             </a>
           ))}

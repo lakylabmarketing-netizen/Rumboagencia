@@ -17,7 +17,6 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['"General Sans"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
-        display: ['Anton', 'Impact', '"Arial Narrow"', 'sans-serif'],
       },
       maxWidth: { wrap: '1240px' },
     },
